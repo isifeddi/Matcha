@@ -15,7 +15,6 @@ const mysql = require('mysql');
       if(err){
           throw err;
       }
-      console.log('Connected !!!');
       
   });
   module.exports = conn;
