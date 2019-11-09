@@ -4,63 +4,59 @@ const bcrypt = require ('bcrypt')
 const common = require('../models/common');
 
 
-   Register = async (req, res, next) => {
+   Register = async (req, res) => {
    const {firstname, lastname, username, email, password, confirmPassword} = req.body;
    let GetUserByUsername = await  common.getUser('GetUserByUsername',username);
    let GetUserByEmail = await  common.getUser('GetUserByEmail',email);
-   const validate = () => {
+   
+   let isValid = 1;
+   let error = {};
+      
       if(!tools.isLastname(lastname))
       {
-         console.log("lastname Error");
-         return false;
+         isValid = 0;
+         error.lastname = 'lastname Error'
       }
       if(!tools.isFirstname(firstname))
       {
-         console.log("firstname Error");
-         return false;
+         isValid = 0;
+         error.firstname = 'firstname Error'
       }
       if(!tools.isUsername(username))
       {
-      console.log("username Error");
-      return false;
+         isValid = 0;
+         error.username = 'username error'
       }
       else if(GetUserByUsername[0])
       {
-         console.log("username exists");
-         return false;
+         isValid = 0;
+         error.username = 'username already exists'
       }
       if(!tools.isEmail(email))
       {
-         console.log("email Error");
-         return false;
+         isValid = 0;
+         error.email = 'email error'
       }
       else if(GetUserByEmail[0])
       {
-         console.log("email exists");
-         return false;
+         isValid = 0;
+         error.email = 'email already exists'
       }
       if(!tools.isPassword(password, confirmPassword))
       {
-         console.log("password error");
-         return false;
+         isValid = 0;
+         error.password = 'password error'
       }
-      return true;
-   }
    
-
-   if(validate())
+   if(isValid)
    {
       let hashPassword = bcrypt.hashSync(password, 10);
       registerModel(lastname, firstname, username, email, hashPassword);
-      res.send({
-         message : `welcome ${lastname}`
-      })
+      res.send(error)
    }
    else{
-      res.send({
-         message : "ERROR"
-      })
-   }      
+      res.send(error)
+   }
 };
 
 module.exports = Register;

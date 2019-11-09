@@ -3,7 +3,7 @@ const common = require('../models/common');
 
 Login =  async (req, res, next) => {
     const {username, password} = req.body;
-
+    const p= 0;
     let get = await  common.getUser('GetUserByUsername',username);
     if(get[0])
     {
@@ -13,8 +13,8 @@ Login =  async (req, res, next) => {
             }
             if (response)
             {
-                // response.send({
-                //     message : `Welcome ${username}`
+                //  res.send({
+                //      message : `Welcome ${username}`
                 // })
                 console.log('Welcome')
             }
@@ -23,10 +23,9 @@ Login =  async (req, res, next) => {
                 // response.send({
                 //     message : `incorrect password`
                 // })
-                console.log('incorret')
+                console.log('incorrect password')
             }
-          });
-        
+          })
     }
     else
     {

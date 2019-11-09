@@ -1,3 +1,5 @@
+//import Axios from "axios";
+
 const validate = (values) => {
     const errors = {};
 
@@ -14,6 +16,13 @@ const validate = (values) => {
             errors[field] = 'Required !';
         }
     });
+
+    // Axios.get('http://localhost:5000/register', response);
+    // alert("res"+ response)
+    fetch('http://localhost:5000/register').then(function(response){
+        console.log(response);
+    })
+        
 
         if(values.username && !/^[a-z0-9_-]{2,20}$/.test(values.username))
             errors.username = 'Username can contain 2-20 characters, letters (a-z), numbers, "_" and "-"';
