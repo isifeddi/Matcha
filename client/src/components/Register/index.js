@@ -1,6 +1,7 @@
 import React  from 'react';
 import { Field, reduxForm } from 'redux-form';
 import validate from '../../containers/Register/validate'
+import asyncValidate from '../../containers/Register/asyncValidate'
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Avatar from '@material-ui/core/Avatar';
@@ -35,8 +36,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Register = props => {
-    const {handleSubmit, renderField} = props;
+  const {handleSubmit, renderField} = props;
   const classes = useStyles();
+  
 
   return (
     <Container component="main" maxWidth="xs">
@@ -56,7 +58,7 @@ const Register = props => {
                             component={renderField}
                             label="Firstname"
                             type = "text"
-                       />
+            />
             </Grid>
             <Grid item xs={12} sm={6}>
             <Field
@@ -99,7 +101,7 @@ const Register = props => {
                        />
             </Grid>
             <Grid item xs={12}>
-         <Button   className={classes.submit} fullWidth variant="contained" type="submit" color="primary">Submit</Button>
+              <Button   className={classes.submit} fullWidth variant="contained" type="submit" color="primary" >Submit</Button>
             </Grid>
           </Grid>
           
@@ -107,7 +109,7 @@ const Register = props => {
           <Grid container justify="flex-end">
             <Grid item>
               <Link to="/login" style={{textDecoration: 'none', color:'#3f51b5'}}>
-                Already have an account? Sign in  
+                Already have an account? Sign in
               </Link>
             </Grid>
           </Grid>
@@ -119,5 +121,6 @@ const Register = props => {
 
 export default reduxForm({
     form : "Register",
-    validate
+    validate,
+    asyncValidate
 })(Register)

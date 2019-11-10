@@ -30,7 +30,7 @@ const common = require('../models/common');
       else if(GetUserByUsername[0])
       {
          isValid = 0;
-         error.username = 'username already exists'
+         error.username = 'Username already exists'
       }
       if(!tools.isEmail(email))
       {
@@ -40,14 +40,14 @@ const common = require('../models/common');
       else if(GetUserByEmail[0])
       {
          isValid = 0;
-         error.email = 'email already exists'
+         error.email = 'Email already exists'
       }
       if(!tools.isPassword(password, confirmPassword))
       {
          isValid = 0;
          error.password = 'password error'
       }
-   
+        
    if(isValid)
    {
       let hashPassword = bcrypt.hashSync(password, 10);

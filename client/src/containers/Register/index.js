@@ -16,18 +16,17 @@ const renderField = (
             variant="outlined"
             fullWidth
         />
-        
 )
 
-const submit = values => {
-    axios.post('http://localhost:5000/register', values);
+const submit =  (values) => {
+    axios.post('http://localhost:5000/register', values)
 };
 
 const RegisterContainer = () => {
     return (
        <Register
-        onSubmit = {submit}
-            renderField = {renderField}  
+            onSubmit = {submit}
+            renderField = {renderField}
         /> 
     )
 }
