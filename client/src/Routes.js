@@ -12,8 +12,8 @@ const Routes = () => {
         <div>
             <Switch>
                 <Route
-                    component = {RegisterContainer}
                     path="/register"
+                    component = {RegisterContainer}
                     exact
                 />
                 <Route

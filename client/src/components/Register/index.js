@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Register = props => {
-  const {handleSubmit, renderField} = props;
+  const {onSubmit, handleSubmit, renderField} = props;
   const classes = useStyles();
   
 
@@ -50,7 +50,7 @@ const Register = props => {
         <Typography component="h1" variant="h5" color="primary">
           Sign up
         </Typography>
-        <form  className={classes.form} onSubmit = {handleSubmit}>
+        <form  className={classes.form} onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
             <Field
@@ -104,7 +104,7 @@ const Register = props => {
               <Button   className={classes.submit} fullWidth variant="contained" type="submit" color="primary" >Submit</Button>
             </Grid>
           </Grid>
-          
+        </form>  
           
           <Grid container justify="flex-end">
             <Grid item>
@@ -113,7 +113,7 @@ const Register = props => {
               </Link>
             </Grid>
           </Grid>
-        </form>
+        
       </div>
     </Container>
   );

@@ -2,15 +2,21 @@ import axios from 'axios'
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 const asyncValidate = (values) => {
-  return sleep(1000)
+  
+    return sleep(1000)
     .then(async () => {
+
       const error = {}
-      const er = await axios.post('http://localhost:5000/register', values)
+
+      const v = {username :values.username, email: values.email}
+
+      const er = await axios.post('http://localhost:5000/checkIfEx', v)
+
       if (er.data.username === 'Username already exists')
       {
         error.username = er.data.username
       }
-      if (er.data.email === 'Email already exists') 
+      if (er.data.email === 'Email already exists')
       {
         error.email= er.data.email
       }

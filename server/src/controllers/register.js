@@ -47,14 +47,15 @@ const common = require('../models/common');
          isValid = 0;
          error.password = 'password error'
       }
-        
+
    if(isValid)
    {
       let hashPassword = bcrypt.hashSync(password, 10);
       registerModel(lastname, firstname, username, email, hashPassword);
       res.send(error)
    }
-   else{
+   else
+   {
       res.send(error)
    }
 };

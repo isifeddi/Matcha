@@ -3,9 +3,8 @@ import Register from '../../components/Register';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
 
-
 const renderField = (
-    {type, input, label, meta : {touched, error}}
+    {type, input, label, meta : { touched, error}}
     ) => (
         <TextField
             {...input}
@@ -18,16 +17,19 @@ const renderField = (
         />
 )
 
+
 const submit =  (values) => {
+    alert(values.username)
     axios.post('http://localhost:5000/register', values)
 };
 
 const RegisterContainer = () => {
+    
     return (
        <Register
             onSubmit = {submit}
             renderField = {renderField}
-        /> 
+        />
     )
 }
 
