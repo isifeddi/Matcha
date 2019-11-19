@@ -1,5 +1,5 @@
 let registerModel = require('../models/User/Register');
-const tools = require('../outils/index');
+const tools = require('../tools/index');
 const bcrypt = require ('bcrypt')
 const common = require('../models/common');
 
@@ -9,55 +9,19 @@ const common = require('../models/common');
    let GetUserByUsername = await  common.getUser('GetUserByUsername',username);
    let GetUserByEmail = await  common.getUser('GetUserByEmail',email);
    
-   let isValid = 1;
-   let error = {};
+   let isValid = true;
       
-      if(!tools.isLastname(lastname))
-      {
-         isValid = 0;
-         error.lastname = 'lastname Error'
-      }
-      if(!tools.isFirstname(firstname))
-      {
-         isValid = 0;
-         error.firstname = 'firstname Error'
-      }
-      if(!tools.isUsername(username))
-      {
-         isValid = 0;
-         error.username = 'username error'
-      }
-      else if(GetUserByUsername[0])
-      {
-         isValid = 0;
-         error.username = 'Username already exists'
-      }
-      if(!tools.isEmail(email))
-      {
-         isValid = 0;
-         error.email = 'email error'
-      }
-      else if(GetUserByEmail[0])
-      {
-         isValid = 0;
-         error.email = 'Email already exists'
-      }
-      if(!tools.isPassword(password, confirmPassword))
-      {
-         isValid = 0;
-         error.password = 'password error'
-      }
-
-   if(isValid)
+   if(!tools.isLastname(lastname) && !tools.isFirstname(firstname) && !tools.isUsername(username) && GetUserByUsername[0] && !tools.isEmail(email)  && GetUserByEmail[0]&& !tools.isPassword(password, confirmPassword) )
    {
-      let hashPassword = bcrypt.hashSync(password, 10);
-      registerModel(lastname, firstname, username, email, hashPassword);
-      res.send(error)
+       isValid = false;
    }
    else
    {
-      res.send(error)
+      let hashPassword = await bcrypt.hash(password, 10);
+      registerModel(lastname, firstname, username, email, hashPassword);
    }
+
+   res.send(isValid);
 };
 
 module.exports = Register;

@@ -21,6 +21,12 @@ import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 const drawerWidth = 240;
 
+
+const menu = [
+  {"text" : "Se connecter","path" : "/login"},
+  {"text" : "inscription","path" : "/register"}
+];
+
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
@@ -128,7 +134,7 @@ export default function NavBar() {
             {theme.direction === 'ltr' ? <ChevronLeftIcon color="primary"/> : <ChevronRightIcon />}
           </IconButton>
         </div>
-        <Divider />
+        {/* <Divider />
         <List>
           {['Sign in'].map((text, index) => (
             <Link to="/login" style={{textDecoration: 'none', color:'primary'}} key={text}>
@@ -138,14 +144,14 @@ export default function NavBar() {
               </ListItem>
             </Link>
           ))}
-        </List>
+        </List> */}
         <Divider />
         <List>
-          {['Sign up'].map((text, index) => (
-            <Link to="/register" style={{textDecoration: 'none', color:'primary'}} key={text}>
+          {menu.map((item, index) => (
+            <Link to={item.path} style={{textDecoration: 'none', color:'primary'}} key={item.text}>
               <ListItem button>
               <ListItemIcon> <LockOpenIcon color="secondary"/></ListItemIcon>
-                <ListItemText primary={text} />
+                <ListItemText primary={item.text} />
               </ListItem>
             </Link>
           ))}

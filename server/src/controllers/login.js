@@ -1,42 +1,28 @@
-const bcrypt = require ('bcrypt')
+const bcrypt = require ('bcrypt');
 const common = require('../models/common');
 
 Login =  async (req, res, next) => {
     const {username, password} = req.body;
-    const p= 0;
     let get = await  common.getUser('GetUserByUsername',username);
     if(get[0])
     {
-        bcrypt.compare(password, get[0].password, function(error, response) {
-            if (error){
-                console.log(error+'ff')
-            }
+        dbPass = get[0].password
+        console.log(dbPass)
+        bcrypt.compare(password, dbPass)
+        .then((response) => {
             if (response)
             {
-                //  res.send({
-                //      message : `Welcome ${username}`
-                // })
-                console.log('Welcome')
+                res.send({isValid: true, error: null, userData: get[0]});
             }
-            else 
+            else
             {
-                // response.send({
-                //     message : `incorrect password`
-                // })
-                console.log('incorrect password')
+                res.send({isValid: false, error: 'Incorrect password'});
             }
-          })
+        })
+        .catch(err => console.log(err))
     }
     else
-    {
-        res.send({
-            message : `${username} not found`
-        })
-    }
-    
-    
-
-
+        res.send({isValid: false, error: 'User not found'});
 }
 
 module.exports = Login;

@@ -1,34 +1,50 @@
-import React from 'react'
-import TextField from '@material-ui/core/TextField';
-import Login from '../../components/Login'
+import Login from '../../components/Login';
+import {LoginAction} from '../../actions/loginAction';
+import {connect} from "react-redux";
+import {reduxForm} from 'redux-form';
+import { SubmissionError } from 'redux-form'
 
 
-const renderField = (
-    {type, input, label, meta : {touched, error}}
-    ) => (
-     <TextField
-         {...input}
-         type = {type}
-         label = {label}
-         error = {touched && error}
-         helperText={touched && error}
-         variant="outlined"
-            fullWidth
-     />
-)
-const submit = values => {
-    window.alert (JSON.stringify (values));
-};
- 
-const loginContainer = ()=> {
-    return (
-        <div>
-            <Login 
-                onSubmit={submit}
-                renderField = {renderField}
-            />
-        </div>
-    )
+const validate = (values) => {
+    const errors = {};
+    const requiredFields = [
+        'username',
+        'password',
+    ];
+    requiredFields.forEach(field => {
+        if (!values[field] || !values[field].trim()) {
+            errors[field] = 'Required !';
+        }
+    });
+    return errors;
 }
-export default loginContainer;
-  
+
+const mapStateToProps = (state) => (
+{
+    "form" : state.form,
+    "status" : state.login.status,
+    "error": state.login.error
+});
+const mapDispatchToProps = {
+    "loginAction": LoginAction
+};
+const mergeProps = (stateProps, dispatchProps, otherProps)=> ({
+    ...stateProps,
+    ...dispatchProps,
+    ...otherProps,
+    "handleSubmit" : otherProps.handleSubmit((form)=>{
+        dispatchProps.loginAction(form);
+        //console.log(error)
+    })
+});
+
+const connectedLoginContainer = connect(mapStateToProps, mapDispatchToProps,mergeProps)(Login);
+const LoginContainer = reduxForm({
+    form : "login",
+    "destroyOnUnmount": false,  
+    validate,
+
+})(connectedLoginContainer);
+
+
+export default LoginContainer;

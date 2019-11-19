@@ -1,7 +1,5 @@
 import React  from 'react';
-import { Field, reduxForm } from 'redux-form';
-import validate from '../../containers/Register/validate'
-import asyncValidate from '../../containers/Register/asyncValidate'
+import { Field} from 'redux-form';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Avatar from '@material-ui/core/Avatar';
@@ -11,6 +9,9 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import TextField from '@material-ui/core/TextField';
+import CircularProgress from '@material-ui/core/CircularProgress';
+//import MySnackBar from '../commun/snackBar'
 
 const useStyles = makeStyles(theme => ({
   
@@ -21,7 +22,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
   },
   form: {
-    width: '100%', // Fix IE 11 issue.
+    width: '100%',
     marginTop: theme.spacing(3),
   },
   submit: {
@@ -32,25 +33,37 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
   },
- 
 }));
 
-const Register = props => {
-  const {onSubmit, handleSubmit, renderField} = props;
+const renderField = (
+    {type, input, label, meta : { touched, error}}
+    ) => (
+        <TextField
+            {...input}
+            type = {type}
+            label = {label}
+            error = {touched && error}
+            helperText={touched && error}
+            variant="outlined"
+            fullWidth
+        />
+)
+const Register = (props) => {
+  const {handleSubmit, status} = props;
   const classes = useStyles();
-  
 
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
-      <div className={classes.paper}> 
+    {status !== "loading" && 
+    <div className={classes.paper}> 
       <Avatar className={classes.avatar}>
             <LockRoundedIcon/>
           </Avatar>
         <Typography component="h1" variant="h5" color="primary">
           Sign up
         </Typography>
-        <form  className={classes.form} onSubmit={handleSubmit}>
+        <form  className={classes.form}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
             <Field
@@ -74,6 +87,7 @@ const Register = props => {
                             component={renderField}
                             label="Username"
                             type = "text"
+                            
                        />
             </Grid>
             <Grid item xs={12}>
@@ -101,7 +115,8 @@ const Register = props => {
                        />
             </Grid>
             <Grid item xs={12}>
-              <Button   className={classes.submit} fullWidth variant="contained" type="submit" color="primary" >Submit</Button>
+             
+              <Button  onClick={handleSubmit} className={classes.submit} fullWidth variant="contained" type="submit" color="primary" name="submit" value="ok" >Submit</Button>
             </Grid>
           </Grid>
         </form>  
@@ -114,13 +129,11 @@ const Register = props => {
             </Grid>
           </Grid>
         
-      </div>
+      </div>}
+      {status === "loading" && <div className={classes.paper} style={{marginTop: "300px"}}><CircularProgress color="secondary" /></div>}
+      
     </Container>
   );
 }
 
-export default reduxForm({
-    form : "Register",
-    validate,
-    asyncValidate
-})(Register)
+export default Register;

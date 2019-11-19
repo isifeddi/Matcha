@@ -7,14 +7,12 @@ import NotFoundPage from './containers/NotFoundPage'
 import forgotPasswordContainer from './containers/ForgotPassword'
 
 const Routes = () => {
-
     return (
         <div>
             <Switch>
                 <Route
                     path="/register"
                     component = {RegisterContainer}
-                    exact
                 />
                 <Route
                     component = {HomeContainer}
@@ -24,26 +22,17 @@ const Routes = () => {
                 <Route
                     component = {loginContainer}
                     path="/login"
-                    exact
                 />
                 <Route
                     component = {forgotPasswordContainer}
                     path="/forgotPassword"
-                    exact
                 />
                 <Route  
                 path="*"
                 component = {NotFoundPage}
-                exact
                 />
-               
-            </Switch>
-            
-                
-        </div>
-            
-            
+            </Switch> 
+        </div>      
     )
 }
-
 export default Routes

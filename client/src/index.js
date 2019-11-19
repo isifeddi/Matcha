@@ -7,14 +7,16 @@ import {BrowserRouter} from 'react-router-dom'
 
 import {Provider} from 'react-redux'
 
-import store from './reducers/store'
+import configureStore, {history} from './store'
+import { ConnectedRouter } from 'connected-react-router';
 
-
-
+const  store = configureStore();
 ReactDOM.render(
 <BrowserRouter>
 <Provider store = {store}>
-    <App />
+    <ConnectedRouter history={history}>
+        <App />
+    </ConnectedRouter>
 </Provider>
     
 </BrowserRouter>
