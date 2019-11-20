@@ -1,6 +1,6 @@
 import {takeLatest, put} from "redux-saga/effects";
-import {push} from "react-router-redux";
-import {loginError, loginUserSuccess} from "../actions/loginAction";
+//import {push} from "react-router-redux";
+import {loginError, loginUserSuccess,loginErrorField} from "../actions/loginAction";
 import axios from 'axios'
 
 const login =
@@ -10,16 +10,12 @@ const login =
       if(response.data.isValid)
       {
         yield put(loginUserSuccess(response.data.userData));
-        console.log('success', response.data);
+        //console.log('success', response.data);
         //yield put(push("/home"));
       }
-      else if(response.data.error === 'Incorrect password')
+      else 
       {
-        yield put(loginError(response.data.error))
-      }
-      else if(response.data.error === 'User not found')
-      {
-        yield put(loginError(response.data.error))
+        yield put(loginErrorField(response.data.errorField))
       }
 
     }catch (error) {

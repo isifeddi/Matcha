@@ -6,23 +6,24 @@ Login =  async (req, res, next) => {
     let get = await  common.getUser('GetUserByUsername',username);
     if(get[0])
     {
+        data = get[0];
         dbPass = get[0].password
         console.log(dbPass)
         bcrypt.compare(password, dbPass)
         .then((response) => {
             if (response)
             {
-                res.send({isValid: true, error: null, userData: get[0]});
+                res.send({isValid : true, userData: data});
             }
             else
             {
-                res.send({isValid: false, error: 'Incorrect password'});
+                res.send({isValid : false, errorField : 'Password Incorrect'});
             }
         })
         .catch(err => console.log(err))
     }
     else
-        res.send({isValid: false, error: 'User not found'});
+        res.send({isValid: false, errorField : 'Username Not Found'});
 }
 
 module.exports = Login;

@@ -49,13 +49,13 @@ const renderField = (
         />
 )
 const Login = (props) => {
-  const {handleSubmit, error} = props;
+  const {handleSubmit, status,error} = props;
   const classes = useStyles();
 
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
-    {//status !== "loading" && 
+   
     <div className={classes.paper}> 
       <Avatar className={classes.avatar}>
             <LockRoundedIcon/>
@@ -73,7 +73,8 @@ const Login = (props) => {
                             type = "text"
                        />
             </Grid>
-            
+            {status === "error"
+    && <p>ss{error}</p>}
             <Grid item xs={12}>
             <Field
                             name="password"
@@ -101,7 +102,7 @@ const Login = (props) => {
             </Grid>
           </Grid>
         
-      </div>}
+      </div>
       {/* {status === "loading" && <div className={classes.paper} style={{marginTop: "300px"}}><CircularProgress color="secondary" /></div>} */}
       
     </Container>
