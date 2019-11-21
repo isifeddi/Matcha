@@ -2,11 +2,17 @@ import {
     LOGIN_USER,
     LOGIN_USER_ERROR,
     LOGIN_USER_SUCCESS,
-    LOGIN_USER_ERROR_FIELD
-    
+    LOGIN_USER_ERROR_FIELD,
 } from "../actions/loginAction";
+
+import { CLEAR_USER_INFORMATION } from '../actions/logoutAction'
+
+
+const DEFAULT_STATE = {
+  status: 'initialState',
+};
   
-export default function (state = {status: 'initialState'}, action) {
+export default function (state = DEFAULT_STATE, action) {
     switch (action.type) {
     case LOGIN_USER:
     return Object.assign({}, state, {
@@ -15,7 +21,7 @@ export default function (state = {status: 'initialState'}, action) {
     case LOGIN_USER_SUCCESS:
     return Object.assign({}, state, {
       status: 'success',
-      data: action.data,
+      token: action.token,
       error : null
     })
     case LOGIN_USER_ERROR:
@@ -30,6 +36,8 @@ export default function (state = {status: 'initialState'}, action) {
       error: action.errorField,
       data : null
     })
+    case CLEAR_USER_INFORMATION:
+    return DEFAULT_STATE
     default:
       return state;
     }

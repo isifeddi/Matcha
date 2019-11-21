@@ -1,5 +1,6 @@
 const bcrypt = require ('bcrypt');
 const common = require('../models/common');
+var jwt = require('jsonwebtoken');
 
 Login =  async (req, res, next) => {
     const {username, password} = req.body;
@@ -7,13 +8,13 @@ Login =  async (req, res, next) => {
     if(get[0])
     {
         data = get[0];
-        dbPass = get[0].password
-        console.log(dbPass)
-        bcrypt.compare(password, dbPass)
+        let token = await jwt.sign({data: data}, 'ABCDEFG');
+
+        bcrypt.compare(password, data.password)
         .then((response) => {
             if (response)
             {
-                res.send({isValid : true, userData: data});
+                res.send({isValid : true, token: token});
             }
             else
             {

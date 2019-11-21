@@ -1,21 +1,3 @@
-// import { createStore, combineReducers, applyMiddleware } from "redux";
-// import { reducer as reduxFormReducer } from "redux-form";
-// import createSagaMiddleware from 'redux-saga';
-// //import rootSaga from './sagas/saga'
-// const sagaMiddleware = createSagaMiddleware();
-// //sagaMiddleware.run(rootSaga);
-// const reducer = combineReducers({
-//   form : reduxFormReducer,
-
-  
-// });
-// const store = (createStore)(reducer, applyMiddleware(sagaMiddleware));
-
-// export default store;
-
-
-
-/* global module */
 import {applyMiddleware, compose, createStore} from "redux";
 import createSagaMiddleware from "redux-saga";
 import rootSaga from "./sagas";
@@ -61,4 +43,3 @@ export default function configureStore (initialState) {
 
   return store;
 }
-

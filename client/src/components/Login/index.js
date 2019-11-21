@@ -11,7 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 //import CircularProgress from '@material-ui/core/CircularProgress';
-//import MySnackBar from '../commun/snackBar'
+import MySnackBar from '../commun/snackBar'
 
 const useStyles = makeStyles(theme => ({
   
@@ -49,7 +49,7 @@ const renderField = (
         />
 )
 const Login = (props) => {
-  const {handleSubmit, status,error} = props;
+  const {handleSubmit, status,errors} = props;
   const classes = useStyles();
 
   return (
@@ -63,6 +63,7 @@ const Login = (props) => {
         <Typography component="h1" variant="h5" color="primary">
           Sign in
         </Typography>
+        {status === "errorField" && <MySnackBar variant="error" message={errors}/>}
         <form  className={classes.form}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
@@ -73,8 +74,7 @@ const Login = (props) => {
                             type = "text"
                        />
             </Grid>
-            {status === "error"
-    && <p>ss{error}</p>}
+            
             <Grid item xs={12}>
             <Field
                             name="password"

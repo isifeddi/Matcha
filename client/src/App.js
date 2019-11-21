@@ -1,15 +1,15 @@
 import React from 'react';
 //import Register from './components/user/Register'
-import Routes from './Routes'
 import NavBar from '../src/components/NavBar'
 import Footer from '../src/components/Footer'
-
+//import Home from '../src/containers/Home'
+import Routes from './Routes'
 function App() {
   return (
     <div className="App">
-      <NavBar/>
+      <NavBar />
       <Routes />
-      <footer><Footer/></footer>
+     <Footer/>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from "react-redux";
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -19,13 +20,12 @@ import {Link} from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
+import {LogoutAction} from '../../actions/logoutAction';
+import ls from 'local-storage'
 const drawerWidth = 240;
 
 
-const menu = [
-  {"text" : "Se connecter","path" : "/login"},
-  {"text" : "inscription","path" : "/register"}
-];
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -72,10 +72,27 @@ const useStyles = makeStyles(theme => ({
  
 }));
 
-export default function NavBar() {
+function NavBar(props) {
+
+  console.log(props);
+  const loginMenu = [
+      {"text" : "logout","path" : "/logout"}
+  ];
+  const logoutMenu = [
+    {"text" : "Se connecter","path" : "/login"},
+    {"text" : "inscription","path" : "/register"},
+   
+];
+let menu = [];
+if(props.token)
+  menu = loginMenu;
+else
+  menu = logoutMenu;
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+
+  
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -114,9 +131,10 @@ export default function NavBar() {
               <Link to="/" style={{textDecoration: 'none', color:'inherit'}}>
                 MATCHA
               </Link>
+             
           </Typography>
           
-          <Button color="primary">Logout</Button>
+          {props.token && <Button color="primary" onClick={props.handleLogout}>Logout</Button>}
         </Toolbar>
       </AppBar>
       
@@ -134,17 +152,6 @@ export default function NavBar() {
             {theme.direction === 'ltr' ? <ChevronLeftIcon color="primary"/> : <ChevronRightIcon />}
           </IconButton>
         </div>
-        {/* <Divider />
-        <List>
-          {['Sign in'].map((text, index) => (
-            <Link to="/login" style={{textDecoration: 'none', color:'primary'}} key={text}>
-              <ListItem button>
-                <ListItemIcon> <LockOpenIcon color="secondary"/></ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            </Link>
-          ))}
-        </List> */}
         <Divider />
         <List>
           {menu.map((item, index) => (
@@ -161,3 +168,23 @@ export default function NavBar() {
     </ClickAwayListener>
   );
 }
+
+const mapStateToProps = (state) => (
+  {
+      "token" : state.login.token
+  });
+  const mapDispatchToProps = {
+      "logoutAction": LogoutAction
+  };
+  const mergeProps = (stateProps, dispatchProps, otherProps) => ({
+    ...stateProps,
+    ...dispatchProps,
+    ...otherProps,
+    "handleLogout" : ()=>{
+        dispatchProps.logoutAction();
+        ls.remove('token')
+    }
+});
+  
+  export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(NavBar);
+

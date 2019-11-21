@@ -7,25 +7,22 @@ export const LOGIN_USER_ERROR = "LOGIN_USER_ERROR";
 export const LOGIN_USER_ERROR_FIELD = "LOGIN_USER_ERROR_FIELD";
 
 
-
 export const LoginAction = (dataInsc) => ({
   "type": LOGIN_USER,
   "data": dataInsc
 });
 
-export const loginUserSuccess =
-  (data) => ({
+export const loginUserSuccess = (token) => ({
     "type": LOGIN_USER_SUCCESS,
-    data
+    token
 });
 
-export const loginError =
-  (error) => ({
+export const loginError = (error) => ({
     "type": LOGIN_USER_ERROR,
     error
 });
-export const loginErrorField =
-  (errorField) => ({
+
+export const loginErrorField = (errorField) => ({
     "type": LOGIN_USER_ERROR_FIELD,
     errorField
 });
