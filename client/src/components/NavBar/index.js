@@ -73,26 +73,25 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function NavBar(props) {
-
-  console.log(props);
-  const loginMenu = [
+  
+  const loggedInMenu = [
       {"text" : "logout","path" : "/logout"}
   ];
-  const logoutMenu = [
+  const loggedOutMenu = [
     {"text" : "Se connecter","path" : "/login"},
     {"text" : "inscription","path" : "/register"},
    
-];
-let menu = [];
-if(props.token)
-  menu = loginMenu;
-else
-  menu = logoutMenu;
+  ];
+  let menu = [];
+  if(props.token)
+    menu = loggedInMenu;
+  else
+    menu = loggedOutMenu;
+
+  
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-
-  
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -170,21 +169,20 @@ else
 }
 
 const mapStateToProps = (state) => (
-  {
-      "token" : state.login.token
-  });
-  const mapDispatchToProps = {
+{
+      "token" : ls.get('token')
+});
+const mapDispatchToProps = {
       "logoutAction": LogoutAction
-  };
-  const mergeProps = (stateProps, dispatchProps, otherProps) => ({
+};
+const mergeProps = (stateProps, dispatchProps, otherProps) => ({
     ...stateProps,
     ...dispatchProps,
     ...otherProps,
-    "handleLogout" : ()=>{
+    "handleLogout" : ()=> {
         dispatchProps.logoutAction();
         ls.remove('token')
     }
 });
-  
-  export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(NavBar);
 
+export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(NavBar);

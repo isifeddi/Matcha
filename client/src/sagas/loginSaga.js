@@ -1,6 +1,7 @@
 import {takeLatest, put} from "redux-saga/effects";
 import {push} from "react-router-redux";
 import {loginError, loginUserSuccess,loginErrorField} from "../actions/loginAction";
+import {decodeTokenAction} from '../actions/decodeAction';
 import axios from 'axios';
 import ls from 'local-storage';
 
@@ -12,13 +13,13 @@ const login =
       {
         yield put(loginUserSuccess(response.data.token));
         ls.set('token', response.data.token);
+        yield put(decodeTokenAction(response.data.token));
         yield put(push("/"));
       }
       else 
       {
         yield put(loginErrorField(response.data.errorField))
       }
-
     }catch (error) {
       if (error.response) {
         yield put(loginError("error.response.statusText", "error.response.status"));

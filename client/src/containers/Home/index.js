@@ -1,14 +1,20 @@
 import React from 'react';
-import ls from 'local-storage';
-const HomeContainer = () =>{
-    
-        return (
-            <div>
-                
-                <br/><br/><h1>Home</h1><p>Welcome {ls.get('token') || []}</p>
+import {connect} from "react-redux";
 
-            </div>
-        )
-    
+const HomeContainer = (props) => {
+    return (
+            
+        <div>
+            <br/><br/>
+                <h1>WELCOME {props.user ? props.user.username : ''}</h1>
+        </div>
+            
+    )
 }
-export default HomeContainer;
+
+const mapStateToProps = (state) => (
+{
+    "user": state.user
+});
+
+export default connect(mapStateToProps)(HomeContainer);

@@ -3,7 +3,6 @@ import createSagaMiddleware from "redux-saga";
 import rootSaga from "./sagas";
 import rootReducer from "./reducers";
 import {createBrowserHistory} from "history";
-import immutableTransform from "redux-persist-transform-immutable";
 import {routerMiddleware} from "connected-react-router";
 import {persistReducer} from "redux-persist";
 import storage from "redux-persist/lib/storage";
@@ -13,13 +12,8 @@ export const history = createBrowserHistory();
 const sagaMiddleware = createSagaMiddleware();
 const persistConfig = {
   "key": "use-app",
-  storage,
-  "whitelist": ["loginUser"],
-  "transforms": [
-    immutableTransform({
-      "records": []
-    })
-  ]
+  storage: storage,
+  //whitelist: "login"
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer(history));
@@ -40,6 +34,5 @@ export default function configureStore (initialState) {
       store.replaceReducer(rootReducer(history));
     });
   }
-
   return store;
 }

@@ -32,9 +32,8 @@ const mergeProps = (stateProps, dispatchProps, otherProps) => ({
     ...stateProps,
     ...dispatchProps,
     ...otherProps,
-    "handleSubmit" : otherProps.handleSubmit((form)=>{
+    "handleSubmit" : otherProps.handleSubmit((form) => {
         dispatchProps.loginAction(form);
-        console.log(stateProps.jj)
     })
 });
 

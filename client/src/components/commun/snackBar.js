@@ -33,7 +33,6 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-
 const MySnackBar = (props) => {
 
     const { variant, message, ...other } = props;
