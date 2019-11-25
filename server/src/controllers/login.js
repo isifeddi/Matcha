@@ -8,13 +8,16 @@ Login =  async (req, res, next) => {
     const data = get[0];
     if(data)
     {
-        const payload = {id: data.id, firstname: data.firstname, lastname: data.lastname, username: data.username, email: data.email};
+        const payload = {id: data.id, firstname: data.firstname, lastname: data.lastname, username: data.username, email: data.email, confirmed: data.confirmed};
         let token = await jwt.sign({data: payload}, 'fuckingSecretKey');
         bcrypt.compare(password, data.password)
         .then((response) => {
             if (response)
             {
-                res.send({isValid : true, token: token});
+                if(data.confirmed === 1)
+                    res.send({isValid : true, token: token});
+                else
+                    res.send({isValid: false, errorField : 'Please confirm your e-mail'})
             }
             else
             {

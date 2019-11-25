@@ -23,7 +23,7 @@ const mapStateToProps = (state) => (
     "status" : state.login.status,
     "errors": state.login.error,
     "token" : state.login.token,
-
+    "registredStatus": state.register
 });
 const mapDispatchToProps = {
     "loginAction": LoginAction
@@ -41,7 +41,7 @@ const connectedLoginContainer = connect(mapStateToProps, mapDispatchToProps,merg
 
 const LoginContainer = reduxForm({
     form : "login",
-    "destroyOnUnmount": false,  
+    "destroyOnUnmount": true,  
     validate,
 
 })(connectedLoginContainer);

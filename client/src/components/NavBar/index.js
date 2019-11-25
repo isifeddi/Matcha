@@ -21,7 +21,6 @@ import Button from '@material-ui/core/Button';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import {LogoutAction} from '../../actions/logoutAction';
-import ls from 'local-storage'
 const drawerWidth = 240;
 
 
@@ -170,18 +169,17 @@ function NavBar(props) {
 
 const mapStateToProps = (state) => (
 {
-      "token" : ls.get('token')
+    "token" : state.login.token
 });
 const mapDispatchToProps = {
-      "logoutAction": LogoutAction
+    "logoutAction": LogoutAction
 };
 const mergeProps = (stateProps, dispatchProps, otherProps) => ({
     ...stateProps,
     ...dispatchProps,
     ...otherProps,
-    "handleLogout" : ()=> {
+    "handleLogout" : () => {
         dispatchProps.logoutAction();
-        ls.remove('token')
     }
 });
 

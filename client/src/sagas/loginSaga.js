@@ -3,7 +3,6 @@ import {push} from "react-router-redux";
 import {loginError, loginUserSuccess,loginErrorField} from "../actions/loginAction";
 import {decodeTokenAction} from '../actions/decodeAction';
 import axios from 'axios';
-import ls from 'local-storage';
 
 const login =
   function *login ({data}) {
@@ -12,7 +11,6 @@ const login =
       if(response.data.isValid)
       {
         yield put(loginUserSuccess(response.data.token));
-        ls.set('token', response.data.token);
         yield put(decodeTokenAction(response.data.token));
         yield put(push("/"));
       }

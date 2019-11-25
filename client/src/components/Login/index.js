@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Avatar from '@material-ui/core/Avatar';
 import LockRoundedIcon from '@material-ui/icons/LockRounded';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
@@ -49,21 +49,22 @@ const renderField = (
         />
 )
 const Login = (props) => {
-  const {handleSubmit, status,errors} = props;
+  const {handleSubmit, status,errors, registredStatus} = props;
   const classes = useStyles();
-
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
-   
-    <div className={classes.paper}> 
+      
+    {registredStatus === 'success' && <MySnackBar variant="success" message='Registred successfully, check your e-mail'/>}
+    {status === "errorField" && <MySnackBar variant="error" message={errors}/>}
+    <div className={classes.paper}>
       <Avatar className={classes.avatar}>
             <LockRoundedIcon/>
           </Avatar>
         <Typography component="h1" variant="h5" color="primary">
           Sign in
         </Typography>
-        {status === "errorField" && <MySnackBar variant="error" message={errors}/>}
+        
         <form  className={classes.form}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
