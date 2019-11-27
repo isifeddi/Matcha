@@ -3,13 +3,14 @@ const queries = require("../../Config/queries");
 const USER = queries.User;
 
 
-Register = (lastname, firstname, username, email, password) => {
-    conn.query(USER.AddUser, [lastname, firstname, username, email, password],(err,res) => {
+UpdateVerifToken = (token, email) => {
+    conn.query(USER.UpdateToken, [token, email],(err,res) => {
         if(err)
         {
             throw err;
         }
-        
+        else
+            res.send(true); 
     });
 }
 

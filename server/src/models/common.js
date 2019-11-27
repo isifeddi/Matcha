@@ -1,3 +1,4 @@
+var nodemailer = require('nodemailer');
 const conn = require('../Config/db_connection');
 const queries = require("../Config/queries");
 const USER = queries.User;
@@ -5,7 +6,7 @@ const USER = queries.User;
 
 module.exports = {
     getUser: function (type, value) {
-        return new Promise ((resolve, reject) =>{
+        return new Promise ((resolve, reject) => {
             conn.query(USER[type], [value],(err,res) => {
                 if(err)
                     reject(err);
@@ -14,4 +15,37 @@ module.exports = {
             }); 
         })            
     },
+    UpdateVerifToken : function (email, token) {
+        return new Promise ((resolve, reject) => {
+            conn.query(USER.UpdateToken, [token, email],(err,res) => {
+                if(err)
+                    reject (err);
+                else
+                    resolve (res); 
+            });
+        })
+    },
+    sendEmail : function (email, token){
+        var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'sifeddineilyass@gmail.com',
+                pass: 'tgsxcjeduwchxlim'
+            }
+        });
+        const url = `http://localhost:3000/confirmation/${token}`;
+        var mailOptions = {
+            from: 'sifeddineilyass@gmail.com',
+            to: email,
+            subject: 'Confirm your account',
+            html: `Please click to verify your email: <a href="${url}">${url}</a>`
+        };
+        transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+                console.log(error);
+            } else {
+                console.log('Email sent: ' + info.response);
+            }
+        });
+    }
 };
