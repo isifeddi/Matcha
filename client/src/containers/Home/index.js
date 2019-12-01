@@ -3,12 +3,9 @@ import {connect} from "react-redux";
 
 const HomeContainer = (props) => {
     return (
-            
         <div>
-            <br/><br/>
-                <h1>WELCOME {props.user ? props.user.username : ''}</h1>
+            <h1>WELCOME {props.user ? props.user.username : ''}</h1>
         </div>
-            
     )
 }
 

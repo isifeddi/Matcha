@@ -4,35 +4,25 @@ import RegisterContainer from './containers/Register'
 import HomeContainer from './containers/Home'
 import loginContainer from './containers/Login'
 import NotFoundPage from './containers/NotFoundPage'
-import forgotPasswordContainer from './containers/ForgotPassword'
+import ForgotPasswordContainer from './containers/ForgotPassword'
+import EmailConfirmCont from './containers/emailConfirmation'
+import ResetPasswordContainer from './containers/resetPassword'
+import CompleteProfile from './components/completeProfile'
 
 const Routes = () => {
     return (
         <div>
             <Switch>
-                <Route
-                    path="/register"
-                    component = {RegisterContainer}
-                />
-                <Route
-                    component = {HomeContainer}
-                    path="/"
-                    exact
-                />
-                <Route
-                    component = {loginContainer}
-                    path="/login"
-                />
-                <Route
-                    component = {forgotPasswordContainer}
-                    path="/forgotPassword"
-                />
-                <Route  
-                path="*"
-                component = {NotFoundPage}
-                />
-            </Switch> 
-        </div>      
+                <Route path="/confirmation/:token"  component = {EmailConfirmCont} />
+                <Route path="/resetPassword/:token" component = {ResetPasswordContainer} />
+                <Route path="/forgotPassword"  component = {ForgotPasswordContainer} />
+                <Route path="/register" component = {RegisterContainer} />
+                <Route path="/login" component = {loginContainer} />
+                <Route path="/completeProfile" component= {CompleteProfile} />
+                <Route path="/" exact component = {HomeContainer} />
+                <Route path="*" component = {NotFoundPage} />
+            </Switch>
+        </div>
     )
 }
 export default Routes

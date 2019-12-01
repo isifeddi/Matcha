@@ -21,7 +21,7 @@ const common = require('../models/common');
       let hashPassword = await bcrypt.hash(password, 10);
       const verifToken = crypto.randomBytes(64).toString('hex');
       registerModel(lastname, firstname, username, email, hashPassword);
-      const UpdateVerifToken = await common.UpdateVerifToken(email, verifToken);
+      common.UpdateVerifToken(email, verifToken);
       common.sendEmail(email, verifToken);
    }
    res.send(isValid);

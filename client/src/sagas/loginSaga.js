@@ -8,6 +8,7 @@ const login =
   function *login ({data}) {
     try {
       const response = yield axios.post('http://localhost:5000/login', data);
+      console.log(response);
       if(response.data.isValid)
       {
         yield put(loginUserSuccess(response.data.token));

@@ -55,7 +55,7 @@ const MySnackBar = (props) => {
             anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
             open={open}
             onClose={handleClose}
-            autoHideDuration={5000}
+            autoHideDuration={4000}
             message={
                     <span id="client-snackbar" className={classes.message}>
                         <Icon className={clsx(classes.icon, classes.iconVariant)} />

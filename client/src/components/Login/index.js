@@ -16,10 +16,10 @@ import MySnackBar from '../commun/snackBar'
 const useStyles = makeStyles(theme => ({
   
   paper: {
-    marginTop: theme.spacing(8),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    width: '100%'
   },
   form: {
     width: '100%',
@@ -49,7 +49,7 @@ const renderField = (
         />
 )
 const Login = (props) => {
-  const {handleSubmit, status,errors, registredStatus} = props;
+  const {handleSubmit, status, errors, registredStatus} = props;
   const classes = useStyles();
   return (
     <Container component="main" maxWidth="xs">

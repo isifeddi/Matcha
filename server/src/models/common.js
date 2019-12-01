@@ -15,9 +15,39 @@ module.exports = {
             }); 
         })            
     },
+    ResetPassword : function (password, token) {
+        return new Promise ((resolve, reject) => {
+            conn.query(USER.ResetPassword, [password, token],(err,res) => {
+                if(err)
+                    reject (err);
+                else
+                    resolve (res); 
+            });
+        })
+    },
     UpdateVerifToken : function (email, token) {
         return new Promise ((resolve, reject) => {
             conn.query(USER.UpdateToken, [token, email],(err,res) => {
+                if(err)
+                    reject (err);
+                else
+                    resolve (res); 
+            });
+        })
+    },
+    Confirmed: function (email){
+        return new Promise ((resolve, reject) => {
+            conn.query(USER.Confirmed, email,(err,res) => {
+                if(err)
+                    reject (err);
+                else
+                    resolve (res); 
+            });
+        })
+    },
+    notConfirmed: function (email){
+        return new Promise ((resolve, reject) => {
+            conn.query(USER.notConfirmed, email,(err,res) => {
                 if(err)
                     reject (err);
                 else
@@ -47,5 +77,28 @@ module.exports = {
                 console.log('Email sent: ' + info.response);
             }
         });
-    }
+    },
+    sendResetEmail : function (email, token){
+        var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: 'sifeddineilyass@gmail.com',
+                pass: 'tgsxcjeduwchxlim'
+            }
+        });
+        const url = `http://localhost:3000/resetPassword/${token}`;
+        var mailOptions = {
+            from: 'sifeddineilyass@gmail.com',
+            to: email,
+            subject: 'Reset your password',
+            html: `Please click to reset your password: <a href="${url}">${url}</a>`
+        };
+        transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+                console.log(error);
+            } else {
+                console.log('Email sent: ' + info.response);
+            }
+        });
+    },
 };

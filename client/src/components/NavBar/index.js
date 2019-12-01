@@ -28,8 +28,8 @@ const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
   root: {
-    display: 'flex',
-    
+    display: 'relative',
+    marginBottom: theme.spacing(10),
   },
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
@@ -169,7 +169,7 @@ function NavBar(props) {
 
 const mapStateToProps = (state) => (
 {
-    "token" : state.login.token
+    "token" : state.token
 });
 const mapDispatchToProps = {
     "logoutAction": LogoutAction
