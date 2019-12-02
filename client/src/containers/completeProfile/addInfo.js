@@ -4,15 +4,26 @@ import {connect} from "react-redux";
 import {reduxForm} from 'redux-form';
 
 const validate = (values) => {
+    
+    console.log(values.interests);
     const errors = {};
     const requiredFields = [
         'gender',
         'sexOrient',
         'bio',
+    ];
+    const requiredarr = [
         'interests'
     ];
     requiredFields.forEach(field => {
+        
         if (!values[field] || !values[field].trim()) {
+            errors[field] = 'Required !';
+        }
+    });
+    requiredarr.forEach(field => {
+        
+        if (!values[field]) {
             errors[field] = 'Required !';
         }
     });

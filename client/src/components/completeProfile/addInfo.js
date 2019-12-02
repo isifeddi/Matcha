@@ -1,5 +1,5 @@
 import React  from 'react';
-import { Field} from 'redux-form';
+import {Field} from 'redux-form';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
@@ -9,6 +9,8 @@ import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import Radio from '@material-ui/core/Radio';
 import FormLabel from '@material-ui/core/FormLabel';
+import CreatableSelect from 'react-select/creatable';
+//import Autocomplete from "@material-ui/lab/Autocomplete";
 
 const useStyles = makeStyles(theme => ({
   
@@ -24,12 +26,8 @@ const useStyles = makeStyles(theme => ({
     },
     submit: {
         margin: theme.spacing(2, 0, 2),
-        backgroundColor: theme.palette.secondary.main
-    },
-    add: {
-        margin: theme.spacing(1, 0, 2),
-        backgroundColor: theme.palette.secondary.main
-    },
+        backgroundColor: theme.palette.secondary.main,
+    }
 }));
 
 const RadioGroup = (props) => {
@@ -41,12 +39,11 @@ const RadioGroup = (props) => {
         {options.map(o => <label key={o.value}> 
           <Radio {...input}  checked={o.value === input.value} value={o.value} />
           {o.title}</label>)}<br/>
-        {hasError && <span style={{fontSize: '0.75rem', color:'#ff3d2e'}}>{meta.error}</span>}
+        {hasError && <span style={{'fontSize':'12px','color':'rgb(244, 67, 54)'}}>{meta.error}</span>}
       </div>
     );
 }
-const renderField = (
-    {rows, type, input, label, meta : { touched, error}}
+const renderField = ({rows, type, input, label, meta : { touched, error}}
     ) => (
         <TextField
             {...input}
@@ -60,6 +57,37 @@ const renderField = (
             rows={rows}
         />
 )
+const sel = ({ input, meta: { touched, error } }) => (
+  <div>
+    <CreatableSelect
+      {...input}
+      isMulti
+      isDisabled={false}
+      isLoading={false}
+      //onCreateOption
+      options={interOptions}
+      error = {touched && error}
+      helperText={touched && error}
+    />
+    <div>{(touched && error) &&
+      <div style={{'fontSize':'12px','color':'rgb(244, 67, 54)'}}>Required!</div>}</div>
+  </div>
+);
+
+export const interOptions = [
+  { value: 'Sport', label: 'Sport' },
+  { value: 'Reading', label: 'Reading' },
+  { value: 'Swimming', label: 'Swimming' },
+  { value: 'Travel', label: 'Travel' },
+  { value: 'Gaming', label: 'Gaming' },
+  { value: 'Photograph', label: 'Photograph' },
+  { value: 'Vegan', label: 'Vegan' },
+  { value: 'Adventure', label: 'Adventure' },
+  { value: 'Art', label: 'Art' },
+  { value: 'Music', label: 'Music' },
+];
+
+
 const AddInfo = (props) => {
   const {handleSubmit} = props;
   const classes = useStyles();
@@ -71,7 +99,7 @@ const AddInfo = (props) => {
         <Typography component="h1" variant="h5" color="primary">
           Additional infos
         </Typography>
-        
+
         <form  className={classes.form}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
@@ -83,41 +111,42 @@ const AddInfo = (props) => {
               />
             </Grid>
             <Grid item xs={12}>
-            <FormLabel component="legend">Sexual orientation</FormLabel>
+            <FormLabel component="legend">Match with</FormLabel>
               <Field component={RadioGroup} name="sexOrient" required={true} options={[
-                    { title: 'Men', value: 'men' },
-                    { title: 'Women', value: 'women' },
-                    { title :'Both' , value: 'both' }
+                    { title:  'Men ' , value: 'men'  },
+                    { title:  'Women', value: 'women'},
+                    { title:  'Both' , value: 'both' }
                   ]}
               />
             </Grid>
             <Grid item xs={12}>
+              <FormLabel component="legend">Bio</FormLabel>
               <Field
                 name="bio"
                 component={renderField}
-                label="Bio"
                 type = "text"
                 rows='4'
               />
             </Grid>
-
-            <Grid container item xs={12} spacing={1}>
-                <Grid item xs={10}>
-                <Field
-                  name="interests"
-                  component={renderField}
-                  label="interests"
-                  type = "text"
-                  rows='1'
-                />
-                </Grid>
-                <Grid item xs={2}>
-                <Button className={classes.add} fullwidth variant="contained" type="submit" color="primary" name="submit" value="ok" >Add</Button>
-                </Grid>
-            </Grid>
-
             <Grid item xs={12}>
-              <Button  onClick={handleSubmit} className={classes.submit} fullWidth variant="contained" type="submit" color="primary" name="submit" value="ok" >Next</Button>
+              <FormLabel component="legend">Interests</FormLabel>
+                {/* <CreatableSelect
+                  isMulti
+                  isDisabled={false}
+                  isLoading={false}
+                  onChange={sel}
+                  //onCreateOption
+                  options={colourOptions}
+                  style={{borderColor: sel ? '#b94a48' : '#aaa'}}
+                /> */}
+                <Field name='interests' component={sel}/>
+              
+            </Grid>
+            <Grid  container direction="row" item xs={12}>
+              <Grid item xs={9}/>
+              <Grid item container alignItems="flex-end" xs={3}>
+                <Button  onClick={handleSubmit} className={classes.submit} fullWidth variant="contained" type="submit" color="primary" name="submit" value="ok" >Next</Button>
+              </Grid>
             </Grid>
           </Grid>
         </form>
