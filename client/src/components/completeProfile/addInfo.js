@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const RadioGroup = (props) => {
-    const { input, meta, options } = props
+    const { input, meta, options } = props;
     const hasError = meta.touched && meta.error;
 
     return (
@@ -57,10 +57,9 @@ const renderField = ({rows, type, input, label, meta : { touched, error}}
             rows={rows}
         />
 )
-const sel = ({ input, meta: { touched, error } }) => (
+const sel = ({ input, meta: { touched, error } ,...field}) => (
   <div>
     <CreatableSelect
-      {...input}
       isMulti
       isDisabled={false}
       isLoading={false}
@@ -68,6 +67,9 @@ const sel = ({ input, meta: { touched, error } }) => (
       options={interOptions}
       error = {touched && error}
       helperText={touched && error}
+      onBlur={() => input.onBlur(input.value)}
+      onChange={(value) => { input.onChange(value)} }
+      {...field}
     />
     <div>{(touched && error) &&
       <div style={{'fontSize':'12px','color':'rgb(244, 67, 54)'}}>Required!</div>}</div>

@@ -7,7 +7,7 @@ import NotFoundPage from './containers/NotFoundPage'
 import ForgotPasswordContainer from './containers/ForgotPassword'
 import EmailConfirmCont from './containers/emailConfirmation'
 import ResetPasswordContainer from './containers/resetPassword'
-import CompleteProfile from './components/completeProfile'
+import CompleteProfile from './containers/completeProfile/stepper'
 
 const Routes = () => {
     return (

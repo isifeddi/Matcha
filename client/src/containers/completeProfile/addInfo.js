@@ -2,10 +2,8 @@ import AddInfo from '../../components/completeProfile/addInfo';
 //import {LoginAction} from '../../actions/loginAction';
 import {connect} from "react-redux";
 import {reduxForm} from 'redux-form';
-
+import {incStepper} from '../../actions/stepperAction'
 const validate = (values) => {
-    
-    console.log(values.interests);
     const errors = {};
     const requiredFields = [
         'gender',
@@ -32,17 +30,18 @@ const validate = (values) => {
 
 const mapStateToProps = (state) => (
 {
-    "form" : state.form,
+    
 });
 const mapDispatchToProps = {
-    //"addInfoAction": AddInfoAction
+    "incStepper": incStepper
 };
+
 const mergeProps = (stateProps, dispatchProps, otherProps) => ({
     ...stateProps,
     ...dispatchProps,
     ...otherProps,
-    "handleSubmit" : otherProps.handleSubmit((form) => {
-        //dispatchProps.addInfoAction(form);
+    "handleSubmit" : otherProps.handleSubmit(() => {
+        dispatchProps.incStepper();
     })
 });
 
