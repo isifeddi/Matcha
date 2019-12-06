@@ -2,6 +2,7 @@ var nodemailer = require('nodemailer');
 const conn = require('../Config/db_connection');
 const queries = require("../Config/queries");
 const USER = queries.User;
+const INTERESTS = queries.Interests;
 
 
 module.exports = {
@@ -100,5 +101,28 @@ module.exports = {
                 console.log('Email sent: ' + info.response);
             }
         });
+    },
+    getOptions: function () {
+        return new Promise ((resolve, reject) => {
+            conn.query(INTERESTS.GetInterests,(err,res) => {
+                if(err)
+                    reject(err);
+                else{
+                    const resArray = JSON.parse(JSON.stringify(res))
+                    resolve(resArray);
+                }
+            });
+        })
+    },
+    createOption: function (option) {
+        return new Promise ((resolve, reject) => {
+            conn.query(INTERESTS.CreateInterest, option, (err,res) => {
+                if(err)
+                    reject(err);
+                else{
+                    resolve(res);
+                }
+            });
+        })
     },
 };

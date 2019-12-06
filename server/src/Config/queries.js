@@ -11,6 +11,10 @@ const queries = {
         ResetPassword: 'UPDATE users SET password = ? WHERE verif_token = ?', 
         Confirmed: 'UPDATE users SET confirmed = 1 WHERE email = ?',
         notConfirmed: 'UPDATE users SET confirmed = 0 WHERE email = ?'
+    },
+    Interests : {
+        GetInterests: 'SELECT interest FROM interests',
+        CreateInterest: 'INSERT INTO interests (interest) VALUE (?)',
     }
  };
  module.exports = queries;

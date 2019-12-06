@@ -10,7 +10,7 @@ import TextField from '@material-ui/core/TextField';
 import Radio from '@material-ui/core/Radio';
 import FormLabel from '@material-ui/core/FormLabel';
 import CreatableSelect from 'react-select/creatable';
-//import Autocomplete from "@material-ui/lab/Autocomplete";
+import MySnackBar from '../commun/snackBar'
 
 const useStyles = makeStyles(theme => ({
   
@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
     submit: {
         margin: theme.spacing(2, 0, 2),
         backgroundColor: theme.palette.secondary.main,
-    }
+    },
 }));
 
 const RadioGroup = (props) => {
@@ -36,14 +36,14 @@ const RadioGroup = (props) => {
 
     return (
       <div>
-        {options.map(o => <label key={o.value}> 
+        {options.map(o => <label key={o.value}>
           <Radio {...input}  checked={o.value === input.value} value={o.value} />
           {o.title}</label>)}<br/>
-        {hasError && <span style={{'fontSize':'12px','color':'rgb(244, 67, 54)'}}>{meta.error}</span>}
+        {hasError && <span style={{'fontSize':'12px','color':'#f44336'}}>{meta.error}</span>}
       </div>
     );
 }
-const renderField = ({rows, type, input, label, meta : { touched, error}}
+const renderField = ({variant, rows, type, input, label, meta : { touched, error}}
     ) => (
         <TextField
             {...input}
@@ -51,57 +51,68 @@ const renderField = ({rows, type, input, label, meta : { touched, error}}
             label = {label}
             error = {touched && error}
             helperText={touched && error}
-            variant="outlined"
+            variant={variant}
             fullWidth
             multiline
             rows={rows}
+            InputLabelProps={{
+              shrink: true,
+            }}
         />
 )
-const sel = ({ input, meta: { touched, error } ,...field}) => (
-  <div>
-    <CreatableSelect
-      isMulti
-      isDisabled={false}
-      isLoading={false}
-      //onCreateOption
-      options={interOptions}
-      error = {touched && error}
-      helperText={touched && error}
-      onBlur={() => input.onBlur(input.value)}
-      onChange={(value) => { input.onChange(value)} }
-      {...field}
-    />
-    <div>{(touched && error) &&
-      <div style={{'fontSize':'12px','color':'rgb(244, 67, 54)'}}>Required!</div>}</div>
-  </div>
-);
 
-export const interOptions = [
-  { value: 'Sport', label: 'Sport' },
-  { value: 'Reading', label: 'Reading' },
-  { value: 'Swimming', label: 'Swimming' },
-  { value: 'Travel', label: 'Travel' },
-  { value: 'Gaming', label: 'Gaming' },
-  { value: 'Photograph', label: 'Photograph' },
-  { value: 'Vegan', label: 'Vegan' },
-  { value: 'Adventure', label: 'Adventure' },
-  { value: 'Art', label: 'Art' },
-  { value: 'Music', label: 'Music' },
-];
-
+const renderDatepicker = ({input, label, meta : { touched, error}}
+  ) => (
+      <TextField
+          {...input}
+          type = 'date'
+          label = {label}
+          error = {touched && error}
+          helperText={touched && error}
+          fullWidth
+          InputLabelProps={{
+            shrink: true,
+          }}
+      />
+)
 
 const AddInfo = (props) => {
-  const {handleSubmit} = props;
   const classes = useStyles();
+  const {handleSubmit, selectLoading, selectOptions, selectError, createOption} = props;
+
+  const handleCreate =  (value) => {
+    createOption(value);
+  }
+
+  const sel = ({ input, meta: { touched, error }}) => (
+    <div>
+      <CreatableSelect
+        {...input}
+        isMulti
+        isDisabled={selectLoading}
+        isLoading={selectLoading}
+        isClearable={false}
+        options={selectOptions}
+        onBlur={() => input.onBlur(input.value)}
+        onChange={(value) => { input.onChange(value) }}
+        onCreateOption={handleCreate}
+      />
+      <div>{(touched && error) &&
+        <div style={{'fontSize':'12px','color':'rgb(244, 67, 54)'}}>{error}</div>}
+      </div>
+    </div>
+  );
+
+  
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
-      
     <div className={classes.paper}>
         <Typography component="h1" variant="h5" color="primary">
           Additional infos
         </Typography>
-
+        { selectError === 'max 20 characters' && <MySnackBar variant="error" message={selectError}/> }
         <form  className={classes.form}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
@@ -122,27 +133,25 @@ const AddInfo = (props) => {
               />
             </Grid>
             <Grid item xs={12}>
+              <FormLabel component="legend">Birthday</FormLabel>
+              <Field
+                name="birthday"
+                component={renderDatepicker}
+              />
+            </Grid>
+            <Grid item xs={12}>
               <FormLabel component="legend">Bio</FormLabel>
               <Field
                 name="bio"
                 component={renderField}
                 type = "text"
                 rows='4'
+                variant='outlined'
               />
             </Grid>
             <Grid item xs={12}>
               <FormLabel component="legend">Interests</FormLabel>
-                {/* <CreatableSelect
-                  isMulti
-                  isDisabled={false}
-                  isLoading={false}
-                  onChange={sel}
-                  //onCreateOption
-                  options={colourOptions}
-                  style={{borderColor: sel ? '#b94a48' : '#aaa'}}
-                /> */}
-                <Field name='interests' component={sel}/>
-              
+              <Field name='interests' component={sel}/>
             </Grid>
             <Grid  container direction="row" item xs={12}>
               <Grid item xs={9}/>

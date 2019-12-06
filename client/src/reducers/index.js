@@ -9,6 +9,8 @@ import emailConfirmationReducer from './emailConfirmationReducer';
 import sendEmailReducer from './sendEmailReducer';
 import resetPasswordReducer from "./resetPasswordReducer";
 import stepperReducer from './stepperReducer';
+import addInfoReducer from './addInfoReducer'
+
 const combinedReducer = (history)=> combineReducers({
     "router" : connectRouter(history),
     "register" : registerReducer,
@@ -19,6 +21,7 @@ const combinedReducer = (history)=> combineReducers({
     "sendEmail": sendEmailReducer,
     "resetPassword": resetPasswordReducer,
     "activeStep" : stepperReducer,
+    "select" : addInfoReducer,
     form
 });
 export default combinedReducer;

@@ -9,6 +9,8 @@ const decodeToken = require('../tools/user/decodeToken');
 const checkConfirmToken = require('../tools/user/checkConfirmToken');
 const sendResetEmail = require('../tools/user/sendResetEmail');
 const resetPassword = require('../controllers/resetPassword');
+const getOptions = require('../tools/user/getOptions');
+const createOption = require('../tools/user/createOption');
 
 router.post('/login', Login);
 router.post('/register', Register);
@@ -18,5 +20,7 @@ router.post('/decodeToken', decodeToken);
 router.post('/confirmEmail', checkConfirmToken);
 router.post('/sendResetEmail', sendResetEmail);
 router.post('/resetPassword', resetPassword);
+router.post('/getOptions', getOptions);
+router.post('/createOption', createOption);
 
 module.exports = router;
