@@ -1,13 +1,12 @@
-const common = require('../models/common');
+const user = require('../models/user');
 const crypto = require('crypto');
 const bcrypt = require ('bcrypt');
 
 
 resetPassword = async (req, res) => {
-    
     const {token, pass, c_pass} = req.body;
     let hashPassword = await bcrypt.hash(pass, 10);
-    await common.getUser('GetUserByToken',token)
+    await user.getUser('GetUserByToken',token)
     .then((response) => {
         if(response[0]){
             if(pass !== c_pass){
@@ -15,9 +14,9 @@ resetPassword = async (req, res) => {
             }
             else
             {
-                common.ResetPassword(hashPassword, token);
+                user.ResetPassword(hashPassword, token);
                 const verifToken = crypto.randomBytes(64).toString('hex');
-                common.UpdateVerifToken(response[0].email, verifToken);
+                user.UpdateVerifToken(response[0].email, verifToken);
                 res.send({reset: true});
             }
         }

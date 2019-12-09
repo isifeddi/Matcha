@@ -7,7 +7,7 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Typography from '@material-ui/core/Typography';
 import AddInfoContainer from '../../containers/completeProfile/addInfo';
-import Pictures from '../../components/completeProfile/pictures';
+import Pictures from '../../containers/completeProfile/pictures';
 
 const useStyles = makeStyles(theme => ({
   layout: {
@@ -87,7 +87,7 @@ const Checkout = (props) => {
               </React.Fragment>
             ) : (
               <React.Fragment>
-                {getStepContent(0)}
+                {getStepContent(1)}
               </React.Fragment>
             )}
           </React.Fragment>
