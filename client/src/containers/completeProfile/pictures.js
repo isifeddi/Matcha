@@ -2,12 +2,13 @@ import React, {useState} from 'react';
 import Picture from '../../components/completeProfile/pictures';
 import {connect} from "react-redux";
 import axios from 'axios';
+
 const Pictures = (props) => {
     const {user} = props;
 const [imagePreviewUrl,setImagePreviewUrl] = React.useState();
 
 const fileChangedHandler = (event) => {
-    //console.log(user);
+  console.log(event.target.files[0]);
     let files  = event.target.files[0];
     let reader  = new FileReader();
     reader.onload = (event) => {
