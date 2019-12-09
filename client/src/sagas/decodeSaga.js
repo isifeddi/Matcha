@@ -1,5 +1,6 @@
 import { takeLatest, put } from "redux-saga/effects";
 import { decodeTokenSuccess, decodeTokenError } from "../actions/decodeAction";
+import {push} from "react-router-redux";
 import axios from 'axios';
 
 const decodeToken =
@@ -10,6 +11,10 @@ const decodeToken =
         if(decoded.data && decoded.data !== 'Invalid signature')
         {
             yield put(decodeTokenSuccess(decoded.data));
+            if(decoded.data.complete === 3)
+              yield put(push("/"));
+            else
+              yield put(push("/completeProfile"));
         }
         else
         {

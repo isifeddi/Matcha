@@ -7,6 +7,7 @@ import emailConfirmationSaga from "./emailConfirmationSaga";
 import sendEmailSaga from "./sendEmailSaga";
 import resetPasswordSaga from './resetPasswordSaga';
 import addInfoSaga from './addInfoSaga';
+import stepperSaga from "./stepperSaga";
 
 export default function *() {
   yield all([
@@ -18,5 +19,6 @@ export default function *() {
     fork(sendEmailSaga),
     fork(resetPasswordSaga),
     fork(addInfoSaga),
+    fork(stepperSaga)
   ]);
 }

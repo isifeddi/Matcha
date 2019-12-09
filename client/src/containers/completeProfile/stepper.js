@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 import Stepper from '../../components/completeProfile/stepper';
 import {getOptions} from '../../actions/addInfoAction';
-import {getImages} from '../../actions/imagesAction'
+import {getActiveStep} from '../../actions/stepperAction';
 import {connect} from "react-redux";
+import  { Redirect } from 'react-router-dom'
 
 class StepperContainer extends Component {
     componentDidMount = () => {
-        this.props.getOptions();
-        this.props.getImages();
+        if(this.props.user){
+            this.props.getOptions();
+            this.props.getActiveStep(this.props.user.email);
+        }
     }
-
     render() {
         return (
-            <Stepper activeStep={this.props.activeStep} />
+            this.props.user !== null ? <Stepper activeStep={this.props.activeStep} /> : 
+            <Redirect to='/login'/>
         )
     }
 }
@@ -20,10 +23,11 @@ class StepperContainer extends Component {
 const mapStateToProps = (state) => (
 {
     "activeStep" : state.activeStep,
+    "user": state.user
 });
 const mapDispatchToProps = {
     "getOptions": getOptions,
-    "getImages" : getImages
+    "getActiveStep": getActiveStep
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(StepperContainer);

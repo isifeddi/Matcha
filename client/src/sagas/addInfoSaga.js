@@ -1,6 +1,5 @@
 import { takeLatest, put } from "redux-saga/effects";
-//import { delay } from 'redux-saga/effects'
-import {getOptionsSuccess, createOptionSuccess, createOptionError} from "../actions/addInfoAction";
+import { getOptionsSuccess, createOptionSuccess, createOptionError, addInfoSuccess, addInfoError} from "../actions/addInfoAction";
 import axios from 'axios';
 
 const getSelectOptions =
@@ -42,7 +41,27 @@ const createSelectOption =
     }
 };
 
+const add_Info =
+  function *add_Info ({data}) {
+    try {
+        const response  = yield axios.post('http://localhost:5000/addInfo', data);
+        if(response.data.added)
+        {
+          yield put(addInfoSuccess());
+        }
+        else
+        {
+          yield put(addInfoError(response.data.error));
+        }
+    }catch (error) {
+      if (error.response) {
+        yield put(createOptionError('there has been an error'));
+      }
+    }
+};
+
 export default function *() {
   yield takeLatest("GET_OPTIONS", getSelectOptions);
   yield takeLatest("CREATE_OPTION", createSelectOption);
+  yield takeLatest("ADD_INFO", add_Info)
 }

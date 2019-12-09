@@ -1,5 +1,5 @@
 import {takeLatest, put} from "redux-saga/effects";
-import {push} from "react-router-redux";
+// import {push} from "react-router-redux";
 import {loginError, loginUserSuccess,loginErrorField} from "../actions/loginAction";
 import {decodeTokenAction} from '../actions/decodeAction';
 import axios from 'axios';
@@ -8,12 +8,10 @@ const login =
   function *login ({data}) {
     try {
       const response = yield axios.post('http://localhost:5000/login', data);
-      console.log(response);
       if(response.data.isValid)
       {
         yield put(loginUserSuccess(response.data.token));
         yield put(decodeTokenAction(response.data.token));
-        yield put(push("/"));
       }
       else 
       {

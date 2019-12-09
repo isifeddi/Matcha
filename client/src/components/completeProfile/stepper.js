@@ -7,7 +7,8 @@ import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import Typography from '@material-ui/core/Typography';
 import AddInfoContainer from '../../containers/completeProfile/addInfo';
-import Pictures from '../../containers/completeProfile/pictures';
+import Pictures from '../../components/completeProfile/pictures';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles(theme => ({
   layout: {
@@ -31,7 +32,7 @@ const useStyles = makeStyles(theme => ({
     },
   },
   stepper: {
-    padding: theme.spacing(4, 8, 5),
+    padding: theme.spacing(5, 5, 5),
   },
   buttons: {
     display: 'flex',
@@ -41,9 +42,14 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(3),
     marginLeft: theme.spacing(1),
   },
+  loading: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
 }));
 
-const steps = ['Additional infos', 'Pictures'];
+const steps = ['Additional infos', 'Pictures', 'Localisation'];
 
 function getStepContent(step) {
   switch (step) {
@@ -51,6 +57,8 @@ function getStepContent(step) {
       return <AddInfoContainer />;
     case 1:
       return <Pictures />;
+    case 2:
+      return 'localisation';
     default:
       throw new Error('Unknown step');
   }
@@ -61,8 +69,10 @@ const Checkout = (props) => {
     const classes = useStyles();
 
     return (
+    
     <React.Fragment>
       <CssBaseline />
+      {activeStep !== 'loading' &&
       <main className={classes.layout}>
         <Paper className={classes.paper}>
           <Typography component="h1" variant="h4" align="center" color='secondary'>
@@ -87,12 +97,13 @@ const Checkout = (props) => {
               </React.Fragment>
             ) : (
               <React.Fragment>
-                {getStepContent(1)}
+                {getStepContent(activeStep)}
               </React.Fragment>
             )}
           </React.Fragment>
         </Paper>
-      </main>
+      </main>}
+      {activeStep === "loading" && <div className={classes.loading}><CircularProgress color="secondary" /></div>}
     </React.Fragment>
   );
 }
