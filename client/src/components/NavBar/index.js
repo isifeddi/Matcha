@@ -23,9 +23,6 @@ import LockOpenIcon from '@material-ui/icons/LockOpen';
 import {LogoutAction} from '../../actions/logoutAction';
 const drawerWidth = 240;
 
-
-
-
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'relative',

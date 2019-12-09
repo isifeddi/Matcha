@@ -1,13 +1,12 @@
-let registerModel = require('../models/User/Register');
 const tools = require('../tools/index');
 const bcrypt = require ('bcrypt');
 const crypto = require('crypto');
-const common = require('../models/common');
-
+const user = require('../models/user');
+const EM = require('./functions/email')
    Register = async (req, res) => {
    const {firstname, lastname, username, email, password, confirmPassword} = req.body;
-   let GetUserByUsername = await  common.getUser('GetUserByUsername',username);
-   let GetUserByEmail = await  common.getUser('GetUserByEmail',email);
+   let GetUserByUsername = await  user.getUser('GetUserByUsername',username);
+   let GetUserByEmail = await  user.getUser('GetUserByEmail',email);
    
    let isValid = true;
    
@@ -19,9 +18,9 @@ const common = require('../models/common');
    {
       let hashPassword = await bcrypt.hash(password, 10);
       const verifToken = crypto.randomBytes(64).toString('hex');
-      registerModel(lastname, firstname, username, email, hashPassword);
-      common.UpdateVerifToken(email, verifToken);
-      common.sendEmail(email, verifToken);
+      user.Register(lastname, firstname, username, email, hashPassword);
+      user.UpdateVerifToken(email, verifToken);
+      EM.sendEmail(email, verifToken);
    }
    res.send(isValid);
 };

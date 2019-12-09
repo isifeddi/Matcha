@@ -1,10 +1,10 @@
 const bcrypt = require ('bcrypt');
-const common = require('../models/common');
+const user = require('../models/user');
 var jwt = require('jsonwebtoken');
 
 Login =  async (req, res, next) => {
     const {username, password} = req.body;
-    let get = await  common.getUser('GetUserByUsername',username);
+    let get = await  user.getUser('GetUserByUsername',username);
     const data = get[0];
     if(data)
     {

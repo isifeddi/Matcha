@@ -1,6 +1,6 @@
 import { takeLatest, put } from "redux-saga/effects";
-import { delay } from 'redux-saga/effects'
-import { getOptions, getOptionsSuccess, createOptionSuccess, createOptionError} from "../actions/addInfoAction";
+//import { delay } from 'redux-saga/effects'
+import {getOptionsSuccess, createOptionSuccess, createOptionError} from "../actions/addInfoAction";
 import axios from 'axios';
 
 const getSelectOptions =
