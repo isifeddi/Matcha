@@ -8,6 +8,7 @@ const queries = {
         GetImages : 'SELECT * FROM images WHERE user_id = ?',
         GetInterests: 'SELECT interest FROM interests',
         GetStep: 'SELECT complete FROM users WHERE email = ?',
+        CheckInter: 'SELECT COUNT(interest) as n FROM interests WHERE interest IN (?)',
     },
     INSERT : {
         AddImage: 'INSERT INTO images (user_id, path) VALUES (?, ?)',
@@ -17,12 +18,14 @@ const queries = {
     UPDATE : {
         Update: 'UPDATE users SET name = ?, email = ?, sex = ? WHERE id = ?',
         UpdateToken: 'UPDATE users SET verif_token = ? WHERE email = ?',
-        ResetPassword: 'UPDATE users SET password = ? WHERE verif_token = ?', 
+        ResetPassword: 'UPDATE users SET password = ? WHERE verif_token = ?',
         Confirmed: 'UPDATE users SET confirmed = 1 WHERE email = ?',
-        notConfirmed: 'UPDATE users SET confirmed = 0 WHERE email = ?'
+        notConfirmed: 'UPDATE users SET confirmed = 0 WHERE email = ?',
+        UpdateInfo: 'UPDATE users SET gender = ?, sexOrient = ?, birthday = ?, bio = ?, complete = 1',
     },
     DELETE : {
 
     }
 }
+
 module.exports = queries;

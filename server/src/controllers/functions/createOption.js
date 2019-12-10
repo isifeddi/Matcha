@@ -5,10 +5,10 @@ createOption = async (req, res) => {
     if(option.length < 20)
     {
         user.createOption(option);
-        res.send({created: true, option: {value: option, label: option}})
+        res.send({ created: true, option: {value: option, label: option} })
     }
     else
-        res.send({created: false, error: 'max 20 characters'})
+        res.send({ created: false, error: 'max 20 characters' })
 };
 
 module.exports = createOption;

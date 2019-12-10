@@ -44,15 +44,18 @@ const createSelectOption =
 const add_Info =
   function *add_Info ({data}) {
     try {
-        const response  = yield axios.post('http://localhost:5000/addInfo', data);
-        if(response.data.added)
-        {
-          yield put(addInfoSuccess());
-        }
-        else
-        {
-          yield put(addInfoError(response.data.error));
-        }
+      const info = {...data}
+      const inter = data.interests.map(item => item.value)
+      info.interests = inter
+      const response  = yield axios.post('http://localhost:5000/addInfo', info);
+      if(response.data.added)
+      {
+        yield put(addInfoSuccess());
+      }
+      else
+      {
+        yield put(addInfoError(response.data.error));
+      }
     }catch (error) {
       if (error.response) {
         yield put(createOptionError('there has been an error'));

@@ -27,6 +27,7 @@ const validate = (values) => {
     });
     if(values.bio && !/^.{1,200}$/.test(values.bio))
         errors.bio = 'maximum 200 charachters';
+
     if(values.birthday && !/([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/.test(values.birthday))
         errors.birthday = 'Invalid date !';
     let today = new Date();
@@ -61,7 +62,6 @@ const mergeProps = (stateProps, dispatchProps, otherProps) => ({
     ...otherProps,
     "handleSubmit" : otherProps.handleSubmit((values) => {
         dispatchProps.addInfo(values);
-        dispatchProps.incStepper();
     }),
 });
 
