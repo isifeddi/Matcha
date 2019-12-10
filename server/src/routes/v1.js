@@ -12,7 +12,7 @@ const resetPassword = require('../controllers/resetPassword');
 const getOptions = require('../controllers/functions/getOptions');
 const createOption = require('../controllers/functions/createOption');
 const getActiveStep = require('../controllers/functions/getActiveStep');
-
+const getImages = require('../controllers/functions/getImages');
 router.post('/login', Login);
 //router.post('/UploadFile', up.none(), upload);
 router.post('/register', Register);
@@ -25,6 +25,7 @@ router.post('/resetPassword', resetPassword);
 router.post('/getOptions', getOptions);
 router.post('/createOption', createOption);
 router.post('/getActiveStep', getActiveStep);
+router.post('/getImages',getImages);
 
 
 module.exports = router;

@@ -1,7 +1,7 @@
 const multer = require('multer')
 const express = require('express');
 const tools = require('../tools/index');
-const IMAGE = require('../models/images');
+const images = require('../models/images');
 const app = express()
  const checkFileType = (file, cb) => {
   if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') cb(null, true)
@@ -26,18 +26,20 @@ const storage = multer.diskStorage({
   });
 
 app.post('/upload',upload.single('files'),(req,res) => {
-  console.log('sss'+req.file);
+ user_id = req.body.userId;
   file = req.file;
+  console.log('file')
+  console.log(user_id)
   if(tools.isEmpty(file)){
     return res.status(400).json({ msg: 'No file uploaded' });
   }
   if(file.size === 0){
     return res.status(400).json({ msg: 'is not a file'});
   }
-  IMAGE.insertImage('AddImage',{userId : 1, path : file.path})
+  images.insertImage({user_id : user_id, path : file.filename})
   .then((resp) => {
     if(resp)
-      res.send(file);
+      res.send(resp);
   }).catch((err)=>{
     res.send(err);
   })
