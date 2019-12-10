@@ -12,6 +12,7 @@ const resetPassword = require('../controllers/resetPassword');
 const getOptions = require('../controllers/functions/getOptions');
 const createOption = require('../controllers/functions/createOption');
 const getActiveStep = require('../controllers/functions/getActiveStep');
+const addInfo = require('../controllers/addInfo')
 
 router.post('/login', Login);
 //router.post('/UploadFile', up.none(), upload);
@@ -25,6 +26,7 @@ router.post('/resetPassword', resetPassword);
 router.post('/getOptions', getOptions);
 router.post('/createOption', createOption);
 router.post('/getActiveStep', getActiveStep);
+router.post('/addInfo', addInfo);
 
 
 module.exports = router;

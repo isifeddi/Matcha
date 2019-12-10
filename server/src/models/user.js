@@ -1,4 +1,3 @@
-
 const conn = require('../Config/db_connection');
 const queries = require("../Config/queries");
   
@@ -94,6 +93,29 @@ module.exports = {
     getStep: function (email) {
         return new Promise ((resolve, reject) => {
             conn.query(SELECT.GetStep, [email], (err,res) => {
+                if(err)
+                    reject(err);
+                else{
+                    resolve(res);
+                }
+            });
+        })
+    },
+    checkInterests: function (inter) {
+        return new Promise ((resolve, reject) => {
+            conn.query(SELECT.CheckInter, [inter], (err,res) => {
+                if(err)
+                    reject(err);
+                else{
+                    const resArray = JSON.parse(JSON.stringify(res))
+                    resolve(resArray);
+                }
+            });
+        })
+    },
+    updateInfo: function (gender, sexOrient, birthday, bio) {
+        return new Promise ((resolve, reject) => {
+            conn.query(UPDATE.UpdateInfo, [gender, sexOrient, birthday, bio], (err,res) => {
                 if(err)
                     reject(err);
                 else{

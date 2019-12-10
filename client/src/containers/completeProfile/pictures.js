@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Picture from '../../components/completeProfile/pictures';
 import {connect} from "react-redux";
 import axios from 'axios';
