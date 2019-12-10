@@ -1,5 +1,4 @@
 const express = require('express');
-//const app = express();
 const router = express.Router();
 const Register = require('../controllers/register');
 const Login = require('../controllers/login');
@@ -13,9 +12,9 @@ const getOptions = require('../controllers/functions/getOptions');
 const createOption = require('../controllers/functions/createOption');
 const getActiveStep = require('../controllers/functions/getActiveStep');
 const addInfo = require('../controllers/addInfo')
+const getImages = require('../controllers/functions/getImages');
 
 router.post('/login', Login);
-//router.post('/UploadFile', up.none(), upload);
 router.post('/register', Register);
 router.post('/availableEmail',availableEmail);
 router.post('/availableUsername',availableUsername);
@@ -27,6 +26,7 @@ router.post('/getOptions', getOptions);
 router.post('/createOption', createOption);
 router.post('/getActiveStep', getActiveStep);
 router.post('/addInfo', addInfo);
+router.post('/getImages',getImages);
 
 
 module.exports = router;

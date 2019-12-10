@@ -5,7 +5,7 @@ const queries = {
         GetUserById: 'SELECT * FROM users WHERE id = ?',
         GetUserByUsername: 'SELECT * FROM users WHERE username = ?',
         GetUserByToken: 'SELECT * FROM users WHERE verif_token = ?',
-        GetImages : '',
+        GetImages : 'SELECT * FROM images WHERE user_id = ?',
         GetInterests: 'SELECT interest FROM interests',
         GetStep: 'SELECT complete FROM users WHERE email = ?',
         CheckInter: 'SELECT COUNT(interest) as n FROM interests WHERE interest IN (?)',

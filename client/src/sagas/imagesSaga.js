@@ -1,23 +1,23 @@
 import { takeLatest, put } from "redux-saga/effects";
 //import { delay } from 'redux-saga/effects'
-import {getImages} from "../actions/imagesAction";
+import {getImagesSuccess,getImagesError} from "../actions/imagesAction";
 import axios from 'axios';
 
 const getPictures =
-  function *getPictures () {
+  function *getPictures ({user_id}) {
     try {
-        const response  = yield axios.post('http://localhost:5000/getImages');
+        const response  = yield axios.post('http://localhost:5000/getImages',{user_id : user_id});
         if(response.data)
         {
-            yield put(getOptionsSuccess(response.data));
+            yield put(getImagesSuccess(response.data));
         }
-        else
-        {
-            yield put(getOptionsSuccess());
-        }
+       
     }catch (error) {
       if (error.response) {
-        yield put(getOptionsSuccess());
+        yield put(getImagesError(error.response));
       }
     }
 };
+export default function *() {
+    yield takeLatest("GET_IMAGES", getPictures);
+  }

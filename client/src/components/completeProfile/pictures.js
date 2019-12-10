@@ -18,10 +18,13 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.secondary.main,
 }
 }));
+
 const  Pictures = (props) => {
-  const {fileChangedHandler,imagePreviewUrl} = props;
+  const {fileChangedHandler,imagePreviewUrl,images} = props;
   const classes = useStyles();
-  
+  const fun = (path)=>{
+    return('http://localhost:5000/assets/'+path)
+  }
   return (
     <Container>
       <Grid container  justify="center" width>
@@ -33,9 +36,10 @@ const  Pictures = (props) => {
         </label>
       </Grid>
       { imagePreviewUrl && <img src={imagePreviewUrl} alt="icon" width="200" />}
-      {/* <Grid item container alignItems="flex-end" xs={3}>
-        <Button  onClick={handleSubmit} className={classes.submit} fullWidth variant="contained" type="submit" color="primary" name="submit" value="ok" >Next</Button>
-      </Grid> */}
+      {images.images && images.images.map(item =>{
+        console.log(item.path)
+        return (<img src={fun(item.path)} alt="icon" width="200" />)
+      })}
     </Container>
   )
 }
