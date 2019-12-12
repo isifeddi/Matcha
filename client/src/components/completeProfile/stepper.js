@@ -97,7 +97,7 @@ const Checkout = (props) => {
               </React.Fragment>
             ) : (
               <React.Fragment>
-                {getStepContent(activeStep)}
+                {getStepContent(1)}
               </React.Fragment>
             )}
           </React.Fragment>

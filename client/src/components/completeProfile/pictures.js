@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Container } from '@material-ui/core';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import IconButton from '@material-ui/core/IconButton';
+import img from '../../public/images/2019-12-10T00:14:23.376Z655568.jpg';
 //import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(theme => ({
@@ -22,9 +23,11 @@ const useStyles = makeStyles(theme => ({
 const  Pictures = (props) => {
   const {fileChangedHandler,imagePreviewUrl,images} = props;
   const classes = useStyles();
-  const fun = (path)=>{
-    return('http://localhost:5000/assets/'+path)
-  }
+  // const fun = ()=>{
+  //   const url =  'http://localhost:5000/images/2019-12-10T00:14:23.376Z655568.jpg'
+  //   console.log(url);
+  //   return(url);
+  // }
   return (
     <Container>
       <Grid container  justify="center" width>
@@ -37,8 +40,8 @@ const  Pictures = (props) => {
       </Grid>
       { imagePreviewUrl && <img src={imagePreviewUrl} alt="icon" width="200" />}
       {images.images && images.images.map(item =>{
-        console.log(item.path)
-        return (<img src={fun(item.path)} alt="icon" width="200" />)
+       //console.log(item.path)
+        return (<img src={img} alt="icon" width="200" />)
       })}
     </Container>
   )
