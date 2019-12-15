@@ -12,13 +12,16 @@ import Rating from '@material-ui/lab/Rating';
 import AccountCircleTwoToneIcon from '@material-ui/icons/AccountCircleTwoTone';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
-import ProfileInfo from '../../containers/Profile/profileInfo';
 import CardContent from '@material-ui/core/CardContent';
 import { red } from '@material-ui/core/colors';
 import GridList from '@material-ui/core/GridList';
-import Maps from '../../containers/Profile/maps';
 import MonochromePhotosTwoToneIcon from '@material-ui/icons/MonochromePhotosTwoTone';
 import VisibilityTwoToneIcon from '@material-ui/icons/VisibilityTwoTone';
+
+import ViewProfile from '../../containers/Profile/viewProfile';
+import Photos from '../../containers/Profile/photos';
+import Maps from '../../containers/Profile/maps';
+import ProfileInfo from '../../containers/Profile/profileInfo';
 const useStyles = makeStyles(theme => ({
  
   root1: {
@@ -129,9 +132,9 @@ export default function SimpleContainer() {
               <Tab icon={<VisibilityTwoToneIcon />} label="VIEW PROFILE" id='3'/>
             </Tabs>
             <TabPanel value={value} index={0}><ProfileInfo /></TabPanel>
-            <TabPanel value={value} index={1}><Maps/></TabPanel>
+            <TabPanel value={value} index={1}><Photos/></TabPanel>
             <TabPanel value={value} index={2}><Maps/></TabPanel>
-            <TabPanel value={value} index={3}><Maps/></TabPanel>
+            <TabPanel value={value} index={3}><ViewProfile/></TabPanel>
           </Paper>
         </Grid>
       </Grid>

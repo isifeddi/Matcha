@@ -11,7 +11,7 @@ const queries = {
         CheckInter: 'SELECT COUNT(interest) as n FROM interests WHERE interest IN (?)',
     },
     INSERT : {
-        AddImage: 'INSERT INTO images (user_id, path) VALUES (?, ?)',
+        AddImage: 'INSERT INTO images (user_id, path,isProfilePic) VALUES (?, ?,?)',
         AddUser: 'INSERT INTO users (lastname, firstname, username, email, password) VALUES (?, ?, ?, ?, ?)',
         CreateInterest: 'INSERT INTO interests (interest) VALUE (?)',
     },
@@ -22,9 +22,12 @@ const queries = {
         Confirmed: 'UPDATE users SET confirmed = 1 WHERE email = ?',
         notConfirmed: 'UPDATE users SET confirmed = 0 WHERE email = ?',
         UpdateInfo: 'UPDATE users SET gender = ?, sexOrient = ?, birthday = ?, bio = ?, complete = 1',
+        setProfilePic:'UPDATE images SET IsProfilePic = 1 WHERE id = ? && user_id = ?',
+        resetProfilePic : 'UPDATE images SET isProfilePic = 0 WHERE user_id = ?',
+        setFirstProPic : 'UPDATE  images SET isProfilePic = 1 WHERE user_id = ? ORDER BY id ASC LIMIT 1;'
     },
     DELETE : {
-
+        delImages : 'DELETE FROM `images` WHERE id = ? && user_id = ?'
     }
 }
 
