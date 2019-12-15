@@ -11,9 +11,9 @@ export const decStepper = () => ({
     "type": DEC_STEPPER,
 });
 
-export const getActiveStep = (email) => ({
+export const getActiveStep = (id) => ({
   "type": GET_ACTIVE_STEP,
-  'email': email
+  'id': id
 })
 
 export const getActiveStepSuccess = (step) => ({

@@ -1,5 +1,6 @@
 import { takeLatest, put } from "redux-saga/effects";
 import { getOptionsSuccess, createOptionSuccess, createOptionError, addInfoSuccess, addInfoError} from "../actions/addInfoAction";
+import { select } from 'redux-saga/effects'; 
 import axios from 'axios';
 
 const getSelectOptions =
@@ -24,8 +25,9 @@ const getSelectOptions =
 const createSelectOption =
   function *createSelectOption (act) {
     try {
+        const id = yield select((state) => state.user.id);
         const option = act.data.value;
-        const response  = yield axios.post('http://localhost:5000/createOption', {option: option});
+        const response  = yield axios.post('http://localhost:5000/createOption', {option: option, id: id});
         if(response.data.created)
         {
           yield put(createOptionSuccess(response.data.option));
@@ -42,15 +44,16 @@ const createSelectOption =
 };
 
 const add_Info =
-  function *add_Info ({data}) {
+  function *add_Info ({data, id}) {
     try {
-      const info = {...data}
+      const info = {...data, id}
       const inter = data.interests.map(item => item.value)
-      info.interests = inter
+      info.interests = inter;
       const response  = yield axios.post('http://localhost:5000/addInfo', info);
+
       if(response.data.added)
       {
-        yield put(addInfoSuccess());
+        yield put(addInfoSuccess(response.data.uu));
       }
       else
       {
@@ -66,5 +69,5 @@ const add_Info =
 export default function *() {
   yield takeLatest("GET_OPTIONS", getSelectOptions);
   yield takeLatest("CREATE_OPTION", createSelectOption);
-  yield takeLatest("ADD_INFO", add_Info)
+  yield takeLatest("ADD_INFO", add_Info);
 }

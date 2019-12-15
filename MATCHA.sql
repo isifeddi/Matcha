@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : mysql:3306
--- Généré le :  lun. 09 déc. 2019 à 20:37
+-- Généré le :  Dim 15 déc. 2019 à 23:39
 -- Version du serveur :  5.7.27
 -- Version de PHP :  7.2.22
 
@@ -31,7 +31,8 @@ SET time_zone = "+00:00";
 CREATE TABLE `images` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `path` varchar(255) NOT NULL
+  `path` varchar(255) NOT NULL,
+  `isProfilePic` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -42,22 +43,21 @@ CREATE TABLE `images` (
 
 CREATE TABLE `interests` (
   `interest_id` int(11) NOT NULL,
-  `interest` varchar(255) NOT NULL
+  `interest` varchar(255) NOT NULL,
+  `createdBy` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `interests`
 --
 
-INSERT INTO `interests` (`interest_id`, `interest`) VALUES
-(1, 'Sport'),
-(2, 'Reading'),
-(3, 'Swimming'),
-(4, 'Travel'),
-(5, 'Gaming'),
-(6, 'dsf'),
-(7, 'dsfdsf'),
-(8, 'dsfdsfdsfdsds');
+INSERT INTO `interests` (`interest_id`, `interest`, `createdBy`) VALUES
+(1, 'Sport', 1),
+(2, 'Reading', 1),
+(3, 'Swimming', 1),
+(4, 'Travel', 1),
+(5, 'Gaming', 1),
+(6, '1337', 1);
 
 -- --------------------------------------------------------
 
@@ -75,9 +75,9 @@ CREATE TABLE `users` (
   `verif_token` varchar(255) NOT NULL DEFAULT '',
   `confirmed` int(11) NOT NULL DEFAULT '0',
   `complete` int(11) NOT NULL DEFAULT '0',
-  `gender` varchar(255) NOT NULL,
-  `sexOrient` varchar(255) NOT NULL,
-  `bio` varchar(255) NOT NULL,
+  `gender` varchar(255) DEFAULT NULL,
+  `sexOrient` varchar(255) DEFAULT NULL,
+  `bio` varchar(255) DEFAULT NULL,
   `birthday` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -86,7 +86,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `username`, `email`, `password`, `verif_token`, `confirmed`, `complete`, `gender`, `sexOrient`, `bio`, `birthday`) VALUES
-(1, 'ILYAS', 'SIFEDDINE', 'isifeddi', 'sifeddineilyass@gmail.com', '$2b$10$eWEoVzJyBAcAzJz6Om.VguYFG//x5x/2ptNr7UQTcZuO7pPZStKxC', '2efbcb8faba6b95fe1941ca7dec159e7f25f602650b57a16b86694c6fe1416d8071b271ba35297dcf97c3391a666e7047ec728e475ee304827969e1c736986fd', 1, 0, '', '', '', NULL);
+(1, 'ILYAS', 'SIFEDDINE', 'isifeddi', 'sifeddineilyass@gmail.com', '$2b$10$9ljLeuUKzaNwk5PK9POnguF1l0qKTq3QZZbvZ8YhsQxsQPDI8e7CK', 'b49f62d27a6bb40a5d554d02ae255c0a9ed019126a96b95fa6fb93512033081663543abe5d63d3452abb3507f075ec3b4844fbcab2f6e20ce19ed4835f4e224a', 1, 1, 'male', 'both', 'be like water ;)', '1998-10-28');
 
 -- --------------------------------------------------------
 
@@ -98,6 +98,15 @@ CREATE TABLE `usersInterests` (
   `uId` int(11) NOT NULL,
   `iId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `usersInterests`
+--
+
+INSERT INTO `usersInterests` (`uId`, `iId`) VALUES
+(1, 2),
+(1, 4),
+(1, 5);
 
 --
 -- Index pour les tables déchargées
@@ -141,13 +150,13 @@ ALTER TABLE `images`
 -- AUTO_INCREMENT pour la table `interests`
 --
 ALTER TABLE `interests`
-  MODIFY `interest_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `interest_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

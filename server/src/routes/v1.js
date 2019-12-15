@@ -13,6 +13,7 @@ const createOption = require('../controllers/functions/createOption');
 const getActiveStep = require('../controllers/functions/getActiveStep');
 const addInfo = require('../controllers/addInfo')
 const getImages = require('../controllers/functions/getImages');
+const getUserData = require('../controllers/functions/getUserData');
 
 router.post('/login', Login);
 router.post('/register', Register);
@@ -27,6 +28,7 @@ router.post('/createOption', createOption);
 router.post('/getActiveStep', getActiveStep);
 router.post('/addInfo', addInfo);
 router.post('/getImages',getImages);
+router.post('/getUserData', getUserData)
 
 
 module.exports = router;

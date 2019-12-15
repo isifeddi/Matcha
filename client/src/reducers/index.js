@@ -9,7 +9,7 @@ import emailConfirmationReducer from './emailConfirmationReducer';
 import sendEmailReducer from './sendEmailReducer';
 import resetPasswordReducer from "./resetPasswordReducer";
 import stepperReducer from './stepperReducer';
-import addInfoReducer from './addInfoReducer'
+import addInfoReducer from './addInfoReducer';
 import imagesReducer from './imagesReducers';
 const combinedReducer = (history)=> combineReducers({
     "router" : connectRouter(history),
