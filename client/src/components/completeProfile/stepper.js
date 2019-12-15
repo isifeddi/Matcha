@@ -69,7 +69,6 @@ const Checkout = (props) => {
     const classes = useStyles();
 
     return (
-    
     <React.Fragment>
       <CssBaseline />
       {activeStep !== 'loading' &&
@@ -97,7 +96,7 @@ const Checkout = (props) => {
               </React.Fragment>
             ) : (
               <React.Fragment>
-                {getStepContent(activeStep)}
+                {getStepContent(0)}
               </React.Fragment>
             )}
           </React.Fragment>

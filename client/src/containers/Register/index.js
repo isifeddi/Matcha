@@ -108,7 +108,7 @@ const mergeProps = (stateProps, dispatchProps, otherProps)=> ({
     })
 });
 
-const connectedRegisterContainer = connect(mapStateToProps, mapDispatchToProps,mergeProps)(Register); 
+const connectedRegisterContainer = connect(mapStateToProps, mapDispatchToProps,mergeProps)(Register);
 const RegisterContainer = reduxForm({
     form : "register",
     "destroyOnUnmount": true,  
@@ -117,6 +117,5 @@ const RegisterContainer = reduxForm({
     "asyncBlurFields": ["username", "email"]
 
 })(connectedRegisterContainer);
-
 
 export default RegisterContainer;

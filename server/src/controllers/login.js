@@ -6,9 +6,22 @@ Login =  async (req, res, next) => {
     const {username, password} = req.body;
     let get = await  user.getUser('GetUserByUsername',username);
     const data = get[0];
+    const inter = await user.getUserInterests(data.id);
     if(data)
     {
-        const payload = {id: data.id, firstname: data.firstname, lastname: data.lastname, username: data.username, email: data.email, confirmed: data.confirmed};
+        const payload = {
+            id: data.id,
+            firstname: data.firstname,
+            lastname: data.lastname,
+            username: data.username,
+            email: data.email,
+            confirmed: data.confirmed,
+            gender: data.gender,
+            sexOrient: data.sexOrient,
+            bio: data.bio,
+            birthday: data.transDate,
+            interests: inter,
+        };
         let token = await jwt.sign({data: payload}, 'fuckingSecretKey');
         bcrypt.compare(password, data.password)
         .then((response) => {

@@ -14,6 +14,7 @@ export const ADD_INFO_SUCCESS = "ADD_INFO_SUCCESS";
 
 export const ADD_INFO_ERROR = "ADD_INFO_ERROR";
 
+
 export const getOptions= () => ({
   "type": GET_OPTIONS
 });
@@ -38,16 +39,18 @@ export const createOptionError = (error) => ({
   error
 });
 
-export const addInfo = (data) => ({
+export const addInfo = (data, id) => ({
   "type": ADD_INFO,
-  "data": data
+  "data": data,
+  'id': id
 });
 
-export const addInfoSuccess = () => ({
+export const addInfoSuccess = (info) => ({
   "type": ADD_INFO_SUCCESS,
+  "info": info
 });
 
-export const addInfoError = (error) => ({
+export const addInfoError = (error) => ({             
   "type": ADD_INFO_ERROR,
   error
 });

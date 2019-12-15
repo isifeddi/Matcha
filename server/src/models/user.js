@@ -4,6 +4,7 @@ const queries = require("../Config/queries");
 const SELECT = queries.SELECT;
 const INSERT = queries.INSERT;
 const UPDATE = queries.UPDATE;
+const DELETE = queries.DELETE;
 
 
 
@@ -79,9 +80,9 @@ module.exports = {
             });
         })
     },
-    createOption: function (option) {
+    createOption: function (option, id) {
         return new Promise ((resolve, reject) => {
-            conn.query(INSERT.CreateInterest, option, (err,res) => {
+            conn.query(INSERT.CreateInterest, [option, id], (err,res) => {
                 if(err)
                     reject(err);
                 else{
@@ -90,9 +91,21 @@ module.exports = {
             });
         })
     },
-    getStep: function (email) {
+    InterCreatedNbr: function (id) {
         return new Promise ((resolve, reject) => {
-            conn.query(SELECT.GetStep, [email], (err,res) => {
+            conn.query(SELECT.InterCreatedNbr, [id], (err,res) => {
+                if(err)
+                    reject(err);
+                else{
+                    const resArray = JSON.parse(JSON.stringify(res))
+                    resolve(resArray);
+                }
+            });
+        })
+    },
+    getStep: function (id) {
+        return new Promise ((resolve, reject) => {
+            conn.query(SELECT.GetStep, [id], (err,res) => {
                 if(err)
                     reject(err);
                 else{
@@ -116,6 +129,65 @@ module.exports = {
     updateInfo: function (gender, sexOrient, birthday, bio) {
         return new Promise ((resolve, reject) => {
             conn.query(UPDATE.UpdateInfo, [gender, sexOrient, birthday, bio], (err,res) => {
+                if(err)
+                    reject(err);
+                else{
+                    resolve(res);
+                }
+            });
+        })
+    },
+    getInterId : function (inter) {
+        return new Promise ((resolve, reject) => {
+            conn.query(SELECT.GetInterId, [inter], (err,res) => {
+                if(err)
+                    reject(err);
+                else{
+                    const resArray = JSON.parse(JSON.stringify(res))
+                    resolve(resArray);
+                }
+            });
+        })
+    },
+    getUserInterests : function (id) {
+        return new Promise ((resolve, reject) => {
+            conn.query(SELECT.GetUserInter, [id], (err,res) => {
+                if(err)
+                    reject(err);
+                else{
+                    const resArray = JSON.parse(JSON.stringify(res))
+                    let options = [];
+                    Object.keys(resArray).forEach(function()
+                    {
+                        for (var i = 0; i < resArray.length; i++) {
+                            options[i] = {
+                                value: resArray[i].interest,
+                                label: resArray[i].interest,
+                            };
+                        }
+                    });
+                    if(options.length > 0)
+                        resolve(options);
+                    else
+                        resolve(null);
+                }
+            });
+        })
+    },
+    insertUserInter: function (id, inter) {
+        return new Promise ((resolve, reject) => {
+            conn.query(INSERT.InsertUserInter, [id, inter], (err,res) => {
+                if(err)
+                    reject(err);
+                else{
+                    resolve(res);
+                }
+            });
+        })
+    },
+    deleteUserInter: function (id) {
+        return new Promise ((resolve, reject) => {
+            conn.query(DELETE.DeleteUserInter, [id], (err,res) => {
                 if(err)
                     reject(err);
                 else{
