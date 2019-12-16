@@ -15,6 +15,7 @@ class StepperContainer extends Component {
     }
     render() {
         return (
+            
             <Stepper activeStep={this.props.activeStep} /> 
         )
     }

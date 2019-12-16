@@ -4,10 +4,9 @@ const bodyparser = require('body-parser');
 const v1 = require('./routes/v1');
 const cors = require('cors')
 const up = require('../src/controllers/uploadFile')
-
 const app = express();
 
-
+app.use(express.static('public'));
 // ------------- DB Connection  ------------- //
 const connection = require('./Config/db_connection');
 //const co = require('./models/config');
@@ -19,6 +18,8 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended : true}));
 
 app.use(cors())
+
+
 
 // ------------- Routes  ------------- //
 app.use(up)

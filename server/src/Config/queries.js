@@ -14,22 +14,26 @@ const queries = {
         GetUserInter: "SELECT interest FROM interests INNER JOIN usersInterests ON interests.interest_id = usersInterests.iId WHERE usersInterests.uId = ?"
     },
     INSERT : {
-        AddImage: "INSERT INTO images (user_id, path) VALUES (?, ?)",
-        AddUser: "INSERT INTO users (lastname, firstname, username, email, password) VALUES (?, ?, ?, ?, ?)",
+        AddImage: 'INSERT INTO images (user_id, path,isProfilePic) VALUES (?, ?,?)',
+        AddUser: 'INSERT INTO users (lastname, firstname, username, email, password) VALUES (?, ?, ?, ?, ?)',
         CreateInterest: "INSERT INTO interests (interest, createdBy) VALUES (?, ?)",
         InsertUserInter: "INSERT INTO usersInterests (uId, iId) VALUES (?, ?)",
     },
     UPDATE : {
-        Update: "UPDATE users SET name = ?, email = ?, sex = ? WHERE id = ?",
-        UpdateToken: "UPDATE users SET verif_token = ? WHERE email = ?",
-        ResetPassword: "UPDATE users SET password = ? WHERE verif_token = ?",
-        Confirmed: "UPDATE users SET confirmed = 1 WHERE email = ?",
-        notConfirmed: "UPDATE users SET confirmed = 0 WHERE email = ?",
+        Update: 'UPDATE users SET name = ?, email = ?, sex = ? WHERE id = ?',
+        UpdateToken: 'UPDATE users SET verif_token = ? WHERE email = ?',
+        ResetPassword: 'UPDATE users SET password = ? WHERE verif_token = ?',
+        Confirmed: 'UPDATE users SET confirmed = 1 WHERE email = ?',
+        notConfirmed: 'UPDATE users SET confirmed = 0 WHERE email = ?',
         UpdateInfo: "UPDATE users SET gender = ?, sexOrient = ?, birthday = ?, bio = ?, complete = 1",
+        setProfilePic:'UPDATE images SET IsProfilePic = 1 WHERE id = ? && user_id = ?',
+        resetProfilePic : 'UPDATE images SET isProfilePic = 0 WHERE user_id = ?',
+        setFirstProPic : 'UPDATE  images SET isProfilePic = 1 WHERE user_id = ? ORDER BY id ASC LIMIT 1;'
     },
     DELETE : {
+        delImages : 'DELETE FROM `images` WHERE id = ? && user_id = ?',
         DeleteUserInter: "DELETE FROM `usersInterests` WHERE uId = ?",
-    }
+    },
 }
 
 module.exports = queries;

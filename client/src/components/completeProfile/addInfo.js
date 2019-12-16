@@ -11,7 +11,6 @@ import Radio from '@material-ui/core/Radio';
 import FormLabel from '@material-ui/core/FormLabel';
 import CreatableSelect from 'react-select/creatable';
 import MySnackBar from '../commun/snackBar';
-import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -75,7 +74,7 @@ const renderDatepicker = ({input, label, meta : { touched, error}}
 
 const AddInfo = (props) => {
   const classes = useStyles();
-  const {handleSubmit, selectLoading, selectOptions, selectError, userData, createOption} = props;
+  const {handleSubmit, selectLoading, selectOptions, selectError, createOption} = props;
 
   const handleCreate =  (value) => {
     createOption(value);

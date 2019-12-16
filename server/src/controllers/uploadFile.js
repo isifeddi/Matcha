@@ -9,7 +9,7 @@ const app = express()
 }
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, './src/uploadsImages')
+      cb(null, './src/public/images')
     },
     filename: (req, file, cb) => {
       cb(null, new Date().toISOString() + file.originalname)
@@ -26,22 +26,35 @@ const storage = multer.diskStorage({
   });
 
 app.post('/upload',upload.single('files'),(req,res) => {
- user_id = req.body.userId;
+  
+ user_id = req.body.user_id;
+ //console.log('contro'+user_id)
   file = req.file;
-  console.log('file')
-  console.log(user_id)
+
   if(tools.isEmpty(file)){
-    return res.status(400).json({ msg: 'No file uploaded' });
+    console.log('No file uploaded')
+    return res.send('No file uploaded');
   }
   if(file.size === 0){
-    return res.status(400).json({ msg: 'is not a file'});
+    return res.send('is not a file');
   }
-  images.insertImage({user_id : user_id, path : file.filename})
-  .then((resp) => {
-    if(resp)
-      res.send(resp);
-  }).catch((err)=>{
-    res.send(err);
-  })
+ images.getImages(user_id)
+ .then((response) => {
+  const length = response.length;
+  //console.log(length)
+    if(length > 4)
+      return res.send('maximum images are 5 images');
+    else{
+      images.insertImage({user_id : user_id, path : file.filename})
+      .then((resp) => {
+        if(resp)
+          res.send(resp);
+      }).catch((err)=>{
+        res.send(err);
+      })
+    }
+ })
+  
+  
 });
 module.exports = app;

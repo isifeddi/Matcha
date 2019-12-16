@@ -8,7 +8,7 @@ import ForgotPasswordContainer from '../containers/ForgotPassword'
 import EmailConfirmCont from '../containers/emailConfirmation'
 import ResetPasswordContainer from '../containers/resetPassword'
 import CompleteProfile from '../containers/completeProfile/stepper'
-
+import Profile from '../containers/Profile'
 import PrivateRoute from './PrivateRoute';
 
 const Routes = () => {
@@ -23,6 +23,8 @@ const Routes = () => {
                 <PrivateRoute>
                     <Route path="/completeProfile"  component={ CompleteProfile }/>
                     <Route path="/" component={ HomeContainer }/>
+                    <Route path="/profile" component={ Profile }/>
+
                 </PrivateRoute>
                 <Route  path="*" component={ NotFoundPage } />
             </Switch>
