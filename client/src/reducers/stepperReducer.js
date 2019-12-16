@@ -7,8 +7,6 @@ import {
 
 import {ADD_INFO_SUCCESS} from "../actions/addInfoAction";
 
-
-
 const DEFAULT_STATE =  0;
 
 export default function (state = DEFAULT_STATE, action) {

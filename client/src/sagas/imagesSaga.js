@@ -1,6 +1,6 @@
 import { takeLatest, put ,select} from "redux-saga/effects";
 //import { delay } from 'redux-saga/effects'
-import {setProfilePicError,getImages,getImagesSuccess,getImagesError,sendImagesSuccess,sendImagesError,delImagesError,delImagesSuccess} from "../actions/imagesAction";
+import {setProfilePicError,getImages,getImagesSuccess,getImagesError,sendImagesError,delImagesError} from "../actions/imagesAction";
 import axios from 'axios';
 
 const getPictures =

@@ -69,7 +69,6 @@ const Checkout = (props) => {
     const classes = useStyles();
 
     return (
-    
     <React.Fragment>
       <CssBaseline />
       {activeStep !== 'loading' &&

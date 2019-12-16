@@ -10,10 +10,9 @@ import TextField from '@material-ui/core/TextField';
 import Radio from '@material-ui/core/Radio';
 import FormLabel from '@material-ui/core/FormLabel';
 import CreatableSelect from 'react-select/creatable';
-import MySnackBar from '../commun/snackBar'
+import MySnackBar from '../commun/snackBar';
 
 const useStyles = makeStyles(theme => ({
-  
     paper: {
         display: 'flex',
         flexDirection: 'column',
@@ -55,9 +54,6 @@ const renderField = ({variant, rows, type, input, label, meta : { touched, error
             fullWidth
             multiline
             rows={rows}
-            InputLabelProps={{
-              shrink: true,
-            }}
         />
 )
 
@@ -112,7 +108,7 @@ const AddInfo = (props) => {
         <Typography component="h1" variant="h5" color="primary">
           Additional infos
         </Typography>
-        { selectError === 'max 20 characters' && <MySnackBar variant="error" message={selectError}/> }
+        {selectError && <MySnackBar variant="error" message={selectError}/> }
         <form  className={classes.form}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
@@ -162,7 +158,6 @@ const AddInfo = (props) => {
           </Grid>
         </form>
       </div>
-      
     </Container>
   );
 }

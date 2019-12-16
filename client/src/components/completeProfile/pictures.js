@@ -7,10 +7,6 @@ import img from '../../public/images/2019-12-10T00:14:23.376Z655568.jpg';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
-import AddToPhotosTwoToneIcon from '@material-ui/icons/AddToPhotosTwoTone';
-
-
-//import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -96,7 +92,7 @@ const  Pictures = (props) => {
                
                 actionPosition="left"
                 className={classes.titleBar}
-                title={tile.isProfilePic == 1 && 'Profile picture'}
+                title={tile.isProfilePic === 1 && 'Profile picture'}
                   actionIcon={
                     <button  imgId = {tile.id}  onClick={setProfilePicture}>ProfPic</button>
                     //<AddToPhotosTwoToneIcon color='primary' imgId = {tile.id} color="secondary" onClick={setProfilePic}/>

@@ -15,6 +15,7 @@ const addInfo = require('../controllers/addInfo')
 const getImages = require('../controllers/functions/getImages');
 const deleteImages = require('../controllers/functions/delImages');
 const setProfilePicture = require ('../controllers/functions/setProfilePicture')
+
 router.post('/login', Login);
 router.post('/register', Register);
 router.post('/availableEmail',availableEmail);

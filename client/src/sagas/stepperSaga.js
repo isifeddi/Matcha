@@ -1,13 +1,17 @@
 import { takeLatest, put } from "redux-saga/effects";
+import {push} from "react-router-redux";
 import { getActiveStepSuccess } from "../actions/stepperAction";
 import axios from 'axios';
 
 const getStep =
-  function *getStep ({email}) {
+  function *getStep ({id}) {
     try {
-        const response  = yield axios.post('http://localhost:5000/getActiveStep' , {email: email});
+        const response  = yield axios.post('http://localhost:5000/getActiveStep' , {id: id});
         if(response.data.step)
         {
+          if(response.data.step === 4)
+            yield put(push('/profile')) ;
+          else
             yield put(getActiveStepSuccess(response.data.step));
         }
         else
