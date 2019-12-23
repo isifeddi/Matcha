@@ -25,7 +25,8 @@ const queries = {
         ResetPassword: 'UPDATE users SET password = ? WHERE verif_token = ?',
         Confirmed: 'UPDATE users SET confirmed = 1 WHERE email = ?',
         notConfirmed: 'UPDATE users SET confirmed = 0 WHERE email = ?',
-        UpdateInfo: "UPDATE users SET gender = ?, sexOrient = ?, birthday = ?, bio = ?, complete = 1",
+        UpdateInfo: "UPDATE users SET gender = ?, sexOrient = ?, birthday = ?, bio = ? WHERE id = ?",
+        UpdateStep:"UPDATE users SET complete = ? WHERE id = ?",
         setProfilePic:'UPDATE images SET IsProfilePic = 1 WHERE id = ? && user_id = ?',
         resetProfilePic : 'UPDATE images SET isProfilePic = 0 WHERE user_id = ?',
         setFirstProPic : 'UPDATE  images SET isProfilePic = 1 WHERE user_id = ? ORDER BY id ASC LIMIT 1;'

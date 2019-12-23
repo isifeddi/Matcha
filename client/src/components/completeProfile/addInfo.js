@@ -7,10 +7,11 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
-import Radio from '@material-ui/core/Radio';
 import FormLabel from '@material-ui/core/FormLabel';
 import CreatableSelect from 'react-select/creatable';
 import MySnackBar from '../commun/snackBar';
+import renderField from '../commun/TextField';
+import RadioGroup from '../commun/RadioGroup';
 
 const useStyles = makeStyles(theme => ({
     paper: {
@@ -29,33 +30,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const RadioGroup = (props) => {
-    const { input, meta, options } = props;
-    const hasError = meta.touched && meta.error;
 
-    return (
-      <div>
-        {options.map(o => <label key={o.value}>
-          <Radio {...input}  checked={o.value === input.value} value={o.value} />
-          {o.title}</label>)}<br/>
-        {hasError && <span style={{'fontSize':'12px','color':'#f44336'}}>{meta.error}</span>}
-      </div>
-    );
-}
-const renderField = ({variant, rows, type, input, label, meta : { touched, error}}
-    ) => (
-        <TextField
-            {...input}
-            type = {type}
-            label = {label}
-            error = {touched && error}
-            helperText={touched && error}
-            variant={variant}
-            fullWidth
-            multiline
-            rows={rows}
-        />
-)
 
 const renderDatepicker = ({input, label, meta : { touched, error}}
   ) => (
@@ -80,7 +55,7 @@ const AddInfo = (props) => {
     createOption(value);
   }
 
-  const sel = ({ input, meta: { touched, error }}) => (
+  const selectField = ({ input, meta: { touched, error }}) => (
     <div>
       <CreatableSelect
         {...input}
@@ -98,8 +73,6 @@ const AddInfo = (props) => {
       </div>
     </div>
   );
-
-  
 
   return (
     <Container component="main" maxWidth="xs">
@@ -147,7 +120,7 @@ const AddInfo = (props) => {
             </Grid>
             <Grid item xs={12}>
               <FormLabel component="legend">Interests</FormLabel>
-              <Field name='interests' component={sel}/>
+              <Field name='interests' component={selectField}/>
             </Grid>
             <Grid  container direction="row" item xs={12}>
               <Grid item xs={9}/>

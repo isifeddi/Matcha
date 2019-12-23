@@ -3,16 +3,16 @@ import { Redirect } from 'react-router-dom';
 import {connect} from "react-redux";
 
 const PrivateRoute = (props) => {
-    const {token, children} = props
+    const {user, children} = props
     return (
         <>
-            { token ? children : <Redirect to={'/login'} /> }
+            { user !== null ? children : <Redirect to={'/login'} /> }
         </>
 
 )}
 
 const mapStateToProps = (state) => (
 {
-    'token': state.token,
+    'user': state.user,
 });
 export default connect(mapStateToProps)(PrivateRoute);

@@ -1,7 +1,7 @@
 const user = require('../../models/user');
 
 getOptions = async (req, res) => {
-    await user.getOptions()
+     user.getOptions()
     .then((response) => {
         let options = [];
         Object.keys(response).forEach(function() {

@@ -1,35 +1,39 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import Stepper from '../../components/completeProfile/stepper';
 import {getOptions} from '../../actions/addInfoAction';
-import {getActiveStep} from '../../actions/stepperAction';
 import {getImages} from '../../actions/imagesAction';
 import {connect} from "react-redux";
+import {decStepper, incStepper} from '../../actions/stepperAction';
 
-class StepperContainer extends Component {
-    componentDidMount = () => {
-        if(this.props.user){
-            this.props.getOptions();
-            this.props.getImages(this.props.user.id);
-            this.props.getActiveStep(this.props.user.id);
+const StepperContainer = (props) => {
+    const { user, images, getImages, getOptions, decStepper, incStepper} = props;
+    useEffect(() => {
+        if(user){
+            getOptions();
+            getImages(user.id);
         }
+    }, []);
+    const handleBack = () => {
+        decStepper();
     }
-    render() {
-        return (
-            
-            <Stepper activeStep={this.props.activeStep} /> 
-        )
+    const handleNext = () => {
+        incStepper();
     }
+    return (
+        <Stepper handleBack={handleBack} handleNext={handleNext} user={user} images={images}/>
+    )
 }
 
 const mapStateToProps = (state) => (
 {
-    "activeStep" : state.activeStep,
-    "user": state.user
+    "user": state.user,
+    "images" : state.images
 });
 const mapDispatchToProps = {
     "getOptions": getOptions,
-    "getActiveStep": getActiveStep,
     "getImages" : getImages,
+    "decStepper": decStepper,
+    "incStepper": incStepper,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(StepperContainer);

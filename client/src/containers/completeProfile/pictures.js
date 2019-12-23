@@ -11,11 +11,12 @@ const fileChangedHandler = (event) => {
     formData.append('files',files);
     formData.append('user_id',user.id);
     sendImages(formData);
+    event.target.value = null;
 }
 
 const deletePicture = (event) => {
-    const imgId = event.target.getAttribute('imgId');
-   const isProfilePic = event.target.getAttribute('isProfilePic');
+    const imgId = event.target.getAttribute('imgid');
+   const isProfilePic = event.target.getAttribute('isprofilepic');
    const img = {
     imgId : imgId,
     isProfilePic :isProfilePic
@@ -23,7 +24,7 @@ const deletePicture = (event) => {
     delImages(img);
   }
   const setProfilePicture = (event) => {
-    const imgId = event.target.getAttribute('imgId');
+    const imgId = event.target.getAttribute('imgid');
     setProfilePic(imgId);
   }
 
@@ -41,7 +42,7 @@ const deletePicture = (event) => {
 const mapStateToProps = (state) => (
 {
     "user" : state.user,
-    "images" : state.imagesReducer,
+    "images" : state.images,
 });
 const mapDispatchToProps = {
     "sendImages" : sendImages,

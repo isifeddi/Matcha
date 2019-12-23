@@ -1,34 +1,21 @@
 const bcrypt = require ('bcrypt');
 const user = require('../models/user');
-var jwt = require('jsonwebtoken');
 
-Login =  async (req, res, next) => {
+Login =  async (req, res) => {
     const {username, password} = req.body;
-    let get = await  user.getUser('GetUserByUsername',username);
-    const data = get[0];
-    const inter = await user.getUserInterests(data.id);
-    if(data)
+    let dataUser = await  user.getUser('GetUserByUsername',username);
+    if(dataUser)
     {
-        const payload = {
-            id: data.id,
-            firstname: data.firstname,
-            lastname: data.lastname,
-            username: data.username,
-            email: data.email,
-            confirmed: data.confirmed,
-            gender: data.gender,
-            sexOrient: data.sexOrient,
-            bio: data.bio,
-            birthday: data.transDate,
-            interests: inter,
-        };
-        let token = await jwt.sign({data: payload}, 'fuckingSecretKey');
-        bcrypt.compare(password, data.password)
+       
+        bcrypt.compare(password, dataUser.password)
         .then((response) => {
             if (response)
-            {
-                if(data.confirmed === 1)
-                    res.send({isValid : true, token: token});
+            {   
+                if(dataUser.confirmed === 1)
+                {
+                    delete dataUser.password;
+                    res.send({isValid : true, user: dataUser});
+                }
                 else
                     res.send({isValid: false, errorField : 'Please confirm your e-mail'})
             }

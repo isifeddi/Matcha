@@ -6,9 +6,9 @@ const bcrypt = require ('bcrypt');
 resetPassword = async (req, res) => {
     const {token, pass, c_pass} = req.body;
     let hashPassword = await bcrypt.hash(pass, 10);
-    await user.getUser('GetUserByToken',token)
+     user.getUser('GetUserByToken',token)
     .then((response) => {
-        if(response[0]){
+        if(response){
             if(pass !== c_pass){
                 res.send({reset: false, error: 'Passwords does not match !'})
             }
@@ -16,7 +16,7 @@ resetPassword = async (req, res) => {
             {
                 user.ResetPassword(hashPassword, token);
                 const verifToken = crypto.randomBytes(64).toString('hex');
-                user.UpdateVerifToken(response[0].email, verifToken);
+                user.UpdateVerifToken(response.email, verifToken);
                 res.send({reset: true});
             }
         }

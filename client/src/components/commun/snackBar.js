@@ -51,7 +51,7 @@ const MySnackBar = (props) => {
     return (
         <>
         <Snackbar
-            className={classes[variant]}
+            className={classes.variant}
             anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
             open={open}
             onClose={handleClose}

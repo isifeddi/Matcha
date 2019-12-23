@@ -6,7 +6,7 @@ const HomeContainer = (props) => {
     if(props.user && props.user.complete === 3)
         return (
             <div>
-                <h1>WELCOME {props.user ? props.user.username : ''}</h1>
+            <h1>WELCOME {props.user.username}</h1>
             </div>
         )
     else

@@ -1,5 +1,4 @@
 import React from 'react';
-import {connect} from "react-redux";
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -20,9 +19,8 @@ import {Link} from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
-import {LogoutAction} from '../../actions/logoutAction';
-const drawerWidth = 240;
 
+const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'relative',
@@ -69,22 +67,22 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function NavBar(props) {
-  
+  const {token, handleLogout} = props
+
   const loggedInMenu = [
-      {"text" : "logout","path" : "/logout"}
   ];
   const loggedOutMenu = [
     {"text" : "Se connecter","path" : "/login"},
     {"text" : "inscription","path" : "/register"},
    
   ];
+
   let menu = [];
-  if(props.token)
+  if(token)
     menu = loggedInMenu;
   else
     menu = loggedOutMenu;
 
-  
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -129,7 +127,7 @@ function NavBar(props) {
              
           </Typography>
           
-          {props.token && <Button color="primary" onClick={props.handleLogout}>Logout</Button>}
+          {token && <Button color="primary" onClick={handleLogout}>Logout</Button>}
         </Toolbar>
       </AppBar>
       
@@ -149,10 +147,10 @@ function NavBar(props) {
         </div>
         <Divider />
         <List>
-          {menu.map((item, index) => (
+          {menu.map((item) => (
             <Link to={item.path} style={{textDecoration: 'none', color:'primary'}} key={item.text}>
               <ListItem button>
-              <ListItemIcon> <LockOpenIcon color="secondary"/></ListItemIcon>
+              <ListItemIcon><LockOpenIcon color="secondary"/></ListItemIcon>
                 <ListItemText primary={item.text} />
               </ListItem>
             </Link>
@@ -164,20 +162,4 @@ function NavBar(props) {
   );
 }
 
-const mapStateToProps = (state) => (
-{
-    "token" : state.token
-});
-const mapDispatchToProps = {
-    "logoutAction": LogoutAction
-};
-const mergeProps = (stateProps, dispatchProps, otherProps) => ({
-    ...stateProps,
-    ...dispatchProps,
-    ...otherProps,
-    "handleLogout" : () => {
-        dispatchProps.logoutAction();
-    }
-});
-
-export default connect(mapStateToProps, mapDispatchToProps, mergeProps)(NavBar);
+export default NavBar;

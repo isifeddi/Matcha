@@ -2,58 +2,6 @@ import Register from '../../components/Register';
 import {InscriptionAction} from '../../actions/registerAction';
 import {connect} from "react-redux";
 import {reduxForm } from 'redux-form';
-import axios from 'axios';
-
-const usernameValidate = (values, dispatch, props) => axios.post("http://localhost:5000/availableUsername",{username : values.username})
-.then((res) => {
-        let error = {};
-        if (res.data === false) {
-            if (props.asyncErrors) {
-                error = {"username": "That username is taken", "email": "That email is taken"};
-            }
-            else {
-                error = {"username": "That username is taken"};
-            }
-        }
-        else if (props.asyncErrors) {
-            error = {"email": "That email is taken"};
-        }
-        throw error;
-});
-
-const emailValidate = (values, dispatch, props) => axios.post("http://localhost:5000/availableEmail",{email : values.email})
-.then((res) => {
-        let error = {};
-        if (res.data === false) {
-            if (props.asyncErrors) {
-                error =  {"username": "That username is taken", "email": "That email is taken"};
-            }
-            else{
-                error =  {"email": "That email is taken"};
-            }
-        }
-        else if (props.asyncErrors){
-            error =  {"username": "That username is taken"};
-        }
-        throw error;
-});
-
-function composeAsyncValidators (validatorFns) {
-  return async (values, dispatch, props, field) => {
-    if (!field) {
-      return await function () {
-        return true;
-      };
-    }
-    const validatorFn = validatorFns[field];
-    await validatorFn(values, dispatch, props, field);
-  };
-}
-
-const asyncValidateAll = composeAsyncValidators({
-  "username": usernameValidate,
-  "email": emailValidate
-});
 
 const validate = (values) => {
     const errors = {};
@@ -94,7 +42,8 @@ const validate = (values) => {
 const mapStateToProps = (state) => (
 {
     "form" : state.form,
-    "status" : state.register
+    "status" : state.register.registerStatus,
+    "err": state.register.error
 });
 const mapDispatchToProps = {
     "registerAction": InscriptionAction
@@ -113,9 +62,6 @@ const RegisterContainer = reduxForm({
     form : "register",
     "destroyOnUnmount": true,  
     validate,
-    "asyncValidate": asyncValidateAll,
-    "asyncBlurFields": ["username", "email"]
-
 })(connectedRegisterContainer);
 
 export default RegisterContainer;

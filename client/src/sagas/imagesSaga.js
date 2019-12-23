@@ -22,8 +22,6 @@ const sendPictures =
   function *sendPictures ({data}) {
     try {
       const user_id = yield select(state => state.user.id);
-     //console.log('user'+user_id)
-      //const headers = {'Content-Type': 'multipart/form-data'};
         const response  = yield axios.post('http://localhost:5000/upload',data);
         if(response.data)
         {
@@ -41,7 +39,6 @@ const delPictures =
   function *delPictures ({img}) {
     try {
       const user_id = yield select(state => state.user.id);
-    //console.log('img'+img.id)
       const data = {
         user_id : user_id,
         img_id : img.imgId,
@@ -68,7 +65,6 @@ const setProfilePicture =
         user_id : user_id,
         img_id : imgId
     }
-    console.log(data)
       const headers = {'Content-Type': 'multipart/form-data'};
         const response  = yield axios.post('http://localhost:5000/setProfilePicture',data,headers);
         if(response.data)

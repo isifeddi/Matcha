@@ -6,7 +6,7 @@ export const logoutRequest =
     function *logoutRequest () {
         try {
             yield put(ClearUserInformation());
-            yield put(push("/login"));
+            yield put(push("/home"));
         } catch (error) {
             console.log(error);
         }

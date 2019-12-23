@@ -1,9 +1,10 @@
 import React  from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Container } from '@material-ui/core';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import IconButton from '@material-ui/core/IconButton';
-import img from '../../public/images/2019-12-10T00:14:23.376Z655568.jpg';
+
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
@@ -65,12 +66,13 @@ const  Pictures = (props) => {
 
   return (
     <Container>
-      <Grid container  justify="center" width>
-       <div className={calcImages(images.images) === false && classes.add}>
+    <CssBaseline />
+      <Grid container  justify="center">
+       <div className={calcImages(images.images) === false ? classes.add : ''}>
          <input accept="image/*" className={classes.input} id="icon-button-file" type="file"  onChange={fileChangedHandler}/>
          <label htmlFor="icon-button-file">
           <IconButton color="primary" aria-label="upload picture" component="span">
-            <AddAPhotoIcon color='secondary' style={{fontSize : 70}}/>
+            <AddAPhotoIcon color='primary' style={{fontSize : 70}}/>
           </IconButton>
         </label>
         </div>
@@ -84,34 +86,31 @@ const  Pictures = (props) => {
           <div className={classes.root}>
             <GridList cellHeight={180} className={classes.gridList}>
 
-              {images.isImages  && images.images.map(tile => (
-               
-                 <GridListTile  >
-                <img src={img} alt='photos' />
-                <GridListTileBar
-               
-                actionPosition="left"
-                className={classes.titleBar}
-                title={tile.isProfilePic === 1 && 'Profile picture'}
-                  actionIcon={
-                    <button  imgId = {tile.id}  onClick={setProfilePicture}>ProfPic</button>
-                    //<AddToPhotosTwoToneIcon color='primary' imgId = {tile.id} color="secondary" onClick={setProfilePic}/>
-                  }
-                />
-                <GridListTileBar
-                className={classes.delete}
-                titlePosition="top"
-
-                  actionIcon={
-                    <button imgId={tile.id} isProfilePic={tile.isProfilePic} onClick={deletePicture}>DEl</button>
-                  }
-                />
-                
-              </GridListTile> 
-                
-              
-              ))}
+              {images.isImages  && images.images.map((tile) => {
+                return (
+                  <GridListTile  key={tile.id}>
+                    <img src={`http://localhost:5000/images/${tile.path}`} alt='photos' />
+                    <GridListTileBar
+                      actionPosition="left"
+                      className={classes.titleBar}
+                      title={tile.isProfilePic === 1 && 'Profile picture'}
+                      actionIcon={
+                        <button  imgid = {tile.id}  onClick={setProfilePicture}>profPic</button>
+                        //<AddToPhotosTwoToneIcon color='primary' imgId = {tile.id} color="secondary" onClick={setProfilePic}/>
+                      }
+                    />
+                    <GridListTileBar
+                      className={classes.delete}
+                      titlePosition="top"
+                      actionIcon={
+                        <button imgid={tile.id} isprofilepic={tile.isProfilePic} onClick={deletePicture}>DEl</button>
+                      }
+                    />
+                  </GridListTile> 
+                )}
+              )}
             </GridList>
+            
           </div>
     </Container>
   )

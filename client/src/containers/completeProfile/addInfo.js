@@ -1,7 +1,7 @@
 import AddInfo from '../../components/completeProfile/addInfo';
 import {connect} from "react-redux";
 import {reduxForm} from 'redux-form';
-import {incStepper} from '../../actions/stepperAction';
+
 import {createOption, addInfo} from '../../actions/addInfoAction';
 
 const validate = (values) => {
@@ -49,15 +49,14 @@ const validate = (values) => {
 const mapStateToProps = (state) => (
 {
     'values' : state.form.values,
-    'selectOptions': state.select.selectOptions,
-    'selectLoading': state.select.selectLoading,
-    'selectError' : state.select.error,
-    'userData': state.userData,
-    'id': state.user.id,
+    'selectOptions': state.addInfo.selectOptions,
+    'selectLoading': state.addInfo.selectLoading,
+    'selectError' : state.addInfo.error,
+    'user': state.user,
 });
 const mapDispatchToProps = {
     "addInfo": addInfo,
-    "incStepper": incStepper,
+    
     "createOption": createOption,
 };
 const mergeProps = (stateProps, dispatchProps, otherProps) => ({
@@ -66,7 +65,7 @@ const mergeProps = (stateProps, dispatchProps, otherProps) => ({
     ...otherProps,
 
     "handleSubmit" : otherProps.handleSubmit((values) => {
-        dispatchProps.addInfo(values, stateProps.id);
+        dispatchProps.addInfo(values, stateProps.user.id);
     }),
 });
 

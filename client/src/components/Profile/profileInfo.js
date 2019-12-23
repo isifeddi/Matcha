@@ -2,12 +2,12 @@ import React from 'react';
 import { Field} from 'redux-form';
 import TextField from '@material-ui/core/TextField';
 import Grid from '@material-ui/core/Grid';
-import Radio from '@material-ui/core/Radio';
 import FormLabel from '@material-ui/core/FormLabel';
 import Button from '@material-ui/core/Button';
 import CreatableSelect from 'react-select/creatable';
 import { makeStyles } from '@material-ui/core/styles';
-
+import renderField from '../commun/TextField'
+import RadioGroup from '../commun/RadioGroup';
 const useStyles = makeStyles(theme => ({
   
     paper: {
@@ -26,32 +26,6 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const renderField = (
-    {type, input, label, meta : { touched, error}}
-    ) => (
-        <TextField
-            {...input}
-            type = {type}
-            label = {label}
-            error = {touched && error}
-            helperText={touched && error}
-            variant="outlined"
-            fullWidth
-        />
-)
-const RadioGroup = (props) => {
-    const { input, meta, options } = props;
-    const hasError = meta.touched && meta.error;
-
-    return (
-      <div>
-        {options.map(o => <label key={o.value}>
-          <Radio {...input}  checked={o.value === input.value} value={o.value} />
-          {o.title}</label>)}<br/>
-        {hasError && <span style={{'fontSize':'12px','color':'#f44336'}}>{meta.error}</span>}
-      </div>
-    );
-}
 const renderDatepicker = ({input, label, meta : { touched, error}}
     ) => (
         <TextField

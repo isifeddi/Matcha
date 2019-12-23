@@ -9,9 +9,9 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import TextField from '@material-ui/core/TextField';
+import renderField from '../commun/TextField';
 import CircularProgress from '@material-ui/core/CircularProgress';
-//import MySnackBar from '../commun/snackBar'
+import MySnackBar from '../commun/snackBar'
 
 const useStyles = makeStyles(theme => ({
   
@@ -34,26 +34,15 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const renderField = (
-    {type, input, label, meta : { touched, error}}
-    ) => (
-        <TextField
-            {...input}
-            type = {type}
-            label = {label}
-            error = {touched && error}
-            helperText={touched && error}
-            variant="outlined"
-            fullWidth
-        />
-)
-const Register = (props) => {
-  const {handleSubmit, status} = props;
-  const classes = useStyles();
 
+const Register = (props) => {
+  const {handleSubmit, status, err} = props;
+  const classes = useStyles();
+  
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
+    {status === "error" && <MySnackBar variant="error" message={err}/>}
     {status !== "loading" && 
     <div className={classes.paper}> 
       <Avatar className={classes.avatar}>

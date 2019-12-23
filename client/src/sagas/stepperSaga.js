@@ -1,31 +1,27 @@
-import { takeLatest, put } from "redux-saga/effects";
-import {push} from "react-router-redux";
-import { getActiveStepSuccess } from "../actions/stepperAction";
-import axios from 'axios';
 
-const getStep =
-  function *getStep ({id}) {
-    try {
-        const response  = yield axios.post('http://localhost:5000/getActiveStep' , {id: id});
-        if(response.data.step)
-        {
-          if(response.data.step === 4)
-            yield put(push('/profile')) ;
-          else
-            yield put(getActiveStepSuccess(response.data.step));
+import {put, takeLatest,call} from "redux-saga/effects";
+
+import { select } from 'redux-saga/effects'; 
+import {request} from './helper';
+import { incStepperSuccess} from '../actions/stepperAction';
+export const Stepper =
+    function *Stepper () {
+        try {
+            const user = yield select(state => state.user);
+            const response = yield call(request, {
+                "url": "http://localhost:5000/updateStep",
+                "data": {step : user.complete + 1,id : user.id},
+                "method": "post"
+              });
+            if(response)
+            {
+                yield put(incStepperSuccess());
+            }
+        } catch (error) {
+            console.log(error);
         }
-        else
-        {
-            yield put(getActiveStepSuccess(0));
-        }
-    }catch (error) {
-      if (error.response) {
-        yield put(getActiveStepSuccess(0));
-      }
-    }
-};
-
-
+    };
+  
 export default function *() {
-  yield takeLatest("GET_ACTIVE_STEP", getStep);
+    yield takeLatest("INC_STEPPER", Stepper);
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React  from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
@@ -8,8 +8,9 @@ import StepLabel from '@material-ui/core/StepLabel';
 import Typography from '@material-ui/core/Typography';
 import AddInfoContainer from '../../containers/completeProfile/addInfo';
 import Pictures from '../../containers/completeProfile/pictures';
+import Localistaion from '../../containers/completeProfile/localisation'
 import CircularProgress from '@material-ui/core/CircularProgress';
-
+import { Grid, Button } from '@material-ui/core';
 const useStyles = makeStyles(theme => ({
   layout: {
     width: 'auto',
@@ -32,7 +33,8 @@ const useStyles = makeStyles(theme => ({
     },
   },
   stepper: {
-    padding: theme.spacing(5, 5, 5),
+    minWidth: 0,
+    padding: theme.spacing(3, 0, 5),
   },
   buttons: {
     display: 'flex',
@@ -47,6 +49,14 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     alignItems: 'center',
   },
+  submit: {
+    margin: theme.spacing(2, 0, 2),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  back: {
+    margin: theme.spacing(2, 0, 2),
+    backgroundColor: theme.palette.grey,
+  },
 }));
 
 const steps = ['Additional infos', 'Pictures', 'Localisation'];
@@ -58,14 +68,17 @@ function getStepContent(step) {
     case 1:
       return <Pictures />;
     case 2:
-      return 'localisation';
+      return <Localistaion/>;
     default:
       throw new Error('Unknown step');
   }
 }
 
+
 const Checkout = (props) => {
-  const {activeStep} = props;
+
+  const {handleBack,handleNext,user,images} = props;
+  const activeStep = user.complete;
     const classes = useStyles();
 
     return (
@@ -83,7 +96,7 @@ const Checkout = (props) => {
                 <StepLabel>{label}</StepLabel>
               </Step>
             ))}
-          </Stepper>
+          </Stepper>      
           <React.Fragment>
             {activeStep === steps.length ? (
               <React.Fragment>
@@ -100,6 +113,22 @@ const Checkout = (props) => {
               </React.Fragment>
             )}
           </React.Fragment>
+        
+        {(activeStep === 1 || activeStep === 2)&& 
+           <Grid container direction="row" item xs={12}>
+              <Grid item xs={3}>
+              <Button className={classes.back} fullWidth onClick={handleBack} variant="contained" type="submit" color="default" >Back</Button>
+              </Grid>
+              <Grid item xs={6}/>
+
+              <Grid item container alignItems="flex-end" xs={3}>
+                {
+                  images.isImages === true && 
+                <Button  className={classes.submit} onClick={handleNext} fullWidth variant="contained" type="submit" color="primary">Next</Button>
+              }
+                </Grid>
+            </Grid>
+        }
         </Paper>
       </main>}
       {activeStep === "loading" && <div className={classes.loading}><CircularProgress color="secondary" /></div>}

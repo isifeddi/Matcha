@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import EmailConfirmation from '../../components/emailConfirmation';
-import {EmailConfirmationAction} from '../../actions/emailConfirmation';
+import {EmailConfirmationAction} from '../../actions/registerAction';
 import {connect} from "react-redux";
 
 class EmailConfirmCont extends Component {
@@ -17,7 +17,7 @@ class EmailConfirmCont extends Component {
 
 const mapStateToProps = (state) => (
 {
-    "status" : state.emailConfirmed,
+    "status" : state.register.emailConfirmation,
 });
 const mapDispatchToProps = {
     "emailConfirmation": EmailConfirmationAction
