@@ -19,6 +19,7 @@ import {Link} from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
+import PersonIcon from '@material-ui/icons/Person';
 
 const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
@@ -70,10 +71,11 @@ function NavBar(props) {
   const {token, handleLogout} = props
 
   const loggedInMenu = [
+    {"text" : "Profile","path" : "/profile", icon: <PersonIcon color="secondary"/>},
   ];
   const loggedOutMenu = [
-    {"text" : "Se connecter","path" : "/login"},
-    {"text" : "inscription","path" : "/register"},
+    {"text" : "Se connecter","path" : "/login", icon: <LockOpenIcon color="secondary"/>},
+    {"text" : "inscription","path" : "/register", icon: <LockOpenIcon color="secondary"/>},
    
   ];
 
@@ -121,7 +123,7 @@ function NavBar(props) {
           </IconButton>
           
           <Typography variant="h6"  color="secondary" className={classes.title}>
-              <Link to="/" style={{textDecoration: 'none', color:'inherit'}}>
+              <Link to="/home" style={{textDecoration: 'none', color:'inherit'}}>
                 MATCHA
               </Link>
              
@@ -150,7 +152,7 @@ function NavBar(props) {
           {menu.map((item) => (
             <Link to={item.path} style={{textDecoration: 'none', color:'primary'}} key={item.text}>
               <ListItem button>
-              <ListItemIcon><LockOpenIcon color="secondary"/></ListItemIcon>
+              <ListItemIcon>{item.icon}</ListItemIcon>
                 <ListItemText primary={item.text} />
               </ListItem>
             </Link>

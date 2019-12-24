@@ -1,5 +1,4 @@
 import Profile from '../../components/Profile'
-
 import React from 'react';
 import {connect} from "react-redux";
 

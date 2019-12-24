@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from "react-redux";
-import {Route, Switch} from 'react-router-dom'
+import {Route, Switch, Redirect} from 'react-router-dom'
 import RegisterContainer from '../containers/Register'
 import HomeContainer from '../containers/Home'
 import loginContainer from '../containers/Login'
@@ -12,7 +12,7 @@ import CompleteProfile from '../containers/completeProfile/stepper'
 import Profile from '../containers/Profile'
 import PrivateRoute from './PrivateRoute';
 
-const Routes = () => {
+const Routes = (props) => {
 
     return (
         <>
@@ -23,9 +23,9 @@ const Routes = () => {
                 <Route path="/register"  component={ RegisterContainer } />
                 <Route path="/login"  component={ loginContainer }/>
                 <PrivateRoute>
-                    <Route path="/profile" component={ Profile }/>
+                    {props.user && props.user.complete === 3 ? <Route path="/profile" component={ Profile }/> : <Redirect to='/completeProfile'/>}
                     <Route path="/completeProfile"  component={ CompleteProfile }/>
-                    <Route path="/" component={ HomeContainer }/>
+                    {props.user && props.user.complete === 3 ? <Route path="/home" component={ HomeContainer }/> : <Redirect to='/completeProfile'/>}
                 </PrivateRoute>
                 <Route  path="*" component={ NotFoundPage } />
             </Switch>

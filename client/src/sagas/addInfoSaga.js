@@ -73,8 +73,7 @@ const getLocation =
       const response  = yield axios.post("http://localhost:5000/getLocation", {id: id});
       if(response.data)
       {
-        console.log(response.data)
-        yield put(addLocationSuccess(response.data));
+        yield put(addLocationSuccess({marker: response.data.marker, lat: response.data.loc.lat, lng: response.data.loc.lng}));
       }
       else
       {
@@ -92,14 +91,6 @@ const AddLocation =
     try {
       const id = yield select((state) => state.user.id);
       const response  = yield axios.post("http://localhost:5000/addLocation", {id: id, loc});
-      if(response.data === 'updated')
-      {
-        //yield put(addLocation(response.data));
-      }
-      else
-      {
-        yield put(addInfoError(response.data.error));
-      }
     }catch (error) {
       if (error.response) {
         yield put(createOptionError('there has been an error'));

@@ -3,16 +3,11 @@ import {connect} from "react-redux";
 import {Redirect} from 'react-router-dom';
 
 const HomeContainer = (props) => {
-    if(props.user && props.user.complete === 3)
         return (
             <div>
-            <h1>WELCOME {props.user.username}</h1>
+                <h1>WELCOME</h1>
             </div>
         )
-    else
-    return (
-        <Redirect to='/completeProfile' />
-    )
 }
 
 const mapStateToProps = (state) => (

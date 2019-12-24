@@ -10,12 +10,12 @@ getLocation = async (req, res) => {
             .then(resp => {
                 const arr = resp.data.loc.split(",");
                 const loc = {lat: parseFloat(arr[0]), lng: parseFloat(arr[1])}
-                res.send(loc)
+                res.send({marker: false, loc})
             })
         }
         else{
             const loc = {lat: respo.latitude, lng: respo.longitude}
-            res.send(loc)
+            res.send({marker: true, loc})
         }
     }).catch(err => res.send(err));
 };
