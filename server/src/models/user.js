@@ -5,7 +5,7 @@ const SELECT = queries.SELECT;
 const INSERT = queries.INSERT;
 const UPDATE = queries.UPDATE;
 const DELETE = queries.DELETE;
-const toto = "1";
+
 module.exports = {
     Register :function  (lastname, firstname, username, email, password) {
         conn.query(INSERT.AddUser, [lastname, firstname, username, email, password],(err,res) => {
@@ -47,7 +47,7 @@ module.exports = {
                 if(err)
                     reject (err);
                 else
-                    resolve (JSON.parse(JSON.stringify(res))); 
+                    resolve (JSON.parse(JSON.stringify(res)));
             });
         })
     },

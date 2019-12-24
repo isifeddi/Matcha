@@ -1,5 +1,4 @@
 const isEmpty = require("./empty/isEmpty")
-
 const isDigit = require("./string/isDigit")
 const hash = require("./string/hash")
 const isLowercase = require("./string/isLowercase")
@@ -23,10 +22,12 @@ const isGender = require("./user/isGender")
 const isOrient = require("./user/isOrient")
 const isBio = require("./user/isBio")
 const isInterest = require("./user/isInterest")
+const isLatitude = require("./user/isLatitude")
+const isLongitude = require("./user/isLongitude")
 
 module.exports = {
     isEmpty, isDigit, hash, isLowercase, isUppercase, isSpecial,
     isAlpha, isAlphaNumeric, isNumeric, isFloat, random, isUsername,
     isEmail, isBirthday, age, isFirstname, isLastname, isPassword,
-    isProfileComplete, isGender, isOrient, isBio, isInterest
+    isProfileComplete, isGender, isOrient, isBio, isInterest, isLatitude, isLongitude
 }

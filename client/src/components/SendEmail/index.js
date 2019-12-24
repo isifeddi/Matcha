@@ -59,6 +59,7 @@ const ForgotPassword = (props) => {
                   component={renderField}
                   label="Email"
                   type = "email"
+                  rows='1'
               />
             </Grid>
 

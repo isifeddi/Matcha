@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Localisation = (props) => {
-    const {userL} = props;
+    const {userL, setLocation} = props;
 
     const classes = useStyles();
 
@@ -35,33 +35,36 @@ const Localisation = (props) => {
 
     const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
-    const _onClick = ({lat, lng}) => setMarker({lat, lng})
+    const handleClick = ({lat, lng}) => {
+        setMarker({lat, lng})
+        setLocation({lat, lng});
+    }
 
-  return (
-    <Container component="main" maxWidth="xs">
-        <CssBaseline />
-            <div className={classes.paper}>
-                <Typography component="h1" variant="h5" color="primary">
-                    Localisation
-                </Typography>
-                <Typography color="inherit"> Click to set your location.</Typography>
-                <div  className={classes.form}>
-                    <GoogleMapReact
-                        bootstrapURLKeys={{ key:'AIzaSyBeEUF7eMgjoDA6n4pfupjcBByH11i7yY8'}}
-                        defaultCenter={{lat: userL.lat, lng: userL.lng}}
-                        defaultZoom={13}
-                        onClick={_onClick}
-                    >
-                    {marker && <AnyReactComponent
-                        lat={marker.lat}
-                        lng={marker.lng}
-                        text={<RoomRoundedIcon color="secondary"/>}
-                    />}
-                    </GoogleMapReact>
+    return (
+        <Container component="main" maxWidth="xs">
+            <CssBaseline />
+                <div className={classes.paper}>
+                    <Typography component="h1" variant="h5" color="primary">
+                        Localisation
+                    </Typography>
+                    <Typography color="inherit"> Click to set your location.</Typography>
+                    <div  className={classes.form}>
+                        <GoogleMapReact
+                            bootstrapURLKeys={{ key:''}}
+                            center={{lat: userL.lat, lng: userL.lng}}
+                            defaultZoom={13}
+                            onClick={handleClick}
+                        >
+                        {marker && <AnyReactComponent
+                            lat={marker.lat}
+                            lng={marker.lng}
+                            text={<RoomRoundedIcon color="secondary"/>}
+                        />}
+                        </GoogleMapReact>
+                    </div>
                 </div>
-            </div>
-    </Container>
-  );
+        </Container>
+    );
 }
 
 export default Localisation;

@@ -60,6 +60,7 @@ const ResetPassword = (props) => {
                         component={renderField}
                         label="Password"
                         type="password"
+                        rows='1'
                     />
                 </Grid>
                 <Grid item xs={12}>
@@ -68,6 +69,7 @@ const ResetPassword = (props) => {
                         component={renderField}
                         label="ConfirmPassword"
                         type="password"
+                        rows='1'
                     />
                 </Grid>
                 <Grid item xs={12}>

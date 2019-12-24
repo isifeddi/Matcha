@@ -114,7 +114,7 @@ const Checkout = (props) => {
             )}
           </React.Fragment>
         
-        {(activeStep === 1 || activeStep === 2)&& 
+        {(activeStep === 1 || activeStep === 2) && 
            <Grid container direction="row" item xs={12}>
               <Grid item xs={3}>
               <Button className={classes.back} fullWidth onClick={handleBack} variant="contained" type="submit" color="default" >Back</Button>

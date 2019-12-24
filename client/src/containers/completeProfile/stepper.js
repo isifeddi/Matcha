@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import Stepper from '../../components/completeProfile/stepper';
-import {getOptions} from '../../actions/addInfoAction';
+import {getOptions, addLocation} from '../../actions/addInfoAction';
 import {getImages} from '../../actions/imagesAction';
 import {connect} from "react-redux";
 import {decStepper, incStepper} from '../../actions/stepperAction';
 
 const StepperContainer = (props) => {
-    const { user, images, getImages, getOptions, decStepper, incStepper} = props;
+    const { user, images, getImages, getOptions, decStepper, incStepper, addLocation} = props;
     useEffect(() => {
         if(user){
             getOptions();
@@ -17,6 +17,8 @@ const StepperContainer = (props) => {
         decStepper();
     }
     const handleNext = () => {
+        if(user.complete === 2)
+            addLocation({lat: user.lat, lng: user.long});
         incStepper();
     }
     return (
@@ -27,13 +29,14 @@ const StepperContainer = (props) => {
 const mapStateToProps = (state) => (
 {
     "user": state.user,
-    "images" : state.images
+    "images" : state.images,
 });
 const mapDispatchToProps = {
     "getOptions": getOptions,
     "getImages" : getImages,
     "decStepper": decStepper,
     "incStepper": incStepper,
+    "addLocation": addLocation,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(StepperContainer);

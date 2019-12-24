@@ -59,6 +59,7 @@ const Register = (props) => {
                             component={renderField}
                             label="Firstname"
                             type = "text"
+                            rows='1'
             />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -67,6 +68,7 @@ const Register = (props) => {
                             component={renderField}
                             label="Lastname"
                             type = "text"
+                            rows='1'
                        />
             </Grid>
             <Grid item xs={12}>
@@ -75,6 +77,7 @@ const Register = (props) => {
                             component={renderField}
                             label="Username"
                             type = "text"
+                            rows='1'
                             
                        />
             </Grid>
@@ -84,6 +87,8 @@ const Register = (props) => {
                             component={renderField}
                             label="Email"
                             type = "email"
+                            rows='1'
+
                        />
             </Grid>
             <Grid item xs={12}>
@@ -92,6 +97,7 @@ const Register = (props) => {
                             component={renderField}
                             label="Password"
                             type="password"
+                            rows='1'
                        />
             </Grid>
             <Grid item xs={12}>
@@ -100,6 +106,7 @@ const Register = (props) => {
                             component={renderField}
                             label="ConfirmPassword"
                             type="password"
+                            rows='1'
                        />
             </Grid>
             <Grid item xs={12}>

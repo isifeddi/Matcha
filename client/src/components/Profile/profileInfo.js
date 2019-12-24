@@ -70,6 +70,7 @@ const renderDatepicker = ({input, label, meta : { touched, error}}
                     name="firstname"
                     component={renderField}
                     type = "text"
+                    rows='1'
                 />
             </Grid>
             <Grid item xs={5}>
@@ -78,6 +79,7 @@ const renderDatepicker = ({input, label, meta : { touched, error}}
                     name="lastname"
                     component={renderField}
                     type = "text"
+                    rows='1'
                 />
             </Grid>
             <Grid item xs={5}>
@@ -86,6 +88,7 @@ const renderDatepicker = ({input, label, meta : { touched, error}}
                     name="username"
                     component={renderField}
                     type = "text"
+                    rows='1'
                 />
             </Grid>
             <Grid item xs={5}>
@@ -94,6 +97,7 @@ const renderDatepicker = ({input, label, meta : { touched, error}}
                     name="email"
                     component={renderField}
                     type = "email"
+                    rows='1'
                 />
             </Grid>
             <Grid  xs={10}>

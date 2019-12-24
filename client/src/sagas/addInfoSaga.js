@@ -1,5 +1,5 @@
 import { takeLatest, put,select} from "redux-saga/effects";
-import { getOptionsSuccess, createOptionSuccess, createOptionError, addInfoError, getLocSuccess} from "../actions/addInfoAction";
+import { getOptionsSuccess, createOptionSuccess, createOptionError, addInfoError, addLocationSuccess} from "../actions/addInfoAction";
 import { updateUserSuccess} from '../actions/userAction';
 import axios from 'axios';
 
@@ -73,7 +73,28 @@ const getLocation =
       const response  = yield axios.post("http://localhost:5000/getLocation", {id: id});
       if(response.data)
       {
-        yield put(getLocSuccess(response.data));
+        console.log(response.data)
+        yield put(addLocationSuccess(response.data));
+      }
+      else
+      {
+        yield put(addInfoError(response.data.error));
+      }
+    }catch (error) {
+      if (error.response) {
+        yield put(createOptionError('there has been an error'));
+      }
+    }
+};
+
+const AddLocation =
+  function *AddLocation ({loc}) {
+    try {
+      const id = yield select((state) => state.user.id);
+      const response  = yield axios.post("http://localhost:5000/addLocation", {id: id, loc});
+      if(response.data === 'updated')
+      {
+        //yield put(addLocation(response.data));
       }
       else
       {
@@ -91,4 +112,5 @@ export default function *() {
   yield takeLatest("CREATE_OPTION", createSelectOption);
   yield takeLatest("ADD_INFO", add_Info);
   yield takeLatest("GET_LOC", getLocation);
+  yield takeLatest("ADD_LOCATION", AddLocation);
 }

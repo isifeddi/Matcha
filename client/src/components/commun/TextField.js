@@ -4,6 +4,7 @@ const renderField = (
     {type,rows, input, label, meta : { touched, error}}
     ) => (
         <TextField
+        {...input}
             type = {type}
             label = {label}
             error = {touched && error}
@@ -12,7 +13,6 @@ const renderField = (
             fullWidth
             multiline
             rows={rows}
-            {...input}
         />
 )
 

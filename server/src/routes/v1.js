@@ -17,6 +17,7 @@ const deleteImages = require('../controllers/functions/delImages');
 const setProfilePicture = require ('../controllers/functions/setProfilePicture')
 const updateStep = require('../controllers/functions/updateStep');
 const getLocation = require('../controllers/functions/getLocation');
+const addLocation = require('../controllers/functions/addLocation');
 
 router.post('/login', Login);
 router.post('/register', Register);
@@ -35,5 +36,6 @@ router.post('/deleteImages',deleteImages);
 router.post('/setProfilePicture',setProfilePicture);
 router.post('/updateStep',updateStep);
 router.post('/getLocation', getLocation);
+router.post('/addLocation', addLocation);
 
 module.exports = router;
