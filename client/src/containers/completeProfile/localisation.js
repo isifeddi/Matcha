@@ -9,19 +9,18 @@ class LocalisationContainer extends Component{
     }
     render(){
         const userLocation = {lat: this.props.user.lat, lng: this.props.user.long}
-
         const setLocation = ({lat, lng}) => {
-            this.props.addLocationSuccess({lat, lng});
+            const marker = true;
+            this.props.addLocationSuccess({marker, lat, lng});
         }
-
         if(!this.props.user.lat)
             return null;
-
         return (
-            <Localisation setLocation={setLocation} userL={userLocation}/>
+            <Localisation isMarker={this.props.user.marker} setLocation={setLocation} userL={userLocation}/>
         )
     }
 }
+
 const mapStateToProps = (state) => (
 {
     "user": state.user,

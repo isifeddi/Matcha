@@ -1,4 +1,3 @@
-
 import React ,{ useEffect }from 'react';
 import Profile from '../../components/Profile'
 import {getImages} from '../../actions/imagesAction';

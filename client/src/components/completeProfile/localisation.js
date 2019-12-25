@@ -27,11 +27,11 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Localisation = (props) => {
-    const {userL, setLocation} = props;
+    const {userL, setLocation, isMarker} = props;
 
     const classes = useStyles();
 
-    const [marker, setMarker] = useState(null);
+    const [marker, setMarker] = useState(userL);
 
     const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
@@ -39,7 +39,11 @@ const Localisation = (props) => {
         setMarker({lat, lng})
         setLocation({lat, lng});
     }
-
+    // if(isMarker === true)
+    // {
+    //     console.log('t', userL)
+    //     setMarker(userL)
+    // }
     return (
         <Container component="main" maxWidth="xs">
             <CssBaseline />
@@ -50,12 +54,12 @@ const Localisation = (props) => {
                     <Typography color="inherit"> Click to set your location.</Typography>
                     <div  className={classes.form}>
                         <GoogleMapReact
-                            bootstrapURLKeys={{ key:''}}
+                            bootstrapURLKeys={{ key:'AIzaSyBeEUF7eMgjoDA6n4pfupjcBByH11i7yY8'}}
                             center={{lat: userL.lat, lng: userL.lng}}
                             defaultZoom={13}
                             onClick={handleClick}
                         >
-                        {marker && <AnyReactComponent
+                        {marker && isMarker === true && <AnyReactComponent
                             lat={marker.lat}
                             lng={marker.lng}
                             text={<RoomRoundedIcon color="secondary"/>}

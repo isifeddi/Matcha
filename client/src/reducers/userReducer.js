@@ -16,7 +16,7 @@ export default function (state = null, action) {
       case INC_STEPPER_SUCCESS:
         return {...state, complete: state.complete + 1}
       case ADD_LOCATION_SUCCESS:
-        return {...state, lat: action.loc.lat, long: action.loc.lng}
+        return {...state, marker: action.loc.marker ,lat: action.loc.lat, long: action.loc.lng}
       default:
         return state;
     }
