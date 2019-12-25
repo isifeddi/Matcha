@@ -7,12 +7,13 @@ import resetPasswordReducer from "./resetPasswordReducer";
 import addInfoReducer from './addInfoReducer';
 import imagesReducer from './imagesReducers';
 import userReducer from './userReducer';
-
+import usersReducer from './usersReducer';
 const combinedReducer = (history)=> combineReducers({
     "router" : connectRouter(history),
     "register" : registerReducer,
     "login": loginReducer,
     "user" : userReducer,
+    "users" : usersReducer,
     "resetPassword": resetPasswordReducer,
     "addInfo" : addInfoReducer,
     "images" : imagesReducer,

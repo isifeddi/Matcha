@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from "react-redux";
 import {Route, Switch} from 'react-router-dom'
 import RegisterContainer from '../containers/Register'
-import HomeContainer from '../containers/Home'
+import Home from '../containers/Home'
 import loginContainer from '../containers/Login'
 import NotFoundPage from '../containers/NotFoundPage'
 import ForgotPasswordContainer from '../containers/sendEmail'
@@ -25,7 +25,7 @@ const Routes = () => {
                 <PrivateRoute>
                     <Route path="/profile" component={ Profile }/>
                     <Route path="/completeProfile"  component={ CompleteProfile }/>
-                    <Route path="/" component={ HomeContainer }/>
+                    <Route path="/" component={ Home }/>
                 </PrivateRoute>
                 <Route  path="*" component={ NotFoundPage } />
             </Switch>
