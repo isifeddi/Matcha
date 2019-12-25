@@ -1,16 +1,25 @@
 import React from 'react';
 import Hink from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
-import { makeStyles } from '@material-ui/core/styles';
 
+var style = {
+  backgroundColor: "#fffcfd",
+  borderTop: "3px solid #E7E7E7",
+  textAlign: "center",
+  padding: "20px",
+  position: "fixed",
+  left: "0",
+  bottom: "0",
+  height: "60px",
+  width: "100%",
+}
 
-const useStyles = makeStyles(theme => ({
-  footer: {
-    padding: theme.spacing(2),
-    marginTop: 'auto',
-  },
-}));
+var phantom = {
+  display: 'block',
+  padding: '20px',
+  height: '60px',
+  width: '100%',
+}
 
 const Copyright = () => {
     return (
@@ -26,13 +35,14 @@ const Copyright = () => {
 }
 
 const Footer = () => {
-  const classes = useStyles();
+  //const classes = useStyles();
   return(
-    <footer className={classes.footer}>
-        <Container maxWidth="sm">
-          <Copyright />
-        </Container>
-      </footer>
+    <div>
+      <div style={phantom}/>
+      <div style={style}>
+        <Copyright />
+      </div>  
+    </div>      
   );
 }
 

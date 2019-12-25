@@ -90,7 +90,7 @@ const AddLocation =
   function *AddLocation ({loc}) {
     try {
       const id = yield select((state) => state.user.id);
-      const response  = yield axios.post("http://localhost:5000/addLocation", {id: id, loc});
+      yield axios.post("http://localhost:5000/addLocation", {id: id, loc});
     }catch (error) {
       if (error.response) {
         yield put(createOptionError('there has been an error'));
