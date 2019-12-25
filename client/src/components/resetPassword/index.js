@@ -8,10 +8,9 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import TextField from '@material-ui/core/TextField';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import MySnackBar from '../commun/snackBar'
-
+import renderField from '../commun/TextField';
 const useStyles = makeStyles(theme => ({
   
   paper: {
@@ -34,17 +33,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const renderField = ({type, input, label, meta : { touched, error}} ) => (
-    <TextField
-        {...input}
-        type = {type}
-        label = {label}
-        error = {touched && error}
-        helperText={touched && error}
-        variant="outlined"
-        fullWidth
-    />
-)
+
 
 const ResetPassword = (props) => {
     const {handleSubmit, status, resetPasswordStatus, resetError} = props;
@@ -71,6 +60,7 @@ const ResetPassword = (props) => {
                         component={renderField}
                         label="Password"
                         type="password"
+                        rows='1'
                     />
                 </Grid>
                 <Grid item xs={12}>
@@ -79,6 +69,7 @@ const ResetPassword = (props) => {
                         component={renderField}
                         label="ConfirmPassword"
                         type="password"
+                        rows='1'
                     />
                 </Grid>
                 <Grid item xs={12}>

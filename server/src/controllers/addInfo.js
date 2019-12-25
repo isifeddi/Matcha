@@ -1,6 +1,5 @@
 const tools = require('../tools');
 const user = require('../models/user');
-const getD = require('./functions/getUserData');
 
 addInfo = async (req, res) => {
     const info = req.body;
@@ -20,7 +19,7 @@ addInfo = async (req, res) => {
     if(tools.isBirthday(info.birthday) && tools.isGender(info.gender) && tools.isOrient(info.sexOrient) && tools.isBio(info.bio) && tools.isInterest(info.interests) && v)
     {
         user.deleteUserInter(info.id);
-        user.updateInfo(info.gender, info.sexOrient, info.birthday, info.bio);
+        user.updateInfo(info.gender, info.sexOrient, info.birthday, info.bio, info.id);
         info.interests.forEach( element => {
             user.getInterId(element)
             .then(re => {
@@ -32,7 +31,9 @@ addInfo = async (req, res) => {
                 console.log(err);
             })
         });
-        const uu = await getD(info.id);
+        user.update('UpdateStep', [1, info.id]);
+        const uu = await user.getUser('GetUserById',info.id);
+        if(uu) delete uu.password;
         res.send({ added: true , uu});
     }
     else

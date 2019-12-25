@@ -1,6 +1,6 @@
-import { takeLatest, put } from "redux-saga/effects";
-import { getOptionsSuccess, createOptionSuccess, createOptionError, addInfoSuccess, addInfoError} from "../actions/addInfoAction";
-import { select } from 'redux-saga/effects'; 
+import { takeLatest, put,select} from "redux-saga/effects";
+import { getOptionsSuccess, createOptionSuccess, createOptionError, addInfoError, addLocationSuccess} from "../actions/addInfoAction";
+import { updateUserSuccess} from '../actions/userAction';
 import axios from 'axios';
 
 const getSelectOptions =
@@ -53,7 +53,7 @@ const add_Info =
 
       if(response.data.added)
       {
-        yield put(addInfoSuccess(response.data.uu));
+        yield put(updateUserSuccess(response.data.uu));
       }
       else
       {
@@ -66,8 +66,42 @@ const add_Info =
     }
 };
 
+const getLocation =
+  function *getLocation () {
+    try {
+      const id = yield select((state) => state.user.id);
+      const response  = yield axios.post("http://localhost:5000/getLocation", {id: id});
+      if(response.data)
+      {
+        yield put(addLocationSuccess({marker: response.data.marker, lat: response.data.loc.lat, lng: response.data.loc.lng}));
+      }
+      else
+      {
+        yield put(addInfoError(response.data.error));
+      }
+    }catch (error) {
+      if (error.response) {
+        yield put(createOptionError('there has been an error'));
+      }
+    }
+};
+
+const AddLocation =
+  function *AddLocation ({loc}) {
+    try {
+      const id = yield select((state) => state.user.id);
+      yield axios.post("http://localhost:5000/addLocation", {id: id, loc});
+    }catch (error) {
+      if (error.response) {
+        yield put(createOptionError('there has been an error'));
+      }
+    }
+};
+
 export default function *() {
   yield takeLatest("GET_OPTIONS", getSelectOptions);
   yield takeLatest("CREATE_OPTION", createSelectOption);
   yield takeLatest("ADD_INFO", add_Info);
+  yield takeLatest("GET_LOC", getLocation);
+  yield takeLatest("ADD_LOCATION", AddLocation);
 }

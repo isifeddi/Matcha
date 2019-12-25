@@ -1,28 +1,22 @@
 import { connectRouter } from "connected-react-router";
 import registerReducer from "./registerReducer";
 import loginReducer from "./loginReducer";
-import decodeReducer from './decodeReducer';
 import {combineReducers} from "redux";
 import {reducer as form} from "redux-form";
-import tokenReducer from "./tokenReducer";
-import emailConfirmationReducer from './emailConfirmationReducer';
-import sendEmailReducer from './sendEmailReducer';
 import resetPasswordReducer from "./resetPasswordReducer";
-import stepperReducer from './stepperReducer';
 import addInfoReducer from './addInfoReducer';
 import imagesReducer from './imagesReducers';
+import userReducer from './userReducer';
+import usersReducer from './usersReducer';
 const combinedReducer = (history)=> combineReducers({
     "router" : connectRouter(history),
     "register" : registerReducer,
     "login": loginReducer,
-    "token" : tokenReducer,
-    "user" : decodeReducer,
-    "emailConfirmed": emailConfirmationReducer,
-    "sendEmail": sendEmailReducer,
+    "user" : userReducer,
+    "users" : usersReducer,
     "resetPassword": resetPasswordReducer,
-    "activeStep" : stepperReducer,
-    "select" : addInfoReducer,
-    "imagesReducer" : imagesReducer,
+    "addInfo" : addInfoReducer,
+    "images" : imagesReducer,
     form
 });
 export default combinedReducer;

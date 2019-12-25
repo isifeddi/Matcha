@@ -1,10 +1,15 @@
+import React ,{ useEffect }from 'react';
 import Profile from '../../components/Profile'
-
-import React from 'react';
+import {getImages} from '../../actions/imagesAction';
 import {connect} from "react-redux";
 
 const ProfileContainer = (props) => {
-    //const {} = props;
+    const {user,getImages} = props;
+    useEffect(() => {
+        if(user){
+            getImages(user.id);
+        }
+    }, []);
     return (
         <div>
             <Profile />
@@ -13,12 +18,13 @@ const ProfileContainer = (props) => {
 }
 
 
-const mapStateToProps = () => (
+const mapStateToProps = (state) => (
 {
+    "user": state.user,
     
 });
 const mapDispatchToProps = {
-    
+    "getImages" : getImages,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileContainer);

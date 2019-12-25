@@ -1,12 +1,10 @@
 const conn = require('../Config/db_connection');
 const queries = require("../Config/queries");
-  
+var jwt = require('jsonwebtoken');
 const SELECT = queries.SELECT;
 const INSERT = queries.INSERT;
 const UPDATE = queries.UPDATE;
 const DELETE = queries.DELETE;
-
-
 
 module.exports = {
     Register :function  (lastname, firstname, username, email, password) {
@@ -17,15 +15,52 @@ module.exports = {
             }
         });
     },
-    getUser: function (type, value) {
+    getUsers: function (id) {
         return new Promise ((resolve, reject) => {
-            conn.query(SELECT[type], [value],(err,res) => {
+            conn.query(SELECT.GetUsers, [id,id], (err,res) => {
+                if(err)
+                    reject(err);
+                else{
+                    resolve(res);
+                }
+            });
+        })
+    },
+    getUser:  function  (type, value) {
+        return new Promise ( (resolve, reject) =>  {
+             conn.query(SELECT[type], [value],(err,res) => {
                 if(err)
                     reject(err);
                 else
-                    resolve(res);
-            }); 
-        })            
+                {
+                    const data = JSON.parse(JSON.stringify(res));
+                    if(data[0]){
+                       this.getUserInterests(data[0].id)
+                        .then(async (response) => {
+                            interests  = response;
+                            data[0].birthday = data[0].transDate;
+                            data[0].interests = interests;
+                            let token = await jwt.sign(data[0], 'fuckingSecretKey');
+                            data[0].token = token;
+                            delete data[0].verif_token;
+                            resolve(data[0]);
+                        }).catch((error)  => {console.log(error)})
+                    }else{
+                        resolve(null)
+                    }
+                }
+            });
+        })
+    },
+    update: function (type, value){
+        return new Promise ((resolve, reject) => {
+            conn.query(UPDATE[type], value,(err,res) => {
+                if(err)
+                    reject (err);
+                else
+                    resolve (JSON.parse(JSON.stringify(res)));
+            });
+        })
     },
     ResetPassword : function (password, token) {
         return new Promise ((resolve, reject) => {
@@ -104,47 +139,13 @@ module.exports = {
         })
     },
     getStep: function (id) {
+        //mabkinach khedmain biha////
         return new Promise ((resolve, reject) => {
             conn.query(SELECT.GetStep, [id], (err,res) => {
                 if(err)
                     reject(err);
                 else{
                     resolve(res);
-                }
-            });
-        })
-    },
-    checkInterests: function (inter) {
-        return new Promise ((resolve, reject) => {
-            conn.query(SELECT.CheckInter, [inter], (err,res) => {
-                if(err)
-                    reject(err);
-                else{
-                    const resArray = JSON.parse(JSON.stringify(res))
-                    resolve(resArray);
-                }
-            });
-        })
-    },
-    updateInfo: function (gender, sexOrient, birthday, bio) {
-        return new Promise ((resolve, reject) => {
-            conn.query(UPDATE.UpdateInfo, [gender, sexOrient, birthday, bio], (err,res) => {
-                if(err)
-                    reject(err);
-                else{
-                    resolve(res);
-                }
-            });
-        })
-    },
-    getInterId : function (inter) {
-        return new Promise ((resolve, reject) => {
-            conn.query(SELECT.GetInterId, [inter], (err,res) => {
-                if(err)
-                    reject(err);
-                else{
-                    const resArray = JSON.parse(JSON.stringify(res))
-                    resolve(resArray);
                 }
             });
         })
@@ -170,6 +171,41 @@ module.exports = {
                         resolve(options);
                     else
                         resolve(null);
+                }
+            });
+        })
+    },
+    checkInterests: function (inter) {
+        return new Promise ((resolve, reject) => {
+            conn.query(SELECT.CheckInter, [inter], (err,res) => {
+                if(err)
+                    reject(err);
+                else{
+                    const resArray = JSON.parse(JSON.stringify(res))
+                    resolve(resArray);
+                }
+            });
+        })
+    },
+    updateInfo: function (gender, sexOrient, birthday, bio, id) {
+        return new Promise ((resolve, reject) => {
+            conn.query(UPDATE.UpdateInfo, [gender, sexOrient, birthday, bio, id], (err,res) => {
+                if(err)
+                    reject(err);
+                else{
+                    resolve(res);
+                }
+            });
+        })
+    },
+    getInterId : function (inter) {
+        return new Promise ((resolve, reject) => {
+            conn.query(SELECT.GetInterId, [inter], (err,res) => {
+                if(err)
+                    reject(err);
+                else{
+                    const resArray = JSON.parse(JSON.stringify(res))
+                    resolve(resArray);
                 }
             });
         })

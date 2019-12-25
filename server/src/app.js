@@ -31,7 +31,9 @@ app.use((req,res,next) =>{
     err.status = 404;
     next(err);
 });
+
 app.use((err, req, res, next) => {
+    console.log(err)
     const status = err.status || 500;
     const error = err.message || 'Error processing your reuest';
 

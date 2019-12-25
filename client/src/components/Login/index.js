@@ -9,9 +9,9 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import TextField from '@material-ui/core/TextField';
 //import CircularProgress from '@material-ui/core/CircularProgress';
 import MySnackBar from '../commun/snackBar'
+import renderField from '../commun/TextField'
 
 const useStyles = makeStyles(theme => ({
   
@@ -35,19 +35,6 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const renderField = (
-    {type, input, label, meta : { touched, error}}
-    ) => (
-        <TextField
-            {...input}
-            type = {type}
-            label = {label}
-            error = {touched && error}
-            helperText={touched && error}
-            variant="outlined"
-            fullWidth
-        />
-)
 const Login = (props) => {
   const {handleSubmit, status, errors, registredStatus} = props;
   const classes = useStyles();
@@ -69,20 +56,21 @@ const Login = (props) => {
           <Grid container spacing={2}>
             <Grid item xs={12}>
             <Field
-                            name="username"
-                            component={renderField}
-                            label="Username"
-                            type = "text"
-                       />
+                name="username"
+                label="Username"
+                type = "text"
+                component={renderField}
+            />
             </Grid>
             
             <Grid item xs={12}>
             <Field
-                            name="password"
-                            component={renderField}
-                            label="Password"
-                            type="password"
-                       />
+              name="password"
+              type="password"
+              component={renderField}
+              rows='1'
+              label="Password"
+            />
             </Grid>
             <Grid item xs={12}>
               <Button  onClick={handleSubmit} className={classes.submit} fullWidth variant="contained" type="submit" color="primary" name="submit" value="ok" >Submit</Button>

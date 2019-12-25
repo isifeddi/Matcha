@@ -9,9 +9,9 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import TextField from '@material-ui/core/TextField';
+import renderField from '../commun/TextField';
 import CircularProgress from '@material-ui/core/CircularProgress';
-//import MySnackBar from '../commun/snackBar'
+import MySnackBar from '../commun/snackBar'
 
 const useStyles = makeStyles(theme => ({
   
@@ -34,26 +34,15 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const renderField = (
-    {type, input, label, meta : { touched, error}}
-    ) => (
-        <TextField
-            {...input}
-            type = {type}
-            label = {label}
-            error = {touched && error}
-            helperText={touched && error}
-            variant="outlined"
-            fullWidth
-        />
-)
-const Register = (props) => {
-  const {handleSubmit, status} = props;
-  const classes = useStyles();
 
+const Register = (props) => {
+  const {handleSubmit, status, err} = props;
+  const classes = useStyles();
+  
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
+    {status === "error" && <MySnackBar variant="error" message={err}/>}
     {status !== "loading" && 
     <div className={classes.paper}> 
       <Avatar className={classes.avatar}>
@@ -70,6 +59,7 @@ const Register = (props) => {
                             component={renderField}
                             label="Firstname"
                             type = "text"
+                            rows='1'
             />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -78,6 +68,7 @@ const Register = (props) => {
                             component={renderField}
                             label="Lastname"
                             type = "text"
+                            rows='1'
                        />
             </Grid>
             <Grid item xs={12}>
@@ -86,6 +77,7 @@ const Register = (props) => {
                             component={renderField}
                             label="Username"
                             type = "text"
+                            rows='1'
                             
                        />
             </Grid>
@@ -95,6 +87,8 @@ const Register = (props) => {
                             component={renderField}
                             label="Email"
                             type = "email"
+                            rows='1'
+
                        />
             </Grid>
             <Grid item xs={12}>
@@ -103,6 +97,7 @@ const Register = (props) => {
                             component={renderField}
                             label="Password"
                             type="password"
+                            rows='1'
                        />
             </Grid>
             <Grid item xs={12}>
@@ -111,6 +106,7 @@ const Register = (props) => {
                             component={renderField}
                             label="ConfirmPassword"
                             type="password"
+                            rows='1'
                        />
             </Grid>
             <Grid item xs={12}>

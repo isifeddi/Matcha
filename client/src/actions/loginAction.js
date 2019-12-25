@@ -12,9 +12,8 @@ export const LoginAction = (dataInsc) => ({
   "data": dataInsc
 });
 
-export const loginUserSuccess = (token) => ({
+export const loginUserSuccess = () => ({
     "type": LOGIN_USER_SUCCESS,
-    token
 });
 
 export const loginError = (error) => ({

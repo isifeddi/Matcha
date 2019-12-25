@@ -1,5 +1,5 @@
 import React from 'react'
-import Photos from '../../components/Profile/photos';
+import Photos from '../../containers/completeProfile/pictures';
 
 import {connect} from "react-redux";
 import {sendImages} from '../../actions/imagesAction';

@@ -3,9 +3,10 @@ const user = require('../../models/user');
 
 availableUsername = async (req, res) => {
     const {username} = req.body;
-    await user.getUser('GetUserByUsername',username)
+     user.getUser('GetUserByUsername',username)
     .then((response) => {
-        if(response[0])
+        console.log('user',response);
+        if(response)
             res.send(false);
         else
         res.send(true);

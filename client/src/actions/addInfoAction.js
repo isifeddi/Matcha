@@ -14,6 +14,11 @@ export const ADD_INFO_SUCCESS = "ADD_INFO_SUCCESS";
 
 export const ADD_INFO_ERROR = "ADD_INFO_ERROR";
 
+export const GET_LOC = "GET_LOC";
+
+export const ADD_LOCATION = "ADD_LOCATION"
+
+export const ADD_LOCATION_SUCCESS = "ADD_LOCATION_SUCCESS";
 
 export const getOptions= () => ({
   "type": GET_OPTIONS
@@ -42,7 +47,7 @@ export const createOptionError = (error) => ({
 export const addInfo = (data, id) => ({
   "type": ADD_INFO,
   "data": data,
-  'id': id
+  "id": id,
 });
 
 export const addInfoSuccess = (info) => ({
@@ -53,4 +58,18 @@ export const addInfoSuccess = (info) => ({
 export const addInfoError = (error) => ({             
   "type": ADD_INFO_ERROR,
   error
+});
+
+export const getLoc = () => ({
+  "type": GET_LOC,
+});
+
+export const addLocation = (loc) => ({
+  "type": ADD_LOCATION,
+  loc
+});
+
+export const addLocationSuccess = (loc) => ({
+  "type": ADD_LOCATION_SUCCESS,
+  loc
 });

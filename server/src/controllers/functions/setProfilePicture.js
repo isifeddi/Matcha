@@ -3,7 +3,7 @@ const IMAGES = require('../../models/images');
 setProfilePicture = async (req, res) => {
     const data = req.body;
     //console.log(data.imgId)
-    await IMAGES.setProfilePic(data)
+     IMAGES.setProfilePic(data)
     .then((response) => {
         res.send(response);
     }).catch((error) => {

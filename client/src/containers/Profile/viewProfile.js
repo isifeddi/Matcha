@@ -1,10 +1,25 @@
-import React from 'react'
+
+import React ,{ useEffect }from 'react';
+import {connect} from "react-redux";
 import ViewProfile from '../../components/Profile/viewProfile'
-const ViewProfileContainer = () => {
+import {getImages} from '../../actions/imagesAction';
+const ViewProfileContainer = (props) => {
+    const {user,images,getImages} = props;
+    
     return (
         <div>
-            <ViewProfile />
+            <ViewProfile user={user} images={images}/>
         </div>
     )
 }
-export default ViewProfileContainer;
+
+const mapStateToProps = (state) => (
+{
+    "user" : state.user,
+    "images" : state.images,
+});
+const mapDispatchToProps = {
+    "getImages" : getImages,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ViewProfileContainer);

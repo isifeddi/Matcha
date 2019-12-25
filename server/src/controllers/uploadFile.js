@@ -9,7 +9,7 @@ const app = express()
 }
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, './src/public/images')
+      cb(null, './public/images')
     },
     filename: (req, file, cb) => {
       cb(null, new Date().toISOString() + file.originalname)
@@ -28,7 +28,6 @@ const storage = multer.diskStorage({
 app.post('/upload',upload.single('files'),(req,res) => {
   
  user_id = req.body.user_id;
- //console.log('contro'+user_id)
   file = req.file;
 
   if(tools.isEmpty(file)){
@@ -41,7 +40,6 @@ app.post('/upload',upload.single('files'),(req,res) => {
  images.getImages(user_id)
  .then((response) => {
   const length = response.length;
-  //console.log(length)
     if(length > 4)
       return res.send('maximum images are 5 images');
     else{
