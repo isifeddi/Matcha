@@ -6,13 +6,14 @@ Login =  async (req, res) => {
     let dataUser = await  user.getUser('GetUserByUsername',username);
     if(dataUser)
     {
-       
         bcrypt.compare(password, dataUser.password)
         .then((response) => {
             if (response)
             {   
                 if(dataUser.confirmed === 1)
                 {
+                    user.update('UpdateOnline',[dataUser.id])
+                    dataUser.isOnline = 1;
                     delete dataUser.password;
                     res.send({isValid : true, user: dataUser});
                 }

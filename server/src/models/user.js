@@ -15,6 +15,17 @@ module.exports = {
             }
         });
     },
+    getUsers: function (id) {
+        return new Promise ((resolve, reject) => {
+            conn.query(SELECT.GetUsers, [id,id], (err,res) => {
+                if(err)
+                    reject(err);
+                else{
+                    resolve(res);
+                }
+            });
+        })
+    },
     getUser:  function  (type, value) {
         return new Promise ( (resolve, reject) =>  {
              conn.query(SELECT[type], [value],(err,res) => {

@@ -64,7 +64,7 @@ const renderDatepicker = ({input, label, meta : { touched, error}}
     <div>
         <form>
             <Grid container justify="center" spacing={2}>
-            <Grid item xs={5} >
+            <Grid item={true} xs={5} >
             <FormLabel  component="legend">Firstname</FormLabel>
                 <Field
                     name="firstname"
@@ -73,7 +73,7 @@ const renderDatepicker = ({input, label, meta : { touched, error}}
                     rows='1'
                 />
             </Grid>
-            <Grid item xs={5}>
+            <Grid item={true} xs={5}>
             <FormLabel  component="legend">Lastname</FormLabel>
                 <Field
                     name="lastname"
@@ -82,7 +82,7 @@ const renderDatepicker = ({input, label, meta : { touched, error}}
                     rows='1'
                 />
             </Grid>
-            <Grid item xs={5}>
+            <Grid item={true} xs={5}>
             <FormLabel  component="legend">Username</FormLabel>
                 <Field
                     name="username"
@@ -91,7 +91,7 @@ const renderDatepicker = ({input, label, meta : { touched, error}}
                     rows='1'
                 />
             </Grid>
-            <Grid item xs={5}>
+            <Grid item={true} xs={5}>
             <FormLabel  component="legend">Email</FormLabel>
                 <Field
                     name="email"
@@ -112,7 +112,7 @@ const renderDatepicker = ({input, label, meta : { touched, error}}
               />
             </Grid>
             
-            <Grid item xs={5}>
+            <Grid item={true} xs={5}>
               <FormLabel component="legend">Gender</FormLabel>
               <Field component={RadioGroup} name="gender" required={true} options={[
                     { title: 'Male', value: 'male' },
@@ -120,7 +120,7 @@ const renderDatepicker = ({input, label, meta : { touched, error}}
                   ]}
               />
             </Grid>
-            <Grid item xs={5}>
+            <Grid item={true} xs={5}>
             <FormLabel component="legend">Match with</FormLabel>
               <Field component={RadioGroup} name="sexOrient" required={true} options={[
                     { title:  'Men ' , value: 'men'  },
@@ -129,20 +129,20 @@ const renderDatepicker = ({input, label, meta : { touched, error}}
                   ]}
               />
             </Grid>
-            <Grid item xs={5}>
+            <Grid item={true} xs={5}>
               <FormLabel component="legend">Birthday</FormLabel>
               <Field
                 name="birthday"
                 component={renderDatepicker}
               />
             </Grid>
-            <Grid item xs={5}>
+            <Grid item={true} xs={5}>
               <FormLabel component="legend">Interests</FormLabel>
               <Field name='interests' component={sel}/>
             </Grid>
             
             
-              <Grid item container justify='center' xs={3}>
+              <Grid item={true} container justify='center' xs={3}>
                 <Button  className={classes.submit} fullWidth variant="contained" type="submit" color="primary" name="submit" value="ok" >Next</Button>
               </Grid>
             </Grid>

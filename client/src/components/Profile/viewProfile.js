@@ -47,9 +47,9 @@ const useStyles = makeStyles(theme => ({
 
 export default function ViewProfile(props) {
   const {user,images} = props;
+
   const classes = useStyles();
   const value = user.rating;
-  const [hover, setHover] = React.useState(-1);
   const params = {
     Swiper,
     modules: [Navigation, Pagination],
@@ -59,8 +59,8 @@ export default function ViewProfile(props) {
       clickable: true,
     },
     navigation: {
-      nextEl: images.images.length > 1 ?  '.swiper-button-next' : '',
-      prevEl: images.images.length > 1 ?  '.swiper-button-prev' : '',
+      nextEl: '.swiper-button-next',
+      prevEl:  '.swiper-button-prev'
     },
     spaceBetween: 30 
   }
@@ -84,14 +84,12 @@ export default function ViewProfile(props) {
       action={ 
         <Box component="fieldset" mb={3} borderColor="transparent">
         <div className={classes.rating1}>
-        <Box ml={2}>{labels[hover !== -1 ? hover : value]}</Box>
+        <Box ml={2}>{labels[value]}</Box>
           <Rating
-            name="hover-side"
+            name="read-only"
             value={value}
             precision={0.5}
-            onChangeActive={(event, newHover) => {
-              setHover(newHover);
-            }}
+            readOnly
           />
           
         </div>
@@ -105,12 +103,12 @@ export default function ViewProfile(props) {
           
         }
         title={user.firstname +' ' +user.lastname + ' '+ user.birthday}
-        subheader={user.isOnline === 1 ? 'Online' : 'Offline'}
+        subheader={user.isOnline === 1 ? 'Online' : 'Offline' + user.lastSignIn}
       >
      
       </CardHeader>
       
-      <CardMedia
+      {/* <CardMedia
         children={
             <ReactIdSwiperCustom {...params}>
                 {
@@ -122,15 +120,15 @@ export default function ViewProfile(props) {
                 }
                 </ReactIdSwiperCustom>
         }
-        title="Paella dish"
-      />
+      
+      /> */}
       <CardContent>
         <Typography >
           <strong>BIO :</strong> {user.bio} 
         </Typography>
-        <Typography>
+        {/* <Typography>
         <strong>TAGS :</strong> {user.interests.map((item) =>item.value + ' ' )}
-        </Typography>
+        </Typography> */}
       </CardContent>
 
       <CardActions disableSpacing >

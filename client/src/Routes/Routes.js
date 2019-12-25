@@ -24,9 +24,13 @@ const Routes = (props) => {
                 <Route path="/login"  component={ loginContainer }/>
                 <PrivateRoute>
                     {props.user && props.user.complete === 3 ? <Route path="/profile" component={ Profile }/> : <Redirect to='/completeProfile'/>}
+      
                     <Route path="/completeProfile"  component={ CompleteProfile }/>
+
                     {props.user && props.user.complete === 3 ? <Route path="/home" component={ HomeContainer }/> : <Redirect to='/completeProfile'/>}
+
                 </PrivateRoute>
+ 
                 <Route  path="*" component={ NotFoundPage } />
             </Switch>
         </>
