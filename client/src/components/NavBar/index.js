@@ -31,7 +31,9 @@ const useStyles = makeStyles(theme => ({
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
+     
     }),
+    backgroundColor:"#DBDFF3"
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -53,6 +55,7 @@ const useStyles = makeStyles(theme => ({
   },
   drawerPaper: {
     width: drawerWidth,
+    backgroundColor:"#DBDFF3"
   },
   drawerHeader: {
     display: 'flex',
@@ -109,7 +112,7 @@ function NavBar(props) {
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
-        color="inherit"
+        
       >
         <Toolbar>
           <IconButton

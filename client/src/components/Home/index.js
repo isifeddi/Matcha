@@ -1,8 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import ViewProfile from '../../components/Profile/viewProfile';
+import ViewProfile from './viewProfile';
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
@@ -11,31 +10,19 @@ const useStyles = makeStyles(theme => ({
     overflow: 'hidden',
     backgroundColor: theme.palette.background.paper,
   },
-  gridList: {
-    width: 500,
-    height: 450,
-  },
-  icon: {
-    color: 'rgba(255, 255, 255, 0.54)',
-  },
+  
 }));
-
 
 export default function TitlebarGridList(props) {
   const classes = useStyles();
-  const {users} = props;
-  return (
+  const {users,handleBlock} = props;
+    return (
     <div className={classes.root}>
-        <GridListTile key="Subheader" cols={1} style={{ height: 'auto' }}>
-        </GridListTile>
-        {users && users.map(tile => (
-          <GridListTile key={tile.id}>
-          
-          <ViewProfile user={tile} />
-            
-
-          </GridListTile>
-        ))}
-    </div>
-  );
+          {users.isUsers === true &&  users.users.map(tile => (
+            <GridList key={tile.user.id}>
+              <ViewProfile key={tile.user.id} user={tile.user} images={tile.images} interests={tile.interests} handleBlock={handleBlock}/>
+            </GridList>
+          ))}
+      </div>
+    );
 }

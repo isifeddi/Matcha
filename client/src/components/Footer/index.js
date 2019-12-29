@@ -3,7 +3,7 @@ import Hink from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 
 var style = {
-  backgroundColor: "#fffcfd",
+  backgroundColor: "#DBDFF3",
   borderTop: "3px solid #E7E7E7",
   textAlign: "center",
   padding: "20px",

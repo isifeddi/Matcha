@@ -1,12 +1,13 @@
 const queries = {
     SELECT : {
         GetUsers: "SELECT id,firstname,lastname, gender, sexOrient, bio, birthday, rating, isOnline, lastSignIn FROM users WHERE id != ? AND id NOT IN  (SELECT blocked_id FROM blockList  WHERE blocker_id = ?) AND confirmed = 1 AND complete = 3",
+        // GetAllImages : "SELECT * FROM images WHERE user_id != ? AND user_id NOT IN  (SELECT blocked_id FROM blockList  WHERE blocker_id = ?)",
+        // GetAllInterests: "SELECT interest FROM interests INNER JOIN usersInterests ON interests.interest_id = usersInterests.iId WHERE usersInterests.uId = ?",
         GetUserByEmail: "SELECT *,DATE_FORMAT(birthday,'%Y-%m-%d') as transDate FROM users WHERE email = ?",
         GetUserById: "SELECT *,DATE_FORMAT(birthday,'%Y-%m-%d') as transDate FROM users WHERE id = ?",
         GetUserByUsername: "SELECT *,DATE_FORMAT(birthday,'%Y-%m-%d') as transDate FROM users WHERE username = ?",
         GetUserByToken: "SELECT * FROM users WHERE verif_token = ?",
         GetImages : "SELECT * FROM images WHERE user_id = ?",
-        GetAllImages : "SELECT * FROM images WHERE user_id != ?",
         GetInterests: "SELECT interest FROM interests",
         GetStep: "SELECT complete FROM users WHERE id = ?",
         CheckInter: "SELECT COUNT(interest) as n FROM interests WHERE interest IN (?)",

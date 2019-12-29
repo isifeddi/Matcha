@@ -14,14 +14,34 @@ export const getUsers =
               });
             if(response)
             {
-                console.log(response.data)
                 yield put(getUsersSuccess(response.data));
             }
+            else
+                yield put(getUsersError('there has been an error'));
         } catch (error) {
-            yield put(getUsersError());
+            yield put(getUsersError('there has been an error'));
         }
     };
-  
+    export const blockUser =
+    function *blockUser({blocked_user_id}) {
+        try {
+            const user = yield select(state => state.user);
+            const response = yield call(request, {
+                "url": "http://localhost:5000/blockUser",
+                "data": {id : user.id, blocked_user_id: blocked_user_id},
+                "method": "post"
+              });
+            if(response)
+            {
+                // yield put(getUsersSuccess(response.data));
+            }
+        
+                // yield put(getUsersError('there has been an error'));
+        } catch (error) {
+            // yield put(getUsersError('there has been an error'));
+        }
+    };
 export default function *() {
     yield takeLatest("GET_USERS", getUsers);
+    yield takeLatest("BLOCK_USER",blockUser);
 }

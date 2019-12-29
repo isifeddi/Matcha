@@ -15,7 +15,7 @@ import PrivateRoute from './PrivateRoute';
 const Routes = (props) => {
 
     return (
-        <>
+        <div>
             <Switch>
                 <Route path="/confirmation/:token"  component={ EmailConfirmCont }/>
                 <Route path="/resetPassword/:token"  component={ ResetPasswordContainer }/>
@@ -33,7 +33,7 @@ const Routes = (props) => {
  
                 <Route  path="*" component={ NotFoundPage } />
             </Switch>
-        </>
+        </div>
     )
 }
 const mapStateToProps = (state) => (

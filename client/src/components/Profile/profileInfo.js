@@ -100,7 +100,7 @@ const renderDatepicker = ({input, label, meta : { touched, error}}
                     rows='1'
                 />
             </Grid>
-            <Grid  xs={10}>
+            <Grid item={true} xs={10}>
             
               <FormLabel  component="legend">Bio</FormLabel>
               <Field

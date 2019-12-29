@@ -46,8 +46,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function ViewProfile(props) {
-  const {user,images} = props;
-
+  const {user,images,interests} = props;
   const classes = useStyles();
   const value = user.rating;
   const params = {
@@ -108,12 +107,12 @@ export default function ViewProfile(props) {
      
       </CardHeader>
       
-      {/* <CardMedia
+      <CardMedia
         children={
             <ReactIdSwiperCustom {...params}>
                 {
                     images.isImages ? images.images.map((tile) =>
-                    <div>
+                    <div key={tile.id}>
                         <img  style={{width: "100%"}} src={`http://localhost:5000/images/${tile.path}`} alt="images"/>
                     </div>
                     ) : <img  style={{width: "100%"}} src={defaultImg} alt="images"/>
@@ -121,14 +120,14 @@ export default function ViewProfile(props) {
                 </ReactIdSwiperCustom>
         }
       
-      /> */}
+      />
       <CardContent>
         <Typography >
           <strong>BIO :</strong> {user.bio} 
         </Typography>
-        {/* <Typography>
-        <strong>TAGS :</strong> {user.interests.map((item) =>item.value + ' ' )}
-        </Typography> */}
+        <Typography>
+        <strong>TAGS :</strong> {interests.map((item) =>item.value + ' ' )}
+        </Typography>
       </CardContent>
 
       <CardActions disableSpacing >
