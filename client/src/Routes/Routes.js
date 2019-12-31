@@ -30,7 +30,6 @@ const Routes = (props) => {
                     {props.user && props.user.complete === 3 ? <Route path="/home" component={ HomeContainer }/> : <Redirect to='/completeProfile'/>}
 
                 </PrivateRoute>
- 
                 <Route  path="*" component={ NotFoundPage } />
             </Switch>
         </div>

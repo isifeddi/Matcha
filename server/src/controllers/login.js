@@ -14,6 +14,7 @@ Login =  async (req, res) => {
                 {
                     user.update('UpdateOnline',[dataUser.id])
                     dataUser.isOnline = 1;
+                    delete dataUser.verif_token;
                     delete dataUser.password;
                     res.send({isValid : true, user: dataUser});
                 }

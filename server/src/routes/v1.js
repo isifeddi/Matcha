@@ -20,6 +20,8 @@ const getLocation = require('../controllers/functions/getLocation');
 const addLocation = require('../controllers/functions/addLocation');
 const logout = require('../controllers/functions/logout');
 const getUsers = require('../controllers/functions/getUsers');
+const editProfile = require('../controllers/editProfile');
+
 router.post('/login', Login);
 router.post('/register', Register);
 router.post('/availableEmail',availableEmail);
@@ -40,5 +42,6 @@ router.post('/getLocation', getLocation);
 router.post('/addLocation', addLocation);
 router.post('/logout', logout);
 router.post('/getUsers',getUsers);
+router.post('/editProfile', editProfile);
 
 module.exports = router;

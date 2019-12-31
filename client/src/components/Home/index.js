@@ -2,6 +2,8 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import ViewProfile from './viewProfile';
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
@@ -15,14 +17,18 @@ const useStyles = makeStyles(theme => ({
 
 export default function TitlebarGridList(props) {
   const classes = useStyles();
-  const {users,handleBlock} = props;
+  const {users, handleBlock} = props;
     return (
+      <>
+    {users.status !== 'loading' &&
     <div className={classes.root}>
           {users.isUsers === true &&  users.users.map(tile => (
             <GridList key={tile.user.id}>
               <ViewProfile key={tile.user.id} user={tile.user} images={tile.images} interests={tile.interests} handleBlock={handleBlock}/>
             </GridList>
           ))}
-      </div>
+      </div>}
+    {users.status === 'loading' && <div className={classes.root}><CircularProgress color="secondary"/></div>}
+    </>
     );
 }
