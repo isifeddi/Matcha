@@ -48,7 +48,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function ViewProfile(props) {
-  const {user,images,interests,handleBlock} = props;
+  const {user,images,interests,handleBlock,handleLike,handleReport} = props;
   const classes = useStyles();
   const value = user.rating;
   const params = {
@@ -133,13 +133,15 @@ export default function ViewProfile(props) {
       </CardContent>
 
       <CardActions disableSpacing >
-        <IconButton aria-label="add to favorites">
+        {/* <IconButton aria-label="add to favorites">
           <FavoriteIcon color="secondary"/>
-        </IconButton>
+        </IconButton> */}
+        <button  userid = {user.id} onClick={handleLike}>LIKE</button>
         {/* <IconButton aria-label="share" user_id={user.id} onClick={handleBlock}>
           <BlockIcon color="secondary" />
         </IconButton> */}
         <button  userid = {user.id} onClick={handleBlock}>Block</button>
+        <button  userid = {user.id} onClick={handleReport}>Report</button>
       </CardActions>
     </Card>
     </Grid>

@@ -11,12 +11,14 @@ import ResetPasswordContainer from '../containers/resetPassword'
 import CompleteProfile from '../containers/completeProfile/stepper'
 import Profile from '../containers/Profile'
 import PrivateRoute from './PrivateRoute';
-
+import menu from '../components/commun/menu'
 const Routes = (props) => {
 
     return (
         <div>
             <Switch>
+            
+            <Route path="/settings" component={ menu }/>
                 <Route path="/confirmation/:token"  component={ EmailConfirmCont }/>
                 <Route path="/resetPassword/:token"  component={ ResetPasswordContainer }/>
                 <Route path="/forgotPassword"  component={ ForgotPasswordContainer }/>

@@ -20,6 +20,9 @@ const queries = {
         AddUser: 'INSERT INTO users (lastname, firstname, username, email, password) VALUES (?, ?, ?, ?, ?)',
         CreateInterest: "INSERT INTO interests (interest, createdBy) VALUES (?, ?)",
         InsertUserInter: "INSERT INTO usersInterests (uId, iId) VALUES (?, ?)",
+        blockUser : "INSERT INTO blockList (blocker_id, blocked_id,date) VALUES (?, ?, NOW())",
+        likeUser : "INSERT INTO likesList (liker_id, liked_id,date) VALUES (?, ?, NOW())",
+        reportUser : "INSERT INTO reportList (reporter_id, reported_id,date) VALUES (?, ?, NOW())",
     },
     UPDATE : {
         Update: 'UPDATE users SET name = ?, email = ?, sex = ? WHERE id = ?',

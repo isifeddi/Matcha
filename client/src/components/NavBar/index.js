@@ -20,7 +20,7 @@ import Button from '@material-ui/core/Button';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import PersonIcon from '@material-ui/icons/Person';
-
+import SettingsIcon from '@material-ui/icons/Settings';
 const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
   root: {
@@ -75,6 +75,7 @@ function NavBar(props) {
 
   const loggedInMenu = [
     {"text" : "Profile","path" : "/profile", icon: <PersonIcon color="secondary"/>},
+    {"text" : "Settings","path" : "/settings", icon: <SettingsIcon color="secondary"/>},
   ];
   const loggedOutMenu = [
     {"text" : "Se connecter","path" : "/login", icon: <LockOpenIcon color="secondary"/>},
