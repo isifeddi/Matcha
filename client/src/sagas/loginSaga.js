@@ -25,7 +25,7 @@ const login =
         yield put(loginUserSuccess());
         yield put(updateUserSuccess(user))
         if(user.complete === 3)
-          yield put(push("/"));
+          yield put(push("/home"));
         else
           yield put(push("/completeProfile"));
       }
