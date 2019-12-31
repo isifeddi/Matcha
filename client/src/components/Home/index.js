@@ -17,14 +17,14 @@ const useStyles = makeStyles(theme => ({
 
 export default function TitlebarGridList(props) {
   const classes = useStyles();
-  const {users, handleBlock} = props;
+  const {users,handleBlock,handleLike,handleReport} = props;
     return (
       <>
     {users.status !== 'loading' &&
     <div className={classes.root}>
           {users.isUsers === true &&  users.users.map(tile => (
             <GridList key={tile.user.id}>
-              <ViewProfile key={tile.user.id} user={tile.user} images={tile.images} interests={tile.interests} handleBlock={handleBlock}/>
+              <ViewProfile key={tile.user.id} user={tile.user} images={tile.images} interests={tile.interests} handleBlock={handleBlock} handleLike={handleLike} handleReport={handleReport}/>
             </GridList>
           ))}
       </div>}

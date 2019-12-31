@@ -20,6 +20,9 @@ const getLocation = require('../controllers/functions/getLocation');
 const addLocation = require('../controllers/functions/addLocation');
 const logout = require('../controllers/functions/logout');
 const getUsers = require('../controllers/functions/getUsers');
+const blockUser = require('../controllers/functions/blockUser');
+const likeUser = require('../controllers/functions/likeUser');
+const reportUser = require('../controllers/functions/reportUser');
 const editProfile = require('../controllers/editProfile');
 
 router.post('/login', Login);
@@ -42,6 +45,9 @@ router.post('/getLocation', getLocation);
 router.post('/addLocation', addLocation);
 router.post('/logout', logout);
 router.post('/getUsers',getUsers);
+router.post('/blockUser',blockUser);
+router.post('/likeUser',likeUser);
+router.post('/reportUser',reportUser);
 router.post('/editProfile', editProfile);
 
 module.exports = router;

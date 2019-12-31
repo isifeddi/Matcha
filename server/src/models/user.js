@@ -61,6 +61,16 @@ module.exports = {
             });
         })
     },
+    insert: function (type, value){
+        return new Promise ((resolve, reject) => {
+            conn.query(INSERT[type], value,(err,res) => {
+                if(err)
+                    reject (err);
+                else
+                    resolve (JSON.parse(JSON.stringify(res)));
+            });
+        })
+    },
     ResetPassword : function (password, token) {
         return new Promise ((resolve, reject) => {
             conn.query(UPDATE.ResetPassword, [password, token],(err,res) => {
