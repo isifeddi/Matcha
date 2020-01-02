@@ -7,6 +7,7 @@ const ProfileContainer = (props) => {
     const {user,getImages} = props;
     useEffect(() => {
         if(user){
+            
             getImages(user.id);
         }
     }, []);
@@ -25,6 +26,7 @@ const mapStateToProps = (state) => (
 });
 const mapDispatchToProps = {
     "getImages" : getImages,
+    //"getOptions": getOptions,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileContainer);

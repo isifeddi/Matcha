@@ -1,8 +1,9 @@
-import ProfileInfo from '../../components/Profile/profileInfo';
 import React from 'react'
 import {connect} from "react-redux";
 import {reduxForm} from 'redux-form';
+import ProfileInfo from '../../components/Profile/profileInfo';
 import Age from '../../components/commun/age';
+import {editInfo} from '../../actions/profileAction';
 
 let profileInfoContainer = (props) => {
     return(
@@ -13,7 +14,6 @@ let profileInfoContainer = (props) => {
 }
 
 const validate = (values) => {
-    //console.log(values);
     const errors = {};
     const requiredFields = [
         "firstname",
@@ -75,16 +75,15 @@ const mapStateToProps = (state) => ({
     user: state.user,
 });
 const mapDispatchToProps = {
-    
+    "editInfo": editInfo,
 };
 const mergeProps = (stateProps, dispatchProps, otherProps) => ({
     ...stateProps,
     ...dispatchProps,
     ...otherProps,
-
     "handleSubmit" : otherProps.handleSubmit((values) => {
-        console.log(values);
-        //dispatchProps.addInfo(values, stateProps.user.id);
+        //console.log(values);
+        dispatchProps.editInfo(values);
     }),
 });
 
@@ -92,7 +91,6 @@ profileInfoContainer = connect(mapStateToProps, mapDispatchToProps, mergeProps)(
 
 profileInfoContainer = reduxForm({
     'form' :'profileInfo',
-    touchOnBlur:['password', 'confirmPassword'],
     validate,
 })(profileInfoContainer);
 

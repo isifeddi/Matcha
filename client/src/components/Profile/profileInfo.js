@@ -8,8 +8,9 @@ import CreatableSelect from 'react-select/creatable';
 import { makeStyles } from '@material-ui/core/styles';
 import renderField from '../commun/TextField'
 import RadioGroup from '../commun/RadioGroup';
-const useStyles = makeStyles(theme => ({
-  
+import MyFlash from '../commun/flash';
+
+const useStyles = makeStyles(theme => ({  
     paper: {
         display: 'flex',
         flexDirection: 'column',
@@ -63,6 +64,7 @@ const renderDatepicker = ({input, label, meta : { touched, error}}
     const classes = useStyles();
     return (
     <div>
+      <MyFlash msg={['hello','ff']} variant='success'/>
         <form>
             <Grid container justify="center" spacing={2}>
               <Grid item xs={5}>

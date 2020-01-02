@@ -1,55 +1,62 @@
 const tools = require('../tools');
 const user = require('../models/user');
+const bcrypt = require('bcrypt');
 
 editProfile = async (req, res) => {
     const info = req.body;
-    console.log(info);
     let v = false;
     let result = {
         valid: false,
-        username : null,
-        email : null,
-        interests : null,
-        password: null,
     };
     let CheckUsername = await  user.getUser('CheckEditUsername', [info.username, info.id]);
     let CheckEmail = await  user.getUser('CheckEditEmail', [info.email, info.id]);
 
     if(CheckUsername)
     {
-        result.email = 'Email already exists';
+        result.username = 'Username already exists';
     }
     if(CheckEmail)
     {
-        result.username = 'Username already exists';
+        result.email = 'Email already exists';
     }
 
     if(info.interests.length){
         const result = await user.checkInterests(info.interests)
-        if(result[0].n !== info.interests.length)
+        if(result[0].n !== info.interests.length){
             v = false;
+            result.interests = 'Invalid selection !';
+        }
         else
             v = true;
     }
     if(info.interests.length > 20){
         v = false;
         result.interests = 'You can not add more than 20 interests !';
-        //res.send({ added:false, error: 'You can not add more than 20 interests !' });
-        //return ;
     }
-
-    if('password' in info ){
-        if(tools.isPassword(info.password, info.confirmPassword)){
+    const p = info.hasOwnProperty('password'); const confP = info.hasOwnProperty('confirmPassword');
+    if( p || confP)
+    {
+        if((p && confP) && tools.isPassword(info.password, info.confirmPassword))
+        {
             let hashPassword = await bcrypt.hash(info.password, 10);
             user.update('UpdatePassword', [hashPassword, info.id]);
             v = true;
         }
         else
+        {
+            result.password = 'Password error';
             v = false;
+        }
     }
 
-    if(tools.isLastname(info.lastname) && tools.isFirstname(info.firstname) && tools.isUsername(info.username) && tools.isEmail(info.email) && tools.isBirthday(info.birthday) && tools.isGender(info.gender) && tools.isOrient(info.sexOrient) && tools.isBio(info.bio) && tools.isInterest(info.interests) && v)
+    if(tools.isLastname(info.lastname) && tools.isFirstname(info.firstname) && tools.isUsername(info.username) && tools.isEmail(info.email) && tools.isBirthday(info.birthday) && tools.isGender(info.gender) && tools.isOrient(info.sexOrient) && tools.isBio(info.bio) && tools.isInterest(info.interests) && !CheckUsername && !CheckEmail && v)
     {
+        const check = await user.getUser('GetUserById',info.id);
+        if(check && info.email !== check.email)
+        {
+            user.notConfirmed(check.email);
+            result.confirmed = false;
+        }
         user.deleteUserInter(info.id);
         user.update('UpdateProfile',[info.firstname, info.lastname, info.username, info.email, info.gender, info.birthday,  info.sexOrient, info.bio, info.id]);
         info.interests.forEach( element => {
@@ -64,12 +71,17 @@ editProfile = async (req, res) => {
             })
         });
         const uu = await user.getUser('GetUserById',info.id);
-        if(uu) delete uu.password;
+        if(uu){
+            delete uu.verif_token;
+            delete uu.password;
+        }
         result.valid = true;
-        res.send({ added: true , uu});
+        res.send({result, uu});
     }
-    else
-        result.valid = false
+    else{
+        result.valid = false;
+        res.send({result});
+    }
 };
 
 module.exports = editProfile;
