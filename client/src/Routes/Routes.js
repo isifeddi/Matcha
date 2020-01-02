@@ -11,14 +11,15 @@ import ResetPasswordContainer from '../containers/resetPassword'
 import CompleteProfile from '../containers/completeProfile/stepper'
 import Profile from '../containers/Profile'
 import PrivateRoute from './PrivateRoute';
-import menu from '../components/commun/menu'
+//import menu from '../components/commun/menu'
+import BlockList from '../containers/settings/blockList'
 const Routes = (props) => {
 
     return (
         <div>
             <Switch>
             
-            <Route path="/settings" component={ menu }/>
+            
                 <Route path="/confirmation/:token"  component={ EmailConfirmCont }/>
                 <Route path="/resetPassword/:token"  component={ ResetPasswordContainer }/>
                 <Route path="/forgotPassword"  component={ ForgotPasswordContainer }/>
@@ -26,7 +27,7 @@ const Routes = (props) => {
                 <Route path="/login"  component={ loginContainer }/>
                 <PrivateRoute>
                     {props.user && props.user.complete === 3 ? <Route path="/profile" component={ Profile }/> : <Redirect to='/completeProfile'/>}
-      
+                    <Route path="/BlockList" component={ BlockList }/>
                     <Route path="/completeProfile"  component={ CompleteProfile }/>
 
                     {props.user && props.user.complete === 3 ? <Route path="/home" component={ HomeContainer }/> : <Redirect to='/completeProfile'/>}

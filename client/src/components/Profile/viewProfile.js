@@ -22,17 +22,6 @@ const useStyles = makeStyles(theme => ({
     maxWidth: 400,
     height:600,
   },
-
-  expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: 'rotate(180deg)',
-  },
   avatarON: {
     backgroundColor: '#00FB0C',
     width: 15,
@@ -101,7 +90,7 @@ export default function ViewProfile(props) {
           </Avatar>
           
         }
-        title={user.firstname +' ' +user.lastname + ' '+ user.birthday}
+        title={user.firstname +' ' + user.lastname}
         subheader={user.isOnline === 1 ? 'Online' : 'Offline' + user.lastSignIn}
       >
      
@@ -126,7 +115,8 @@ export default function ViewProfile(props) {
           <strong>BIO :</strong> {user.bio} 
         </Typography>
         <Typography>
-        <strong>TAGS :</strong> {interests.map((item) =>item.value + ' ' )}
+        <strong>TAGS :</strong> {interests != null &&  interests.map((item) =>item.value + ' ' )}
+        
         </Typography>
       </CardContent>
 

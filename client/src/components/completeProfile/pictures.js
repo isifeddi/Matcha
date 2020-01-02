@@ -103,6 +103,7 @@ const  Pictures = (props) => {
                       className={classes.delete}
                       titlePosition="top"
                       actionIcon={
+                        images.images.length > 1 &&  
                         <button imgid={tile.id} isprofilepic={tile.isProfilePic} onClick={deletePicture}>DEl</button>
                       }
                     />

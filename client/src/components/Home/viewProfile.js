@@ -6,34 +6,34 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import Box from '@material-ui/core/Box';
 import Rating from '@material-ui/lab/Rating';
 import defaultImg from '../../image/default.jpg';
-import ReactIdSwiperCustom from 'react-id-swiper/lib/ReactIdSwiper.custom';
-import { Swiper, Navigation, Pagination } from 'swiper/js/swiper.esm';
-
 import { Grid} from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   card: {
     maxWidth: 400,
-    height:600,
-    border : 'solid',
-   borderColor : '#DBDFF3'
+    maxHeight:550,
+    borderRadius : '15px',
+   backgroundColor: '#DBDFF3'
   },
-
-  expand: {
-    transform: 'rotate(0deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
+  cardMedia : {
+    maxWidth: 400,
+    maxHeight : 250,
   },
-  expandOpen: {
-    transform: 'rotate(180deg)',
+  cardHeader : {
+    maxWidth: 400,
+    maxHeight : 150,
+  },
+  cardContent : {
+    maxWidth: 400,
+    maxHeight : 100,
+  },
+  cardAction : {
+    maxWidth: 400,
+    maxHeight : 50,
   },
   avatarON: {
     backgroundColor: '#00FB0C',
@@ -48,23 +48,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function ViewProfile(props) {
-  const {user,images,interests,handleBlock,handleLike,handleReport} = props;
+  const {user,images,interests,handleBlock,handleLike,handleViewProfile} = props;
   const classes = useStyles();
   const value = user.rating;
-  const params = {
-    Swiper,
-    modules: [Navigation, Pagination],
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true,
-    },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl:  '.swiper-button-prev'
-    },
-    spaceBetween: 30 
-  }
       const labels = {
         0.5: 'Useless',
         1: 'Useless+',
@@ -82,6 +68,7 @@ export default function ViewProfile(props) {
     <Grid container justify='center'>
     <Card  className={classes.card}>
       <CardHeader
+      className={classes.cardHeader}
       action={ 
         <Box component="fieldset" mb={3} borderColor="transparent">
         <div className={classes.rating1}>
@@ -92,59 +79,39 @@ export default function ViewProfile(props) {
             precision={0.5}
             readOnly
           />
-          
         </div>
         </Box>
-        
         }
         avatar={
-          <Avatar aria-label="recipe" className={user.isOnline === 1 ? classes.avatarON : classes.avatarOF}>
-              
-          </Avatar>
-          
+          <Avatar aria-label="recipe" className={user.isOnline === 1 ? classes.avatarON : classes.avatarOF}></Avatar> 
         }
-        title={user.firstname +' ' +user.lastname + ' '+ user.birthday}
+        title={user.firstname +' ' +user.lastname}
         subheader={user.isOnline === 1 ? 'Online' : 'Offline' + user.lastSignIn}
       >
-     
       </CardHeader>
-      
       <CardMedia
+        className={classes.cardMedia}
         children={
-            <ReactIdSwiperCustom {...params}>
-                {
-                    images.length !== 0 ? images.map((tile) =>
-                    <div key={tile.id}>
-                        <img style={{width: "100%"}} src={`http://localhost:5000/images/${tile.path}`} alt="images"/>
-                    </div>
-                    ) : <img  style={{width: "100%"}} src={defaultImg} alt="images"/>
-                }
-                </ReactIdSwiperCustom>
+          images.length !== 0 ? images.map((tile) =>
+            <div key={tile.id}>
+              {tile.isProfilePic === 1 &&
+                <img style={{width: "100%",height:"250px"}} src={`http://localhost:5000/images/${tile.path}`} alt="images"/>
+              }
+            </div>
+            ) : <img  style={{width: "100%",height:"250px"}} src={defaultImg} alt="images"/>
         }
-      
       />
-      <CardContent>
-        <Typography >
-          <strong>BIO :</strong> {user.bio} 
-        </Typography>
+      <CardContent className={classes.cardContent}> 
         <Typography>
-        <strong>TAGS :</strong> {interests !== null &&  interests.map((item) =>item.value + ' ' )}
+          Age : {user.birthday}
         </Typography>
       </CardContent>
-
-      <CardActions disableSpacing >
-        {/* <IconButton aria-label="add to favorites">
-          <FavoriteIcon color="secondary"/>
-        </IconButton> */}
+      <CardActions className={classes.cardAction}>
         <button  userid = {user.id} onClick={handleLike}>LIKE</button>
-        {/* <IconButton aria-label="share" user_id={user.id} onClick={handleBlock}>
-          <BlockIcon color="secondary" />
-        </IconButton> */}
         <button  userid = {user.id} onClick={handleBlock}>Block</button>
-        <button  userid = {user.id} onClick={handleReport}>Report</button>
+        <button  user = {JSON.stringify(user)} img= {JSON.stringify(images)} inters = {JSON.stringify(interests)}  onClick={handleViewProfile}>ViewProfile</button>
       </CardActions>
     </Card>
     </Grid>
-    
   );
 }

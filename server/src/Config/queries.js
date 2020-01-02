@@ -13,6 +13,7 @@ const queries = {
         CheckInter: "SELECT COUNT(interest) as n FROM interests WHERE interest IN (?)",
         GetInterId : "SELECT interest_id FROM interests WHERE interest = ?",
         InterCreatedNbr: "SELECT COUNT(interest) as n FROM interests WHERE createdBy = ? ",
+        getBlockUser : "SELECT id,firstname,lastname FROM users WHERE  id  IN (SELECT blocked_id FROM blockList WHERE blocker_id = ?)",
         GetUserInter: "SELECT interest FROM interests INNER JOIN usersInterests ON interests.interest_id = usersInterests.iId WHERE usersInterests.uId = ?"
     },
     INSERT : {
@@ -23,6 +24,7 @@ const queries = {
         blockUser : "INSERT INTO blockList (blocker_id, blocked_id,date) VALUES (?, ?, NOW())",
         likeUser : "INSERT INTO likesList (liker_id, liked_id,date) VALUES (?, ?, NOW())",
         reportUser : "INSERT INTO reportList (reporter_id, reported_id,date) VALUES (?, ?, NOW())",
+        viewProfileUser : "INSERT INTO viewProfileList (viewer, viewed, date) VALUES (?,?,NOW())"
     },
     UPDATE : {
         Update: 'UPDATE users SET name = ?, email = ?, sex = ? WHERE id = ?',

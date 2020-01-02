@@ -75,7 +75,7 @@ function NavBar(props) {
 
   const loggedInMenu = [
     {"text" : "Profile","path" : "/profile", icon: <PersonIcon color="secondary"/>},
-    {"text" : "Settings","path" : "/settings", icon: <SettingsIcon color="secondary"/>},
+    {"text" : "Block List","path" : "/BlockList", icon: <SettingsIcon color="secondary"/>},
   ];
   const loggedOutMenu = [
     {"text" : "Se connecter","path" : "/login", icon: <LockOpenIcon color="secondary"/>},

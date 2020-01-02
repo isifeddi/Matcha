@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import ViewProfile from './viewProfile';
+//import Viewp from './vP';
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
@@ -15,12 +16,12 @@ const useStyles = makeStyles(theme => ({
 
 export default function TitlebarGridList(props) {
   const classes = useStyles();
-  const {users,handleBlock,handleLike,handleReport} = props;
+  const {users,handleBlock,handleLike,handleReport,handleViewProfile} = props;
     return (
     <div className={classes.root}>
           {users.isUsers === true &&  users.users.map(tile => (
             <GridList key={tile.user.id}>
-              <ViewProfile key={tile.user.id} user={tile.user} images={tile.images} interests={tile.interests} handleBlock={handleBlock} handleLike={handleLike} handleReport={handleReport}/>
+              <ViewProfile key={tile.user.id}  user={tile.user} images={tile.images} interests={tile.interests} handleBlock={handleBlock} handleLike={handleLike} handleViewProfile={handleViewProfile}/>
             </GridList>
           ))}
       </div>

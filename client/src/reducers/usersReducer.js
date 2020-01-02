@@ -2,7 +2,8 @@ import {
     GET_USERS,
     GET_USERS_SUCCESS,
     GET_USERS_ERROR,
-    DELETE_USER
+    DELETE_USER,
+    GET_BLOCK_USER_SUCCESS
 } from "../actions/userAction";
 const DEFAULT_STATE = {
     status: 'DEFAULT STATE',

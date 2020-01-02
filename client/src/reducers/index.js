@@ -8,6 +8,7 @@ import addInfoReducer from './addInfoReducer';
 import imagesReducer from './imagesReducers';
 import userReducer from './userReducer';
 import usersReducer from './usersReducer';
+import blockList from './blockList'
 const combinedReducer = (history)=> combineReducers({
     "router" : connectRouter(history),
     "register" : registerReducer,
@@ -17,6 +18,7 @@ const combinedReducer = (history)=> combineReducers({
     "resetPassword": resetPasswordReducer,
     "addInfo" : addInfoReducer,
     "images" : imagesReducer,
+    "blockList" : blockList,
     form
 });
 export default combinedReducer;
