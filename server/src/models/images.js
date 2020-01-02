@@ -35,7 +35,7 @@ module.exports = {
                 if(err)
                     reject(err);
                 else
-                    resolve(res);
+                    resolve(JSON.parse(JSON.stringify(res)));
             }); 
         })            
     },

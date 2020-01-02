@@ -4,7 +4,6 @@ import { Grid, Container } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import IconButton from '@material-ui/core/IconButton';
-
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
@@ -103,6 +102,7 @@ const  Pictures = (props) => {
                       className={classes.delete}
                       titlePosition="top"
                       actionIcon={
+                        images.images.length > 1 &&  
                         <button imgid={tile.id} isprofilepic={tile.isProfilePic} onClick={deletePicture}>DEl</button>
                       }
                     />

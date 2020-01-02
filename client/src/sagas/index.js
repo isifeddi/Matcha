@@ -7,6 +7,8 @@ import addInfoSaga from './addInfoSaga';
 import imagesSaga from './imagesSaga';
 import stepperSaga from './stepperSaga';
 import usersSaga from './usersSaga'
+import profileSaga from "./profileSaga";
+
 export default function *() {
   yield all([
     fork(registerSaga),
@@ -16,6 +18,7 @@ export default function *() {
     fork(addInfoSaga),
     fork(imagesSaga),
     fork(stepperSaga),
-    fork(usersSaga)
+    fork(usersSaga),
+    fork(profileSaga)
   ]);
 }

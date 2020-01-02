@@ -11,20 +11,19 @@ import AccountCircleTwoToneIcon from '@material-ui/icons/AccountCircleTwoTone';
 import { red } from '@material-ui/core/colors';
 import MonochromePhotosTwoToneIcon from '@material-ui/icons/MonochromePhotosTwoTone';
 import VisibilityTwoToneIcon from '@material-ui/icons/VisibilityTwoTone';
-
 import ViewProfile from '../../containers/Profile/viewProfile';
 import Photos from '../../containers/completeProfile/pictures';
 import Maps from '../../containers/Profile/maps';
 import ProfileInfo from '../../containers/Profile/profileInfo';
+
 const useStyles = makeStyles(theme => ({
  
   root1: {
     flexGrow: 1,
-    //maxWidth: 900,
   },
   card: {
     maxWidth: 500,
-    //width: 400
+
   },
   avatar: {
     backgroundColor: red[500],
@@ -59,7 +58,6 @@ function TabPanel(props) {
     </Typography>
   );
 }
-
 
 export default function SimpleContainer() {
     const [value, setValue] = React.useState(0);

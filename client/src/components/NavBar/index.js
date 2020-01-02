@@ -20,6 +20,7 @@ import Button from '@material-ui/core/Button';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import PersonIcon from '@material-ui/icons/Person';
+import SettingsIcon from '@material-ui/icons/Settings';
 
 const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
@@ -31,7 +32,9 @@ const useStyles = makeStyles(theme => ({
     transition: theme.transitions.create(['margin', 'width'], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
+     
     }),
+    backgroundColor:"#DBDFF3"
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -53,6 +56,7 @@ const useStyles = makeStyles(theme => ({
   },
   drawerPaper: {
     width: drawerWidth,
+    backgroundColor:"#DBDFF3"
   },
   drawerHeader: {
     display: 'flex',
@@ -72,6 +76,7 @@ function NavBar(props) {
 
   const loggedInMenu = [
     {"text" : "Profile","path" : "/profile", icon: <PersonIcon color="secondary"/>},
+    {"text" : "Block List","path" : "/BlockList", icon: <SettingsIcon color="secondary"/>},
   ];
   const loggedOutMenu = [
     {"text" : "Se connecter","path" : "/login", icon: <LockOpenIcon color="secondary"/>},
@@ -109,7 +114,7 @@ function NavBar(props) {
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
-        color="inherit"
+        
       >
         <Toolbar>
           <IconButton

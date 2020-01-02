@@ -11,7 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import renderField from '../commun/TextField';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import MySnackBar from '../commun/snackBar'
+import MyFlash from '../commun/flash';
 
 const useStyles = makeStyles(theme => ({
   
@@ -42,7 +42,7 @@ const Register = (props) => {
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
-    {status === "error" && <MySnackBar variant="error" message={err}/>}
+    {status === "error" && <MyFlash variant="error" msg={[err]}/>}
     {status !== "loading" && 
     <div className={classes.paper}> 
       <Avatar className={classes.avatar}>

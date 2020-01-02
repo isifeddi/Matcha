@@ -9,7 +9,7 @@ import Container from '@material-ui/core/Container';
 import TextField from '@material-ui/core/TextField';
 import FormLabel from '@material-ui/core/FormLabel';
 import CreatableSelect from 'react-select/creatable';
-import MySnackBar from '../commun/snackBar';
+import MySnackBar from '../commun/flash';
 import renderField from '../commun/TextField';
 import RadioGroup from '../commun/RadioGroup';
 
@@ -81,7 +81,7 @@ const AddInfo = (props) => {
         <Typography component="h1" variant="h5" color="primary">
           Additional infos
         </Typography>
-        {selectError && <MySnackBar variant="error" message={selectError}/> }
+        {selectError && <MySnackBar variant="error" msg={selectError}/> }
         <form  className={classes.form}>
           <Grid container spacing={2}>
             <Grid item xs={12}>

@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 //import CircularProgress from '@material-ui/core/CircularProgress';
-import MySnackBar from '../commun/snackBar'
+import MyFlash from '../commun/flash'
 import renderField from '../commun/TextField'
 
 const useStyles = makeStyles(theme => ({
@@ -42,8 +42,8 @@ const Login = (props) => {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       
-    {registredStatus === 'success' && <MySnackBar variant="success" message='Registred successfully, check your e-mail'/>}
-    {status === "errorField" && <MySnackBar variant="error" message={errors}/>}
+    {registredStatus === 'success' && <MyFlash variant="success" msg={['Registred successfully, check your e-mail']}/>}
+    {status === "errorField" && <MyFlash variant="error" msg={[errors]}/>}
     <div className={classes.paper}>
       <Avatar className={classes.avatar}>
             <LockRoundedIcon/>

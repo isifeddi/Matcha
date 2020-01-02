@@ -1,4 +1,5 @@
-import { takeLatest, put,select} from "redux-saga/effects";
+import { takeLatest, put,select, delay} from "redux-saga/effects";
+import {resetState} from '../actions/resetStateAction';
 import { getOptionsSuccess, createOptionSuccess, createOptionError, addInfoError, addLocationSuccess} from "../actions/addInfoAction";
 import { updateUserSuccess} from '../actions/userAction';
 import axios from 'axios';
@@ -36,6 +37,8 @@ const createSelectOption =
         {
           yield put(createOptionError(response.data.error));
         }
+        yield delay(4000);
+        yield put(resetState());
     }catch (error) {
       if (error.response) {
         yield put(createOptionError('there has been an error'));
@@ -59,6 +62,8 @@ const add_Info =
       {
         yield put(addInfoError(response.data.error));
       }
+      yield delay(4000);
+      yield put(resetState());
     }catch (error) {
       if (error.response) {
         yield put(createOptionError('there has been an error'));
@@ -79,6 +84,8 @@ const getLocation =
       {
         yield put(addInfoError(response.data.error));
       }
+      yield delay(4000);
+      yield put(resetState());
     }catch (error) {
       if (error.response) {
         yield put(createOptionError('there has been an error'));
@@ -95,6 +102,8 @@ const AddLocation =
       if (error.response) {
         yield put(createOptionError('there has been an error'));
       }
+      yield delay(4000);
+      yield put(resetState());
     }
 };
 

@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import MySnackBar from '../commun/snackBar'
+import MyFlash from '../commun/flash'
 import renderField from '../commun/TextField';
 const useStyles = makeStyles(theme => ({
   
@@ -42,8 +42,8 @@ const ResetPassword = (props) => {
     return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
-    {resetPasswordStatus === "success" && <MySnackBar variant="success" message='Your password has been reset successfully! You will be redirected to login'/>}
-    {resetPasswordStatus === "error" && <MySnackBar variant="error" message={resetError+' You will be redirected to login'}/>}
+    {resetPasswordStatus === "success" && <MyFlash variant="success" msg={['Your password has been reset successfully! You will be redirected to login']}/>}
+    {resetPasswordStatus === "error" && <MyFlash variant="error" msg={[resetError+' You will be redirected to login']}/>}
     {status !== "loading" &&
     <div className={classes.paper}>
       <Avatar className={classes.avatar}>

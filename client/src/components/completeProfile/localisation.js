@@ -6,7 +6,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import GoogleMapReact from 'google-map-react';
 import RoomRoundedIcon from '@material-ui/icons/RoomRounded';
-//import MySnackBar from '../commun/snackBar';
 
 const useStyles = makeStyles(theme => ({
     paper: {

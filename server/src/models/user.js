@@ -21,14 +21,14 @@ module.exports = {
                 if(err)
                     reject(err);
                 else{
-                    resolve(res);
+                    resolve(JSON.parse(JSON.stringify(res)));
                 }
             });
         })
     },
     getUser:  function  (type, value) {
         return new Promise ( (resolve, reject) =>  {
-             conn.query(SELECT[type], [value],(err,res) => {
+             conn.query(SELECT[type], value,(err,res) => {
                 if(err)
                     reject(err);
                 else
@@ -42,7 +42,6 @@ module.exports = {
                             data[0].interests = interests;
                             let token = await jwt.sign(data[0], 'fuckingSecretKey');
                             data[0].token = token;
-                            delete data[0].verif_token;
                             resolve(data[0]);
                         }).catch((error)  => {console.log(error)})
                     }else{
@@ -55,6 +54,26 @@ module.exports = {
     update: function (type, value){
         return new Promise ((resolve, reject) => {
             conn.query(UPDATE[type], value,(err,res) => {
+                if(err)
+                    reject (err);
+                else
+                    resolve (JSON.parse(JSON.stringify(res)));
+            });
+        })
+    },
+    insert: function (type, value){
+        return new Promise ((resolve, reject) => {
+            conn.query(INSERT[type], value,(err,res) => {
+                if(err)
+                    reject (err);
+                else
+                    resolve (JSON.parse(JSON.stringify(res)));
+            });
+        })
+    },
+    select: function (type, value){
+        return new Promise ((resolve, reject) => {
+            conn.query(SELECT[type], value,(err,res) => {
                 if(err)
                     reject (err);
                 else
@@ -215,9 +234,8 @@ module.exports = {
             conn.query(INSERT.InsertUserInter, [id, inter], (err,res) => {
                 if(err)
                     reject(err);
-                else{
+                else
                     resolve(res);
-                }
             });
         })
     },

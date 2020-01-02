@@ -1,14 +1,14 @@
 
-import React ,{ useEffect }from 'react';
+import React from 'react';
 import {connect} from "react-redux";
 import ViewProfile from '../../components/Profile/viewProfile'
-import {getImages} from '../../actions/imagesAction';
+
 const ViewProfileContainer = (props) => {
-    const {user,images,getImages} = props;
+    const {user,images} = props;
     
     return (
         <div>
-            <ViewProfile user={user} images={images}/>
+            <ViewProfile user={user} images={images} interests={user.interests}/>
         </div>
     )
 }
@@ -19,7 +19,7 @@ const mapStateToProps = (state) => (
     "images" : state.images,
 });
 const mapDispatchToProps = {
-    "getImages" : getImages,
+    
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ViewProfileContainer);

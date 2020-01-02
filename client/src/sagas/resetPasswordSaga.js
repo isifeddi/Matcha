@@ -8,7 +8,6 @@ const resetPass =
   function *resetPass ({data}) {
     try {
       const response = yield axios.post('http://localhost:5000/resetPassword', {token: data.token, pass: data.form.password, c_pass: data.form.confirmPassword});
-      console.log(response.data);
       if(response.data.reset)
       {
         yield put(ResetPasswordSuccess());

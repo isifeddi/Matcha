@@ -25,7 +25,6 @@ const sendPictures =
         const response  = yield axios.post('http://localhost:5000/upload',data);
         if(response.data)
         {
-          console.log(response.data)
           yield put(getImages(user_id));
         }
        

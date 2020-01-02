@@ -11,6 +11,7 @@ import Pictures from '../../containers/completeProfile/pictures';
 import Localistaion from '../../containers/completeProfile/localisation'
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { Grid, Button } from '@material-ui/core';
+
 const useStyles = makeStyles(theme => ({
   layout: {
     width: 'auto',

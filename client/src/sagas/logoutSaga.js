@@ -13,8 +13,12 @@ export const logoutRequest =
                 },
                 "method": "post"
               });
-            yield put(ClearUserInformation());
-            yield put(push("/home"));
+              if(response)
+              {
+                yield put(ClearUserInformation());
+                yield put(push("/home"));
+              }
+            
         } catch (error) {
             console.log(error);
         }

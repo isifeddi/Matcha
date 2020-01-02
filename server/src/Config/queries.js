@@ -1,24 +1,33 @@
 const queries = {
     SELECT : {
         GetUsers: "SELECT id,firstname,lastname, gender, sexOrient, bio, birthday, rating, isOnline, lastSignIn FROM users WHERE id != ? AND id NOT IN  (SELECT blocked_id FROM blockList  WHERE blocker_id = ?) AND confirmed = 1 AND complete = 3",
+        // GetAllImages : "SELECT * FROM images WHERE user_id != ? AND user_id NOT IN  (SELECT blocked_id FROM blockList  WHERE blocker_id = ?)",
+        // GetAllInterests: "SELECT interest FROM interests INNER JOIN usersInterests ON interests.interest_id = usersInterests.iId WHERE usersInterests.uId = ?",
         GetUserByEmail: "SELECT *,DATE_FORMAT(birthday,'%Y-%m-%d') as transDate FROM users WHERE email = ?",
         GetUserById: "SELECT *,DATE_FORMAT(birthday,'%Y-%m-%d') as transDate FROM users WHERE id = ?",
         GetUserByUsername: "SELECT *,DATE_FORMAT(birthday,'%Y-%m-%d') as transDate FROM users WHERE username = ?",
         GetUserByToken: "SELECT * FROM users WHERE verif_token = ?",
         GetImages : "SELECT * FROM images WHERE user_id = ?",
-        GetAllImages : "SELECT * FROM images WHERE user_id != ?",
         GetInterests: "SELECT interest FROM interests",
         GetStep: "SELECT complete FROM users WHERE id = ?",
         CheckInter: "SELECT COUNT(interest) as n FROM interests WHERE interest IN (?)",
         GetInterId : "SELECT interest_id FROM interests WHERE interest = ?",
         InterCreatedNbr: "SELECT COUNT(interest) as n FROM interests WHERE createdBy = ? ",
-        GetUserInter: "SELECT interest FROM interests INNER JOIN usersInterests ON interests.interest_id = usersInterests.iId WHERE usersInterests.uId = ?"
+        getBlockUser : "SELECT id,firstname,lastname FROM users WHERE  id  IN (SELECT blocked_id FROM blockList WHERE blocker_id = ?)",
+        GetUserInter: "SELECT interest FROM interests INNER JOIN usersInterests ON interests.interest_id = usersInterests.iId WHERE usersInterests.uId = ?",
+        CheckEditUsername: "SELECT username from users where username = ? AND id != ?",
+        CheckEditEmail: "SELECT email from users where email = ? AND id != ?"
+
     },
     INSERT : {
         AddImage: 'INSERT INTO images (user_id, path,isProfilePic) VALUES (?, ?,?)',
         AddUser: 'INSERT INTO users (lastname, firstname, username, email, password) VALUES (?, ?, ?, ?, ?)',
         CreateInterest: "INSERT INTO interests (interest, createdBy) VALUES (?, ?)",
         InsertUserInter: "INSERT INTO usersInterests (uId, iId) VALUES (?, ?)",
+        blockUser : "INSERT INTO blockList (blocker_id, blocked_id,date) VALUES (?, ?, NOW())",
+        likeUser : "INSERT INTO likesList (liker_id, liked_id,date) VALUES (?, ?, NOW())",
+        reportUser : "INSERT INTO reportList (reporter_id, reported_id,date) VALUES (?, ?, NOW())",
+        viewProfileUser : "INSERT INTO viewProfileList (viewer, viewed, date) VALUES (?,?,NOW())"
     },
     UPDATE : {
         Update: 'UPDATE users SET name = ?, email = ?, sex = ? WHERE id = ?',
@@ -27,11 +36,13 @@ const queries = {
         Confirmed: 'UPDATE users SET confirmed = 1 WHERE email = ?',
         notConfirmed: 'UPDATE users SET confirmed = 0 WHERE email = ?',
         UpdateInfo: "UPDATE users SET gender = ?, sexOrient = ?, birthday = ?, bio = ? WHERE id = ?",
+        UpdateProfile: "UPDATE users SET firstname = ?, lastname = ?, username = ?, email = ?, gender = ?, birthday = ?, sexOrient = ?, bio = ? WHERE id = ?",
+        UpdatePassword: "UPDATE users SET password = ? WHERE id = ?",
         UpdateOnline: "UPDATE users SET isOnline = 1 ,lastSignIn = null WHERE id = ?",
         UpdateOffline: "UPDATE users SET isOnline = 0 ,lastSignIn = NOW() WHERE id = ?",
-        UpdateStep:"UPDATE users SET complete = ? WHERE id = ?",
+        UpdateStep: "UPDATE users SET complete = ? WHERE id = ?",
         UpdateLocation: "UPDATE users SET latitude = ? , longitude = ? WHERE id = ?",
-        setProfilePic:'UPDATE images SET IsProfilePic = 1 WHERE id = ? && user_id = ?',
+        setProfilePic: 'UPDATE images SET IsProfilePic = 1 WHERE id = ? && user_id = ?',
         resetProfilePic : 'UPDATE images SET isProfilePic = 0 WHERE user_id = ?',
         setFirstProPic : 'UPDATE  images SET isProfilePic = 1 WHERE user_id = ? ORDER BY id ASC LIMIT 1;'
     },
