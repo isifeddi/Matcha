@@ -25,6 +25,7 @@ const likeUser = require('../controllers/functions/likeUser');
 const reportUser = require('../controllers/functions/reportUser');
 const viewProfileUser = require('../controllers/functions/viewProfileUser');
 const getBlockUser = require('../controllers/functions/getBlockUser');
+const editProfile = require('../controllers/editProfile');
 
 router.post('/login', Login);
 router.post('/register', Register);
@@ -51,5 +52,6 @@ router.post('/likeUser',likeUser);
 router.post('/reportUser',reportUser);
 router.post('/viewProfileUser',viewProfileUser)
 router.post('/getBlockUser',getBlockUser)
+router.post('/editProfile', editProfile);
 
 module.exports = router;

@@ -2,10 +2,17 @@
 -- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
+
 -- Host: mysql:3306
 -- Generation Time: Jan 02, 2020 at 10:08 PM
 -- Server version: 5.7.28
 -- PHP Version: 7.2.23
+
+-- Hôte : mysql:3306
+-- Généré le :  jeu. 02 jan. 2020 à 11:48
+-- Version du serveur :  5.7.27
+-- Version de PHP :  7.2.22
+
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +32,11 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+
 -- Table structure for table `blockList`
+
+-- Structure de la table `blockList`
+
 --
 
 CREATE TABLE `blockList` (
@@ -36,22 +47,39 @@ CREATE TABLE `blockList` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+
 -- Dumping data for table `blockList`
+
+-- Déchargement des données de la table `blockList`
+
 --
 
 INSERT INTO `blockList` (`id`, `blocker_id`, `blocked_id`, `date`) VALUES
 (13, 133, 2, '2019-12-31 01:44:32'),
 (14, 133, 7, '2019-12-31 01:44:53'),
 (15, 133, 1, '2019-12-31 01:50:51'),
+
 (16, 133, 3, '2019-12-31 01:57:58'),
 (17, 1, 4, '2020-01-01 20:23:22'),
 (18, 1, 8, '2020-01-02 01:31:08'),
 (19, 1, 12, '2020-01-02 01:31:14');
 
+(16, 1, 3, '2020-01-01 14:03:28'),
+(17, 1, 4, '2020-01-01 14:03:32'),
+(18, 1, 2, '2020-01-01 14:52:49'),
+(19, 1, 5, '2020-01-01 14:52:51'),
+(20, 1, 6, '2020-01-01 14:52:55'),
+(21, 1, 7, '2020-01-01 14:53:05');
+
+
 -- --------------------------------------------------------
 
 --
+
 -- Table structure for table `images`
+
+-- Structure de la table `images`
+
 --
 
 CREATE TABLE `images` (
@@ -62,6 +90,7 @@ CREATE TABLE `images` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+
 -- Dumping data for table `images`
 --
 
@@ -88,10 +117,41 @@ INSERT INTO `images` (`id`, `user_id`, `path`, `isProfilePic`) VALUES
 (22, 22, '2019-12-30T23:49:07.697Zgirl3.jpg', 1),
 (23, 23, '2019-12-30T23:49:17.520Z655568.jpg', 1),
 (24, 24, '2019-12-30T23:49:00.499Zgirl.jpg', 1),
+
+-- Déchargement des données de la table `images`
+--
+
+INSERT INTO `images` (`id`, `user_id`, `path`, `isProfilePic`) VALUES
+(1, 1, '2019-12-30T23:49:00.499Zgirl.jpg', 0),
+(2, 2, '2019-12-30T23:49:00.499Zgirl.jpg', 1),
+(3, 3, '2019-12-30T23:49:17.520Z655568.jpg', 0),
+(4, 4, '2019-12-30T23:49:03.830Zgirl1.jpg', 1),
+(5, 5, '2019-12-30T23:49:07.697Zgirl3.jpg', 0),
+(6, 6, '2019-12-30T23:49:03.830Zgirl1.jpg', 0),
+(7, 7, '2019-12-30T23:49:17.520Z655568.jpg', 1),
+(8, 8, '2019-12-30T23:49:14.601Zboy.jpg', 0),
+(9, 9, '2019-12-30T23:49:03.830Zgirl1.jpg', 0),
+(10, 10, '2019-12-30T23:49:07.697Zgirl3.jpg', 0),
+(11, 11, '2019-12-30T23:49:07.697Zgirl3.jpg', 1),
+(12, 12, '2019-12-30T23:49:03.830Zgirl1.jpg', 0),
+(13, 13, '2019-12-30T23:49:17.520Z655568.jpg', 1),
+(14, 14, '2019-12-30T23:49:14.601Zboy.jpg', 1),
+(15, 15, '2019-12-30T23:49:03.830Zgirl1.jpg', 0),
+(16, 16, '2019-12-30T23:49:00.499Zgirl.jpg', 1),
+(17, 17, '2019-12-30T23:49:07.697Zgirl3.jpg', 1),
+(18, 18, '2019-12-30T23:49:14.601Zboy.jpg', 1),
+(19, 19, '2019-12-30T23:49:14.601Zboy.jpg', 0),
+(20, 20, '2019-12-30T23:49:17.520Z655568.jpg', 1),
+(21, 21, '2019-12-30T23:49:03.830Zgirl1.jpg', 0),
+(22, 22, '2019-12-30T23:49:07.697Zgirl3.jpg', 1),
+(23, 23, '2019-12-30T23:49:17.520Z655568.jpg', 0),
+(24, 24, '2019-12-30T23:49:00.499Zgirl.jpg', 0),
+
 (25, 25, '2019-12-30T23:49:03.830Zgirl1.jpg', 1),
 (26, 26, '2019-12-30T23:49:03.830Zgirl1.jpg', 1),
 (27, 27, '2019-12-30T23:49:00.499Zgirl.jpg', 1),
 (28, 28, '2019-12-30T23:49:17.520Z655568.jpg', 1),
+
 (29, 29, '2019-12-30T23:49:14.601Zboy.jpg', 1),
 (30, 30, '2019-12-30T23:49:03.830Zgirl1.jpg', 1),
 (31, 31, '2019-12-30T23:49:17.520Z655568.jpg', 1),
@@ -142,6 +202,58 @@ INSERT INTO `images` (`id`, `user_id`, `path`, `isProfilePic`) VALUES
 (76, 76, '2019-12-30T23:49:07.697Zgirl3.jpg', 1),
 (77, 77, '2019-12-30T23:49:03.830Zgirl1.jpg', 1),
 (78, 78, '2019-12-30T23:49:17.520Z655568.jpg', 1),
+
+(29, 29, '2019-12-30T23:49:14.601Zboy.jpg', 0),
+(30, 30, '2019-12-30T23:49:03.830Zgirl1.jpg', 0),
+(31, 31, '2019-12-30T23:49:17.520Z655568.jpg', 1),
+(32, 32, '2019-12-30T23:49:00.499Zgirl.jpg', 0),
+(33, 33, '2019-12-30T23:49:17.520Z655568.jpg', 0),
+(34, 34, '2019-12-30T23:49:17.520Z655568.jpg', 1),
+(35, 35, '2019-12-30T23:49:14.601Zboy.jpg', 1),
+(36, 36, '2019-12-30T23:49:00.499Zgirl.jpg', 1),
+(37, 37, '2019-12-30T23:49:00.499Zgirl.jpg', 0),
+(38, 38, '2019-12-30T23:49:00.499Zgirl.jpg', 1),
+(39, 39, '2019-12-30T23:49:14.601Zboy.jpg', 1),
+(40, 40, '2019-12-30T23:49:14.601Zboy.jpg', 0),
+(41, 41, '2019-12-30T23:49:03.830Zgirl1.jpg', 0),
+(42, 42, '2019-12-30T23:49:07.697Zgirl3.jpg', 1),
+(43, 43, '2019-12-30T23:49:17.520Z655568.jpg', 0),
+(44, 44, '2019-12-30T23:49:14.601Zboy.jpg', 0),
+(45, 45, '2019-12-30T23:49:17.520Z655568.jpg', 1),
+(46, 46, '2019-12-30T23:49:07.697Zgirl3.jpg', 1),
+(47, 47, '2019-12-30T23:49:00.499Zgirl.jpg', 0),
+(48, 48, '2019-12-30T23:49:03.830Zgirl1.jpg', 0),
+(49, 49, '2019-12-30T23:49:03.830Zgirl1.jpg', 0),
+(50, 50, '2019-12-30T23:49:17.520Z655568.jpg', 1),
+(51, 51, '2019-12-30T23:49:17.520Z655568.jpg', 1),
+(52, 52, '2019-12-30T23:49:17.520Z655568.jpg', 1),
+(53, 53, '2019-12-30T23:49:00.499Zgirl.jpg', 0),
+(54, 54, '2019-12-30T23:49:03.830Zgirl1.jpg', 1),
+(55, 55, '2019-12-30T23:49:00.499Zgirl.jpg', 0),
+(56, 56, '2019-12-30T23:49:00.499Zgirl.jpg', 1),
+(57, 57, '2019-12-30T23:49:00.499Zgirl.jpg', 0),
+(58, 58, '2019-12-30T23:49:17.520Z655568.jpg', 1),
+(59, 59, '2019-12-30T23:49:07.697Zgirl3.jpg', 0),
+(60, 60, '2019-12-30T23:49:03.830Zgirl1.jpg', 1),
+(61, 61, '2019-12-30T23:49:07.697Zgirl3.jpg', 0),
+(62, 62, '2019-12-30T23:49:14.601Zboy.jpg', 0),
+(63, 63, '2019-12-30T23:49:14.601Zboy.jpg', 0),
+(64, 64, '2019-12-30T23:49:17.520Z655568.jpg', 1),
+(65, 65, '2019-12-30T23:49:03.830Zgirl1.jpg', 1),
+(66, 66, '2019-12-30T23:49:14.601Zboy.jpg', 0),
+(67, 67, '2019-12-30T23:49:03.830Zgirl1.jpg', 1),
+(68, 68, '2019-12-30T23:49:00.499Zgirl.jpg', 0),
+(69, 69, '2019-12-30T23:49:07.697Zgirl3.jpg', 1),
+(70, 70, '2019-12-30T23:49:14.601Zboy.jpg', 1),
+(71, 71, '2019-12-30T23:49:14.601Zboy.jpg', 0),
+(72, 72, '2019-12-30T23:49:03.830Zgirl1.jpg', 0),
+(73, 73, '2019-12-30T23:49:00.499Zgirl.jpg', 0),
+(74, 74, '2019-12-30T23:49:00.499Zgirl.jpg', 1),
+(75, 75, '2019-12-30T23:49:14.601Zboy.jpg', 0),
+(76, 76, '2019-12-30T23:49:07.697Zgirl3.jpg', 1),
+(77, 77, '2019-12-30T23:49:03.830Zgirl1.jpg', 1),
+(78, 78, '2019-12-30T23:49:17.520Z655568.jpg', 0),
+
 (79, 79, '2019-12-30T23:49:14.601Zboy.jpg', 1),
 (80, 80, '2019-12-30T23:49:00.499Zgirl.jpg', 1),
 (81, 81, '2019-12-30T23:49:07.697Zgirl3.jpg', 1),
@@ -149,6 +261,7 @@ INSERT INTO `images` (`id`, `user_id`, `path`, `isProfilePic`) VALUES
 (83, 83, '2019-12-30T23:49:03.830Zgirl1.jpg', 1),
 (84, 84, '2019-12-30T23:49:03.830Zgirl1.jpg', 1),
 (85, 85, '2019-12-30T23:49:07.697Zgirl3.jpg', 1),
+
 (86, 86, '2019-12-30T23:49:17.520Z655568.jpg', 1),
 (87, 87, '2019-12-30T23:49:17.520Z655568.jpg', 1),
 (88, 88, '2019-12-30T23:49:03.830Zgirl1.jpg', 1),
@@ -196,10 +309,60 @@ INSERT INTO `images` (`id`, `user_id`, `path`, `isProfilePic`) VALUES
 (130, 130, '2019-12-30T23:49:07.697Zgirl3.jpg', 1),
 (131, 131, '2019-12-30T23:49:03.830Zgirl1.jpg', 1),
 (132, 132, '2019-12-30T23:49:17.520Z655568.jpg', 1),
+
+(86, 86, '2019-12-30T23:49:17.520Z655568.jpg', 0),
+(87, 87, '2019-12-30T23:49:17.520Z655568.jpg', 0),
+(88, 88, '2019-12-30T23:49:03.830Zgirl1.jpg', 0),
+(89, 89, '2019-12-30T23:49:00.499Zgirl.jpg', 1),
+(90, 90, '2019-12-30T23:49:17.520Z655568.jpg', 1),
+(91, 91, '2019-12-30T23:49:14.601Zboy.jpg', 0),
+(92, 92, '2019-12-30T23:49:03.830Zgirl1.jpg', 0),
+(93, 93, '2019-12-30T23:49:03.830Zgirl1.jpg', 0),
+(94, 94, '2019-12-30T23:49:00.499Zgirl.jpg', 1),
+(95, 95, '2019-12-30T23:49:14.601Zboy.jpg', 0),
+(96, 96, '2019-12-30T23:49:07.697Zgirl3.jpg', 0),
+(97, 97, '2019-12-30T23:49:03.830Zgirl1.jpg', 0),
+(98, 98, '2019-12-30T23:49:07.697Zgirl3.jpg', 0),
+(99, 99, '2019-12-30T23:49:00.499Zgirl.jpg', 1),
+(100, 100, '2019-12-30T23:49:00.499Zgirl.jpg', 0),
+(101, 101, '2019-12-30T23:49:03.830Zgirl1.jpg', 1),
+(102, 102, '2019-12-30T23:49:00.499Zgirl.jpg', 0),
+(103, 103, '2019-12-30T23:49:17.520Z655568.jpg', 1),
+(104, 104, '2019-12-30T23:49:00.499Zgirl.jpg', 1),
+(105, 105, '2019-12-30T23:49:17.520Z655568.jpg', 0),
+(106, 106, '2019-12-30T23:49:14.601Zboy.jpg', 1),
+(107, 107, '2019-12-30T23:49:07.697Zgirl3.jpg', 0),
+(108, 108, '2019-12-30T23:49:14.601Zboy.jpg', 0),
+(109, 109, '2019-12-30T23:49:07.697Zgirl3.jpg', 0),
+(110, 110, '2019-12-30T23:49:00.499Zgirl.jpg', 0),
+(111, 111, '2019-12-30T23:49:07.697Zgirl3.jpg', 1),
+(112, 112, '2019-12-30T23:49:17.520Z655568.jpg', 0),
+(113, 113, '2019-12-30T23:49:14.601Zboy.jpg', 0),
+(114, 114, '2019-12-30T23:49:03.830Zgirl1.jpg', 0),
+(115, 115, '2019-12-30T23:49:07.697Zgirl3.jpg', 0),
+(116, 116, '2019-12-30T23:49:17.520Z655568.jpg', 1),
+(117, 117, '2019-12-30T23:49:00.499Zgirl.jpg', 0),
+(118, 118, '2019-12-30T23:49:17.520Z655568.jpg', 1),
+(119, 119, '2019-12-30T23:49:00.499Zgirl.jpg', 1),
+(120, 120, '2019-12-30T23:49:17.520Z655568.jpg', 0),
+(121, 121, '2019-12-30T23:49:07.697Zgirl3.jpg', 1),
+(122, 122, '2019-12-30T23:49:14.601Zboy.jpg', 1),
+(123, 123, '2019-12-30T23:49:17.520Z655568.jpg', 0),
+(124, 124, '2019-12-30T23:49:03.830Zgirl1.jpg', 0),
+(125, 125, '2019-12-30T23:49:07.697Zgirl3.jpg', 0),
+(126, 126, '2019-12-30T23:49:07.697Zgirl3.jpg', 1),
+(127, 127, '2019-12-30T23:49:00.499Zgirl.jpg', 0),
+(128, 128, '2019-12-30T23:49:03.830Zgirl1.jpg', 0),
+(129, 129, '2019-12-30T23:49:00.499Zgirl.jpg', 0),
+(130, 130, '2019-12-30T23:49:07.697Zgirl3.jpg', 0),
+(131, 131, '2019-12-30T23:49:03.830Zgirl1.jpg', 0),
+(132, 132, '2019-12-30T23:49:17.520Z655568.jpg', 0),
+
 (134, 134, '2019-12-30T23:49:03.830Zgirl1.jpg', 1),
 (135, 135, '2019-12-30T23:49:00.499Zgirl.jpg', 1),
 (136, 136, '2019-12-30T23:49:03.830Zgirl1.jpg', 1),
 (137, 137, '2019-12-30T23:49:03.830Zgirl1.jpg', 1),
+
 (138, 138, '2019-12-30T23:49:14.601Zboy.jpg', 1),
 (139, 139, '2019-12-30T23:49:00.499Zgirl.jpg', 1),
 (140, 140, '2019-12-30T23:49:17.520Z655568.jpg', 1),
@@ -226,6 +389,35 @@ INSERT INTO `images` (`id`, `user_id`, `path`, `isProfilePic`) VALUES
 (162, 162, '2019-12-30T23:49:14.601Zboy.jpg', 1),
 (163, 163, '2019-12-30T23:49:17.520Z655568.jpg', 1),
 (164, 164, '2019-12-30T23:49:17.520Z655568.jpg', 1),
+
+(138, 138, '2019-12-30T23:49:14.601Zboy.jpg', 0),
+(139, 139, '2019-12-30T23:49:00.499Zgirl.jpg', 0),
+(140, 140, '2019-12-30T23:49:17.520Z655568.jpg', 1),
+(141, 141, '2019-12-30T23:49:07.697Zgirl3.jpg', 1),
+(142, 142, '2019-12-30T23:49:03.830Zgirl1.jpg', 1),
+(143, 143, '2019-12-30T23:49:00.499Zgirl.jpg', 0),
+(144, 144, '2019-12-30T23:49:00.499Zgirl.jpg', 1),
+(145, 145, '2019-12-30T23:49:00.499Zgirl.jpg', 1),
+(146, 146, '2019-12-30T23:49:17.520Z655568.jpg', 0),
+(147, 147, '2019-12-30T23:49:17.520Z655568.jpg', 1),
+(148, 148, '2019-12-30T23:49:07.697Zgirl3.jpg', 0),
+(149, 149, '2019-12-30T23:49:14.601Zboy.jpg', 1),
+(150, 150, '2019-12-30T23:49:03.830Zgirl1.jpg', 1),
+(151, 151, '2019-12-30T23:49:03.830Zgirl1.jpg', 0),
+(152, 152, '2019-12-30T23:49:17.520Z655568.jpg', 1),
+(153, 153, '2019-12-30T23:49:03.830Zgirl1.jpg', 0),
+(154, 154, '2019-12-30T23:49:17.520Z655568.jpg', 1),
+(155, 155, '2019-12-30T23:49:14.601Zboy.jpg', 1),
+(156, 156, '2019-12-30T23:49:17.520Z655568.jpg', 0),
+(157, 157, '2019-12-30T23:49:07.697Zgirl3.jpg', 0),
+(158, 158, '2019-12-30T23:49:07.697Zgirl3.jpg', 0),
+(159, 159, '2019-12-30T23:49:00.499Zgirl.jpg', 1),
+(160, 160, '2019-12-30T23:49:14.601Zboy.jpg', 0),
+(161, 161, '2019-12-30T23:49:17.520Z655568.jpg', 0),
+(162, 162, '2019-12-30T23:49:14.601Zboy.jpg', 1),
+(163, 163, '2019-12-30T23:49:17.520Z655568.jpg', 0),
+(164, 164, '2019-12-30T23:49:17.520Z655568.jpg', 0),
+
 (165, 165, '2019-12-30T23:49:07.697Zgirl3.jpg', 1),
 (166, 166, '2019-12-30T23:49:00.499Zgirl.jpg', 1),
 (167, 167, '2019-12-30T23:49:07.697Zgirl3.jpg', 1),
@@ -233,6 +425,7 @@ INSERT INTO `images` (`id`, `user_id`, `path`, `isProfilePic`) VALUES
 (169, 169, '2019-12-30T23:49:00.499Zgirl.jpg', 1),
 (170, 170, '2019-12-30T23:49:14.601Zboy.jpg', 1),
 (171, 171, '2019-12-30T23:49:03.830Zgirl1.jpg', 1),
+
 (172, 172, '2019-12-30T23:49:17.520Z655568.jpg', 1),
 (173, 173, '2019-12-30T23:49:03.830Zgirl1.jpg', 1),
 (174, 174, '2019-12-30T23:49:03.830Zgirl1.jpg', 1),
@@ -271,6 +464,38 @@ INSERT INTO `images` (`id`, `user_id`, `path`, `isProfilePic`) VALUES
 (214, 2, '2020-01-01T22:10:14.497Zgirl1.jpg', 0),
 (215, 2, '2020-01-01T22:10:17.881Zgirl3.jpg', 0);
 
+(172, 172, '2019-12-30T23:49:17.520Z655568.jpg', 0),
+(173, 173, '2019-12-30T23:49:03.830Zgirl1.jpg', 0),
+(174, 174, '2019-12-30T23:49:03.830Zgirl1.jpg', 0),
+(175, 175, '2019-12-30T23:49:14.601Zboy.jpg', 1),
+(176, 176, '2019-12-30T23:49:07.697Zgirl3.jpg', 0),
+(177, 177, '2019-12-30T23:49:17.520Z655568.jpg', 1),
+(178, 178, '2019-12-30T23:49:14.601Zboy.jpg', 1),
+(179, 179, '2019-12-30T23:49:17.520Z655568.jpg', 1),
+(180, 180, '2019-12-30T23:49:07.697Zgirl3.jpg', 0),
+(181, 181, '2019-12-30T23:49:07.697Zgirl3.jpg', 1),
+(182, 182, '2019-12-30T23:49:07.697Zgirl3.jpg', 1),
+(183, 183, '2019-12-30T23:49:03.830Zgirl1.jpg', 0),
+(184, 184, '2019-12-30T23:49:14.601Zboy.jpg', 1),
+(185, 185, '2019-12-30T23:49:17.520Z655568.jpg', 1),
+(186, 186, '2019-12-30T23:49:00.499Zgirl.jpg', 1),
+(187, 187, '2019-12-30T23:49:14.601Zboy.jpg', 0),
+(188, 188, '2019-12-30T23:49:07.697Zgirl3.jpg', 0),
+(189, 189, '2019-12-30T23:49:14.601Zboy.jpg', 0),
+(190, 190, '2019-12-30T23:49:14.601Zboy.jpg', 0),
+(191, 191, '2019-12-30T23:49:07.697Zgirl3.jpg', 1),
+(192, 192, '2019-12-30T23:49:07.697Zgirl3.jpg', 0),
+(193, 193, '2019-12-30T23:49:07.697Zgirl3.jpg', 0),
+(194, 194, '2019-12-30T23:49:17.520Z655568.jpg', 1),
+(195, 195, '2019-12-30T23:49:07.697Zgirl3.jpg', 0),
+(196, 196, '2019-12-30T23:49:17.520Z655568.jpg', 1),
+(197, 197, '2019-12-30T23:49:07.697Zgirl3.jpg', 0),
+(198, 198, '2019-12-30T23:49:07.697Zgirl3.jpg', 1),
+(199, 199, '2019-12-30T23:49:17.520Z655568.jpg', 1),
+(200, 200, '2019-12-30T23:49:07.697Zgirl3.jpg', 0),
+(202, 133, '2019-12-31T16:32:39.346Zgeor.jpg', 1);
+
+
 -- --------------------------------------------------------
 
 --
@@ -301,7 +526,11 @@ INSERT INTO `interests` (`interest_id`, `interest`, `createdBy`) VALUES
 -- --------------------------------------------------------
 
 --
+
 -- Table structure for table `likesList`
+
+-- Structure de la table `likesList`
+
 --
 
 CREATE TABLE `likesList` (
@@ -312,12 +541,17 @@ CREATE TABLE `likesList` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+
 -- Dumping data for table `likesList`
+
+-- Déchargement des données de la table `likesList`
+
 --
 
 INSERT INTO `likesList` (`id`, `liker_id`, `liked_id`, `date`) VALUES
 (8, 133, 3, '2019-12-31 01:44:47'),
 (9, 133, 5, '2019-12-31 01:44:51'),
+
 (10, 133, 1, '2019-12-31 01:50:43'),
 (11, 133, 4, '2019-12-31 01:57:39'),
 (12, 133, 3, '2019-12-31 01:57:50'),
@@ -327,10 +561,17 @@ INSERT INTO `likesList` (`id`, `liker_id`, `liked_id`, `date`) VALUES
 (16, 1, 3, '2020-01-01 21:38:57'),
 (17, 1, 3, '2020-01-01 22:13:54');
 
+(10, 1, 2, '2020-01-01 14:03:39');
+
+
 -- --------------------------------------------------------
 
 --
+
 -- Table structure for table `reportList`
+
+-- Structure de la table `reportList`
+
 --
 
 CREATE TABLE `reportList` (
@@ -341,6 +582,7 @@ CREATE TABLE `reportList` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+
 -- Dumping data for table `reportList`
 --
 
@@ -350,6 +592,14 @@ INSERT INTO `reportList` (`id`, `reporter_id`, `reported_id`, `date`) VALUES
 (3, 133, 1, '2019-12-31 01:44:30'),
 (4, 133, 8, '2019-12-31 01:44:54'),
 (5, 133, 4, '2019-12-31 01:58:12');
+
+-- Déchargement des données de la table `reportList`
+--
+
+INSERT INTO `reportList` (`id`, `reporter_id`, `reported_id`, `date`) VALUES
+(4, 133, 8, '2019-12-31 01:44:54'),
+(5, 1, 2, '2020-01-01 14:03:25');
+
 
 -- --------------------------------------------------------
 
@@ -383,10 +633,17 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `username`, `email`, `password`, `verif_token`, `confirmed`, `complete`, `gender`, `sexOrient`, `bio`, `birthday`, `rating`, `isOnline`, `latitude`, `longitude`, `lastSignIn`) VALUES
+
 (1, 'Channa', 'Uttermare', 'aa', 'cuttermare0@elegantthemes.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'male', 'women', ' I love buying new things but I hate spending money.', '1982-03-04', 2, 1, -7.10427, 111.395, NULL),
 (2, 'Mahalia', 'Lillistone', 'mm', 'mlillistone1@dailymail.co.uk', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'male', 'both', ' I love buying new things but I hate spending money.', '1995-04-14', 5, 0, 5.48274, -73.4062, '2020-01-01 22:10:20'),
 (3, 'Heddie', 'Bohlin', 'hbohlin2', 'hbohlin2@elpais.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'female', 'men', ' I love buying new things but I hate spending money.', '1990-08-13', 4, 1, -23.421, -51.9331, '2019-01-04 00:00:00'),
 (4, 'monica', 'monica', 'swd', 'hivantyev3@myspace.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'male', 'both', ' I love buying new things but I hate spending money.', '1980-02-07', 3, 0, -22.7486, -46.8931, '2020-01-01 17:23:08'),
+
+(1, 'ilyas', 'sifeddine', 'isifeddi', 'isifeddi@gmail.com', '$2b$10$mkW.9zhp4mu8XAL6kZ651OzGc9XRj5OWm1M15nXWo210eavqBqltO', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'male', 'women', 'be like water :)', '2000-01-01', 2, 0, 32.8829, -6.89803, '2020-01-02 11:44:42'),
+(2, 'Mahalia', 'Lillistone', 'mlillistone1', 'mlillistone1@dailymail.co.uk', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'male', 'both', ' I love buying new things but I hate spending money.', '1995-04-14', 5, 0, 5.48274, -73.4062, '2019-01-08 00:00:00'),
+(3, 'Heddie', 'Bohlin', 'hbohlin2', 'hbohlin2@elpais.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'female', 'men', ' I love buying new things but I hate spending money.', '1990-08-13', 4, 1, -23.421, -51.9331, '2019-01-04 00:00:00'),
+(4, 'Heidi', 'Ivantyev', 'hivantyev3', 'hivantyev3@myspace.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'male', 'both', ' I love buying new things but I hate spending money.', '1980-02-07', 3, 0, -22.7486, -46.8931, '2019-01-09 00:00:00'),
+
 (5, 'Emmanuel', 'Cousins', 'ecousins4', 'ecousins4@senate.gov', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'male', 'men', ' I love buying new things but I hate spending money.', '1981-07-15', 2, 1, -7.08721, 110.913, '2019-01-08 00:00:00'),
 (6, 'Eveline', 'Renney', 'erenney5', 'erenney5@craigslist.org', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'male', 'both', ' I love buying new things but I hate spending money.', '1985-01-08', 4, 0, 5.88725, -10.0304, '2019-01-09 00:00:00'),
 (7, 'Evangelin', 'Guiduzzi', 'eguiduzzi6', 'eguiduzzi6@nymag.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'female', 'men', ' I love buying new things but I hate spending money.', '1971-11-22', 5, 1, 53.157, 30.4607, '2019-01-08 00:00:00'),
@@ -516,7 +773,11 @@ INSERT INTO `users` (`id`, `firstname`, `lastname`, `username`, `email`, `passwo
 (130, 'Fons', 'MacCafferty', 'fmaccafferty3l', 'fmaccafferty3l@go.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'female', 'women', ' I love buying new things but I hate spending money.', '1976-07-15', 0, 0, 13.7559, 7.98654, '2019-01-11 00:00:00'),
 (131, 'Claire', 'Runacres', 'crunacres3m', 'crunacres3m@nih.gov', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'female', 'women', ' I love buying new things but I hate spending money.', '1993-02-09', 0, 0, 31.3657, 121.373, '2019-01-10 00:00:00'),
 (132, 'Rahel', 'Mathet', 'rmathet3n', 'rmathet3n@cbc.ca', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'female', 'women', ' I love buying new things but I hate spending money.', '1978-07-31', 0, 1, 6.08568, 8.32801, '2019-01-08 00:00:00'),
+
 (133, 'Angus', 'Tieraney', 'ibouroum', 'atieraney3o@yelp.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'female', 'men', ' I love buying new things but I hate spending money.', '1982-02-01', 4, 0, 41.3641, 2.13382, '2020-01-01 17:28:23'),
+
+(133, 'Angus', 'Tieraney', 'ibouroum', 'atieraney3o@yelp.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'female', 'men', ' I love buying new things but I hate spending money.', '1982-02-01', 4, 0, 41.3641, 2.13382, '2019-12-31 18:42:20'),
+
 (134, 'Selie', 'Mawditt', 'smawditt3p', 'smawditt3p@weebly.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'female', 'both', ' I love buying new things but I hate spending money.', '1990-05-19', 4, 0, 40.1557, 44.4394, '2019-01-09 00:00:00'),
 (135, 'Nevil', 'Boissier', 'nboissier3q', 'nboissier3q@google.es', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'male', 'men', ' I love buying new things but I hate spending money.', '1984-11-26', 3, 0, -29.9133, -51.1862, '2019-01-09 00:00:00'),
 (136, 'Tamas', 'Horry', 'thorry3r', 'thorry3r@redcross.org', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'male', 'men', ' I love buying new things but I hate spending money.', '1986-02-14', 1, 1, 13.8016, 121.15, '2019-01-05 00:00:00'),
@@ -533,8 +794,12 @@ INSERT INTO `users` (`id`, `firstname`, `lastname`, `username`, `email`, `passwo
 (147, 'Whitney', 'Crummay', 'wcrummay42', 'wcrummay42@bravesites.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'male', 'men', ' I love buying new things but I hate spending money.', '1992-06-15', 1, 1, 39.7702, 21.1829, '2019-01-03 00:00:00'),
 (148, 'Alfy', 'O\'Sculley', 'aosculley43', 'aosculley43@rambler.ru', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'male', 'both', ' I love buying new things but I hate spending money.', '1983-05-20', 3, 1, -8.30202, 112.483, '2019-01-03 00:00:00'),
 (149, 'Wilbur', 'Yesenin', 'wyesenin44', 'wyesenin44@w3.org', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'female', 'men', ' I love buying new things but I hate spending money.', '1970-11-01', 1, 0, 23.0706, 112.485, '2019-01-11 00:00:00'),
+
 (150, 'Auberta', 'Bowdon', 'abowdon45', 'abowdon45@businesswire.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'male', 'women', ' I love buying new things but I hate spending money.', '1981-09-03', 1, 1, 37.0542, 122.354, '2019-01-03 00:00:00'),
 (151, 'ibouroum', 'ibouroum', 'qq', 'ikjhdgkjdhgkdfh@lfgljf.fg', '$2b$10$KETq2Z.YLOQbvSyHCwUXHuj6mCa2gNKya3mtuTVLIVwKBB8/dRjmy', '48a15988dec72dd12eeccaaf3b6ca268bef1d47c6aa1529e4cf2f9fe7f04079d352c3f0e3bc488a5515e9def3b84da517ee82f2e8cf846b378ca64f30bcc7749', 1, 3, 'male', 'women', 'sfdsgdgdfhdfhfghfghfg', '2000-02-02', 0, 0, 32.8815, -6.89598, '2020-01-01 17:20:49');
+
+(150, 'Auberta', 'Bowdon', 'abowdon45', 'abowdon45@businesswire.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'male', 'women', ' I love buying new things but I hate spending money.', '1981-09-03', 1, 1, 37.0542, 122.354, '2019-01-03 00:00:00');
+
 
 -- --------------------------------------------------------
 
@@ -552,9 +817,13 @@ CREATE TABLE `usersInterests` (
 --
 
 INSERT INTO `usersInterests` (`uId`, `iId`) VALUES
+
 (1, 2),
 (1, 3),
 (1, 4),
+
+(1, 1),
+
 (76, 10),
 (77, 4),
 (78, 10),
@@ -630,6 +899,7 @@ INSERT INTO `usersInterests` (`uId`, `iId`) VALUES
 (148, 5),
 (149, 9),
 (150, 4),
+
 (151, 1),
 (151, 3),
 (151, 4),
@@ -638,6 +908,9 @@ INSERT INTO `usersInterests` (`uId`, `iId`) VALUES
 (151, 9),
 (151, 10),
 (151, 11),
+
+(151, 8),
+
 (152, 1),
 (153, 3),
 (154, 10),
@@ -1488,6 +1761,7 @@ INSERT INTO `usersInterests` (`uId`, `iId`) VALUES
 (999, 11),
 (1000, 11);
 
+
 -- --------------------------------------------------------
 
 --
@@ -1521,7 +1795,17 @@ ALTER TABLE `blockList`
   ADD PRIMARY KEY (`id`);
 
 --
+
 -- Indexes for table `images`
+
+-- Index pour la table `blockList`
+--
+ALTER TABLE `blockList`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `images`
+
 --
 ALTER TABLE `images`
   ADD PRIMARY KEY (`id`);
@@ -1533,19 +1817,31 @@ ALTER TABLE `interests`
   ADD PRIMARY KEY (`interest_id`);
 
 --
+
 -- Indexes for table `likesList`
+
+-- Index pour la table `likesList`
+
 --
 ALTER TABLE `likesList`
   ADD PRIMARY KEY (`id`);
 
 --
+
 -- Indexes for table `reportList`
+
+-- Index pour la table `reportList`
+
 --
 ALTER TABLE `reportList`
   ADD PRIMARY KEY (`id`);
 
 --
+
 -- Indexes for table `users`
+
+-- Index pour la table `users`
+
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
@@ -1573,10 +1869,23 @@ ALTER TABLE `blockList`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
+
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=216;
+
+-- AUTO_INCREMENT pour la table `blockList`
+--
+ALTER TABLE `blockList`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT pour la table `images`
+--
+ALTER TABLE `images`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=203;
+
 
 --
 -- AUTO_INCREMENT for table `interests`
@@ -1585,6 +1894,7 @@ ALTER TABLE `interests`
   MODIFY `interest_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
+
 -- AUTO_INCREMENT for table `likesList`
 --
 ALTER TABLE `likesList`
@@ -1592,6 +1902,15 @@ ALTER TABLE `likesList`
 
 --
 -- AUTO_INCREMENT for table `reportList`
+
+-- AUTO_INCREMENT pour la table `likesList`
+--
+ALTER TABLE `likesList`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT pour la table `reportList`
+
 --
 ALTER TABLE `reportList`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
@@ -1600,6 +1919,7 @@ ALTER TABLE `reportList`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
+
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=152;
 
 --
@@ -1607,6 +1927,9 @@ ALTER TABLE `users`
 --
 ALTER TABLE `viewProfileList`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
+
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

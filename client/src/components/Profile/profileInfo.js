@@ -8,8 +8,9 @@ import CreatableSelect from 'react-select/creatable';
 import { makeStyles } from '@material-ui/core/styles';
 import renderField from '../commun/TextField'
 import RadioGroup from '../commun/RadioGroup';
-const useStyles = makeStyles(theme => ({
-  
+import MyFlash from '../commun/flash';
+
+const useStyles = makeStyles(theme => ({  
     paper: {
         display: 'flex',
         flexDirection: 'column',
@@ -58,96 +59,113 @@ const renderDatepicker = ({input, label, meta : { touched, error}}
       </div>
     </div>
   );
- const ProfileInfo = () => {
+ const ProfileInfo = (props) => {
+   const {handleSubmit} = props;
     const classes = useStyles();
     return (
     <div>
+      <MyFlash msg={['hello','ff']} variant='success'/>
         <form>
             <Grid container justify="center" spacing={2}>
-            <Grid item={true} xs={5} >
-            <FormLabel  component="legend">Firstname</FormLabel>
-                <Field
-                    name="firstname"
-                    component={renderField}
-                    type = "text"
-                    rows='1'
+              <Grid item xs={5}>
+              <FormLabel  component="legend">Firstname</FormLabel>
+                  <Field
+                      name="firstname"
+                      component={renderField}
+                      type = "text"
+                      rows='1'
+                  />
+              </Grid>
+              <Grid item xs={5}>
+              <FormLabel  component="legend">Lastname</FormLabel>
+                  <Field
+                      name="lastname"
+                      component={renderField}
+                      type = "text"
+                      rows='1'
+                  />
+              </Grid>
+              <Grid item xs={5}>
+              <FormLabel  component="legend">Username</FormLabel>
+                  <Field
+                      name="username"
+                      component={renderField}
+                      type = "text"
+                      rows='1'
+                  />
+              </Grid>
+              <Grid item xs={5}>
+              <FormLabel  component="legend">Email</FormLabel>
+                  <Field
+                      name="email"
+                      component={renderField}
+                      type = "email"
+                      rows='1'
+                  />
+              </Grid>
+              <Grid item xs={5}>
+                <FormLabel component="legend">Gender</FormLabel>
+                <Field component={RadioGroup} name="gender" required={true} options={[
+                      { title: 'Male', value: 'male' },
+                      { title: 'Female', value: 'female' }
+                    ]}
                 />
-            </Grid>
-            <Grid item={true} xs={5}>
-            <FormLabel  component="legend">Lastname</FormLabel>
+              </Grid>
+              <Grid item xs={5}>
+                <FormLabel component="legend">Birthday</FormLabel>
                 <Field
-                    name="lastname"
-                    component={renderField}
-                    type = "text"
-                    rows='1'
+                  name="birthday"
+                  component={renderDatepicker}
                 />
-            </Grid>
-            <Grid item={true} xs={5}>
-            <FormLabel  component="legend">Username</FormLabel>
+              </Grid>
+              <Grid item xs={5}>
+              <FormLabel component="legend">Match with</FormLabel>
+                <Field component={RadioGroup} name="sexOrient" required={true} options={[
+                      { title:  'Men ' , value: 'men'  },
+                      { title:  'Women', value: 'women'},
+                      { title:  'Both' , value: 'both' }
+                    ]}
+                />
+              </Grid>
+              <Grid item xs={5}>
+                <FormLabel component="legend">Interests</FormLabel>
+                <Field name='interests' component={sel}/>
+              </Grid>
+              <Grid  item xs={10}>
+                <FormLabel  component="legend">Bio</FormLabel>
                 <Field
-                    name="username"
-                    component={renderField}
-                    type = "text"
-                    rows='1'
+                  name="bio"
+                  component={renderField}
+                  type = "text"
+                  rows='4'
+                  variant='outlined'
                 />
-            </Grid>
-            <Grid item={true} xs={5}>
-            <FormLabel  component="legend">Email</FormLabel>
-                <Field
-                    name="email"
-                    component={renderField}
-                    type = "email"
-                    rows='1'
-                />
-            </Grid>
-            <Grid item={true} xs={10}>
-            
-              <FormLabel  component="legend">Bio</FormLabel>
-              <Field
-                name="bio"
-                component={renderField}
-                type = "text"
-                rows='4'
-                variant='outlined'
-              />
-            </Grid>
-            
-            <Grid item={true} xs={5}>
-              <FormLabel component="legend">Gender</FormLabel>
-              <Field component={RadioGroup} name="gender" required={true} options={[
-                    { title: 'Male', value: 'male' },
-                    { title: 'Female', value: 'female' }
-                  ]}
-              />
-            </Grid>
-            <Grid item={true} xs={5}>
-            <FormLabel component="legend">Match with</FormLabel>
-              <Field component={RadioGroup} name="sexOrient" required={true} options={[
-                    { title:  'Men ' , value: 'men'  },
-                    { title:  'Women', value: 'women'},
-                    { title:  'Both' , value: 'both' }
-                  ]}
-              />
-            </Grid>
-            <Grid item={true} xs={5}>
-              <FormLabel component="legend">Birthday</FormLabel>
-              <Field
-                name="birthday"
-                component={renderDatepicker}
-              />
-            </Grid>
-            <Grid item={true} xs={5}>
-              <FormLabel component="legend">Interests</FormLabel>
-              <Field name='interests' component={sel}/>
-            </Grid>
-            
-            
-              <Grid item={true} container justify='center' xs={3}>
-                <Button  className={classes.submit} fullWidth variant="contained" type="submit" color="primary" name="submit" value="ok" >Next</Button>
+              </Grid> 
+              <Grid item xs={5}>
+              <FormLabel  component="legend">New password</FormLabel>
+                  <Field
+                      name="password"
+                      component={renderField}
+                      type = "password"
+                      rows='1'
+                  />
+              </Grid>
+              <Grid item xs={5}>
+              <FormLabel  component="legend">Confirm new password</FormLabel>
+                  <Field
+                      name="confirmPassword"
+                      component={renderField}
+                      type = "password"
+                      rows='1'
+                  />
+              </Grid>        
+              <Grid item container justify='center' xs={3}>
+                <Button  onClick={handleSubmit} className={classes.submit} fullWidth variant="contained" type="submit" color="primary" name="submit" value="ok" >Submit</Button>
               </Grid>
             </Grid>
         </form>
     </div>
     )
 }
+
 export default ProfileInfo;
