@@ -13,11 +13,15 @@ import defaultImg from '../../image/default.jpg';
 import { Grid} from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
+  root: {
+    padding: '10px',
+    boxShadow: 3,
+  },
   card: {
     maxWidth: 400,
     maxHeight:550,
-    borderRadius : '15px',
-   backgroundColor: '#DBDFF3'
+    borderRadius : '20px',
+    backgroundColor: '#DBDFF3',
   },
   cardMedia : {
     maxWidth: 400,
@@ -65,8 +69,8 @@ export default function ViewProfile(props) {
       };
 
   return (
-    <Grid container justify='center'>
-    <Card  className={classes.card}>
+    <div className={classes.root}>
+    <Card className={classes.card}>
       <CardHeader
       className={classes.cardHeader}
       action={ 
@@ -111,7 +115,7 @@ export default function ViewProfile(props) {
         <button  userid = {user.id} onClick={handleBlock}>Block</button>
         <button  user = {JSON.stringify(user)} img= {JSON.stringify(images)} inters = {JSON.stringify(interests)}  onClick={handleViewProfile}>ViewProfile</button>
       </CardActions>
-    </Card>
-    </Grid>
+    </Card> 
+    </div>
   );
 }

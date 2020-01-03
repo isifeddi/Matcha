@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   card: {
     maxWidth: 400,
     maxHeight: 600,
-    border : 'solid',
+    borderRadius : '20px',
    borderColor : '#DBDFF3',
    backgroundColor: '#DBDFF3'
   },
@@ -82,7 +82,6 @@ export default function ViewProfile(props) {
       }
 
   return (
-    <Grid container justify='center'>
     <Card  className={classes.card}>
       <CardHeader
       className={classes.cardHeader}
@@ -144,6 +143,5 @@ export default function ViewProfile(props) {
         <button  userid = {user.id}   onClick={handleReport}>Report</button>
       </CardActions>
     </Card>
-    </Grid>
   );
 }

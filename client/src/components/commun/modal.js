@@ -12,48 +12,28 @@ const useStyles = makeStyles(theme => ({
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
+    padding: '0px',
+    borderRadius : '20px',
+    outline: 0,
   },
 }));
 
-export default function TransitionsModal(props) {
-    const {renderComponent} = props; 
+export default function MyModal(props) {
+  const {isOpen, children, handleClose} = props;
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
   return (
     <div>
-      <button type="button" onClick={handleOpen}>
-        react-transition-group
-      </button>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         className={classes.modal}
-        open={open}
+        open={isOpen}
         onClose={handleClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
       >
-        <Fade in={open}>
-
+        <Fade in={isOpen}>
           <div className={classes.paper}>
-          <h2 id="transition-modal-title">Transition modal</h2>
-            <p id="transition-modal-description">react-transition-group animates me.</p>
-            {/* <renderComponent /> */}
+            {children}
           </div>
         </Fade>
       </Modal>
