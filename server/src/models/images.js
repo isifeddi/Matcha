@@ -39,6 +39,16 @@ module.exports = {
             }); 
         })            
     },
+    getProfilPic : function (user_id) {
+        return new Promise ((resolve, reject) => {
+            conn.query(SELECT.GetProfilePic, [user_id],(err,res) => {
+                if(err)
+                    reject(err);
+                else
+                    resolve(JSON.parse(JSON.stringify(res)));
+            }); 
+        })            
+    },
     delImages : function (data) {
         return new Promise ((resolve, reject) => {
             conn.query(DELETE.delImages, [data.img_id,data.user_id],(err,res) => {
