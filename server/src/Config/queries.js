@@ -1,19 +1,27 @@
 const queries = {
     SELECT : {
-        GetUsers: "SELECT id,firstname,lastname, gender, sexOrient, bio, birthday, rating, isOnline, lastSignIn FROM users WHERE id != ? AND id NOT IN  (SELECT blocked_id FROM blockList  WHERE blocker_id = ?) AND confirmed = 1 AND complete = 3",
-        // GetAllImages : "SELECT * FROM images WHERE user_id != ? AND user_id NOT IN  (SELECT blocked_id FROM blockList  WHERE blocker_id = ?)",
-        // GetAllInterests: "SELECT interest FROM interests INNER JOIN usersInterests ON interests.interest_id = usersInterests.iId WHERE usersInterests.uId = ?",
+        GetUsers: "SELECT id,firstname,lastname, gender, sexOrient, bio, birthday,rating,isOnline,lastSignIn FROM users \
+        WHERE id != ? AND \
+        id NOT IN  (SELECT blocked_id FROM blockList  WHERE blocker_id = ?) AND \
+        id NOT IN  (SELECT liked_id FROM likesList  WHERE liker_id = ?) AND \
+        id NOT IN  (SELECT reported_id FROM reportList  WHERE reporter_id = ?) \
+        AND confirmed = 1 \
+        AND complete = 3 \
+        ORDER BY rating DESC",
+        GetAllUsers : "SELECT * FROM users WHERE confirmed = 1 AND complete = 3 ",
         GetUserByEmail: "SELECT *,DATE_FORMAT(birthday,'%Y-%m-%d') as transDate FROM users WHERE email = ?",
         GetUserById: "SELECT *,DATE_FORMAT(birthday,'%Y-%m-%d') as transDate FROM users WHERE id = ?",
         GetUserByUsername: "SELECT *,DATE_FORMAT(birthday,'%Y-%m-%d') as transDate FROM users WHERE username = ?",
         GetUserByToken: "SELECT * FROM users WHERE verif_token = ?",
         GetImages : "SELECT * FROM images WHERE user_id = ?",
+        GetProfilePic : "SELECT path FROM images WHERE user_id = ? AND isProfilePic = 1",
         GetInterests: "SELECT interest FROM interests",
         GetStep: "SELECT complete FROM users WHERE id = ?",
         CheckInter: "SELECT COUNT(interest) as n FROM interests WHERE interest IN (?)",
         GetInterId : "SELECT interest_id FROM interests WHERE interest = ?",
         InterCreatedNbr: "SELECT COUNT(interest) as n FROM interests WHERE createdBy = ? ",
         getBlockUser : "SELECT id,firstname,lastname FROM users WHERE  id  IN (SELECT blocked_id FROM blockList WHERE blocker_id = ?)",
+        getLikeUser : "SELECT id,firstname,lastname FROM users WHERE  id  IN (SELECT liked_id FROM likesList WHERE liker_id = ?)",
         GetUserInter: "SELECT interest FROM interests INNER JOIN usersInterests ON interests.interest_id = usersInterests.iId WHERE usersInterests.uId = ?",
         CheckEditUsername: "SELECT username from users where username = ? AND id != ?",
         CheckEditEmail: "SELECT email from users where email = ? AND id != ?"
@@ -49,6 +57,8 @@ const queries = {
     DELETE : {
         delImages : 'DELETE FROM `images` WHERE id = ? && user_id = ?',
         DeleteUserInter: "DELETE FROM `usersInterests` WHERE uId = ?",
+        deblockUser : " DELETE FROM blockList WHERE blocker_id = ? AND blocked_id = ?",
+        dislikeUser : " DELETE FROM likesList WHERE liker_id = ? AND liked_id = ?",
     },
 }
 

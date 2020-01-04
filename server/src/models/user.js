@@ -17,7 +17,7 @@ module.exports = {
     },
     getUsers: function (id) {
         return new Promise ((resolve, reject) => {
-            conn.query(SELECT.GetUsers, [id,id], (err,res) => {
+            conn.query(SELECT.GetUsers, [id,id,id,id], (err,res) => {
                 if(err)
                     reject(err);
                 else{
@@ -74,6 +74,16 @@ module.exports = {
     select: function (type, value){
         return new Promise ((resolve, reject) => {
             conn.query(SELECT[type], value,(err,res) => {
+                if(err)
+                    reject (err);
+                else
+                    resolve (JSON.parse(JSON.stringify(res)));
+            });
+        })
+    },
+    delete: function (type, value){
+        return new Promise ((resolve, reject) => {
+            conn.query(DELETE[type], value,(err,res) => {
                 if(err)
                     reject (err);
                 else

@@ -1,6 +1,6 @@
 import {
-    GET_BLOCK_USER_SUCCESS,
-    DELETE_BLOCK
+    GET_LIKE_USER_SUCCESS,
+    DELETE_LIKE
 } from "../actions/userAction";
 const DEFAULT_STATE = {
     isUsers: false,
@@ -8,9 +8,9 @@ const DEFAULT_STATE = {
   };
 export default function (state = DEFAULT_STATE, action) {
     switch (action.type) {
-        case GET_BLOCK_USER_SUCCESS:
+        case GET_LIKE_USER_SUCCESS:
             return {isUsers : true, users:action.data};
-        case DELETE_BLOCK:
+        case DELETE_LIKE:
         {
             const id = action.id;
             let arr  = state.users;
