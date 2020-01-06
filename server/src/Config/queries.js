@@ -1,6 +1,6 @@
 const queries = {
     SELECT : {
-        GetUsers: "SELECT id,firstname,lastname, gender, sexOrient, bio, birthday,rating,isOnline,lastSignIn FROM users \
+        GetUsers: "SELECT id,firstname,lastname, gender, sexOrient, bio, birthday,rating,isOnline,latitude,longitude, lastSignIn FROM users \
         WHERE id != ? AND \
         id NOT IN  (SELECT blocked_id FROM blockList  WHERE blocker_id = ?) AND \
         id NOT IN  (SELECT liked_id FROM likesList  WHERE liker_id = ?) AND \

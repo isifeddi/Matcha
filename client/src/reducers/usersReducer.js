@@ -26,6 +26,7 @@ export default function (state = DEFAULT_STATE, action) {
                 for (var i = 0; i < arr.length; i++) {
                     if (arr[i].user.id == id) {
                         arr.splice(i, 1);
+                        i--;
                     }
                 }
                 return {status: 'success', isUsers : true, users : arr};

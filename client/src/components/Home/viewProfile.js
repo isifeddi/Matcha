@@ -10,7 +10,6 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Rating from '@material-ui/lab/Rating';
 import defaultImg from '../../image/default.jpg';
-import { Grid} from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -80,7 +79,7 @@ export default function ViewProfile(props) {
           <Rating
             name="read-only"
             value={value}
-            precision={0.5}
+            precision={0.2}
             readOnly
           />
         </div>

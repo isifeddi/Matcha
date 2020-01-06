@@ -28,6 +28,6 @@ const isLongitude = require("./user/isLongitude")
 module.exports = {
     isEmpty, isDigit, hash, isLowercase, isUppercase, isSpecial,
     isAlpha, isAlphaNumeric, isNumeric, isFloat, random, isUsername,
-    isEmail, isBirthday, age, isFirstname, isLastname, isPassword,
-    isProfileComplete, isGender, isOrient, isBio, isInterest, isLatitude, isLongitude
-}
+    isEmail, isBirthday, isFirstname, isLastname, isPassword,
+    isProfileComplete, isGender, isOrient, isBio, isInterest, isLatitude, isLongitude, age
+};

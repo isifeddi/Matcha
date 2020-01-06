@@ -8,7 +8,7 @@ import ViewPro from "../../components/Home/vP";
 const HomeContainer = (props) => {
     const {getUsers,blockUser,likeUser,reportUser,user,users,viewProfileUser} = props
     useEffect(() => {
-        getUsers(user.id);
+        getUsers(null);
     }, []);
     const [state, setState] = React.useState({
         open: false,
@@ -16,6 +16,39 @@ const HomeContainer = (props) => {
         images: null,
         interests: null,
     });
+    const [rating, setValueRating] = React.useState([0,0]);
+  const [age, setValueAge] = React.useState([0,0]);
+  const [loc, setValueLoc] = React.useState([0,0]);
+  const [tags, setValueTags] = React.useState([0,0]);
+const handleChangeRating = (event, newValue) => {
+    setValueRating(newValue);
+    //console.log(newValue);
+    return newValue;
+  };
+  const handleChangeAge = (event, newValue) => {
+    setValueAge(newValue);
+    //console.log(newValue);
+    return newValue;
+  };
+  const handleChangeLoc = (event, newValue) => {
+    setValueLoc(newValue);
+    //console.log(newValue);
+    return newValue;
+  };
+  const handleChangeTags = (event, newValue) => {
+    setValueTags(newValue);
+    //console.log(newValue);
+    return newValue;
+  };
+  const handleSubmit = () => {
+    const filtre = {
+        tags : tags,
+        rating : rating,
+        age : age,
+        loc : loc
+    }
+    getUsers(filtre);
+  };
     const handleBlock = (event) => {
         const blocked_user_id = event.target.getAttribute('userid');
         blockUser(blocked_user_id);
@@ -64,7 +97,10 @@ const HomeContainer = (props) => {
     }
     return (
         <div>
-            <Home users={users} handleBlock={handleBlock} handleLike={handleLike} handleViewProfile={handleViewProfile}/>
+            <Home users={users} handleBlock={handleBlock} handleLike={handleLike} handleViewProfile={handleViewProfile} handleChangeRating={handleChangeRating}
+                handleChangeAge={handleChangeAge} handleChangeLoc={handleChangeLoc} handleChangeTags={handleChangeTags} rating={rating}
+                loc={loc} tags={tags} age={age} handleSubmit={handleSubmit}
+                />
             {state.open && 
                     <MyModal isOpen={state.open}  handleClose={handleClose}>
                         <ViewPro    handleBlock={handleBlock} handleLike={handleLike} handleReport={handleReport}
