@@ -20,10 +20,7 @@ const rating =  (type) =>{
         {
             return -(1 / length);
         }
-
-    
-         
-        
+ 
     }).catch((error) => {
         console.log(error);
     });

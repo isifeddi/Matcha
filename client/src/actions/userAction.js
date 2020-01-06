@@ -21,8 +21,9 @@ export const updateUserSuccess = (data) => ({
     data
 });
 
-export const getUsers= () => ({
+export const getUsers= (filtre) => ({
     "type":  GET_USERS,
+    filtre
 });
 export const getUsersSuccess= (data) => ({
     "type":  GET_USERS_SUCCESS,

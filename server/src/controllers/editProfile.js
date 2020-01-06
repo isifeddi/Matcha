@@ -58,7 +58,7 @@ editProfile = async (req, res) => {
             result.confirmed = false;
         }
         user.deleteUserInter(info.id);
-        user.update('UpdateProfile',[info.firstname, info.lastname, info.username, info.email, info.gender, info.birthday,  info.sexOrient, info.bio, info.id]);
+        user.update('UpdateProfile',[info.firstname, info.lastname, info.username, info.email, info.gender, tools.age(info.birthday),  info.sexOrient, info.bio, info.id]);
         info.interests.forEach( element => {
             user.getInterId(element)
             .then(re => {

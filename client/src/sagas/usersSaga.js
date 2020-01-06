@@ -4,12 +4,12 @@ import { select } from 'redux-saga/effects';
 import {request} from './helper';
 import { getUsersSuccess,getUsersError,deleteUser,getBlockUserSuccess,deleteBlock,getLikeUserSuccess,deleteLike} from '../actions/userAction';
 export const getUsers =
-    function *getUsers () {
+    function *getUsers (data) {
         try {
             const user = yield select(state => state.user);
             const response = yield call(request, {
                 "url": "http://localhost:5000/getUsers",
-                "data": {id : user.id},
+                "data": {id : user.id,filtre : data.filtre},
                 "method": "post"
               });
             if(response)
