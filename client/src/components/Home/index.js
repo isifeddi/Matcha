@@ -119,7 +119,7 @@ export default function TitlebarGridList(props) {
         </Grid >
         <Grid item xs={6} className={classes.rating}>
         <div className={classes.margin} />
-        <ArrowUpwardIcon onClick={}/>
+        <ArrowUpwardIcon />
       <Typography id="range-slider" gutterBottom align="center">
         AGE
       </Typography>
