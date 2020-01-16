@@ -110,15 +110,10 @@
   #frame #sidepanel #profile .wrap img.online {
     border: 2px solid #2ecc71;
   }
-  #frame #sidepanel #profile .wrap img.away {
-    border: 2px solid #f1c40f;
-  }
-  #frame #sidepanel #profile .wrap img.busy {
+  #frame #sidepanel #profile .wrap img.offline {
     border: 2px solid #e74c3c;
   }
-  #frame #sidepanel #profile .wrap img.offline {
-    border: 2px solid #95a5a6;
-  }
+ 
   #frame #sidepanel #profile .wrap p {
     float: left;
     margin-left: 15px;
@@ -247,17 +242,11 @@
     border: 1px solid #2ecc71;
   }
  
-  #frame #sidepanel #profile .wrap #status-options ul li#status-busy span.status-circle {
+  #frame #sidepanel #profile .wrap #status-options ul li#status-offline span.status-circle {
     background: #e74c3c;
   }
-  #frame #sidepanel #profile .wrap #status-options ul li#status-busy.active span.status-circle:before {
-    border: 1px solid #e74c3c;
-  }
-  #frame #sidepanel #profile .wrap #status-options ul li#status-offline span.status-circle {
-    background: #95a5a6;
-  }
   #frame #sidepanel #profile .wrap #status-options ul li#status-offline.active span.status-circle:before {
-    border: 1px solid #95a5a6;
+    border: 1px solid #e74c3c;
   }
   #frame #sidepanel #profile .wrap #expanded {
     padding: 100px 0 0 0;
@@ -393,7 +382,7 @@
   #frame #sidepanel #contacts ul li.contact .wrap span.away {
     background: #f1c40f;
   }
-  #frame #sidepanel #contacts ul li.contact .wrap span.busy {
+  #frame #sidepanel #contacts ul li.contact .wrap span.offline {
     background: #e74c3c;
   }
   #frame #sidepanel #contacts ul li.contact .wrap img {
