@@ -12,7 +12,7 @@ import CompleteProfile from '../containers/completeProfile/stepper'
 import Profile from '../containers/Profile'
 import PrivateRoute from './PrivateRoute';
 import BlockList from '../containers/settings/blockList'
-import Chat from '../components/Chat/index';
+import Chat from '../containers/Chat';
 
 const Routes = (props) => {
 

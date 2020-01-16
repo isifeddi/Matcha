@@ -1,71 +1,51 @@
 import React, {useState} from 'react';
 import './chat.css';
 
-const SidePanel = () => {
+const Conversations = (props) => {
+    const {selected, conversations} = props;
     return(
         <div id="sidepanel">
             <div id="contacts">
-                <ul> {/* map on matched users*/}
-                    <li className="contact active"> {/* if clicked active else no*/}
-                        <div className="wrap">
-                            <span className="contact-status online"></span>
-                            <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-                            <div className="meta">
-                                <p className="name">Harvey Specter</p>
+                <ul>
+                    {conversations.map(item => (
+                        <li className={selected.id === item.id ? "contact active": "contact"}>
+                            <div className="wrap">
+                                <span className={item.isOnline === 1 ? "contact-status online" : "contact-status offline"}></span>
+                                    <img src={item.profilePic} alt={item.lastname} />
+                                    <div className="meta">
+                                        <p className="name">{item.firstname} {item.lastname}</p>
+                                    </div>
                             </div>
-                        </div>
-                    </li>
+                        </li>
+                    ))
+                    }
                 </ul>
             </div>
         </div>
     );
 }
 
-const ConvTitle = () => {
+const ConvTitle = (props) => {
+    const {selected} = props;
     return(
         <div className="contact-profile">
-                <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-                <p>Harvey Specter</p>
+            <img src={selected.profilePic} alt={selected.lastname} />
+            <p>{selected.firstname} {selected.lastname}</p>
         </div>
     );
 }
 
-const Messages = () => {
+const Messages = (props) => {
+    const {selected} = props;
     return(
         <div className="messages">
             <ul>
-                <li className="sent">
-                    <img src="ss" alt="" />
-                    <p>How the hell am I supposed to get a jury to believe you when I am not even sure that I do?!</p>
+                {selected.messages.map(item => (
+                    <li className={item.isMyMessage ? "sent" : "replies"}>
+                        <img src={item.image} alt={item.image} />
+                        <p>{item.message}</p>
                 </li>
-                <li className="replies">
-                    <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-                    <p>When you're backed against the wall, break the god damn thing down.</p>
-                </li>
-                <li className="replies">
-                    <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-                    <p>Excuses don't win championships.</p>
-                </li>
-                <li className="sent">
-                    <img src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
-                    <p>Oh yeah, did Michael Jordan tell you that?</p>
-                </li>
-                <li className="replies">
-                    <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-                    <p>No, I told him that.</p>
-                </li>
-                <li className="replies">
-                    <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-                    <p>What are your choices when someone puts a gun to your head?</p>
-                </li>
-                <li className="sent">
-                    <img src="http://emilcarlsson.se/assets/mikeross.png" alt="" />
-                    <p>What are you talking about? You do what they say or they shoot you.</p>
-                </li>
-                <li className="replies">
-                    <img src="http://emilcarlsson.se/assets/harveyspecter.png" alt="" />
-                    <p>Wrong. You take the gun, or you pull out a bigger one. Or, you call their bluff. Or, you do any one of a hundred and forty six other things.</p>
-                </li>
+                ))}
             </ul>
         </div>
     );
@@ -97,21 +77,23 @@ const SendMessage = () => {
     );
 }
 
-const Content = () => {
+const Content = (props) => {
+    const {selected} = props;
     return(
         <div className="content">
-            <ConvTitle />
-            <Messages />
-            <SendMessage />
+            <ConvTitle selected={selected}/>
+            <Messages selected={selected}/>
+            <SendMessage selected={selected}/>
         </div>
     );
 }
 
-const Chat = () => {
+const Chat = (props) => {
+    const {selected, conversations} = props;
     return(
     <div id="frame">
-        <SidePanel />
-        <Content />
+        <Conversations selected={selected} conversations={conversations}/>
+        <Content selected={selected} conversations={conversations}/>
     </div>
     );
 }

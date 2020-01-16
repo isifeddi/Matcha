@@ -1,8 +1,27 @@
 import {SELECT_CONVERSATION, SEND_MESSAGE} from '../actions/chatAction';
 
 const DEFAULT_STATE = {
-    selectedConversation: null,
-    conversations: null,
+    selectedConversation:
+        {id: 1, firstname: 'Harvey', lastname: 'Specter', profilePic: 'friend', isOnline: 1, messages:[
+                {image: 'me', message: 'ok bye', isMyMessage: true},
+                {image: 'friend', message: 'bye see you later', isMyMessage: false},
+                {image: 'me', message: ';)', isMyMessage: true},
+            ]
+        },
+
+    conversations: [
+        {id: 1, firstname: 'Harvey', lastname: 'Specter', profilePic: 'friend', isOnline: 1, messages:[
+                {image: 'me', message: 'ok bye', isMyMessage: true},
+                {image: 'friend', message: 'bye see you later', isMyMessage: false},
+                {image: 'me', message: ';)', isMyMessage: true},
+            ]
+        },
+        {id: 2, firstname: 'Rachel', lastname: 'Zane', profilePic: 'friend2', isOnline: 0, messages:[
+                {image: 'me', message: 'I love you', isMyMessage: true},
+                {image: 'friend', message: 'see you later honey', isMyMessage: false},
+            ]
+        }
+    ],
 };
 
 export default function (state = DEFAULT_STATE, action) {
