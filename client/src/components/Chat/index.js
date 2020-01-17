@@ -1,14 +1,15 @@
+/* eslint-disable */
 import React, {useState} from 'react';
 import './chat.css';
 
 const Conversations = (props) => {
-    const {selected, conversations} = props;
+    const {handleSelectConversation, selected, conversations} = props;
     return(
         <div id="sidepanel">
             <div id="contacts">
                 <ul>
                     {conversations.map(item => (
-                        <li className={selected.id === item.id ? "contact active": "contact"}>
+                        <li onClick={() => handleSelectConversation(item.id)} key={item.id} className={selected.id === item.id ? "contact active": "contact"}>
                             <div className="wrap">
                                 <span className={item.isOnline === 1 ? "contact-status online" : "contact-status offline"}></span>
                                     <img src={item.profilePic} alt={item.lastname} />
@@ -29,7 +30,7 @@ const ConvTitle = (props) => {
     const {selected} = props;
     return(
         <div className="contact-profile">
-            <img src={selected.profilePic} alt={selected.lastname} />
+            <img src={selected.profilePic} alt={selected.lastname}/>
             <p>{selected.firstname} {selected.lastname}</p>
         </div>
     );
@@ -40,28 +41,31 @@ const Messages = (props) => {
     return(
         <div className="messages">
             <ul>
-                {selected.messages.map(item => (
-                    <li className={item.isMyMessage ? "sent" : "replies"}>
+                {selected.messages.length > 0 ? selected.messages.map(item => (
+                    <li key={Math.random()} className={item.isMyMessage ? "sent" : "replies"}>
                         <img src={item.image} alt={item.image} />
                         <p>{item.message}</p>
-                </li>
-                ))}
+                    </li>
+                )) : <p>no messsages yet</p>}
             </ul>
         </div>
     );
 }
 
-const SendMessage = () => {
+const SendMessage = (props) => {
+    const {handleSendMessage, selected} = props;
     const [message, setMessage] = useState("");
     const handleChange = e => setMessage(e.target.value);
     const handleSubmit = form => {
         form.preventDefault();
         if (message.length > 255) setMessage("");
         else if (message) {
-            document.querySelector('.messages ul').innerHTML += '<li class="sent"><img src="http://emilcarlsson.se/assets/mikeross.png" alt="" /><p>' + message + '</p></li>';
-            setMessage("");
+            handleSendMessage(selected.id, message);
             let cont = document.querySelector('.messages');
-            cont.scrollTop = cont.scrollHeight;
+            const height = cont.scrollHeight;
+            //cont.scrollTop = cont.scrollHeight;
+            cont.scrollTo(0, height+1000);
+            setMessage("");
         }
         document.querySelector('.message-input input').value = null;
     }
@@ -78,22 +82,22 @@ const SendMessage = () => {
 }
 
 const Content = (props) => {
-    const {selected} = props;
+    const {handleSendMessage, selected} = props;
     return(
         <div className="content">
             <ConvTitle selected={selected}/>
             <Messages selected={selected}/>
-            <SendMessage selected={selected}/>
+            <SendMessage handleSendMessage={handleSendMessage} selected={selected}/>
         </div>
     );
 }
 
 const Chat = (props) => {
-    const {selected, conversations} = props;
+    const {handleSelectConversation, handleSendMessage, selected, conversations} = props;
     return(
     <div id="frame">
-        <Conversations selected={selected} conversations={conversations}/>
-        <Content selected={selected} conversations={conversations}/>
+        <Conversations handleSelectConversation={handleSelectConversation} selected={selected} conversations={conversations}/>
+        <Content handleSendMessage={handleSendMessage} selected={selected} conversations={conversations}/>
     </div>
     );
 }
