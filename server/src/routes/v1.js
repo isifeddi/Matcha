@@ -29,6 +29,7 @@ const getBlockUser = require('../controllers/functions/getBlockUser');
 const getLikeUser = require('../controllers/functions/getLikeUser');
 const getMatchedUsers = require('../controllers/chat/matchs');
 const loadMessages = require('../controllers/chat/loadMessages');
+const sendMessages = require('../controllers/chat/sendMessage');
 const editProfile = require('../controllers/editProfile');
 const dislikeUser = require('../controllers/functions/dislikeUser');
 
@@ -63,5 +64,6 @@ router.post('/editProfile', editProfile);
 router.post('/getLikeUser',getLikeUser);
 router.post('/getMatchs', getMatchedUsers);
 router.post('/loadMessages', loadMessages);
+router.post('/sendMessage', sendMessage);
 
 module.exports = router;
