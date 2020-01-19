@@ -64,11 +64,11 @@ module.exports = {
     },
     insert: function (type, value){
         return new Promise ((resolve, reject) => {
-            conn.query(INSERT[type], value,(err,res) => {
+            conn.query(INSERT[type], [value],(err,res) => {
                 if(err)
-                    reject (err);
+                    reject(err);
                 else
-                    resolve (JSON.parse(JSON.stringify(res)));
+                    resolve(JSON.parse(JSON.stringify(res)));
             });
         })
     },
@@ -76,9 +76,9 @@ module.exports = {
         return new Promise ((resolve, reject) => {
             conn.query(SELECT[type], value,(err,res) => {
                 if(err)
-                    reject (err);
+                    reject(err);
                 else
-                    resolve (JSON.parse(JSON.stringify(res)));
+                    resolve(JSON.parse(JSON.stringify(res)));
             });
         })
     },

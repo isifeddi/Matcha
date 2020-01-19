@@ -8,6 +8,7 @@ import imagesSaga from './imagesSaga';
 import stepperSaga from './stepperSaga';
 import usersSaga from './usersSaga'
 import profileSaga from "./profileSaga";
+import chatSaga from "./chatSaga";
 
 export default function *() {
   yield all([
@@ -19,6 +20,7 @@ export default function *() {
     fork(imagesSaga),
     fork(stepperSaga),
     fork(usersSaga),
-    fork(profileSaga)
+    fork(profileSaga),
+    fork(chatSaga),
   ]);
 }
