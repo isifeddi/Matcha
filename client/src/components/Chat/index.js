@@ -8,11 +8,11 @@ const Conversations = (props) => {
         <div id="sidepanel">
             <div id="contacts">
                 <ul>
-                    {conversations.map(item => (
+                    {selected && conversations.map(item => (
                         <li onClick={() => handleSelectConversation(item.id)} key={item.id} className={selected.id === item.id ? "contact active": "contact"}>
                             <div className="wrap">
                                 <span className={item.isOnline === 1 ? "contact-status online" : "contact-status offline"}></span>
-                                    <img src={item.profilePic} alt={item.lastname} />
+                                    <img src={`http://localhost:5000/images/${item.path}`} alt={item.lastname} />
                                     <div className="meta">
                                         <p className="name">{item.firstname} {item.lastname}</p>
                                     </div>
@@ -30,7 +30,7 @@ const ConvTitle = (props) => {
     const {selected} = props;
     return(
         <div className="contact-profile">
-            <img src={selected.profilePic} alt={selected.lastname}/>
+            <img src={`http://localhost:5000/images/${selected.path}`} alt={selected.lastname}/>
             <p>{selected.firstname} {selected.lastname}</p>
         </div>
     );
@@ -41,12 +41,12 @@ const Messages = (props) => {
     return(
         <div className="messages">
             <ul>
-                {selected.messages.length > 0 ? selected.messages.map(item => (
+                {selected.messages && selected.messages.length > 0 && selected.messages.map(item => (
                     <li key={Math.random()} className={item.isMyMessage ? "sent" : "replies"}>
-                        <img src={item.image} alt={item.image} />
+                        <img src={`http://localhost:5000/images/${item.path}`} alt={item.image} />
                         <p>{item.message}</p>
                     </li>
-                )) : <p>no messsages yet</p>}
+                ))}
             </ul>
         </div>
     );
@@ -85,9 +85,14 @@ const Content = (props) => {
     const {handleSendMessage, selected} = props;
     return(
         <div className="content">
-            <ConvTitle selected={selected}/>
-            <Messages selected={selected}/>
-            <SendMessage handleSendMessage={handleSendMessage} selected={selected}/>
+            {Object.keys(selected).length > 0 ? (
+            <>
+                <ConvTitle selected={selected}/>
+                <Messages selected={selected}/>
+                <SendMessage handleSendMessage={handleSendMessage} selected={selected}/>
+            </> ) :
+                <p id="selectCon">Select a conversation</p>
+            }
         </div>
     );
 }
@@ -96,8 +101,13 @@ const Chat = (props) => {
     const {handleSelectConversation, handleSendMessage, selected, conversations} = props;
     return(
     <div id="frame">
-        <Conversations handleSelectConversation={handleSelectConversation} selected={selected} conversations={conversations}/>
-        <Content handleSendMessage={handleSendMessage} selected={selected} conversations={conversations}/>
+        {conversations.length > 0 ? (
+        <>
+            <Conversations handleSelectConversation={handleSelectConversation} selected={selected} conversations={conversations}/>
+            <Content handleSendMessage={handleSendMessage} selected={selected} conversations={conversations}/>
+        </> ) : 
+            <p id="noMatches">No matches</p>
+        }
     </div>
     );
 }

@@ -1,17 +1,18 @@
 import React, { useEffect } from 'react';
 import {connect} from "react-redux";
 import Chat from '../../components/Chat';
-import {SelectConversation, SendMessage} from '../../actions/chatAction';
+import {GetConversations, SelectConversation, SendMessage, LoadMessages} from '../../actions/chatAction';
 
 const ChatContainer = (props) => {
-    const {user, selectedConversation, conversations, selectConversation, sendMessage} = props
+    const {user, getConversations, selectedConversation, conversations, selectConversation, loadMessages, sendMessage} = props
     useEffect(() => {
         if(user){
-
+            getConversations();
         }
     }, []);
     const handleSelectConversation = (id) => {
         selectConversation(id);
+        loadMessages(id);
     }
     const handleSendMessage = (id, message) => {
         sendMessage(id, message);
@@ -35,6 +36,8 @@ const mapStateToProps = (state) => (
 const mapDispatchToProps = {
     "selectConversation": SelectConversation,
     "sendMessage": SendMessage,
+    "getConversations": GetConversations,
+    "loadMessages": LoadMessages,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChatContainer);

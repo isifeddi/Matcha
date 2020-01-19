@@ -27,8 +27,11 @@ const reportUser = require('../controllers/functions/reportUser');
 const viewProfileUser = require('../controllers/functions/viewProfileUser');
 const getBlockUser = require('../controllers/functions/getBlockUser');
 const getLikeUser = require('../controllers/functions/getLikeUser');
+const getMatchedUsers = require('../controllers/chat/matchs');
+const loadMessages = require('../controllers/chat/loadMessages');
 const editProfile = require('../controllers/editProfile');
 const dislikeUser = require('../controllers/functions/dislikeUser');
+
 router.post('/login', Login);
 router.post('/register', Register);
 router.post('/availableEmail',availableEmail);
@@ -54,8 +57,11 @@ router.post('/deblockUser',deblockUser);
 router.post('/likeUser',likeUser);
 router.post('/dislikeUser',dislikeUser);
 router.post('/reportUser',reportUser);
-router.post('/viewProfileUser',viewProfileUser)
-router.post('/getBlockUser',getBlockUser)
+router.post('/viewProfileUser',viewProfileUser);
+router.post('/getBlockUser',getBlockUser);
 router.post('/editProfile', editProfile);
-router.post('/getLikeUser',getLikeUser)
+router.post('/getLikeUser',getLikeUser);
+router.post('/getMatchs', getMatchedUsers);
+router.post('/loadMessages', loadMessages);
+
 module.exports = router;
