@@ -14,6 +14,10 @@ export const LOAD_MESSAGES_ERROR = "LOAD_MESSAGES_ERROR";
 
 export const SEND_MESSAGE = "SEND_MESSAGE";
 
+export const SEND_MESSAGE_SUCCESS = "SEND_MESSAGE_SUCCESS";
+
+export const SEND_MESSAGE_ERROR = "SEND_MESSAGE_ERROR";
+
 export const GetConversations = () => ({
     "type": GET_CONVERSATIONS,
 });
@@ -38,9 +42,10 @@ export const LoadMessages = (conv_id) => ({
     conv_id: conv_id,
 });
 
-export const LoadMessagesSuccess = (data) => ({
+export const LoadMessagesSuccess = (data, conv_id) => ({
     "type": LOAD_MESSAGES_SUCCESS,
     data: data,
+    conv_id: conv_id,
 });
 
 export const LoadMessagesError = (err) => ({
@@ -48,8 +53,18 @@ export const LoadMessagesError = (err) => ({
     err: err,
 });
 
-export const SendMessage = (id, message) => ({
+export const SendMessage = (id, profilePic, message) => ({
     "type": SEND_MESSAGE,
     id: id,
+    profilePic: profilePic,
     message: message,
+});
+
+export const SendMessageSuccess = () => ({
+    "type": SEND_MESSAGE,
+});
+
+export const SendMessageError = (err) => ({
+    "type": SEND_MESSAGE,
+    err: err,
 });

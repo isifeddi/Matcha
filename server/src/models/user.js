@@ -64,7 +64,7 @@ module.exports = {
     },
     insert: function (type, value){
         return new Promise ((resolve, reject) => {
-            conn.query(INSERT[type], [value],(err,res) => {
+            conn.query(INSERT[type], value,(err,res) => {
                 if(err)
                     reject(err);
                 else
@@ -98,7 +98,7 @@ module.exports = {
                 if(err)
                     reject (err);
                 else
-                    resolve (res); 
+                    resolve (res);
             });
         })
     },
@@ -108,7 +108,7 @@ module.exports = {
                 if(err)
                     reject (err);
                 else
-                    resolve (res); 
+                    resolve (res);
             });
         })
     },
@@ -118,7 +118,7 @@ module.exports = {
                 if(err)
                     reject (err);
                 else
-                    resolve (res); 
+                    resolve (res);
             });
         })
     },
@@ -128,11 +128,11 @@ module.exports = {
                 if(err)
                     reject (err);
                 else
-                    resolve (res); 
+                    resolve (res);
             });
         })
     },
-   
+
     getOptions: function () {
         return new Promise ((resolve, reject) => {
             conn.query(SELECT.GetInterests,(err,res) => {

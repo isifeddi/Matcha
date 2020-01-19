@@ -9,9 +9,9 @@ const queries = {
             AND complete = 3 \
             ORDER BY rating DESC",
         GetAllUsers : "SELECT * FROM users WHERE confirmed = 1 AND complete = 3 ",
-        GetUserByEmail: "SELECT *,DATE_FORMAT(birthday,'%Y-%m-%d') as transDate FROM users WHERE email = ?",
-        GetUserById: "SELECT *,DATE_FORMAT(birthday,'%Y-%m-%d') as transDate FROM users WHERE id = ?",
-        GetUserByUsername: "SELECT *,DATE_FORMAT(birthday,'%Y-%m-%d') as transDate FROM users WHERE username = ?",
+        GetUserByEmail: "SELECT users.*,DATE_FORMAT(users.birthday,'%Y-%m-%d') as transDate,images.path as profilePic FROM users,images WHERE images.user_id = users.id AND images.isProfilePic = 1 AND users.email = ?",
+        GetUserById: "SELECT users.*,DATE_FORMAT(users.birthday,'%Y-%m-%d') as transDate,images.path as profilePic FROM users,images WHERE images.user_id = users.id AND images.isProfilePic = 1 AND users.id = ?",
+        GetUserByUsername: "SELECT users.*,DATE_FORMAT(users.birthday,'%Y-%m-%d') as transDate,images.path as profilePic FROM users,images WHERE images.user_id = users.id AND images.isProfilePic = 1 AND users.username = ?",
         GetUserByToken: "SELECT * FROM users WHERE verif_token = ?",
         GetImages : "SELECT * FROM images WHERE user_id = ?",
         GetProfilePic : "SELECT path FROM images WHERE user_id = ? AND isProfilePic = 1",
@@ -23,8 +23,9 @@ const queries = {
         getBlockUser : "SELECT id,firstname,lastname FROM users WHERE  id  IN (SELECT blocked_id FROM blockList WHERE blocker_id = ?)",
         getLikeUser : "SELECT id,firstname,lastname FROM users WHERE  id  IN (SELECT liked_id FROM likesList WHERE liker_id = ?)",
         getUserLikes: "SELECT liker_id,liked_id FROM likesList WHERE liker_id=? OR liked_id=?",
+        checkBlock: "SELECT * FROM blockList WHERE (blocker_id = ? OR blocked_id = ?) AND (blocker_id = ? OR blocked_id = ?)",
         getMatchs: "SELECT users.id,users.firstname,users.lastname,images.path,users.isOnline FROM users,images WHERE users.id = images.user_id  AND images.isProfilePic = 1 AND images.user_id IN (?)",
-        getMessages: "SELECT messages.sender,images.path, messages.message FROM images,messages WHERE images.user_id = messages.sender AND images.isProfilePic = 1 AND ((messages.sender = ? OR messages.receiver = ?) OR (messages.sender = ? OR messages.receiver = ?)) ORDER BY messages.id ASC",
+        getMessages: "SELECT messages.sender,images.path, messages.message FROM images,messages WHERE images.user_id = messages.sender AND images.isProfilePic = 1 AND (messages.sender = ? OR messages.receiver = ?) AND (messages.sender = ? OR messages.receiver = ?) ORDER BY messages.id ASC",
         GetUserInter: "SELECT interest FROM interests INNER JOIN usersInterests ON interests.interest_id = usersInterests.iId WHERE usersInterests.uId = ?",
         CheckEditUsername: "SELECT username from users where username = ? AND id != ?",
         CheckEditEmail: "SELECT email from users where email = ? AND id != ?"
@@ -38,7 +39,8 @@ const queries = {
         blockUser : "INSERT INTO blockList (blocker_id, blocked_id,date) VALUES (?, ?, NOW())",
         likeUser : "INSERT INTO likesList (liker_id, liked_id,date) VALUES (?, ?, NOW())",
         reportUser : "INSERT INTO reportList (reporter_id, reported_id,date) VALUES (?, ?, NOW())",
-        viewProfileUser : "INSERT INTO viewProfileList (viewer, viewed, date) VALUES (?,?,NOW())"
+        viewProfileUser : "INSERT INTO viewProfileList (viewer, viewed, date) VALUES (?,?,NOW())",
+        insertMessage: "INSERT INTO messages (sender, receiver, message) VALUES (?, ?, ?)",
     },
     UPDATE : {
         Update: 'UPDATE users SET name = ?, email = ?, sex = ? WHERE id = ?',
