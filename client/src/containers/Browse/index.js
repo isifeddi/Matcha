@@ -1,9 +1,9 @@
 import React ,{useEffect, useState}from 'react';
 import {connect} from "react-redux";
-import Home from '../../components/Home'
+import Home from '../../components/Browse'
 import {getUsers,blockUser,likeUser,reportUser,viewProfileUser} from '../../actions/userAction';
 import MyModal from "../../components/commun/modal";
-import ViewPro from "../../components/Home/vP";
+import ViewPro from "../../components/Browse/vP";
 
 const HomeContainer = (props) => {
     const {getUsers,blockUser,likeUser,reportUser,user,users,viewProfileUser} = props

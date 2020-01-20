@@ -22,7 +22,7 @@ import LockOpenIcon from '@material-ui/icons/LockOpen';
 import PersonIcon from '@material-ui/icons/Person';
 import HistoryIcon from '@material-ui/icons/History';
 import ChatIcon from '@material-ui/icons/Chat';
-
+import AppsIcon from '@material-ui/icons/Apps';
 const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
   root: {
@@ -73,22 +73,30 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function NavBar(props) {
-  const {token, handleLogout} = props
+  const {user, handleLogout} = props
 
   const loggedInMenu = [
+    {"text" : "Browse","path" : "/browse", icon: <AppsIcon color="secondary"/>},
     {"text" : "Profile","path" : "/profile", icon: <PersonIcon color="secondary"/>},
-    {"text" : "Activity","path" : "/BlockList", icon: <HistoryIcon color="secondary"/>},
+    {"text" : "Activity","path" : "/activity", icon: <HistoryIcon color="secondary"/>},
     {"text" : "Friends","path" : "/chat", icon: <ChatIcon color="secondary"/>},
+  ];
+  const completeProfile = [
+    {"text" : "Complete Profile", "path" : "/completeProfile", icon: <PersonIcon color="secondary"/>},
   ];
   const loggedOutMenu = [
     {"text" : "Se connecter","path" : "/login", icon: <LockOpenIcon color="secondary"/>},
     {"text" : "inscription","path" : "/register", icon: <LockOpenIcon color="secondary"/>},
-   
   ];
-
+  //let pathHome = user && user.complete === 3 ? '/home' : '/completeProfile';
   let menu = [];
-  if(token)
-    menu = loggedInMenu;
+  if(user && user.token)
+  {
+    if(user && user.complete === 3)
+      menu = loggedInMenu;
+    else
+      menu = completeProfile;
+  }
   else
     menu = loggedOutMenu;
 
@@ -136,7 +144,7 @@ function NavBar(props) {
              
           </Typography>
           
-          {token && <Button color="primary" onClick={handleLogout}>Logout</Button>}
+          {user && user.token && <Button color="primary" onClick={handleLogout}>Logout</Button>}
         </Toolbar>
       </AppBar>
       
