@@ -4,15 +4,15 @@ import {LogoutAction} from '../../actions/logoutAction';
 import NavBar from '../../components/NavBar'
 
 const NavBarContainer = (props) => {
-    const {token, handleLogout} = props
+    const {user, handleLogout} = props
     return(
-        <NavBar handleLogout={handleLogout} token={token}/>
+        <NavBar handleLogout={handleLogout} user={user}/>
     )
 }
 
 const mapStateToProps = (state) => (
 {
-    "token" : state.user ? state.user.token : null
+    "user" : state.user
 });
 const mapDispatchToProps = {
     "logoutAction": LogoutAction
