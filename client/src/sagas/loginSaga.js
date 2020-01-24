@@ -4,6 +4,7 @@ import {resetState} from '../actions/resetStateAction';
 import {loginError, loginUserSuccess,loginErrorField} from "../actions/loginAction";
 import {updateUserSuccess} from '../actions/userAction'
 import {request} from './helper';
+import socket from '../socketConn';
 
 const login =
   function *login ({data}) {
@@ -14,7 +15,7 @@ const login =
         "url": "http://localhost:5000/login",
         "data": {
           username,
-         password
+          password
         },
         "method": "post"
       });
@@ -23,7 +24,8 @@ const login =
       {
         const  user = response.data.user;
         yield put(loginUserSuccess());
-        yield put(updateUserSuccess(user))
+        yield put(updateUserSuccess(user));
+        socket.emit('join', {id: user.id});
         if(user.complete === 3)
           yield put(push("/home"));
         else

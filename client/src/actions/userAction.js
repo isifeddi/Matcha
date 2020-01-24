@@ -15,7 +15,7 @@ export const GET_BLOCK_USER = "GET_BLOCK_USER";
 export const GET_BLOCK_USER_SUCCESS = "GET_BLOCK_USER_SUCCESS";
 export const GET_LIKE_USER = "GET_LIKE_USER";
 export const GET_LIKE_USER_SUCCESS = "GET_LIKE_USER_SUCCESS";
-
+export const SORT_USERS = "SORT_USERS";
 export const updateUserSuccess = (data) => ({
     "type":  UPDATE_USER_SUCCESS,
     data
@@ -86,6 +86,11 @@ export const reportUser= (reported_user_id) => ({
 export const viewProfileUser= (viewed_user_id) => ({
     "type":  VIEW_PROFILE_USER,
     viewed_user_id
+});
+export const sortUsers= (methode,route) => ({
+    "type":  SORT_USERS,
+    methode,
+    route
 });
 
 

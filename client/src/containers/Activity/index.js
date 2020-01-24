@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import BlockList from '../../components/Activity';
 import {getBlockUser,deblockUser,getLikeUser,dislikeUser} from '../../actions/userAction';
 const BlockListContainer = (props) => {
-    const {user,getBlockUser,blockList,deblockUser,getLikeUser,dislikeUser,likeList} = props;
+    const {getBlockUser,blockList,deblockUser,getLikeUser,dislikeUser,likeList} = props;
     useEffect(() => {
         getBlockUser();
         getLikeUser();

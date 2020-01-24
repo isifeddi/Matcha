@@ -1,6 +1,8 @@
 const tools = require('../tools');
 const user = require('../models/user');
 const bcrypt = require('bcrypt');
+const crypto = require('crypto');
+const EM = require('./functions/email');
 
 editProfile = async (req, res) => {
     const info = req.body;
@@ -55,10 +57,13 @@ editProfile = async (req, res) => {
         if(check && info.email !== check.email)
         {
             user.notConfirmed(check.email);
+            const verifToken = crypto.randomBytes(64).toString('hex');
+            user.UpdateVerifToken(check.email, verifToken);
+            EM.sendEmail(info.email, verifToken);
             result.confirmed = false;
         }
         user.deleteUserInter(info.id);
-        user.update('UpdateProfile',[info.firstname, info.lastname, info.username, info.email, info.gender, tools.age(info.birthday),  info.sexOrient, info.bio, info.id]);
+        user.update('UpdateProfile',[info.firstname, info.lastname, info.username, info.email, info.gender,info.birthday, tools.age(info.birthday),  info.sexOrient, info.bio, info.id]);
         info.interests.forEach( element => {
             user.getInterId(element)
             .then(re => {

@@ -1,9 +1,8 @@
 const queries = {
     SELECT : {
-        GetUsers: "SELECT id,firstname,lastname, gender, sexOrient, bio, birthday,rating,isOnline,latitude,longitude, lastSignIn FROM users \
+        GetUsers: "SELECT id,firstname,lastname, gender, sexOrient, bio, age,birthday,rating,isOnline,latitude,longitude, lastSignIn FROM users \
             WHERE id != ? AND \
             id NOT IN  (SELECT blocked_id FROM blockList  WHERE blocker_id = ?) AND \
-            id NOT IN  (SELECT liked_id FROM likesList  WHERE liker_id = ?) AND \
             id NOT IN  (SELECT reported_id FROM reportList  WHERE reporter_id = ?) \
             AND confirmed = 1 \
             AND complete = 3 \
@@ -29,7 +28,6 @@ const queries = {
         GetUserInter: "SELECT interest FROM interests INNER JOIN usersInterests ON interests.interest_id = usersInterests.iId WHERE usersInterests.uId = ?",
         CheckEditUsername: "SELECT username from users where username = ? AND id != ?",
         CheckEditEmail: "SELECT email from users where email = ? AND id != ?"
-
     },
     INSERT : {
         AddImage: 'INSERT INTO images (user_id, path,isProfilePic) VALUES (?, ?, ?)',
@@ -48,8 +46,8 @@ const queries = {
         ResetPassword: 'UPDATE users SET password = ? WHERE verif_token = ?',
         Confirmed: 'UPDATE users SET confirmed = 1 WHERE email = ?',
         notConfirmed: 'UPDATE users SET confirmed = 0 WHERE email = ?',
-        UpdateInfo: "UPDATE users SET gender = ?, sexOrient = ?, birthday = ?, bio = ? WHERE id = ?",
-        UpdateProfile: "UPDATE users SET firstname = ?, lastname = ?, username = ?, email = ?, gender = ?, birthday = ?, sexOrient = ?, bio = ? WHERE id = ?",
+        UpdateInfo: "UPDATE users SET gender = ?, sexOrient = ?, birthday = ?, age = ?, bio = ? WHERE id = ?",
+        UpdateProfile: "UPDATE users SET firstname = ?, lastname = ?, username = ?, email = ?, gender = ?, birthday = ?, age = ?, sexOrient = ?, bio = ? WHERE id = ?",
         UpdatePassword: "UPDATE users SET password = ? WHERE id = ?",
         UpdateOnline: "UPDATE users SET isOnline = 1 ,lastSignIn = null WHERE id = ?",
         UpdateOffline: "UPDATE users SET isOnline = 0 ,lastSignIn = NOW() WHERE id = ?",
@@ -57,7 +55,8 @@ const queries = {
         UpdateLocation: "UPDATE users SET latitude = ? , longitude = ? WHERE id = ?",
         setProfilePic: 'UPDATE images SET IsProfilePic = 1 WHERE id = ? && user_id = ?',
         resetProfilePic : 'UPDATE images SET isProfilePic = 0 WHERE user_id = ?',
-        setFirstProPic : 'UPDATE  images SET isProfilePic = 1 WHERE user_id = ? ORDER BY id ASC LIMIT 1;'
+        setFirstProPic : 'UPDATE  images SET isProfilePic = 1 WHERE user_id = ? ORDER BY id ASC LIMIT 1',
+        updateRating : 'UPDATE users SET rating = rating  + ?  WHERE id = ? AND rating <= 5'
     },
     DELETE : {
         delImages : 'DELETE FROM `images` WHERE id = ? && user_id = ?',

@@ -1,13 +1,16 @@
-import { takeLatest, put,select, delay} from "redux-saga/effects";
+import { takeLatest, call,put,select, delay} from "redux-saga/effects";
 import {resetState} from '../actions/resetStateAction';
 import { getOptionsSuccess, createOptionSuccess, createOptionError, addInfoError, addLocationSuccess} from "../actions/addInfoAction";
 import { updateUserSuccess} from '../actions/userAction';
-import axios from 'axios';
-
+import {request} from './helper';
 const getSelectOptions =
   function *getSelectOptions () {
     try {
-        const response  = yield axios.post('http://localhost:5000/getOptions');
+       const token = yield select((state) => state.user.token);
+            const response = yield call(request, {
+                "url": "http://localhost:5000/getOptions",
+                "method": "post"
+              },token);  
         if(response.data)
         {
             yield put(getOptionsSuccess(response.data));
@@ -28,7 +31,12 @@ const createSelectOption =
     try {
         const id = yield select((state) => state.user.id);
         const option = act.data.value;
-        const response  = yield axios.post('http://localhost:5000/createOption', {option: option, id: id});
+         const token = yield select((state) => state.user.token);
+            const response = yield call(request, {
+                "url": "http://localhost:5000/createOption",
+                "data": {option: option, id: id},
+                "method": "post"
+              },token);
         if(response.data.created)
         {
           yield put(createOptionSuccess(response.data.option));
@@ -52,7 +60,12 @@ const add_Info =
       const info = {...data, id}
       const inter = data.interests.map(item => item.value)
       info.interests = inter;
-      const response  = yield axios.post('http://localhost:5000/addInfo', info);
+       const token = yield select((state) => state.user.token);
+            const response = yield call(request, {
+                "url": "http://localhost:5000/addInfo",
+                "data": info,
+                "method": "post"
+              },token);
 
       if(response.data.added)
       {
@@ -75,7 +88,12 @@ const getLocation =
   function *getLocation () {
     try {
       const id = yield select((state) => state.user.id);
-      const response  = yield axios.post("http://localhost:5000/getLocation", {id: id});
+       const token = yield select((state) => state.user.token);
+            const response = yield call(request, {
+                "url": "http://localhost:5000/getLocation",
+                "data": {id: id},
+                "method": "post"
+              },token);
       if(response.data)
       {
         yield put(addLocationSuccess({marker: response.data.marker, lat: response.data.loc.lat, lng: response.data.loc.lng}));
@@ -97,7 +115,12 @@ const AddLocation =
   function *AddLocation ({loc}) {
     try {
       const id = yield select((state) => state.user.id);
-      yield axios.post("http://localhost:5000/addLocation", {id: id, loc});
+      const token = yield select((state) => state.user.token);
+      yield call(request, {
+          "url": "http://localhost:5000/addLocation",
+          "data": {id: id, loc},
+          "method": "post"
+        },token);
     }catch (error) {
       if (error.response) {
         yield put(createOptionError('there has been an error'));

@@ -2,12 +2,12 @@ const user = require('../../models/user');
 const rating = require('../functions/rating');
 likeUser = async (req, res) => {
     const data = req.body;
-    const ra = rating('like');
-    console.log(ra)
+    //console.log(req.headers)
+   
     user.insert('likeUser',[data.id,data.liked_user_id])
-    .then((response) => {
-        //const ss = user.update('',[liked_user_id,])
-        console.log('liked')
+    .then(async (response) => {
+        const ra = await rating(data.liked_user_id);
+        user.update('updateRating',[ra,data.liked_user_id]);
         res.send(true);
         
     }).catch((error) => {

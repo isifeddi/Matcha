@@ -3,8 +3,8 @@ import {
     GET_USERS_SUCCESS,
     GET_USERS_ERROR,
     DELETE_USER,
-    GET_BLOCK_USER_SUCCESS
 } from "../actions/userAction";
+import {RESET_STATE_USERS} from "../actions/resetStateAction";
 const DEFAULT_STATE = {
     status: 'DEFAULT STATE',
     isUsers: false,
@@ -31,6 +31,8 @@ export default function (state = DEFAULT_STATE, action) {
                 }
                 return {status: 'success', isUsers : true, users : arr};
             }
+        case RESET_STATE_USERS :
+            return DEFAULT_STATE;
             
       default:
         return state;

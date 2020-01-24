@@ -9,7 +9,6 @@ const app = express();
 app.use(express.static('public'));
 // ------------- DB Connection  ------------- //
 const connection = require('./Config/db_connection');
-//const co = require('./models/config');
 
 
 // ------------- Middlewares  ------------- //
@@ -20,13 +19,12 @@ app.use(bodyparser.urlencoded({extended : true}));
 app.use(cors())
 
 
-
 // ------------- Routes  ------------- //
 app.use(up)
 app.use(v1);
 // ------------- ERR  ------------- //
+
 app.use((req,res,next) =>{
-     
     var err = new Error('not found');
     err.status = 404;
     next(err);
@@ -42,4 +40,5 @@ app.use((err, req, res, next) => {
     })
 
 });
+
 module.exports = app;

@@ -1,9 +1,9 @@
-import { takeLatest, put,select, delay} from "redux-saga/effects";
+import { takeLatest, call,put,select, delay} from "redux-saga/effects";
 import {resetState} from "../actions/resetStateAction";
 import {editInfoError} from "../actions/profileAction";
 import {addInfoError} from "../actions/addInfoAction";
 import { updateUserSuccess} from '../actions/userAction';
-import axios from 'axios';
+import {request} from './helper';
 
 const edit_Info =
 function *edit_Info ({data}) {
@@ -12,7 +12,12 @@ function *edit_Info ({data}) {
         const info = {...data, id}
         const inter = data.interests.map(item => item.value)
         info.interests = inter;
-        const response  = yield axios.post('http://localhost:5000/editProfile', info);
+        const token = yield select((state) => state.user.token);
+        const response = yield call(request, {
+                "url": "http://localhost:5000/editProfile",
+                "data": info,
+                "method": "post"
+              },token);
         if(response.data.result.valid)
         {
             yield put(updateUserSuccess(response.data.uu));

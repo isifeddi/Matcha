@@ -6,9 +6,7 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
-import { Grid, Divider } from '@material-ui/core';
-import Chip from '@material-ui/core/Chip';
-import FaceIcon from '@material-ui/icons/Face';
+import { Grid} from '@material-ui/core';
  const useStyles = makeStyles(theme => ({
    root: {
     width: '100%',

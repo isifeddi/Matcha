@@ -1,12 +1,17 @@
-import { takeLatest, put ,select} from "redux-saga/effects";
-//import { delay } from 'redux-saga/effects'
+import { takeLatest,call, put ,select} from "redux-saga/effects";
+import {request} from './helper';
 import {setProfilePicError,getImages,getImagesSuccess,getImagesError,sendImagesError,delImagesError} from "../actions/imagesAction";
-import axios from 'axios';
 
 const getPictures =
   function *getPictures ({user_id}) {
     try {
-        const response  = yield axios.post('http://localhost:5000/getImages',{user_id : user_id});
+     
+      const token = yield select((state) => state.user.token);
+      const response = yield call(request, {
+                "url": "http://localhost:5000/getImages",
+                "data": {user_id : user_id},
+                "method": "post"
+              },token);
         if(response.data.length > 0)
         {
             yield put(getImagesSuccess(response.data));
@@ -22,7 +27,12 @@ const sendPictures =
   function *sendPictures ({data}) {
     try {
       const user_id = yield select(state => state.user.id);
-        const response  = yield axios.post('http://localhost:5000/upload',data);
+      const token = yield select((state) => state.user.token);
+      const response = yield call(request, {
+                "url": "http://localhost:5000/upload",
+                "data": data,
+                "method": "post"
+              },token);  
         if(response.data)
         {
           yield put(getImages(user_id));
@@ -43,8 +53,12 @@ const delPictures =
         img_id : img.imgId,
         isProfilePic : img.isProfilePic
     }
-      const headers = {'Content-Type': 'multipart/form-data'};
-        const response  = yield axios.post('http://localhost:5000/deleteImages',data,headers);
+      const token = yield select((state) => state.user.token);
+      const response = yield call(request, {
+                "url": "http://localhost:5000/deleteImages",
+                "data": data,
+                "method": "post"
+              },token);  
         if(response.data)
         {
           yield put(getImages(user_id));
@@ -64,8 +78,12 @@ const setProfilePicture =
         user_id : user_id,
         img_id : imgId
     }
-      const headers = {'Content-Type': 'multipart/form-data'};
-        const response  = yield axios.post('http://localhost:5000/setProfilePicture',data,headers);
+      const token = yield select((state) => state.user.token);
+      const response = yield call(request, {
+                "url": "http://localhost:5000/setProfilePicture",
+                "data": data,
+                "method": "post"
+              },token);  
         if(response.data)
         {
           yield put(getImages(user_id));

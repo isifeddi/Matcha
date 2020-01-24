@@ -1,6 +1,6 @@
-/* eslint-disable */
 import React, {useState} from 'react';
 import './chat.css';
+import MyFlash from '../commun/flash'
 
 const Conversations = (props) => {
     const {handleSelectConversation, selected, conversations} = props;
@@ -53,7 +53,7 @@ const Messages = (props) => {
 }
 
 const SendMessage = (props) => {
-    const {handleSendMessage, selected} = props;
+    const {handleSendMessage, selected, dis} = props;
     const [message, setMessage] = useState("");
     const handleChange = e => setMessage(e.target.value);
     const handleSubmit = form => {
@@ -73,7 +73,7 @@ const SendMessage = (props) => {
         <div className="message-input">
             <div className="wrap">
                 <form onSubmit={handleSubmit}>
-                    <input onChange={handleChange} type="text" placeholder="Write your message..." />
+                    <input onChange={handleChange} type="text" placeholder="Write your message..." disabled={dis}/>
                     <button  type="submit" className="submit">Send</button>
                 </form>
             </div>
@@ -82,14 +82,14 @@ const SendMessage = (props) => {
 }
 
 const Content = (props) => {
-    const {handleSendMessage, selected} = props;
+    const {handleSendMessage, selected, dis} = props;
     return(
         <div className="content">
             {Object.keys(selected).length > 0 ? (
             <>
                 <ConvTitle selected={selected}/>
                 <Messages selected={selected}/>
-                <SendMessage handleSendMessage={handleSendMessage} selected={selected}/>
+                <SendMessage dis={dis} handleSendMessage={handleSendMessage} selected={selected}/>
             </> ) :
                 <p id="selectCon">Select a conversation</p>
             }
@@ -98,13 +98,17 @@ const Content = (props) => {
 }
 
 const Chat = (props) => {
-    const {handleSelectConversation, handleSendMessage, selected, conversations} = props;
+    const {handleSelectConversation, err, handleSendMessage, selected, conversations} = props;
+    let disable = false;
+    if(err)
+        disable = true;
     return(
     <div id="frame">
+        {err && <MyFlash variant="error" msg={[err]}/>}
         {conversations.length > 0 ? (
         <>
             <Conversations handleSelectConversation={handleSelectConversation} selected={selected} conversations={conversations}/>
-            <Content handleSendMessage={handleSendMessage} selected={selected} conversations={conversations}/>
+            <Content dis={disable} handleSendMessage={handleSendMessage} selected={selected} conversations={conversations}/>
         </> ) : 
             <p id="noMatches">No matches</p>
         }
