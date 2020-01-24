@@ -7,7 +7,6 @@ sendMessage = async (req, res) => {
     const blocked = await user.select('checkBlock', [sender,sender,receiver,receiver]);
     const u1 = await  user.getUser('GetUserById',sender);
     const u2 = await  user.getUser('GetUserById',receiver);
-
     if(u1 && u2)
     {
         if(message.length > 255){
@@ -17,16 +16,19 @@ sendMessage = async (req, res) => {
         if(!matchs.includes(receiver)){
             res.send({sent: false, err:'Not matched'});
             return ;
-        }  
+        }
         if(blocked.length){
-            res.send({sent: false, err:'Blocked'});
+            if(blocked[0].blocker_id === sender)
+                res.send({sent: false, err:'You blocked this user'});
+            else if(blocked[0].blocked_id === sender)
+                res.send({sent: false, err:'This user blocked you'});
             return ;
         }
         user.insert('insertMessage', [sender, receiver, message])
         .then(resp => {
             if(resp)
-                res.send({sent:true})
-        });
+                res.send({sent:true, sender: sender, receiver: receiver, profilePic: u1.profilePic, message: message})
+        }).catch(err => console.log(err));
     }
     else
         res.send({sent: false, err:'user does not exist'});
