@@ -102,7 +102,7 @@ export default function ViewProfile(props) {
           <Avatar aria-label="recipe" className={user.isOnline === 1 ? classes.avatarON : classes.avatarOF}></Avatar> 
         }
         title={user.firstname +' ' +user.lastname}
-        subheader={user.isOnline === 1 ? 'Online' : 'Offline' + user.lastSignIn}
+        subheader={user.isOnline === 1 ? 'Online' : 'Last seen' + user.lastSignIn}
       >
       </CardHeader>
       <CardMedia
@@ -127,7 +127,7 @@ export default function ViewProfile(props) {
           <strong>BIO :</strong> {user.bio} 
         </Typography>
         <Typography >
-        <strong>AGE :</strong>{user.birthday} 
+        <strong>AGE :</strong>{user.age} 
         </Typography>
         <Typography >
         <strong>MATCH WITH :</strong> {user.sexOrient} 

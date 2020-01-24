@@ -1,9 +1,23 @@
 const user = require('../../models/user');
-const calculateNbrTagsCommun = async (user1,user2) =>{
+module.exports = {
+    getTags : async function (id) {
+        let data = [];
+        const tags = await user.getUserInterests(id);
+        if(tags)
+        {
+            for (var j = 0; j < tags.length; j++) {
+            data[j] = tags[j].value;
+        }
+
+        }
+        
+        return data;
+    },
+
+calculateNbrTagsCommun : async function (user1,user2) {
 
     const interestsU1  = await user.getUserInterests(user1.id);
     const interestsU2  = await user.getUserInterests(user2.id);
-    //console.log(interestsU1[0].value)
     let nbrTagsComm = 0;
     if(interestsU1 === null || interestsU2 === null)
         return 0;
@@ -16,4 +30,4 @@ const calculateNbrTagsCommun = async (user1,user2) =>{
         return nbrTagsComm;
 }
 
-module.exports = calculateNbrTagsCommun
+}

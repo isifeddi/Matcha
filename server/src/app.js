@@ -25,8 +25,7 @@ app.use(cors())
 app.use(up)
 app.use(v1);
 // ------------- ERR  ------------- //
-app.use((req,res,next) =>{
-     
+app.use((req,res,next) =>{  
     var err = new Error('not found');
     err.status = 404;
     next(err);

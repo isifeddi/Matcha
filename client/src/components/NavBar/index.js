@@ -23,6 +23,7 @@ import PersonIcon from '@material-ui/icons/Person';
 import HistoryIcon from '@material-ui/icons/History';
 import ChatIcon from '@material-ui/icons/Chat';
 import AppsIcon from '@material-ui/icons/Apps';
+import SearchIcon from '@material-ui/icons/Search';
 const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
   root: {
@@ -77,6 +78,7 @@ function NavBar(props) {
 
   const loggedInMenu = [
     {"text" : "Browse","path" : "/browse", icon: <AppsIcon color="secondary"/>},
+    {"text" : "Search","path" : "/search", icon: <SearchIcon color="secondary"/>},
     {"text" : "Profile","path" : "/profile", icon: <PersonIcon color="secondary"/>},
     {"text" : "Activity","path" : "/activity", icon: <HistoryIcon color="secondary"/>},
     {"text" : "Friends","path" : "/chat", icon: <ChatIcon color="secondary"/>},

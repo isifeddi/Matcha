@@ -10,6 +10,8 @@ checkConfirmToken = async (req, res) => {
             const verifToken = crypto.randomBytes(64).toString('hex');
             user.UpdateVerifToken(response.email, verifToken);
             user.Confirmed(response.email);
+            if(response.rating === 0)
+                user.update('updateRating',[2,response.id]);
             res.send('success');
         }
         else

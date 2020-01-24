@@ -30,8 +30,9 @@ const Routes = (props) => {
                     {props.user && props.user.complete === 3 ? <Route path="/activity" component={ Activity }/> : <Redirect to='/completeProfile'/>}
                     {props.user && props.user.complete === 3 ?  <Route path="/chat" component={ Chat }/> : <Redirect to='/completeProfile'/>}
                     {props.user && props.user.complete === 3 ? <Route path="/browse" component={ Browse }/> : <Redirect to='/completeProfile'/>}
+                    {props.user && props.user.complete === 3 ? <Route path="/search" component={ Browse }/> : <Redirect to='/completeProfile'/>}
                     <Route path="/completeProfile"  component={CompleteProfile}/>
-                    <Route  path="*" component={ NotFoundPage }/>
+                  
                 </PrivateRoute>
                 <Route  path="*" component={ NotFoundPage }/>
             </Switch>

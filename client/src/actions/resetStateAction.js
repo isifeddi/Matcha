@@ -3,3 +3,8 @@ export const RESET_STATE = "RESET_STATE";
 export const resetState = () => ({
     "type": RESET_STATE
 });
+export const RESET_STATE_USERS = "RESET_STATE_USERS";
+
+export const resetStateUsers= () => ({
+    "type": RESET_STATE_USERS
+});

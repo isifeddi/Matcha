@@ -8,7 +8,7 @@ import {createOption} from '../../actions/addInfoAction';
 
 let profileInfoContainer = (props) => {
     return(
-        <ProfileInfo 
+        <ProfileInfo
             handleSubmit={props.handleSubmit}
             selectLoading={props.selectLoading}
             selectOptions={props.selectOptions}

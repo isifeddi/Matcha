@@ -89,7 +89,7 @@ export default function ViewProfile(props) {
           <Avatar aria-label="recipe" className={user.isOnline === 1 ? classes.avatarON : classes.avatarOF}></Avatar> 
         }
         title={user.firstname +' ' +user.lastname}
-        subheader={user.isOnline === 1 ? 'Online' : 'Offline' + user.lastSignIn}
+        subheader={user.isOnline === 1 ? 'Online' : 'Last seen' + user.lastSignIn}
       >
       </CardHeader>
       <CardMedia
@@ -106,7 +106,7 @@ export default function ViewProfile(props) {
       />
       <CardContent className={classes.cardContent}> 
         <Typography>
-          Age : {user.birthday}
+          Age : {user.age}
         </Typography>
       </CardContent>
       <CardActions className={classes.cardAction}>
