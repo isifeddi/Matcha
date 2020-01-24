@@ -18,6 +18,8 @@ export const SEND_MESSAGE_SUCCESS = "SEND_MESSAGE_SUCCESS";
 
 export const SEND_MESSAGE_ERROR = "SEND_MESSAGE_ERROR";
 
+export const RECEIVE_MESSAGE = "RECEIVE_MESSAGE";
+
 export const GetConversations = () => ({
     "type": GET_CONVERSATIONS,
 });
@@ -60,11 +62,20 @@ export const SendMessage = (id, profilePic, message) => ({
     message: message,
 });
 
-export const SendMessageSuccess = () => ({
-    "type": SEND_MESSAGE,
+export const SendMessageSuccess = (id, profilePic, message) => ({
+    "type": SEND_MESSAGE_SUCCESS,
+    id: id,
+    profilePic: profilePic,
+    message: message,
 });
 
-export const SendMessageError = (err) => ({
-    "type": SEND_MESSAGE,
+export const SendMessageError = (conv_id, err) => ({
+    "type": SEND_MESSAGE_ERROR,
+    conv_id: conv_id,
     err: err,
+});
+
+export const ReceiveMsg = (data) => ({
+    "type": RECEIVE_MESSAGE,
+    data: data,
 });

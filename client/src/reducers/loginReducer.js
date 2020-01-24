@@ -13,8 +13,7 @@ import {
 
 const DEFAULT_STATE = {
   status: 'offline',
-  error:null
-  
+  error: null
 };
   
 export default function (state = DEFAULT_STATE, action) {
@@ -25,6 +24,7 @@ export default function (state = DEFAULT_STATE, action) {
           error:null
         }
       case LOGIN_USER_SUCCESS:
+
         return {
           status:'online',
           error: null
