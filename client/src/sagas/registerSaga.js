@@ -3,18 +3,12 @@ import {push} from "react-router-redux";
 import {resetState} from '../actions/resetStateAction';
 import {inscriptionError, inscriptionUserSuccess, EmailConfirmationSuccess, EmailConfirmationError} from "../actions/registerAction";
 import axios from 'axios'
-// import {request} from "./helper";
 
 const inscription =
   function *inscription ({data}) {
     try {
-    //   const response = yield call(request, {
-    //     "url": "/api/auth/signup",
-    //     data,
-    //     "method": "post"
-    //   });
+    
       const response = yield axios.post('http://localhost:5000/register', data)
-      console.log(response)
       if(response.data.isValid){
         yield put(inscriptionUserSuccess(data));
         yield put(push("/login"));

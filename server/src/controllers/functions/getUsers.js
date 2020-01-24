@@ -4,7 +4,8 @@ const filtreUsers = require('../../controllers/functions/filtre');
 const checkToken = require('./checkToken');
 getUsers = async (req, res) => {
     const Da = [];
-    // token = req.headers.authorization;
+     token = req.headers.authorization;
+     console.log(token)
     // const isTokenValid = await checkToken(token);
     const user_id = req.body.id;
     const filtre = req.body.filtre;

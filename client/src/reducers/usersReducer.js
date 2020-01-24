@@ -24,7 +24,7 @@ export default function (state = DEFAULT_STATE, action) {
                 const id = action.id;
                 let arr  = [...state.users];
                 for (var i = 0; i < arr.length; i++) {
-                    if (arr[i].user.id == id) {
+                    if (arr[i].user.id === parseInt(id)) {
                         arr.splice(i, 1);
                         i--;
                     }

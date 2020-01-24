@@ -7,7 +7,7 @@ const BlockListContainer = (props) => {
     useEffect(() => {
         getBlockUser();
         getLikeUser();
-}, []);
+}, [getBlockUser,getLikeUser]);
     const handleDeblock = (event) =>{
         const deblocked_user_id = event.target.getAttribute('userid');
         deblockUser(deblocked_user_id);

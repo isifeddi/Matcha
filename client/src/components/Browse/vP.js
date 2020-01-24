@@ -10,32 +10,31 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Rating from '@material-ui/lab/Rating';
 import defaultImg from '../../image/default.jpg';
-import { Grid} from '@material-ui/core';
 import ReactIdSwiperCustom from 'react-id-swiper/lib/ReactIdSwiper.custom';
 import { Swiper, Navigation, Pagination } from 'swiper/js/swiper.esm';
 
 const useStyles = makeStyles(theme => ({
   card: {
-    maxWidth: 400,
+    maxWidth: 320,
     maxHeight: 600,
     borderRadius : '20px',
    borderColor : '#DBDFF3',
    backgroundColor: '#DBDFF3'
   },
   cardMedia : {
-    maxWidth: 400,
+    maxWidth: 320,
     maxHeight : 250,
   },
   cardHeader : {
-    maxWidth: 400,
+    maxWidth: 320,
     maxHeight : 100,
   },
   cardContent : {
-    maxWidth: 400,
+    maxWidth: 320,
     maxHeight : 200,
   },
   cardAction : {
-    maxWidth: 400,
+    maxWidth: 320,
     maxHeight : 50,
   },
   avatarON: {

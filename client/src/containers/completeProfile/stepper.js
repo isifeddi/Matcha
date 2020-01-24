@@ -12,7 +12,7 @@ const StepperContainer = (props) => {
             getOptions();
             getImages(user.id);
         }
-    }, []);
+    }, [getOptions,getImages,user]);
     const handleBack = () => {
         decStepper();
     }

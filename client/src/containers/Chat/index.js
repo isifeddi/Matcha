@@ -15,7 +15,7 @@ const ChatContainer = (props) => {
             receiveMsg(data);
         });
         return () => reset()
-    }, []);
+    }, [getConversations,receiveMsg,reset,user]);
 
     const handleSelectConversation = (id) => {
         selectConversation(id);

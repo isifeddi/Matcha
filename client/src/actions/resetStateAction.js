@@ -10,7 +10,7 @@ export const resetState = () => ({
 
 export const resetStateUsers= () => ({
     "type": RESET_STATE_USERS
-
+});
 export const resetChatState = () => ({
     "type": RESET_CHAT_STATE
 });

@@ -19,7 +19,7 @@ addInfo = async (req, res) => {
     if(tools.isBirthday(info.birthday) && tools.isGender(info.gender) && tools.isOrient(info.sexOrient) && tools.isBio(info.bio) && tools.isInterest(info.interests) && v)
     {
         user.deleteUserInter(info.id);
-        user.updateInfo(info.gender, info.sexOrient, info.birthday,tools.age(info.birthday), info.bio, info.id);
+        user.updateInfo(info.gender, info.sexOrient, info.birthday, tools.age(info.birthday), info.bio, info.id);
         info.interests.forEach( element => {
             user.getInterId(element)
             .then(re => {

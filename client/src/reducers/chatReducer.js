@@ -16,34 +16,36 @@ export default function (state = DEFAULT_STATE, action) {
             const id = action.id;
             let arr  = [...state.conversations];
             for (var i = 0; i < arr.length; i++) {
-                if (arr[i].id == id) {
+                if (arr[i].id === parseInt(id)) {
                     return {selectedConversation: arr[i], conversations:[...state.conversations]};
                 }
             }
+            break;
         }
         case LOAD_MESSAGES_SUCCESS:
         {
             const id = action.conv_id;
             let arr  = [...state.conversations];
-            for (var i = 0; i < arr.length; i++) {
-                if (arr[i].id == id) {
-                    arr[i].messages = action.data;
+            for (var j = 0; j < arr.length; j++) {
+                if (arr[j].id === parseInt(id)) {
+                    arr[j].messages = action.data;
                     return {selectedConversation: {...state.selectedConversation, messages: action.data}, conversations:arr};
                 }
             }
+            break;
         }
         case SEND_MESSAGE_SUCCESS:
         {
             const id = action.id;
             const ele = {path: action.profilePic, message: action.message, isMyMessage: true};
             let arr  = [...state.conversations];
-            for (var i = 0; i < arr.length; i++) {
-                if (arr[i].id == id) {
-                    arr[i].messages.push(ele);
+            for (var k = 0; k < arr.length; k++) {
+                if (arr[k].id === parseInt(id)) {
+                    arr[k].messages.push(ele);
                     break;
                 }
             }
-            return {selectedConversation: {...state.selectedConversation, messages: arr[i].messages}, conversations:arr};
+            return {selectedConversation: {...state.selectedConversation, messages: arr[k].messages}, conversations:arr};
         }
         case SEND_MESSAGE_ERROR:
         {
@@ -54,13 +56,13 @@ export default function (state = DEFAULT_STATE, action) {
             const id = action.data.sender;
             const ele = {path: action.data.profilePic, message: action.data.message, isMyMessage: false};
             let arr  = [...state.conversations];
-            for (var i = 0; i < arr.length; i++) {
-                if (arr[i].id == id) {
-                    arr[i].messages.push(ele);
+            for (var m = 0; m < arr.length; m++) {
+                if (arr[m].id === parseInt(id)) {
+                    arr[m].messages.push(ele);
                     break;
                 }
             }
-            return {selectedConversation: {...state.selectedConversation, messages: arr[i].messages}, conversations:arr};
+            return {selectedConversation: {...state.selectedConversation, messages: arr[m].messages}, conversations:arr};
         }
         case RESET_CHAT_STATE:
             return {selectedConversation: {...state.selectedConversation}, conversations: [...state.conversations]};

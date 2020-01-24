@@ -1,4 +1,4 @@
-import React ,{useEffect, useState}from 'react';
+import React ,{useEffect}from 'react';
 import {connect} from "react-redux";
 import Home from '../../components/Browse';
 import {getOptions} from '../../actions/addInfoAction';
@@ -8,7 +8,7 @@ import MyModal from "../../components/commun/modal";
 import ViewPro from "../../components/Browse/vP";
 
 const HomeContainer = (props) => {
-    const {getOptions, selectOptions,getUsers,blockUser,likeUser,reportUser,user,users,viewProfileUser,router,resetStateUsers,sortUsers} = props
+    const {getOptions, selectOptions,getUsers,blockUser,likeUser,reportUser,users,viewProfileUser,router,resetStateUsers,sortUsers} = props
     const route = router.location.pathname;
     useEffect(() => {
         getOptions();
@@ -18,7 +18,7 @@ const HomeContainer = (props) => {
         else if(route === '/search')
             resetStateUsers();
 
-    }, []);
+    }, [getOptions,getUsers,resetStateUsers,route]);
     const [state, setState] = React.useState({
         open: false,
         user: null,

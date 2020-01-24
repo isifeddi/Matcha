@@ -217,9 +217,9 @@ module.exports = {
             });
         })
     },
-    updateInfo: function (gender, sexOrient, birthday, bio, id) {
+    updateInfo: function (gender, sexOrient, birthday, age, bio, id) {
         return new Promise ((resolve, reject) => {
-            conn.query(UPDATE.UpdateInfo, [gender, sexOrient, birthday, bio, id], (err,res) => {
+            conn.query(UPDATE.UpdateInfo, [gender, sexOrient, birthday, age, bio, id], (err,res) => {
                 if(err)
                     reject(err);
                 else{

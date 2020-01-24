@@ -19,11 +19,11 @@ const Routes = (props) => {
     return (
         <div>
             <Switch>
-               <Route path="/confirmation/:token"  component={ EmailConfirmCont }/> 
-               <Route path="/resetPassword/:token"  component={ ResetPasswordContainer }/> 
-               <Route path="/forgotPassword"  component={ ForgotPasswordContainer }/>  
-               <Route path="/register"  component={ RegisterContainer } /> 
-               <Route path="/login"  component={ loginContainer }/> 
+                {props.user === null && <Route path="/confirmation/:token"  component={ EmailConfirmCont }/>}
+                {props.user === null && <Route path="/resetPassword/:token"  component={ ResetPasswordContainer }/>}
+                {props.user === null && <Route path="/forgotPassword"  component={ ForgotPasswordContainer }/>} 
+                {props.user === null && <Route path="/register"  component={ RegisterContainer } />}
+                {props.user === null && <Route path="/login"  component={ loginContainer }/>}
                 <Route path="/home" component={Home}/>
                 <PrivateRoute>
                     {props.user && props.user.complete === 3 ? <Route path="/profile" component={ Profile }/> : <Redirect to='/completeProfile'/>}
@@ -33,7 +33,7 @@ const Routes = (props) => {
                     {props.user && props.user.complete === 3 ? <Route path="/search" component={ Browse }/> : <Redirect to='/completeProfile'/>}
                     <Route path="/completeProfile"  component={CompleteProfile}/>
                 </PrivateRoute>
-                <Route  path="*" component={ NotFoundPage }/>
+                <Route  path="*" exact={true} component={ NotFoundPage }/>
             </Switch>
         </div>
     )
