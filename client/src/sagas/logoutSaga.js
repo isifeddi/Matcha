@@ -6,13 +6,14 @@ export const logoutRequest =
     function *logoutRequest () {
         try {
             const id = yield select((state) => state.user.id);
+            const token = yield select((state) => state.user.token);
             const response = yield call(request, {
                 "url": "http://localhost:5000/logout",
                 "data": {
                  id
                 },
                 "method": "post"
-              });
+              },token);
               if(response)
               {
                 yield put(ClearUserInformation());

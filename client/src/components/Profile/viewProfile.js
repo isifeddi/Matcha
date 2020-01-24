@@ -16,11 +16,33 @@ import ReactIdSwiperCustom from 'react-id-swiper/lib/ReactIdSwiper.custom';
 import { Swiper, Navigation, Pagination } from 'swiper/js/swiper.esm';
 import BlockIcon from '@material-ui/icons/Block';
 import { Grid } from '@material-ui/core';
-
+import ReportIcon from '@material-ui/icons/Report';
 const useStyles = makeStyles(theme => ({
+  root: {
+    padding: '10px',
+    boxShadow: 3,
+  },
   card: {
     maxWidth: 400,
-    height:600,
+    maxHeight:550,
+    borderRadius : '20px',
+    backgroundColor: '#DBDFF3',
+  },
+  cardMedia : {
+    maxWidth: 400,
+    maxHeight : 250,
+  },
+  cardHeader : {
+    maxWidth: 400,
+    maxHeight : 150,
+  },
+  cardContent : {
+    maxWidth: 400,
+    maxHeight : 100,
+  },
+  cardAction : {
+    maxWidth: 400,
+    maxHeight : 50,
   },
   avatarON: {
     backgroundColor: '#00FB0C',
@@ -69,6 +91,7 @@ export default function ViewProfile(props) {
     <Grid container justify='center'>
     <Card  className={classes.card}>
       <CardHeader
+      className={classes.cardHeader}
       action={ 
         <Box component="fieldset" mb={3} borderColor="transparent">
         <div className={classes.rating1}>
@@ -97,22 +120,29 @@ export default function ViewProfile(props) {
       </CardHeader>
       
       <CardMedia
+      className={classes.cardMedia}
         children={
             <ReactIdSwiperCustom {...params}>
                 {
                     images.isImages ? images.images.map((tile) =>
                     <div key={tile.id}>
-                        <img  style={{width: "100%"}} src={`http://localhost:5000/images/${tile.path}`} alt="images"/>
+                        <img  style={{width: "100%",height:"250px"}} src={`http://localhost:5000/images/${tile.path}`} alt="images"/>
                     </div>
-                    ) : <img  style={{width: "100%"}} src={defaultImg} alt="images"/>
+                    ) : <img  style={{width: "100%",height:"250px"}} src={defaultImg} alt="images"/>
                 }
                 </ReactIdSwiperCustom>
         }
       
       />
-      <CardContent>
-        <Typography >
+      <CardContent className={classes.cardContent}>
+      <Typography >
           <strong>BIO :</strong> {user.bio} 
+        </Typography>
+        <Typography >
+        <strong>AGE :</strong>{user.age} 
+        </Typography>
+        <Typography >
+        <strong>MATCH WITH :</strong> {user.sexOrient} 
         </Typography>
         <Typography>
         <strong>TAGS :</strong> {interests != null &&  interests.map((item) =>item.value + ' ' )}
@@ -120,12 +150,15 @@ export default function ViewProfile(props) {
         </Typography>
       </CardContent>
 
-      <CardActions disableSpacing >
+      <CardActions disableSpacing className={classes.cardContent}>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon color="secondary"/>
         </IconButton>
         <IconButton aria-label="share">
           <BlockIcon color="secondary"/>
+        </IconButton>
+        <IconButton aria-label="share">
+          <ReportIcon color="secondary"/>
         </IconButton>
       </CardActions>
     </Card>
