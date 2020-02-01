@@ -63,8 +63,7 @@ const SendMessage = (props) => {
             handleSendMessage(selected.id, message);
             let cont = document.querySelector('.messages');
             const height = cont.scrollHeight;
-            //cont.scrollTop = cont.scrollHeight;
-            cont.scrollTo(0, height+1000);
+            cont.scrollTo(0, height);
             setMessage("");
         }
         document.querySelector('.message-input input').value = null;

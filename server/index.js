@@ -16,9 +16,8 @@ io.on('connection', socket => {
     });
 
     socket.on('chatMessage', function(data){
-        console.log('chatMsg');
-        console.log(io.sockets.adapter.rooms[data.receiver]);
         io.to(data.receiver).emit('new_msg', {sender: data.sender, receiver: data.receiver, profilePic: data.profilePic, message: data.message});
+        io.to(data.sender).emit('received', {sender: data.sender, receiver: data.receiver, profilePic: data.profilePic, message: data.message});
     });
 
     socket.on('disconnect', function(){

@@ -36,16 +36,20 @@ export default function (state = DEFAULT_STATE, action) {
         }
         case SEND_MESSAGE_SUCCESS:
         {
+            console.log(action);
             const id = action.id;
             const ele = {path: action.profilePic, message: action.message, isMyMessage: true};
             let arr  = [...state.conversations];
             for (var k = 0; k < arr.length; k++) {
                 if (arr[k].id === parseInt(id)) {
-                    arr[k].messages.push(ele);
+                    arr[k].messages && arr[k].messages.push(ele);
                     break;
                 }
             }
-            return {selectedConversation: {...state.selectedConversation, messages: arr[k].messages}, conversations:arr};
+            if(state.selectedConversation.id === parseInt(id))
+                return {selectedConversation: {...state.selectedConversation, messages: arr[k].messages}, conversations:arr};
+            else
+                return {selectedConversation: {...state.selectedConversation}, conversations:arr};
         }
         case SEND_MESSAGE_ERROR:
         {
@@ -58,11 +62,14 @@ export default function (state = DEFAULT_STATE, action) {
             let arr  = [...state.conversations];
             for (var m = 0; m < arr.length; m++) {
                 if (arr[m].id === parseInt(id)) {
-                    arr[m].messages.push(ele);
+                    arr[m].messages && arr[m].messages.push(ele);
                     break;
                 }
             }
-            return {selectedConversation: {...state.selectedConversation, messages: arr[m].messages}, conversations:arr};
+            if(state.selectedConversation.id === parseInt(id))
+                return {selectedConversation: {...state.selectedConversation, messages: arr[m].messages}, conversations:arr};
+            else
+                return {selectedConversation: {...state.selectedConversation}, conversations:arr};
         }
         case RESET_CHAT_STATE:
             return {selectedConversation: {...state.selectedConversation}, conversations: [...state.conversations]};

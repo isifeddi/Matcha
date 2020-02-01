@@ -1,6 +1,6 @@
 import {takeLatest, put, select, delay} from "redux-saga/effects";
 import axios from 'axios';
-import {getConverSuccess, getConverError, LoadMessagesSuccess, LoadMessagesError, SendMessageSuccess, SendMessageError} from '../actions/chatAction';
+import {getConverSuccess, getConverError, LoadMessagesSuccess, LoadMessagesError, SendMessageError} from '../actions/chatAction';
 import { resetChatState } from "../actions/resetStateAction";
 import socket from '../socketConn';
 
@@ -48,7 +48,6 @@ const sendMsg =
       const response = yield axios.post('http://localhost:5000/sendMessage', data);
       if(response.data.sent === true)
       {
-        yield put(SendMessageSuccess(id, user.profilePic, message));
         socket.emit('chatMessage', response.data);
       }
       else
