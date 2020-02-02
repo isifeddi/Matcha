@@ -12,7 +12,6 @@ const HomeContainer = (props) => {
     const route = router.location.pathname;
     useEffect(() => {
         getOptions();
-        
         if(route === '/browse')
             getUsers(null);
         else if(route === '/search')
@@ -69,12 +68,12 @@ const handleChangeRating = (e,newValue) => {
             resetStateUsers();
             return ;
         }
-        
+
     getUsers(filtre);
   };
-    const handle = (e) =>{
+    const handle = (e) => {
         const methode = e.target.getAttribute('methode');
-        sortUsers(methode,route)
+        sortUsers(methode,route);
     }
     const handleBlock = (event) => {
         const blocked_user_id = event.target.getAttribute('userid');
@@ -145,7 +144,7 @@ const mapStateToProps = (state) => (
     "user": state.user,
     'selectOptions': state.addInfo.selectOptions,
     "users": state.users,
-    "router" : state.router
+    "router" : state.router,
 });
 const mapDispatchToProps = {
     "getOptions": getOptions,

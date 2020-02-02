@@ -1,4 +1,3 @@
-// eslint-disable-next-line react-hooks/exhaustive-deps
 import React, {useEffect} from "react";
 import { SnackbarProvider, useSnackbar } from "notistack";
 

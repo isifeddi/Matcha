@@ -11,6 +11,7 @@ import usersReducer from './usersReducer';
 import blockList from './blockList';
 import likeList from './likeList';
 import chat from './chatReducer';
+import notif from './notifReducer';
 
 const combinedReducer = (history)=> combineReducers({
     "router" : connectRouter(history),
@@ -24,6 +25,7 @@ const combinedReducer = (history)=> combineReducers({
     "blockList" : blockList,
     "likeList" : likeList,
     "chat": chat,
+    "notif": notif,
     form
 });
 export default combinedReducer;
