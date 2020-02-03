@@ -1,12 +1,9 @@
-import {OPEN_NOTIF} from '../actions/notifAction';
+import {OPEN_NOTIF, NEW_NOTIF} from '../actions/notifAction';
 import { RESET_STATE} from '../actions/resetStateAction';
 
 const DEFAULT_STATE = {
-    current_notif: {},
+    current_notif: null,
     notifications: [
-        {id: 1, content: 'estrella liked you', seen: false},
-        {id: 2, content: 'lolly liked you', seen: false},
-        {id: 3, content: 'lalaNa3ima liked you', seen: true},
     ],
 };
 
@@ -20,6 +17,13 @@ export default function (state = DEFAULT_STATE, action) {
                     e.seen = true;
             });
             return {current_notif: {...state.current_notif}, notifications: arr};
+        }
+        case NEW_NOTIF:
+        {
+            let ele = {content: action.content, seen: 0};
+            let arr  = [...state.notifications];
+            arr.push(ele);
+            return {current_notif: action.content, notifications: arr};
         }
         case RESET_STATE:
             return DEFAULT_STATE;

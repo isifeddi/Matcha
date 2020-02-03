@@ -20,6 +20,10 @@ io.on('connection', socket => {
         io.to(data.sender).emit('received', {sender: data.sender, receiver: data.receiver, profilePic: data.profilePic, message: data.message});
     });
 
+    socket.on('userLiked', function(data){
+        io.to(data.receiver).emit('new_notif', {content: data.content});
+    });
+
     socket.on('disconnect', function(){
         console.log('user disconnected');
     });

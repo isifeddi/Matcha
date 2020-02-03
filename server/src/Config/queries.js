@@ -27,7 +27,8 @@ const queries = {
         getMessages: "SELECT messages.sender,images.path, messages.message FROM images,messages WHERE images.user_id = messages.sender AND images.isProfilePic = 1 AND (messages.sender = ? OR messages.receiver = ?) AND (messages.sender = ? OR messages.receiver = ?) ORDER BY messages.id ASC",
         GetUserInter: "SELECT interest FROM interests INNER JOIN usersInterests ON interests.interest_id = usersInterests.iId WHERE usersInterests.uId = ?",
         CheckEditUsername: "SELECT username from users where username = ? AND id != ?",
-        CheckEditEmail: "SELECT email from users where email = ? AND id != ?"
+        CheckEditEmail: "SELECT email from users where email = ? AND id != ?",
+        getNotif: "SELECT content,seen FROM notifications WHERE `by` = ?",
     },
     INSERT : {
         AddImage: 'INSERT INTO images (user_id, path,isProfilePic) VALUES (?, ?, ?)',
@@ -35,10 +36,11 @@ const queries = {
         CreateInterest: "INSERT INTO interests (interest, createdBy) VALUES (?, ?)",
         InsertUserInter: "INSERT INTO usersInterests (uId, iId) VALUES (?, ?)",
         blockUser : "INSERT INTO blockList (blocker_id, blocked_id,date) VALUES (?, ?, NOW())",
-        likeUser : "INSERT INTO likesList (liker_id, liked_id,date) VALUES (?, ?, NOW())",
+        likeUser : "INSERT INTO likesList (liker_id, liked_id, date) VALUES (?, ?, NOW())",
         reportUser : "INSERT INTO reportList (reporter_id, reported_id,date) VALUES (?, ?, NOW())",
         viewProfileUser : "INSERT INTO viewProfileList (viewer, viewed, date) VALUES (?,?,NOW())",
         insertMessage: "INSERT INTO messages (sender, receiver, message) VALUES (?, ?, ?)",
+        insertNotif: "INSERT INTO notifications (`by`, receiver, content, seen) VALUES (?, ?, ?, ?)",
     },
     UPDATE : {
         Update: 'UPDATE users SET name = ?, email = ?, sex = ? WHERE id = ?',

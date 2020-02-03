@@ -20,8 +20,8 @@ module.exports = {
             conn.query(SELECT.GetUsers, [id,id,id,id], (err,res) => {
                 if(err)
                     reject(err);
-                else{
-                    
+                else
+                {
                     resolve(JSON.parse(JSON.stringify(res)));
                 }
             });
@@ -35,7 +35,8 @@ module.exports = {
                 else
                 {
                     const data = JSON.parse(JSON.stringify(res));
-                    if(data[0]){
+                    if(data[0])
+                    {
                        this.getUserInterests(data[0].id)
                         .then(async (response) => {
                             interests  = response;
@@ -45,7 +46,8 @@ module.exports = {
                             data[0].token = token;
                             resolve(data[0]);
                         }).catch((error)  => {console.log(error)})
-                    }else{
+                    }else
+                    {
                         resolve(null)
                     }
                 }

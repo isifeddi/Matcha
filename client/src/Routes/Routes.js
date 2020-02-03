@@ -15,10 +15,12 @@ import Activity from '../containers/Activity';
 import Chat from '../containers/Chat';
 import Notif from '../containers/Notif';
 import Home from '../components/Home';
+import MyFlash from '../components/commun/flash';
 
 const Routes = (props) => {
     return (
         <div>
+        {props.notif && <MyFlash variant="info" msg={[props.notif]}/>}
             <Switch>
                 {props.user === null && <Route path="/confirmation/:token"  component={ EmailConfirmCont }/>}
                 {props.user === null && <Route path="/resetPassword/:token"  component={ ResetPasswordContainer }/>}
@@ -43,5 +45,6 @@ const Routes = (props) => {
 const mapStateToProps = (state) => (
 {
     'user': state.user,
+    'notif': state.notif.current_notif
 });
 export default connect(mapStateToProps)(Routes);

@@ -19,8 +19,8 @@ const NavBarContainer = (props) => {
         setState({open: false});
     }
     let i = 0;
-    notifList.forEach(e => {
-        if(e.seen === false) i++;
+    notifList && notifList.forEach(e => {
+        if(e.seen === 0) i++;
     });
     return(
         <>

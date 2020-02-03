@@ -5,6 +5,7 @@ import Notif from '../../components/Notif';
 const NotifCont = (props) => {
     const {notifList}  = props
     useEffect(() => {
+        
     }, []);
     return (
         <div>

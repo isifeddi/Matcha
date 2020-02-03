@@ -33,6 +33,7 @@ const sendMessages = require('../controllers/chat/sendMessage');
 const editProfile = require('../controllers/editProfile');
 const dislikeUser = require('../controllers/functions/dislikeUser');
 const sortUsers = require('../controllers/functions/sortUsers');
+const getNotif = require('../controllers/notif/getNotif');
 
 router.post('/login', Login);
 router.post('/register', Register);
@@ -65,6 +66,8 @@ router.post('/editProfile', editProfile);
 router.post('/getLikeUser',getLikeUser);
 router.post('/getMatchs', getMatchedUsers);
 router.post('/loadMessages', loadMessages);
-router.post('/sendMessage', sendMessage);
+router.post('/sendMessage', sendMessages);
 router.post('/sortUsers', sortUsers);
+router.post('/getNotif', getNotif);
+
 module.exports = router;

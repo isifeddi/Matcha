@@ -2,6 +2,8 @@ import {put, takeLatest,call} from "redux-saga/effects";
 import { select } from 'redux-saga/effects'; 
 import {request} from './helper';
 import { getUsersSuccess,getUsersError,deleteUser,getBlockUserSuccess,deleteBlock,getLikeUserSuccess,deleteLike} from '../actions/userAction';
+import socket from '../socketConn';
+
 export const getUsers =
     function *getUsers (data) {
         try {
@@ -103,11 +105,12 @@ export const getUsers =
             const token = yield select((state) => state.user.token);
             const response = yield call(request, {
                 "url": "http://localhost:5000/likeUser",
-                "data": {id : user.id, liked_user_id: liked_user_id},
+                "data": {username: user.username, id : user.id, liked_user_id: liked_user_id},
                 "method": "post"
               },token);
             if(response)
             {
+                socket.emit('userLiked', {receiver: parseInt(liked_user_id), content: `${user.username} liked you`});
                 yield put(deleteUser(liked_user_id));
             }
         } catch (error) {
@@ -162,7 +165,7 @@ export const getUsers =
               },token);
             if(response)
             {
-                 yield put(deleteUser(reported_user_id));
+                yield put(deleteUser(reported_user_id));
             }
         } catch (error) {
             console.log(error)
@@ -183,7 +186,7 @@ export const getUsers =
                 
             }
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
     };
 export default function *() {
@@ -197,5 +200,4 @@ export default function *() {
     yield takeLatest("REPORT_USER",reportUser);
     yield takeLatest("VIEW_PROFILE_USER",viewProfileUser);
     yield takeLatest("SORT_USERS",sortUsers);
-    
 }

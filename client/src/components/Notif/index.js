@@ -36,8 +36,8 @@ export default function Notif(props) {
             <Typography component="h1" variant="h4" align="center" color='primary'>
                 Notifications
             </Typography>
-            {notifList.map((value) => (
-                <ListItem key={value.id} button>
+            {notifList.map((value, index) => (
+                <ListItem key={index} button>
                     <ListItemAvatar>
                         <Avatar
                             className={classes.large}
