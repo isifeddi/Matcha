@@ -34,6 +34,7 @@ const editProfile = require('../controllers/editProfile');
 const dislikeUser = require('../controllers/functions/dislikeUser');
 const sortUsers = require('../controllers/functions/sortUsers');
 const getNotif = require('../controllers/notif/getNotif');
+const openNotif = require('../controllers/notif/openNotif');
 
 router.post('/login', Login);
 router.post('/register', Register);
@@ -69,5 +70,6 @@ router.post('/loadMessages', loadMessages);
 router.post('/sendMessage', sendMessages);
 router.post('/sortUsers', sortUsers);
 router.post('/getNotif', getNotif);
+router.post('/openNotif', openNotif);
 
 module.exports = router;

@@ -20,10 +20,11 @@ export default function Snackbar(props){
                 vertical: 'top',
                 horizontal: 'right',
             }}
+            style={{marginTop: '49px'}}
             autoHideDuration={4000}
             maxSnack={5}
         >
-        <MyFlash msg={props.msg} variant={props.variant}/>
+            <MyFlash msg={props.msg} variant={props.variant}/>
         </SnackbarProvider>
     );
 };

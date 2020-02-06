@@ -2,13 +2,13 @@ import React ,{useEffect}from 'react';
 import {connect} from "react-redux";
 import Home from '../../components/Browse';
 import {getOptions} from '../../actions/addInfoAction';
-import {sortUsers, getUsers,blockUser,likeUser,reportUser,viewProfileUser} from '../../actions/userAction';
+import {sortUsers, getUsers,blockUser,likeUser,dislikeUser,reportUser,viewProfileUser} from '../../actions/userAction';
 import {resetStateUsers} from '../../actions/resetStateAction';
 import MyModal from "../../components/commun/modal";
 import ViewPro from "../../components/Browse/vP";
 
 const HomeContainer = (props) => {
-    const {getOptions, selectOptions,getUsers,blockUser,likeUser,reportUser,users,viewProfileUser,router,resetStateUsers,sortUsers} = props
+    const {getOptions, selectOptions,getUsers,blockUser,likeUser,dislikeUser,reportUser,users,viewProfileUser,router,resetStateUsers,sortUsers} = props
     const route = router.location.pathname;
     useEffect(() => {
         getOptions();
@@ -71,42 +71,34 @@ const handleChangeRating = (e,newValue) => {
 
     getUsers(filtre);
   };
-    const handle = (e) => {
-        const methode = e.target.getAttribute('methode');
+    const handle = (methode) => {
         sortUsers(methode,route);
     }
-    const handleBlock = (event) => {
-        const blocked_user_id = event.target.getAttribute('userid');
+    const handleBlock = (blocked_user_id) => {
         blockUser(blocked_user_id);
         setState({
             open: false,
-            user: null,
-            images: null,
-            interests: null,
         });
     }
-    const handleLike = (event) => {
-        const liked_user_id = event.target.getAttribute('userid');
+    const handleDislike= (dislike_user_id) =>{
+       dislikeUser(dislike_user_id);
+       setState({
+        open: false,
+    });
+    }
+    const handleLike = (liked_user_id) => {
         likeUser(liked_user_id);
         setState({
             open: false,
-            user: null,
-            images: null,
-            interests: null,});
-    }
-    const handleReport = (event) => {
-        const reported_user_id = event.target.getAttribute('userid');
+        });
+     }
+    const handleReport = (reported_user_id) => {
         reportUser(reported_user_id);
         setState({
             open: false,
-            user: null,
-            images: null,
-            interests: null,});
+        });
     }
-    const handleViewProfile = (event) => {
-        const user = JSON.parse(event.target.getAttribute('user'));
-        const images = JSON.parse(event.target.getAttribute('img'));
-        const interests = JSON.parse(event.target.getAttribute('inters'));
+    const handleViewProfile = (user,images,interests) => {
         viewProfileUser(user.id);
         setState({
             open: true,
@@ -118,23 +110,21 @@ const handleChangeRating = (e,newValue) => {
     const handleClose = () => {
         setState({
             open: false,
-            user: null,
-            images: null,
-            interests: null,});
+        });
     }
     return (
         <div>
             <Home selectOptions={selectOptions} users={users} handleBlock={handleBlock} handleLike={handleLike} handleViewProfile={handleViewProfile} handleChangeRating={handleChangeRating}
                 handleChangeAge={handleChangeAge} handleChangeLoc={handleChangeLoc} handleChangeNbrTags={handleChangeNbrTags} rating={rating}
-                handleChangeTags={handleChangeTags} loc={loc} nbrTags={nbrTags} age={age} handleSubmit={handleSubmit} handle={handle}
+                handleChangeTags={handleChangeTags} loc={loc} nbrTags={nbrTags} age={age} handleSubmit={handleSubmit} handle={handle} handleDislike={handleDislike}
                 />
-            {state.open && 
-                    <MyModal isOpen={state.open}  handleClose={handleClose}>
+            
+                    {state.open && <MyModal isOpen={state.open}  handleClose={handleClose}>
                         <ViewPro    handleBlock={handleBlock} handleLike={handleLike} handleReport={handleReport}
-                                    user={state.user} images={state.images} interests={state.interests}
+                        handleDislike={handleDislike} user={state.user} images={state.images} interests={state.interests}
                         />
-                    </MyModal>
-            }
+                    </MyModal>}
+        
         </div>
     )
 }
@@ -151,6 +141,7 @@ const mapDispatchToProps = {
     "getUsers" : getUsers,
     "blockUser" : blockUser,
     "likeUser" : likeUser,
+    "dislikeUser" : dislikeUser,
     "reportUser" : reportUser,
     "viewProfileUser" : viewProfileUser,
     "resetStateUsers" : resetStateUsers,

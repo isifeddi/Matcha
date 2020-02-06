@@ -8,12 +8,10 @@ const BlockListContainer = (props) => {
         getBlockUser();
         getLikeUser();
 }, [getBlockUser,getLikeUser]);
-    const handleDeblock = (event) =>{
-        const deblocked_user_id = event.target.getAttribute('userid');
+    const handleDeblock = (deblocked_user_id) =>{
         deblockUser(deblocked_user_id);
     }
-    const handleDislike= (event) =>{
-        const dislike_user_id = event.target.getAttribute('userid');
+    const handleDislike= (dislike_user_id) =>{
        dislikeUser(dislike_user_id);
     }
     return (
