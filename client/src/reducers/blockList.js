@@ -17,7 +17,7 @@ export default function (state = DEFAULT_STATE, action) {
             for (var i = 0; i < arr.length; i++) {
                 if (arr[i].id === parseInt(id)) {
                     arr.splice(i, 1);
-                    i--;
+                    break ;
                 }
             }
             return {isUsers : true, users : arr};

@@ -3,6 +3,7 @@ import {
     GET_USERS_SUCCESS,
     GET_USERS_ERROR,
     DELETE_USER,
+    DISLIKE_USER
 } from "../actions/userAction";
 import {RESET_STATE_USERS} from "../actions/resetStateAction";
 const DEFAULT_STATE = {
@@ -19,6 +20,21 @@ export default function (state = DEFAULT_STATE, action) {
             return {status: 'success', isUsers : true, users:action.data};
         case GET_USERS_ERROR:
             return {status: 'error', isUsers : false, err : action.err};
+        case DISLIKE_USER :
+            {
+                const dislike_user_id = action.dislike_user_id;
+                let arr  = [...state.users];
+                for (var i = 0; i < arr.length; i++) {
+                    if (arr[i].user.id === parseInt(dislike_user_id)) {
+                        if(arr[i].user.like === "iLike")
+                            arr[i].user.like = null;
+                        else if(arr[i].user.like === "match")
+                            arr[i].user.like = 'heLiked';
+                        break ;
+                    }
+                }
+                return {status: 'success', isUsers : true, users : arr};
+            }
         case DELETE_USER:
             {
                 const id = action.id;
@@ -26,7 +42,7 @@ export default function (state = DEFAULT_STATE, action) {
                 for (var i = 0; i < arr.length; i++) {
                     if (arr[i].user.id === parseInt(id)) {
                         arr.splice(i, 1);
-                        i--;
+                        break ;
                     }
                 }
                 return {status: 'success', isUsers : true, users : arr};
