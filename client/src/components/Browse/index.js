@@ -33,10 +33,11 @@ const useStyles = makeStyles(theme => ({
   margin: {
     height: theme.spacing(3),
   },
-  card: {
-    borderRadius : '20px',
-    backgroundColor :'#DBDFF3' 
+  card:{
+    border: '2px solid',
+    borderColor: '#E6EAEA',
   },
+  
 }));
 
 export default function TitlebarGridList(props) {
@@ -57,7 +58,6 @@ export default function TitlebarGridList(props) {
   const customStyles = {
     control: (base, state) => ({
         ...base,
-        background: "#DBDFF3",  
         borderColor: state.isFocused ? "#3f51b5" : "#3f51b5",
         boxShadow: state.isFocused ? null : null,
       }),

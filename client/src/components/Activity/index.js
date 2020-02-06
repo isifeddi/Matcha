@@ -21,7 +21,7 @@ import BlockIcon from '@material-ui/icons/Block';
     overflow: 'auto',
     maxHeight: 550,
     borderRadius : '15px',
-    backgroundColor: '#DBDFF3',
+    backgroundColor: '#E6EAEA',
     margin: '10px'
    },
    large: {
@@ -53,8 +53,8 @@ import BlockIcon from '@material-ui/icons/Block';
              </ListItemAvatar>
              <ListItemText id={value.id} >{value.firstname + '  ' + value.lastname}</ListItemText>
              <ListItemSecondaryAction>
-              <Tooltip title ="Block"><IconButton aria-label="Block">
-                <BlockIcon  color="secondary" onClick={(e) => handleDeblock(value.id)}/>
+              <Tooltip title ="Block"><IconButton aria-label="Block"  onClick={(e) => handleDeblock(value.id)}>
+                <BlockIcon  color="secondary"/>
               </IconButton></Tooltip>
              </ListItemSecondaryAction>
            </ListItem>
@@ -76,13 +76,13 @@ import BlockIcon from '@material-ui/icons/Block';
              <ListItemText id={value.id} >{value.firstname + '  ' + value.lastname}</ListItemText>
              <ListItemSecondaryAction>
              {value.like === 'iLike' &&
-              <Tooltip title ="Unlike"><IconButton aria-label="Unlike">
-                <FavoriteIcon  color="secondary" onClick={(e) => handleDislike(value.id)}/>
+              <Tooltip title ="Unlike"><IconButton aria-label="Unlike"  onClick={(e) => handleDislike(value.id)}>
+                <FavoriteIcon  color="secondary"/>
               </IconButton></Tooltip>
               }
               {value.like === 'match' &&
-                <Tooltip title ="Unmatch"><IconButton aria-label="Unmatch">
-                  <SupervisedUserCircleRoundedIcon color="primary" onClick={(e) => handleDislike(value.id)}/>
+                <Tooltip title ="Unmatch"><IconButton aria-label="Unmatch"  onClick={(e) => handleDislike(value.id)}>
+                  <SupervisedUserCircleRoundedIcon color="primary"/>
                 </IconButton></Tooltip>
               }
              </ListItemSecondaryAction>

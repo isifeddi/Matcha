@@ -39,7 +39,7 @@ const useStyles = makeStyles(theme => ({
       duration: theme.transitions.duration.leavingScreen,
      
     }),
-    backgroundColor:"#DBDFF3"
+    backgroundColor:"#FFFFFF"
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -61,7 +61,7 @@ const useStyles = makeStyles(theme => ({
   },
   drawerPaper: {
     width: drawerWidth,
-    backgroundColor:"#DBDFF3"
+    
   },
   drawerHeader: {
     display: 'flex',

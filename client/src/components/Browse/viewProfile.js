@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
     maxWidth: 400,
     maxHeight:550,
     borderRadius : '20px',
-    backgroundColor: '#DBDFF3',
+    backgroundColor: '#E6EAEA',
   },
   cardMedia : {
     maxWidth: 400,
@@ -105,30 +105,30 @@ export default function ViewProfile(props) {
       </CardContent>
       <CardActions className={classes.cardAction}>
         {user.like === null &&
-          <Tooltip title ="Like"><IconButton aria-label="Like">
-            <FavoriteBorderIcon  color="secondary" onClick={(e) => handleLike(user.id)}/>
+          <Tooltip title ="Like"><IconButton aria-label="Like" onClick={(e) => handleLike(user.id)}>
+            <FavoriteBorderIcon color="secondary" />
           </IconButton></Tooltip>
         }
         {user.like === 'iLike' &&
-          <Tooltip title ="Unlike"><IconButton aria-label="Unlike">
-            <FavoriteIcon  color="secondary" onClick={(e) => handleDislike(user.id)}/>
+          <Tooltip title ="Unlike"><IconButton aria-label="Unlike"  onClick={(e) => handleDislike(user.id)}>
+            <FavoriteIcon  color="secondary"/>
           </IconButton></Tooltip>
         }
         {user.like === 'heLiked' &&
-          <Tooltip title ="Like back"><IconButton aria-label="Like back">
-            <SupervisedUserCircleOutlinedIcon color="primary" onClick={(e) => handleLike(user.id)}/>
+          <Tooltip title ="Like back"><IconButton aria-label="Like back"  onClick={(e) => handleLike(user.id)}>
+            <SupervisedUserCircleOutlinedIcon color="primary"/>
           </IconButton></Tooltip>
         }
         {user.like === 'match' &&
-          <Tooltip title ="Unmatch"><IconButton aria-label="Unmatch">
-            <SupervisedUserCircleRoundedIcon color="primary" onClick={(e) => handleDislike(user.id)}/>
+          <Tooltip title ="Unmatch"><IconButton aria-label="Unmatch"  onClick={(e) => handleDislike(user.id)}>
+            <SupervisedUserCircleRoundedIcon color="primary"/>
           </IconButton></Tooltip>
         }
-        <Tooltip title ="Block"><IconButton aria-label="Block">
-          <BlockIcon  color="secondary" onClick={(e) => handleBlock(user.id)}/>
+        <Tooltip title ="Block"><IconButton aria-label="Block"  onClick={(e) => handleBlock(user.id)}>
+          <BlockIcon  color="secondary"/>
         </IconButton></Tooltip>
-        <Tooltip title ="View"><IconButton aria-label="View">
-          <VisibilityIcon  color="primary" onClick={(e) => handleViewProfile(user,images,interests)}/>
+        <Tooltip title ="View"><IconButton aria-label="View"  onClick={(e) => handleViewProfile(user,images,interests)}>
+          <VisibilityIcon  color="primary"/>
         </IconButton></Tooltip>
         
       </CardActions>

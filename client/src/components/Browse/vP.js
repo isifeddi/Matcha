@@ -25,8 +25,8 @@ const useStyles = makeStyles(theme => ({
     maxWidth: 320,
     maxHeight: 600,
     borderRadius : '20px',
-   borderColor : '#DBDFF3',
-   backgroundColor: '#DBDFF3'
+   
+   backgroundColor: '#E6EAEA'
   },
   cardMedia : {
     maxWidth: 320,
@@ -147,15 +147,15 @@ export default function ViewProfile(props) {
           </IconButton></Tooltip>
         }
         {user.like === 'match' &&
-          <Tooltip title ="Unmatch"><IconButton aria-label="Unmatch">
-            <SupervisedUserCircleRoundedIcon color="primary" onClick={(e) => handleDislike(user.id)}/>
+          <Tooltip title ="Unmatch"><IconButton aria-label="Unmatch"  onClick={(e) => handleDislike(user.id)}>
+            <SupervisedUserCircleRoundedIcon color="primary"/>
           </IconButton></Tooltip>
         }
-        <Tooltip title ="Block"><IconButton aria-label="Block">
-          <BlockIcon  color="secondary" onClick={(e) => handleBlock(user.id)}/>
+        <Tooltip title ="Block"><IconButton aria-label="Block"  onClick={(e) => handleBlock(user.id)}>
+          <BlockIcon  color="secondary"/>
         </IconButton></Tooltip>
-        <Tooltip title ="Report"><IconButton aria-label="Report">
-        <ReportIcon  color="secondary" onClick={(e) => handleReport(user.id)}/>
+        <Tooltip title ="Report"><IconButton aria-label="Report"  onClick={(e) => handleReport(user.id)}>
+        <ReportIcon  color="secondary"/>
         </IconButton></Tooltip>
       </CardActions>
     </Card>
