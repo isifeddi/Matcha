@@ -92,7 +92,8 @@ const filtreUsers = async (user_id,fil) => {
                     i--;
             }
         }
-       } 
+       }
+       const likes = await user.select('getUserLikes', [user_id, user_id]);
        for (var i = 0; i < users.length; i++) {
         user2 = {
             distance : calculateDistance(user1[0],users[i]),
@@ -102,6 +103,7 @@ const filtreUsers = async (user_id,fil) => {
         }
         users[i].score = calculateScore(user2);
       }
+     
          SorteTabe = users.sort(so('-score'));
     return SorteTabe;
 }

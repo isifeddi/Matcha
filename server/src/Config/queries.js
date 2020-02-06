@@ -1,12 +1,13 @@
 const queries = {
     SELECT : {
-        GetUsers: "SELECT id,firstname,lastname, gender, sexOrient, bio, age,birthday,rating,isOnline,latitude,longitude, lastSignIn FROM users \
-            WHERE id != ? AND \
-            id NOT IN  (SELECT blocked_id FROM blockList  WHERE blocker_id = ?) AND \
-            id NOT IN  (SELECT reported_id FROM reportList  WHERE reporter_id = ?) \
-            AND confirmed = 1 \
-            AND complete = 3 \
-            ORDER BY rating DESC",
+        GetUsers: 
+        "SELECT id,firstname,lastname, gender, sexOrient, bio, age,birthday,rating,isOnline,latitude,longitude, lastSignIn FROM users\
+        WHERE id != ? AND \
+        id NOT IN  (SELECT blocked_id FROM blockList  WHERE blocker_id = ?) AND \
+        id NOT IN  (SELECT reported_id FROM reportList  WHERE reporter_id = ?) \
+        AND confirmed = 1 \
+        AND complete = 3 \
+        ORDER BY rating DESC",
         GetAllUsers : "SELECT * FROM users WHERE confirmed = 1 AND complete = 3 ",
         GetUserByEmail: "SELECT users.*,DATE_FORMAT(users.birthday,'%Y-%m-%d') as transDate,images.path as profilePic FROM users,images WHERE images.user_id = users.id AND images.isProfilePic = 1 AND users.email = ?",
         GetUserById: "SELECT users.*,DATE_FORMAT(users.birthday,'%Y-%m-%d') as transDate,images.path as profilePic FROM users,images WHERE images.user_id = users.id AND images.isProfilePic = 1 AND users.id = ?",
@@ -23,8 +24,14 @@ const queries = {
         getLikeUser : "SELECT id,firstname,lastname FROM users WHERE  id  IN (SELECT liked_id FROM likesList WHERE liker_id = ?)",
         getUserLikes: "SELECT liker_id,liked_id FROM likesList WHERE liker_id=? OR liked_id=?",
         checkBlock: "SELECT * FROM blockList WHERE (blocker_id = ? OR blocked_id = ?) AND (blocker_id = ? OR blocked_id = ?)",
+        checkLike: "SELECT * FROM likesList WHERE (liker_id = ? AND liked_id = ?)",
         getMatchs: "SELECT users.id,users.firstname,users.lastname,images.path,users.isOnline FROM users,images WHERE users.id = images.user_id  AND images.isProfilePic = 1 AND images.user_id IN (?)",
-        getMessages: "SELECT messages.sender,images.path, messages.message FROM images,messages WHERE images.user_id = messages.sender AND images.isProfilePic = 1 AND (messages.sender = ? OR messages.receiver = ?) AND (messages.sender = ? OR messages.receiver = ?) ORDER BY messages.id ASC",
+        getMessages: 
+            "SELECT messages.sender,images.path, messages.message FROM images,messages \
+            WHERE images.user_id = messages.sender \
+            AND images.isProfilePic = 1 \
+            AND (messages.sender = ? OR messages.receiver = ?) \
+            AND (messages.sender = ? OR messages.receiver = ?) ORDER BY messages.id ASC",
         GetUserInter: "SELECT interest FROM interests INNER JOIN usersInterests ON interests.interest_id = usersInterests.iId WHERE usersInterests.uId = ?",
         CheckEditUsername: "SELECT username from users where username = ? AND id != ?",
         CheckEditEmail: "SELECT email from users where email = ? AND id != ?",

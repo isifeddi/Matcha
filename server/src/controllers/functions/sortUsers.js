@@ -2,6 +2,7 @@ const user = require('../../models/user');
 const img = require('../../models/images');
 const T = require('./calculateNbrTagsCommun');
 const calculateDistance = require('./calculateDistance');
+const checkLikes= require('./checkLikes')
 const so = require('./sort');
 sortUsers = async (req, res) => {
     const Da = [];
@@ -38,7 +39,8 @@ sortUsers = async (req, res) => {
     SorteTabe = users.sort(so(methode));
     for (var i = 0; i < SorteTabe.length; i++) {
         const images = await img.getImages(SorteTabe[i].id);
-        const interests  = await user.getUserInterests(SorteTabe[i].id); 
+        const interests  = await user.getUserInterests(SorteTabe[i].id);
+        SorteTabe[i].like = await  checkLikes(user_id,SorteTabe[i].id);
         Da[i]= {
          user :  SorteTabe[i],
          images : images,

@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
   },
   card: {
     maxWidth: 400,
-    maxHeight:550,
+    maxHeight:600,
     borderRadius : '20px',
     backgroundColor: '#DBDFF3',
   },
@@ -34,11 +34,11 @@ const useStyles = makeStyles(theme => ({
   },
   cardHeader : {
     maxWidth: 400,
-    maxHeight : 150,
+    maxHeight : 100,
   },
   cardContent : {
     maxWidth: 400,
-    maxHeight : 100,
+    maxHeight : 200,
   },
   cardAction : {
     maxWidth: 400,
@@ -74,19 +74,6 @@ export default function ViewProfile(props) {
     },
     spaceBetween: 30 
   }
-      const labels = {
-        0.5: 'Useless',
-        1: 'Useless+',
-        1.5: 'Poor',
-        2: 'Poor+',
-        2.5: 'Ok',
-        3: 'Ok+',
-        3.5: 'Good',
-        4: 'Good+',
-        4.5: 'Excellent',
-        5: 'Excellent+',
-      };
-
   return (
     <Grid container justify='center'>
     <Card  className={classes.card}>
@@ -95,7 +82,6 @@ export default function ViewProfile(props) {
       action={ 
         <Box component="fieldset" mb={3} borderColor="transparent">
         <div className={classes.rating1}>
-        <Box ml={2}>{labels[value]}</Box>
           <Rating
             name="read-only"
             value={value}
