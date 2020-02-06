@@ -10,7 +10,14 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Rating from '@material-ui/lab/Rating';
 import defaultImg from '../../image/default.jpg';
-
+import BlockIcon from '@material-ui/icons/Block';
+import IconButton from '@material-ui/core/IconButton';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import Tooltip from '@material-ui/core/Tooltip';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import SupervisedUserCircleOutlinedIcon from '@material-ui/icons/SupervisedUserCircleOutlined';
+import SupervisedUserCircleRoundedIcon from '@material-ui/icons/SupervisedUserCircleRounded';
 const useStyles = makeStyles(theme => ({
   root: {
     padding: '10px',
@@ -51,21 +58,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function ViewProfile(props) {
-  const {user,images,interests,handleBlock,handleLike,handleViewProfile} = props;
+  const {user,images,interests,handleBlock,handleLike,handleDislike,handleViewProfile} = props;
   const classes = useStyles();
   const value = user.rating;
-      const labels = {
-        0.5: 'Useless',
-        1: 'Useless+',
-        1.5: 'Poor',
-        2: 'Poor+',
-        2.5: 'Ok',
-        3: 'Ok+',
-        3.5: 'Good',
-        4: 'Good+',
-        4.5: 'Excellent',
-        5: 'Excellent+',
-      };
 
   return (
     <div className={classes.root}>
@@ -74,12 +69,11 @@ export default function ViewProfile(props) {
       className={classes.cardHeader}
       action={ 
         <Box component="fieldset" mb={3} borderColor="transparent">
-        <div className={classes.rating1}>
-        <Box ml={2}>{labels[value]}</Box>
+        <div className={classes.rating1}> 
           <Rating
             name="read-only"
             value={value}
-            precision={0.2}
+            precision={0.1}
             readOnly
           />
         </div>
@@ -110,9 +104,33 @@ export default function ViewProfile(props) {
         </Typography>
       </CardContent>
       <CardActions className={classes.cardAction}>
-        <button  userid = {user.id} onClick={handleLike}>LIKE</button>
-        <button  userid = {user.id} onClick={handleBlock}>Block</button>
-        <button  user = {JSON.stringify(user)} img= {JSON.stringify(images)} inters = {JSON.stringify(interests)}  onClick={handleViewProfile}>ViewProfile</button>
+        {user.like === null &&
+          <Tooltip title ="Like"><IconButton aria-label="Like">
+            <FavoriteBorderIcon  color="secondary" onClick={(e) => handleLike(user.id)}/>
+          </IconButton></Tooltip>
+        }
+        {user.like === 'iLike' &&
+          <Tooltip title ="Unlike"><IconButton aria-label="Unlike">
+            <FavoriteIcon  color="secondary" onClick={(e) => handleDislike(user.id)}/>
+          </IconButton></Tooltip>
+        }
+        {user.like === 'heLiked' &&
+          <Tooltip title ="Like back"><IconButton aria-label="Like back">
+            <SupervisedUserCircleOutlinedIcon color="primary" onClick={(e) => handleLike(user.id)}/>
+          </IconButton></Tooltip>
+        }
+        {user.like === 'match' &&
+          <Tooltip title ="Unmatch"><IconButton aria-label="Unmatch">
+            <SupervisedUserCircleRoundedIcon color="primary" onClick={(e) => handleDislike(user.id)}/>
+          </IconButton></Tooltip>
+        }
+        <Tooltip title ="Block"><IconButton aria-label="Block">
+          <BlockIcon  color="secondary" onClick={(e) => handleBlock(user.id)}/>
+        </IconButton></Tooltip>
+        <Tooltip title ="View"><IconButton aria-label="View">
+          <VisibilityIcon  color="primary" onClick={(e) => handleViewProfile(user,images,interests)}/>
+        </IconButton></Tooltip>
+        
       </CardActions>
     </Card> 
     </div>

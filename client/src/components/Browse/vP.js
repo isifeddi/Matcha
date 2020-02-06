@@ -12,7 +12,14 @@ import Rating from '@material-ui/lab/Rating';
 import defaultImg from '../../image/default.jpg';
 import ReactIdSwiperCustom from 'react-id-swiper/lib/ReactIdSwiper.custom';
 import { Swiper, Navigation, Pagination } from 'swiper/js/swiper.esm';
-
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import BlockIcon from '@material-ui/icons/Block';
+import ReportIcon from '@material-ui/icons/Report';
+import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
+import SupervisedUserCircleOutlinedIcon from '@material-ui/icons/SupervisedUserCircleOutlined';
+import SupervisedUserCircleRoundedIcon from '@material-ui/icons/SupervisedUserCircleRounded';
 const useStyles = makeStyles(theme => ({
   card: {
     maxWidth: 320,
@@ -50,21 +57,9 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function ViewProfile(props) {
-  const {user,images,interests,handleBlock,handleLike,handleReport} = props;
+  const {user,images,interests,handleBlock,handleLike,handleReport,handleDislike} = props;
   const classes = useStyles();
   const value = user.rating;
-      const labels = {
-        0.5: 'Useless',
-        1: 'Useless+',
-        1.5: 'Poor',
-        2: 'Poor+',
-        2.5: 'Ok',
-        3: 'Ok+',
-        3.5: 'Good',
-        4: 'Good+',
-        4.5: 'Excellent',
-        5: 'Excellent+',
-      };
       const params = {
         Swiper,
         modules: [Navigation, Pagination],
@@ -87,11 +82,10 @@ export default function ViewProfile(props) {
       action={ 
         <Box component="fieldset" mb={3} borderColor="transparent">
         <div className={classes.rating1}>
-        <Box ml={2}>{labels[value]}</Box>
           <Rating
             name="read-only"
             value={value}
-            precision={0.5}
+            precision={0.1}
             readOnly
           />
         </div>
@@ -137,9 +131,32 @@ export default function ViewProfile(props) {
       </CardContent>
       </CardContent>
       <CardActions className={classes.cardAction}>
-        <button  userid = {user.id} onClick={handleLike}>LIKE</button>
-        <button  userid = {user.id} onClick={handleBlock}>Block</button>
-        <button  userid = {user.id}   onClick={handleReport}>Report</button>
+      {user.like === null &&
+          <Tooltip title ="Like"><IconButton aria-label="Like">
+            <FavoriteBorderIcon  color="secondary" onClick={(e) => handleLike(user.id)}/>
+          </IconButton></Tooltip>
+        }
+        {user.like === 'iLike' &&
+          <Tooltip title ="Unlike"><IconButton aria-label="Unlike">
+            <FavoriteIcon  color="secondary" onClick={(e) => handleDislike(user.id)}/>
+          </IconButton></Tooltip>
+        }
+        {user.like === 'heLiked' &&
+          <Tooltip title ="Like back"><IconButton aria-label="Like back">
+            <SupervisedUserCircleOutlinedIcon color="primary" onClick={(e) => handleLike(user.id)}/>
+          </IconButton></Tooltip>
+        }
+        {user.like === 'match' &&
+          <Tooltip title ="Unmatch"><IconButton aria-label="Unmatch">
+            <SupervisedUserCircleRoundedIcon color="primary" onClick={(e) => handleDislike(user.id)}/>
+          </IconButton></Tooltip>
+        }
+        <Tooltip title ="Block"><IconButton aria-label="Block">
+          <BlockIcon  color="secondary" onClick={(e) => handleBlock(user.id)}/>
+        </IconButton></Tooltip>
+        <Tooltip title ="Report"><IconButton aria-label="Report">
+        <ReportIcon  color="secondary" onClick={(e) => handleReport(user.id)}/>
+        </IconButton></Tooltip>
       </CardActions>
     </Card>
   );

@@ -8,7 +8,11 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import { Grid} from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
-
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
+import SupervisedUserCircleRoundedIcon from '@material-ui/icons/SupervisedUserCircleRounded';
+import BlockIcon from '@material-ui/icons/Block';
  const useStyles = makeStyles(theme => ({
    root: {
     width: '100%',
@@ -49,7 +53,9 @@ import Typography from '@material-ui/core/Typography';
              </ListItemAvatar>
              <ListItemText id={value.id} >{value.firstname + '  ' + value.lastname}</ListItemText>
              <ListItemSecondaryAction>
-               <button userid={value.id} onClick={handleDeblock}>Unblock</button>
+              <Tooltip title ="Block"><IconButton aria-label="Block">
+                <BlockIcon  color="secondary" onClick={(e) => handleDeblock(value.id)}/>
+              </IconButton></Tooltip>
              </ListItemSecondaryAction>
            </ListItem>
        ))}
@@ -69,7 +75,16 @@ import Typography from '@material-ui/core/Typography';
              </ListItemAvatar>
              <ListItemText id={value.id} >{value.firstname + '  ' + value.lastname}</ListItemText>
              <ListItemSecondaryAction>
-               <button userid={value.id} onClick={handleDislike}>Unlike</button>
+             {value.like === 'iLike' &&
+              <Tooltip title ="Unlike"><IconButton aria-label="Unlike">
+                <FavoriteIcon  color="secondary" onClick={(e) => handleDislike(value.id)}/>
+              </IconButton></Tooltip>
+              }
+              {value.like === 'match' &&
+                <Tooltip title ="Unmatch"><IconButton aria-label="Unmatch">
+                  <SupervisedUserCircleRoundedIcon color="primary" onClick={(e) => handleDislike(value.id)}/>
+                </IconButton></Tooltip>
+              }
              </ListItemSecondaryAction>
            </ListItem>
        ))}
