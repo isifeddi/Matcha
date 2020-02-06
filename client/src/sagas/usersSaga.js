@@ -24,7 +24,7 @@ export const getUsers =
             yield put(getUsersError('there has been an error'));
         }
     };
-    export const sortUsers =
+export const sortUsers =
     function *sortUsers ({methode,route}) {
         try {
             const user = yield select(state => state.user);
@@ -44,7 +44,7 @@ export const getUsers =
             yield put(getUsersError('there has been an error'));
         }
     };
-    export const blockUser =
+export const blockUser =
     function *blockUser({blocked_user_id}) {
         try {
             const user = yield select(state => state.user);
@@ -62,7 +62,7 @@ export const getUsers =
             console.log(error)
         }
     };
-    export const deblockUser =
+export const deblockUser =
     function *deblockUser({deblocked_user_id}) {
         try {
             const user = yield select(state => state.user);
@@ -80,7 +80,7 @@ export const getUsers =
             console.log(error)
         }
     };
-    export const getBlockUser =
+export const getBlockUser =
     function *getBlockUser() {
         try {
             const user = yield select(state => state.user);
@@ -98,7 +98,7 @@ export const getUsers =
             console.log(error)
         }
     };
-    export const likeUser =
+export const likeUser =
     function *likeUser({liked_user_id}) {
         try {
             const user = yield select(state => state.user);
@@ -110,14 +110,16 @@ export const getUsers =
               },token);
             if(response)
             {
-                socket.emit('userLiked', {receiver: parseInt(liked_user_id), content: `${user.username} liked you`});
+                const by = {...user};
+                ['email', 'confirmed', 'complete', 'gender', 'latitude', 'longitude', 'bithday', 'transDate', 'token'].forEach(e => delete by[e]);
+                socket.emit('userLiked', {by: by, receiver: parseInt(liked_user_id), content: `${user.username} liked you`});
                 yield put(deleteUser(liked_user_id));
             }
         } catch (error) {
             console.log(error)
         }
     };
-    export const dislikeUser =
+export const dislikeUser =
     function *dislikeUser({dislike_user_id}) {
         try {
             const user = yield select(state => state.user);
@@ -130,12 +132,12 @@ export const getUsers =
               if(response)
               {
                   yield put(deleteLike(dislike_user_id));
-              } 
+              }
         } catch (error) {
             console.log(error)
         }
     };
-    export const getLikeUser =
+export const getLikeUser =
     function *getLikeUser() {
         try {
             const user = yield select(state => state.user);
@@ -153,7 +155,7 @@ export const getUsers =
             console.log(error)
         }
     };
-    export const reportUser =
+export const reportUser =
     function *reportUser({reported_user_id}) {
         try {
             const user = yield select(state => state.user);
@@ -171,19 +173,21 @@ export const getUsers =
             console.log(error)
         }
     };
-    export const viewProfileUser =
+export const viewProfileUser =
     function *viewProfileUser({viewed_user_id}) {
         try {
             const user = yield select(state => state.user);
              const token = yield select((state) => state.user.token);
             const response = yield call(request, {
                 "url": "http://localhost:5000/viewProfileUser",
-                "data": {id : user.id, viewed_user_id: viewed_user_id},
+                "data": {username: user.username, id : user.id, viewed_user_id: viewed_user_id},
                 "method": "post"
               },token);
             if(response)
             {
-                
+                const by = {...user};
+                ['email', 'confirmed', 'complete', 'gender', 'latitude', 'longitude', 'bithday', 'transDate', 'token'].forEach(e => delete by[e]);
+                socket.emit('profileViewed', {by: by, receiver: parseInt(viewed_user_id), content: `${user.username} viewed your profile`});
             }
         } catch (error) {
             console.log(error);

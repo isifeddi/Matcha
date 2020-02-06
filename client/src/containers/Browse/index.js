@@ -118,13 +118,13 @@ const handleChangeRating = (e,newValue) => {
                 handleChangeAge={handleChangeAge} handleChangeLoc={handleChangeLoc} handleChangeNbrTags={handleChangeNbrTags} rating={rating}
                 handleChangeTags={handleChangeTags} loc={loc} nbrTags={nbrTags} age={age} handleSubmit={handleSubmit} handle={handle} handleDislike={handleDislike}
                 />
-            {state.open && 
-                    <MyModal isOpen={state.open}  handleClose={handleClose}>
+            
+                    {state.open && <MyModal isOpen={state.open}  handleClose={handleClose}>
                         <ViewPro    handleBlock={handleBlock} handleLike={handleLike} handleReport={handleReport}
                         handleDislike={handleDislike} user={state.user} images={state.images} interests={state.interests}
                         />
-                    </MyModal>
-            }
+                    </MyModal>}
+        
         </div>
     )
 }

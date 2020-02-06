@@ -10,9 +10,9 @@ export const OpenNotif = () => ({
     "type": OPEN_NOTIF,
 });
 
-export const NewNotif = (content) => ({
+export const NewNotif = (data) => ({
     "type": NEW_NOTIF,
-    content: content,
+    data: data,
 });
 
 export const GetNotif = () => ({

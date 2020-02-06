@@ -36,7 +36,6 @@ export default function (state = DEFAULT_STATE, action) {
         }
         case SEND_MESSAGE_SUCCESS:
         {
-            console.log(action);
             const id = action.id;
             const ele = {path: action.profilePic, message: action.message, isMyMessage: true};
             let arr  = [...state.conversations];
