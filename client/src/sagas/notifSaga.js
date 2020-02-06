@@ -1,5 +1,6 @@
-import {takeLatest, put, select} from "redux-saga/effects";
+import {takeLatest, put, select, delay} from "redux-saga/effects";
 import axios from 'axios';
+import {resetNotifState} from '../actions/resetStateAction';
 import {GetNotifSuccess} from '../actions/notifAction';
 import socket from '../socketConn';
 import {  } from "../actions/resetStateAction";
@@ -34,7 +35,18 @@ const openNotif =
     }
 };
 
+const resetNotif =
+  function *resetNotif () {
+    try {
+      yield delay (4000);
+      yield put(resetNotifState());
+    }catch (error) {
+      console.log(error);
+    }
+};
+
 export default function *() {
     yield takeLatest("GET_NOTIF", getNotif);
     yield takeLatest("OPEN_NOTIF", openNotif);
+    yield takeLatest("NEW_NOTIF", resetNotif);
 }

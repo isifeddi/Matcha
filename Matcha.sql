@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: mysql:3306
--- Generation Time: Jan 24, 2020 at 01:51 PM
--- Server version: 5.7.28
--- PHP Version: 7.2.23
+-- Hôte : mysql:3306
+-- Généré le : jeu. 06 fév. 2020 à 22:20
+-- Version du serveur :  5.7.29
+-- Version de PHP : 7.4.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `Matcha`
+-- Base de données : `MATCHA`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `blockList`
+-- Structure de la table `blockList`
 --
 
 CREATE TABLE `blockList` (
@@ -36,24 +36,16 @@ CREATE TABLE `blockList` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `blockList`
+-- Déchargement des données de la table `blockList`
 --
 
 INSERT INTO `blockList` (`id`, `blocker_id`, `blocked_id`, `date`) VALUES
-(13, 133, 2, '2019-12-31 01:44:32'),
-(14, 133, 7, '2019-12-31 01:44:53'),
-(16, 133, 3, '2019-12-31 01:57:58'),
-(37, 133, 11, '2020-01-19 15:27:12'),
-(38, 1, 32, '2020-01-19 15:41:34'),
-(39, 1, 45, '2020-01-19 15:41:35'),
-(40, 1, 51, '2020-01-19 15:41:36'),
-(41, 1, 93, '2020-01-19 15:41:41'),
-(42, 153, 11, '2020-01-20 12:35:07');
+(43, 1, 100, '2020-02-06 21:18:47');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `images`
+-- Structure de la table `images`
 --
 
 CREATE TABLE `images` (
@@ -64,7 +56,7 @@ CREATE TABLE `images` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `images`
+-- Déchargement des données de la table `images`
 --
 
 INSERT INTO `images` (`id`, `user_id`, `path`, `isProfilePic`) VALUES
@@ -281,7 +273,7 @@ INSERT INTO `images` (`id`, `user_id`, `path`, `isProfilePic`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `interests`
+-- Structure de la table `interests`
 --
 
 CREATE TABLE `interests` (
@@ -291,7 +283,7 @@ CREATE TABLE `interests` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `interests`
+-- Déchargement des données de la table `interests`
 --
 
 INSERT INTO `interests` (`interest_id`, `interest`, `createdBy`) VALUES
@@ -306,12 +298,13 @@ INSERT INTO `interests` (`interest_id`, `interest`, `createdBy`) VALUES
 (11, 'nike', 22),
 (12, 'beauty', 19),
 (13, 'fashion', 19),
-(14, 'tert', 156);
+(14, 'tert', 156),
+(15, 'music', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `likesList`
+-- Structure de la table `likesList`
 --
 
 CREATE TABLE `likesList` (
@@ -322,138 +315,53 @@ CREATE TABLE `likesList` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `likesList`
+-- Déchargement des données de la table `likesList`
 --
 
 INSERT INTO `likesList` (`id`, `liker_id`, `liked_id`, `date`) VALUES
-(8, 133, 3, '2019-12-31 01:44:47'),
-(9, 133, 5, '2019-12-31 01:44:51'),
-(12, 133, 1, '2019-12-31 01:57:50'),
-(13, 133, 6, '2020-01-01 15:13:19'),
-(49, 5, 133, '2020-01-04 10:38:34'),
-(53, 4, 133, '2020-01-04 11:08:44'),
-(59, 1, 133, '2020-01-19 15:26:41'),
-(60, 133, 68, '2020-01-19 15:27:16'),
-(63, 1, 28, '2020-01-19 15:41:26'),
-(64, 1, 47, '2020-01-19 15:41:28'),
-(65, 1, 65, '2020-01-19 15:41:31'),
-(66, 28, 1, '2020-01-19 15:41:38'),
-(67, 153, 7, '2020-01-20 12:35:05'),
-(68, 153, 91, '2020-01-21 22:14:12'),
-(69, 153, 40, '2020-01-21 22:14:15'),
-(70, 153, 40, '2020-01-21 22:14:31'),
-(71, 153, 40, '2020-01-21 22:14:52'),
-(72, 153, 91, '2020-01-21 22:17:37'),
-(73, 156, 137, '2020-01-22 18:57:09'),
-(74, 156, 137, '2020-01-22 18:57:54'),
-(75, 156, 7, '2020-01-22 18:58:56'),
-(76, 156, 19, '2020-01-22 18:59:16'),
-(77, 156, 76, '2020-01-22 18:59:26'),
-(78, 156, 95, '2020-01-22 19:00:12'),
-(79, 156, 124, '2020-01-22 19:00:28'),
-(80, 156, 8, '2020-01-22 19:00:30'),
-(81, 156, 25, '2020-01-22 19:01:00'),
-(82, 156, 36, '2020-01-22 19:01:36'),
-(83, 156, 137, '2020-01-22 19:03:31'),
-(84, 156, 7, '2020-01-22 19:04:38'),
-(85, 156, 19, '2020-01-22 19:05:50'),
-(86, 156, 76, '2020-01-22 19:07:05'),
-(87, 156, 95, '2020-01-22 19:07:26'),
-(88, 156, 124, '2020-01-22 19:07:37'),
-(89, 156, 8, '2020-01-22 19:08:09'),
-(90, 156, 25, '2020-01-22 19:09:31'),
-(91, 156, 36, '2020-01-22 19:10:06'),
-(92, 156, 36, '2020-01-22 19:10:06'),
-(93, 156, 47, '2020-01-22 19:10:22'),
-(94, 156, 3, '2020-01-22 19:11:30'),
-(95, 156, 16, '2020-01-22 19:12:11'),
-(96, 156, 16, '2020-01-22 19:12:11'),
-(97, 156, 28, '2020-01-22 19:12:17'),
-(98, 156, 93, '2020-01-22 19:12:19'),
-(99, 156, 119, '2020-01-22 19:12:20'),
-(100, 156, 125, '2020-01-22 19:12:40'),
-(101, 156, 133, '2020-01-22 19:12:58'),
-(102, 156, 137, '2020-01-22 20:38:03'),
-(103, 156, 7, '2020-01-22 20:39:12'),
-(104, 156, 19, '2020-01-22 20:39:53'),
-(105, 156, 76, '2020-01-22 20:40:08'),
-(106, 156, 95, '2020-01-22 20:41:51'),
-(107, 156, 124, '2020-01-22 20:42:22'),
-(108, 156, 8, '2020-01-22 20:42:48'),
-(109, 156, 25, '2020-01-22 20:43:00'),
-(110, 156, 36, '2020-01-22 20:44:50'),
-(111, 156, 47, '2020-01-22 20:49:52'),
-(112, 156, 3, '2020-01-22 20:51:01'),
-(113, 156, 16, '2020-01-22 20:51:35'),
-(114, 156, 28, '2020-01-22 20:52:09'),
-(115, 156, 93, '2020-01-22 20:53:44'),
-(116, 156, 119, '2020-01-22 20:53:58'),
-(117, 156, 125, '2020-01-22 21:01:11'),
-(118, 156, 125, '2020-01-22 21:02:08'),
-(119, 156, 133, '2020-01-22 21:02:38'),
-(120, 156, 137, '2020-01-22 21:27:37'),
-(121, 156, 137, '2020-01-22 21:27:55'),
-(122, 156, 137, '2020-01-22 21:27:55'),
-(123, 156, 7, '2020-01-22 21:28:02'),
-(124, 156, 76, '2020-01-22 21:28:05'),
-(125, 156, 95, '2020-01-22 21:28:08'),
-(126, 156, 9, '2020-01-22 21:28:16'),
-(127, 156, 52, '2020-01-22 21:28:22'),
-(128, 156, 107, '2020-01-22 21:35:07'),
-(129, 156, 107, '2020-01-22 21:35:31'),
-(130, 156, 100, '2020-01-22 21:36:28'),
-(131, 156, 100, '2020-01-22 21:37:30'),
-(132, 156, 137, '2020-01-22 21:38:19'),
-(133, 156, 137, '2020-01-23 19:18:58'),
-(134, 156, 76, '2020-01-23 19:19:10'),
-(135, 156, 95, '2020-01-23 19:19:27'),
-(136, 156, 79, '2020-01-23 19:19:42'),
-(137, 156, 79, '2020-01-23 19:20:11'),
-(138, 153, 156, '2020-01-23 21:05:40'),
-(139, 153, 91, '2020-01-23 21:06:50'),
-(140, 153, 40, '2020-01-23 21:07:01'),
-(141, 153, 40, '2020-01-23 21:07:01'),
-(142, 153, 68, '2020-01-23 21:07:25'),
-(143, 153, 78, '2020-01-23 21:07:51');
+(224, 133, 1, '2020-02-06 20:43:46'),
+(226, 1, 7, '2020-02-06 21:17:28'),
+(227, 1, 52, '2020-02-06 21:17:30'),
+(228, 1, 133, '2020-02-06 21:50:29');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `messages`
+-- Structure de la table `messages`
 --
 
 CREATE TABLE `messages` (
   `id` int(11) NOT NULL,
-  `sender` varchar(255) NOT NULL,
-  `receiver` varchar(255) NOT NULL,
+  `sender` int(11) NOT NULL,
+  `receiver` int(11) NOT NULL,
   `message` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `messages`
---
-
-INSERT INTO `messages` (`id`, `sender`, `receiver`, `message`) VALUES
-(2, '1', '133', 'hi'),
-(3, '133', '1', 'wa fin'),
-(4, '133', '1', 'cv ?'),
-(5, '1', '133', 'lahafdak a 3chiri'),
-(6, '4', '133', 'wach a ibouroum'),
-(7, '133', '1', ':)'),
-(8, '1', '133', '22test'),
-(9, '1', '133', 'ds'),
-(10, '1', '133', 'salam'),
-(11, '1', '133', 'wesh'),
-(12, '1', '28', 'hey'),
-(13, '1', '28', 'zina'),
-(14, '1', '28', 'maderti fina'),
-(15, '1', '28', 'ana w 9elbi'),
-(16, '1', '28', 'hawwesna 3lik mal9ina');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `reportList`
+-- Structure de la table `notifications`
+--
+
+CREATE TABLE `notifications` (
+  `id` int(11) NOT NULL,
+  `by` int(11) NOT NULL,
+  `receiver` int(11) NOT NULL,
+  `content` varchar(255) NOT NULL,
+  `seen` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `notifications`
+--
+
+INSERT INTO `notifications` (`id`, `by`, `receiver`, `content`, `seen`) VALUES
+(138, 1, 133, 'isifeddi viewed your profile', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `reportList`
 --
 
 CREATE TABLE `reportList` (
@@ -463,22 +371,10 @@ CREATE TABLE `reportList` (
   `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `reportList`
---
-
-INSERT INTO `reportList` (`id`, `reporter_id`, `reported_id`, `date`) VALUES
-(1, 133, 1, '2019-12-31 01:43:47'),
-(2, 133, 1, '2019-12-31 01:44:10'),
-(3, 133, 1, '2019-12-31 01:44:30'),
-(4, 133, 8, '2019-12-31 01:44:54'),
-(5, 133, 4, '2019-12-31 01:58:12'),
-(6, 1, 7, '2020-01-03 20:18:53');
-
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Structure de la table `users`
 --
 
 CREATE TABLE `users` (
@@ -504,14 +400,14 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `users`
+-- Déchargement des données de la table `users`
 --
 
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `username`, `email`, `password`, `verif_token`, `confirmed`, `complete`, `gender`, `sexOrient`, `bio`, `age`, `rating`, `isOnline`, `latitude`, `longitude`, `lastSignIn`, `birthday`) VALUES
-(1, 'ilyas', 'sifeddine', 'isifeddi', 'isifeddi@gmail.com', '$2b$10$P59WWZGc5yOyno8uHyKJ7OjxhmYfW4x.Si2hACTM0dOtYbhKph136', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'male', 'women', 'BE LIKE WATER ;)', 18, 2, 1, 32.8861, -6.91048, NULL, NULL),
+(1, 'ilyas', 'sifeddine', 'isifeddi', 'isifeddi@gmail.com', '$2b$10$P59WWZGc5yOyno8uHyKJ7OjxhmYfW4x.Si2hACTM0dOtYbhKph136', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'male', 'women', 'BE LIKE WATER ;)', 22, 5, 1, 32.8861, -6.91048, NULL, '1998-01-01'),
 (2, 'Mahalia', 'Lillistone', 'mm', 'mlillistone1@dailymail.co.uk', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'male', 'both', ' I love buying new things but I hate spending money.', 18, 5, 0, 5.48274, -73.4062, '2020-01-01 22:10:20', NULL),
 (3, 'Heddie', 'Bohlin', 'hbohlin2', 'hbohlin2@elpais.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'female', 'men', ' I love buying new things but I hate spending money.', 18, 4, 1, -23.421, -51.9331, '2019-01-04 00:00:00', NULL),
-(4, 'monica', 'monica', 'swd', 'hivantyev3@myspace.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'male', 'both', ' I love buying new things but I hate spending money.', 18, 3, 0, -22.7486, -46.8931, '2020-01-01 17:23:08', NULL),
+(4, 'monica', 'monica', 'swd', 'hivantyev3@myspace.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'male', 'both', ' I love buying new things but I hate spending money.', 18, 3, 1, -22.7486, -46.8931, NULL, NULL),
 (5, 'Emmanuel', 'Cousins', 'ecousins4', 'ecousins4@senate.gov', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'male', 'men', ' I love buying new things but I hate spending money.', 18, 2, 1, -7.08721, 110.913, '2019-01-08 00:00:00', NULL),
 (6, 'Eveline', 'Renney', 'erenney5', 'erenney5@craigslist.org', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'male', 'both', ' I love buying new things but I hate spending money.', 18, 4, 0, 5.88725, -10.0304, '2019-01-09 00:00:00', NULL),
 (7, 'Evangelin', 'Guiduzzi', 'eguiduzzi6', 'eguiduzzi6@nymag.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'female', 'men', ' I love buying new things but I hate spending money.', 18, 5, 1, 53.157, 30.4607, '2019-01-08 00:00:00', NULL),
@@ -526,7 +422,6 @@ INSERT INTO `users` (`id`, `firstname`, `lastname`, `username`, `email`, `passwo
 (16, 'Arther', 'Langrish', 'alangrishf', 'alangrishf@symantec.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'female', 'men', ' I love buying new things but I hate spending money.', 18, 4, 1, 22.3859, 111.689, '2019-01-04 00:00:00', NULL),
 (17, 'Rurik', 'Cantua', 'rcantuag', 'rcantuag@dell.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'female', 'women', ' I love buying new things but I hate spending money.', 18, 3, 0, 48.9184, 34.4967, '2019-01-07 00:00:00', NULL),
 (18, 'Lucais', 'Easby', 'leasbyh', 'leasbyh@salon.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'male', 'women', ' I love buying new things but I hate spending money.', 18, 1, 0, 51.5618, 7.10909, '2020-01-20 10:14:23', NULL),
-(19, 'Maxwell', 'Cherry', 'mcherryholmei', 'mcherryholmei@dyndns.org', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'female', 'women', 'Beauty of L.A ;)  <3', 18, 5, 0, 34.135, -118.151, '2020-01-04 11:06:17', NULL),
 (20, 'Stacee', 'Finnimore', 'sfinnimorej', 'sfinnimorej@house.gov', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'female', 'women', ' I love buying new things but I hate spending money.', 18, 1, 0, 55.8889, 37.5584, '2019-01-06 00:00:00', NULL),
 (21, 'Alex', 'Dunican', 'adunicank', 'adunicank@sina.com.cn', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'male', 'women', ' I love buying new things but I hate spending money.', 18, 1, 1, 48.4981, -81.3463, '2019-01-04 00:00:00', NULL),
 (22, 'Phineas', 'Garbar', 'pgarbarl', 'pgarbarl@forbes.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'female', 'women', ' I love buying new things but I hate spending money.', 18, 0, 1, 53.15, 140.663, '2019-01-02 00:00:00', NULL),
@@ -559,7 +454,7 @@ INSERT INTO `users` (`id`, `firstname`, `lastname`, `username`, `email`, `passwo
 (49, 'Darbie', 'Shapcote', 'dshapcote1c', 'dshapcote1c@businesswire.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'female', 'both', ' I love buying new things but I hate spending money.', 40, 3, 1, 31.1377, 121.319, '2019-01-10 00:00:00', NULL),
 (50, 'Krisha', 'Chumley', 'kchumley1d', 'kchumley1d@usatoday.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'male', 'women', ' I love buying new things but I hate spending money.', 40, 5, 0, 50.1047, 17.1303, '2019-01-07 00:00:00', NULL),
 (51, 'Shaw', 'Dallow', 'sdallow1e', 'sdallow1e@wufoo.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'female', 'men', ' I love buying new things but I hate spending money.', 40, 4, 0, -19.9125, -41.4813, '2019-01-08 00:00:00', NULL),
-(52, 'Ahmed', 'Krauss', 'akrauss1f', 'akrauss1f@godaddy.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'female', 'women', ' I love buying new things but I hate spending money.', 40, 5, 1, 19.6939, -99.2592, '2019-01-06 00:00:00', NULL),
+(52, 'Ahmed', 'Krauss', 'akrauss1f', 'akrauss1f@godaddy.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'female', 'women', ' I love buying new things but I hate spending money.', 40, 5, 1, 19.6939, -99.2592, NULL, NULL),
 (53, 'Pren', 'Boutellier', 'pboutellier1g', 'pboutellier1g@google.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'female', 'both', ' I love buying new things but I hate spending money.', 40, 1, 1, -9.92467, -48.2593, '2019-01-05 00:00:00', NULL),
 (54, 'Erskine', 'Purdom', 'epurdom1h', 'epurdom1h@hatena.ne.jp', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'male', 'men', ' I love buying new things but I hate spending money.', 40, 5, 0, 36.9518, 102.495, '2019-01-01 00:00:00', NULL),
 (55, 'Zorina', 'Delort', 'zdelort1i', 'zdelort1i@wiley.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'male', 'women', ' I love buying new things but I hate spending money.', 40, 0, 1, 60.4254, 16.5439, '2019-01-06 00:00:00', NULL),
@@ -572,7 +467,7 @@ INSERT INTO `users` (`id`, `firstname`, `lastname`, `username`, `email`, `passwo
 (62, 'Claudius', 'Corradeschi', 'ccorradeschi1p', 'ccorradeschi1p@pbs.org', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'male', 'both', ' I love buying new things but I hate spending money.', 40, 4, 1, 37.6179, 120.396, '2019-01-03 00:00:00', NULL),
 (63, 'Hertha', 'Vanns', 'hvanns1q', 'hvanns1q@yandex.ru', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'female', 'women', ' I love buying new things but I hate spending money.', 40, 2, 0, 54.4168, 27.293, '2019-01-02 00:00:00', NULL),
 (64, 'Xavier', 'Kidstone', 'xkidstone1r', 'xkidstone1r@edublogs.org', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'male', 'both', ' I love buying new things but I hate spending money.', 40, 4, 0, 13.2394, 99.7902, '2019-01-10 00:00:00', NULL),
-(65, 'Colet', 'O\'Deegan', 'codeegan1s', 'codeegan1s@cornell.edu', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'female', 'women', ' I love buying new things but I hate spending money.', 40, 3, 1, 41.2676, -8.1984, '2019-01-07 00:00:00', NULL),
+(65, 'Colet', 'O\'Deegan', 'codeegan1s', 'codeegan1s@cornell.edu', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'female', 'women', ' I love buying new things but I hate spending money.', 40, 3.1, 1, 41.2676, -8.1984, '2019-01-07 00:00:00', NULL),
 (66, 'Ernest', 'Beament', 'ebeament1t', 'ebeament1t@slideshare.net', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'male', 'women', ' I love buying new things but I hate spending money.', 40, 4, 1, 49.9749, 82.6017, '2019-01-10 00:00:00', NULL),
 (67, 'Rosina', 'Lukacs', 'rlukacs1u', 'rlukacs1u@marriott.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'male', 'men', ' I love buying new things but I hate spending money.', 40, 1, 0, 4.60968, 101.106, '2019-01-10 00:00:00', NULL),
 (68, 'Winonah', 'Vardy', 'wvardy1v', 'wvardy1v@fc2.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'male', 'both', ' I love buying new things but I hate spending money.', 40, 5, 1, 58.9956, 16.2055, '2019-01-05 00:00:00', NULL),
@@ -583,7 +478,7 @@ INSERT INTO `users` (`id`, `firstname`, `lastname`, `username`, `email`, `passwo
 (73, 'Nanice', 'Geany', 'ngeany20', 'ngeany20@nydailynews.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'female', 'women', ' I love buying new things but I hate spending money.', 40, 1, 0, -7.85339, 111.299, '2019-01-02 00:00:00', NULL),
 (74, 'Roman', 'Feltham', 'rfeltham21', 'rfeltham21@friendfeed.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'male', 'men', ' I love buying new things but I hate spending money.', 40, 4, 0, 14.4706, 121.005, '2019-01-06 00:00:00', NULL),
 (75, 'Duane', 'Crier', 'dcrier22', 'dcrier22@wisc.edu', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'female', 'both', ' I love buying new things but I hate spending money.', 40, 4, 0, 60.1512, 15.1736, '2019-01-05 00:00:00', NULL),
-(76, 'Rosetta', 'Grieger', 'rgrieger23', 'rgrieger23@disqus.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'female', 'both', ' I love buying new things but I hate spending money.', 40, 4.05, 1, -6.18564, 106.843, '2019-01-11 00:00:00', NULL),
+(76, 'Rosetta', 'Grieger', 'rgrieger23', 'rgrieger23@disqus.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'female', 'both', ' I love buying new things but I hate spending money.', 40, 4.2, 1, -6.18564, 106.843, '2019-01-11 00:00:00', NULL),
 (77, 'Lotte', 'Mindenhall', 'lmindenhall24', 'lmindenhall24@gnu.org', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'male', 'men', ' I love buying new things but I hate spending money.', 40, 2, 0, -20.1924, 57.4895, '2019-01-09 00:00:00', NULL),
 (78, 'Alena', 'Summersby', 'asummersby25', 'asummersby25@kickstarter.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'male', 'men', ' I love buying new things but I hate spending money.', 40, 5, 1, -8.37656, 115.192, '2019-01-08 00:00:00', NULL),
 (79, 'Kirby', 'Jurca', 'kjurca26', 'kjurca26@hibu.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'female', 'women', ' I love buying new things but I hate spending money.', 40, 2.4, 1, 48.1968, 6.47883, '2019-01-11 00:00:00', NULL),
@@ -602,7 +497,7 @@ INSERT INTO `users` (`id`, `firstname`, `lastname`, `username`, `email`, `passwo
 (92, 'Merline', 'Abadam', 'mabadam2j', 'mabadam2j@cpanel.net', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'male', 'women', ' I love buying new things but I hate spending money.', 90, 3, 1, 62.4931, 30.2512, '2019-01-11 00:00:00', NULL),
 (93, 'Galvin', 'Buckberry', 'gbuckberry2k', 'gbuckberry2k@gov.uk', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'female', 'both', ' I love buying new things but I hate spending money.', 90, 4, 0, 32.5171, 130.603, '2019-01-01 00:00:00', NULL),
 (94, 'Alla', 'Yoskowitz', 'ayoskowitz2l', 'ayoskowitz2l@zdnet.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'male', 'women', ' I love buying new things but I hate spending money.', 90, 0, 1, -40.4824, 175.301, '2019-01-01 00:00:00', NULL),
-(95, 'Fernando', 'Haggerston', 'fhaggerston2m', 'fhaggerston2m@theatlantic.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'female', 'both', ' I love buying new things but I hate spending money.', 90, 4.05, 1, -7.81106, 108.439, '2019-01-10 00:00:00', NULL),
+(95, 'Fernando', 'Haggerston', 'fhaggerston2m', 'fhaggerston2m@theatlantic.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'female', 'both', ' I love buying new things but I hate spending money.', 90, 4.15, 1, -7.81106, 108.439, '2019-01-10 00:00:00', NULL),
 (96, 'Terri-jo', 'Rosson', 'trosson2n', 'trosson2n@cam.ac.uk', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'male', 'women', ' I love buying new things but I hate spending money.', 90, 5, 0, -6.65494, 111.116, '2019-01-08 00:00:00', NULL),
 (97, 'Lance', 'Prattington', 'lprattington2o', 'lprattington2o@imageshack.us', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'male', 'both', ' I love buying new things but I hate spending money.', 90, 4, 1, 50.4166, 31.4626, '2019-01-07 00:00:00', NULL),
 (98, 'Estevan', 'Mellmer', 'emellmer2p', 'emellmer2p@tinypic.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'female', 'both', ' I love buying new things but I hate spending money.', 90, 1, 0, 48.0415, 25.6514, '2019-01-09 00:00:00', NULL),
@@ -631,9 +526,9 @@ INSERT INTO `users` (`id`, `firstname`, `lastname`, `username`, `email`, `passwo
 (121, 'Isobel', 'Moubray', 'imoubray3c', 'imoubray3c@nba.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'male', 'men', ' I love buying new things but I hate spending money.', 19750704, 2, 0, 43.1463, 45.9012, '2019-01-02 00:00:00', NULL),
 (122, 'Ella', 'Ringsell', 'eringsell3d', 'eringsell3d@dailymail.co.uk', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'male', 'women', ' I love buying new things but I hate spending money.', 19771201, 0, 1, 42.5909, 22.9834, '2019-01-03 00:00:00', NULL),
 (123, 'Debi', 'Nowick', 'dnowick3e', 'dnowick3e@irs.gov', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'male', 'both', ' I love buying new things but I hate spending money.', 19701017, 1, 0, 25.4952, 103.805, '2019-01-10 00:00:00', NULL),
-(124, 'Alfredo', 'Caghan', 'acaghan3f', 'acaghan3f@networkadvertising.org', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'female', 'women', ' I love buying new things but I hate spending money.', 19700401, 4, 1, 45.4776, 124.476, '2019-01-05 00:00:00', NULL);
+(124, 'Alfredo', 'Caghan', 'acaghan3f', 'acaghan3f@networkadvertising.org', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'female', 'women', ' I love buying new things but I hate spending money.', 19700401, 4, 1, 45.4776, 124.476, '2019-01-05 00:00:00', NULL),
+(125, 'Bethanne', 'Heibl', 'bheibl3g', 'bheibl3g@oakley.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'female', 'men', ' I love buying new things but I hate spending money.', 19740118, 4, 0, 31.5141, -97.1521, '2019-01-03 00:00:00', NULL);
 INSERT INTO `users` (`id`, `firstname`, `lastname`, `username`, `email`, `password`, `verif_token`, `confirmed`, `complete`, `gender`, `sexOrient`, `bio`, `age`, `rating`, `isOnline`, `latitude`, `longitude`, `lastSignIn`, `birthday`) VALUES
-(125, 'Bethanne', 'Heibl', 'bheibl3g', 'bheibl3g@oakley.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'female', 'men', ' I love buying new things but I hate spending money.', 19740118, 4, 0, 31.5141, -97.1521, '2019-01-03 00:00:00', NULL),
 (126, 'Paule', 'Battman', 'pbattman3h', 'pbattman3h@flickr.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'female', 'women', ' I love buying new things but I hate spending money.', 19770704, 1, 1, -7.07735, 108.46, '2019-01-05 00:00:00', NULL),
 (127, 'Aubry', 'Petche', 'apetche3i', 'apetche3i@salon.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'male', 'men', ' I love buying new things but I hate spending money.', 19930811, 3, 0, -8.29227, 120.442, '2019-01-08 00:00:00', NULL),
 (128, 'Anselm', 'Myatt', 'amyatt3j', 'amyatt3j@ehow.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'male', 'both', ' I love buying new things but I hate spending money.', 19950802, 2, 0, 37.5958, 107.412, '2019-01-02 00:00:00', NULL),
@@ -641,7 +536,7 @@ INSERT INTO `users` (`id`, `firstname`, `lastname`, `username`, `email`, `passwo
 (130, 'Fons', 'MacCafferty', 'fmaccafferty3l', 'fmaccafferty3l@go.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'female', 'women', ' I love buying new things but I hate spending money.', 19760715, 0, 0, 13.7559, 7.98654, '2019-01-11 00:00:00', NULL),
 (131, 'Claire', 'Runacres', 'crunacres3m', 'crunacres3m@nih.gov', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'female', 'women', ' I love buying new things but I hate spending money.', 19930209, 0, 0, 31.3657, 121.373, '2019-01-10 00:00:00', NULL),
 (132, 'Rahel', 'Mathet', 'rmathet3n', 'rmathet3n@cbc.ca', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'female', 'women', ' I love buying new things but I hate spending money.', 19780731, 0, 1, 6.08568, 8.32801, '2019-01-08 00:00:00', NULL),
-(133, 'Angus', 'Tieraney', 'ibouroum', 'atieraney3o@yelp.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'female', 'men', ' I love buying new things but I hate spending money.', 19820201, 4, 0, 41.3641, 2.13382, '2020-01-20 10:19:21', NULL),
+(133, 'Angus', 'Tieraney', 'ibouroum', 'atieraney3o@yelp.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'female', 'men', ' I love buying new things but I hate spending money.', 19820201, 4.65, 1, 41.3679, 2.12515, NULL, NULL),
 (134, 'Selie', 'Mawditt', 'smawditt3p', 'smawditt3p@weebly.com', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec411', 1, 3, 'female', 'both', ' I love buying new things but I hate spending money.', 19900519, 4, 0, 40.1557, 44.4394, '2019-01-09 00:00:00', NULL),
 (135, 'Nevil', 'Boissier', 'nboissier3q', 'nboissier3q@google.es', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'male', 'men', ' I love buying new things but I hate spending money.', 19841126, 3, 0, -29.9133, -51.1862, '2019-01-09 00:00:00', NULL),
 (136, 'Tamas', 'Horry', 'thorry3r', 'thorry3r@redcross.org', '$2b$10$.89MJ9LQvj7T5gs9.ZohROVWQjvudfb2HOIsd7ieHH8fAokvYao1m', '339a512beb21553c312f0143b94241051f49f203833a930dc59d5da931328a5526360893932451ce18e62d18fd3f0f8d233c2f63be7b1fad82bd4e681917eec445', 1, 3, 'male', 'men', ' I love buying new things but I hate spending money.', 19860214, 1, 1, 13.8016, 121.15, '2019-01-05 00:00:00', NULL),
@@ -667,7 +562,7 @@ INSERT INTO `users` (`id`, `firstname`, `lastname`, `username`, `email`, `passwo
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usersInterests`
+-- Structure de la table `usersInterests`
 --
 
 CREATE TABLE `usersInterests` (
@@ -676,12 +571,13 @@ CREATE TABLE `usersInterests` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `usersInterests`
+-- Déchargement des données de la table `usersInterests`
 --
 
 INSERT INTO `usersInterests` (`uId`, `iId`) VALUES
 (1, 1),
 (1, 6),
+(1, 15),
 (19, 12),
 (19, 13),
 (76, 10),
@@ -1634,7 +1530,7 @@ INSERT INTO `usersInterests` (`uId`, `iId`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `viewProfileList`
+-- Structure de la table `viewProfileList`
 --
 
 CREATE TABLE `viewProfileList` (
@@ -1645,35 +1541,10 @@ CREATE TABLE `viewProfileList` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `viewProfileList`
+-- Déchargement des données de la table `viewProfileList`
 --
 
 INSERT INTO `viewProfileList` (`id`, `viewer`, `viewed`, `date`) VALUES
-(1, 1, 3, '2020-01-01 21:12:12'),
-(2, 1, 2, '2020-01-01 21:13:12'),
-(3, 1, 2, '2020-01-01 21:13:24'),
-(4, 1, 3, '2020-01-03 14:39:24'),
-(5, 1, 3, '2020-01-03 14:39:26'),
-(6, 1, 2, '2020-01-03 14:54:37'),
-(7, 1, 2, '2020-01-03 14:54:37'),
-(8, 1, 2, '2020-01-03 14:54:38'),
-(9, 1, 3, '2020-01-03 14:58:46'),
-(10, 1, 3, '2020-01-03 14:58:53'),
-(11, 1, 3, '2020-01-03 14:58:56'),
-(12, 1, 3, '2020-01-03 14:58:57'),
-(13, 1, 3, '2020-01-03 14:58:58'),
-(14, 1, 5, '2020-01-03 14:58:59'),
-(15, 1, 2, '2020-01-03 14:59:01'),
-(16, 1, 3, '2020-01-03 14:59:06'),
-(17, 1, 3, '2020-01-03 14:59:08'),
-(18, 1, 3, '2020-01-03 14:59:13'),
-(19, 1, 3, '2020-01-03 14:59:21'),
-(20, 1, 3, '2020-01-03 14:59:21'),
-(21, 1, 3, '2020-01-03 15:25:02'),
-(22, 1, 3, '2020-01-03 15:25:02'),
-(23, 1, 3, '2020-01-03 15:25:03'),
-(24, 1, 3, '2020-01-03 15:25:03'),
-(25, 1, 3, '2020-01-03 15:25:32'),
 (26, 1, 3, '2020-01-03 15:25:32'),
 (27, 1, 3, '2020-01-03 15:25:33'),
 (28, 1, 3, '2020-01-03 15:25:33'),
@@ -2118,117 +1989,175 @@ INSERT INTO `viewProfileList` (`id`, `viewer`, `viewed`, `date`) VALUES
 (467, 153, 156, '2020-01-23 23:16:29'),
 (468, 153, 156, '2020-01-23 23:16:31'),
 (469, 153, 156, '2020-01-23 23:21:13'),
-(470, 153, 156, '2020-01-23 23:31:53');
+(470, 153, 156, '2020-01-23 23:31:53'),
+(471, 1, 8, '2020-02-02 15:33:52'),
+(472, 1, 156, '2020-02-02 19:15:30'),
+(473, 1, 156, '2020-02-02 19:15:38'),
+(474, 1, 52, '2020-02-02 20:00:19'),
+(475, 1, 76, '2020-02-03 14:19:03'),
+(476, 1, 76, '2020-02-03 14:19:05'),
+(477, 1, 52, '2020-02-03 14:19:21'),
+(478, 1, 137, '2020-02-03 14:19:24'),
+(479, 1, 95, '2020-02-03 14:19:28'),
+(480, 1, 52, '2020-02-03 15:29:35'),
+(481, 1, 95, '2020-02-03 17:42:31'),
+(482, 1, 65, '2020-02-03 19:17:14'),
+(483, 4, 1, '2020-02-06 17:48:19'),
+(484, 4, 1, '2020-02-06 17:49:46'),
+(485, 4, 1, '2020-02-06 17:56:49'),
+(486, 4, 1, '2020-02-06 17:58:12'),
+(487, 1, 52, '2020-02-06 20:37:56'),
+(488, 1, 133, '2020-02-06 20:38:37'),
+(489, 1, 133, '2020-02-06 20:40:31'),
+(490, 1, 133, '2020-02-06 20:40:38'),
+(491, 1, 133, '2020-02-06 20:40:43'),
+(492, 1, 133, '2020-02-06 20:40:45'),
+(493, 1, 133, '2020-02-06 20:40:46'),
+(494, 1, 133, '2020-02-06 20:40:47'),
+(495, 1, 133, '2020-02-06 20:40:47'),
+(496, 1, 133, '2020-02-06 20:40:48'),
+(497, 1, 133, '2020-02-06 20:41:00'),
+(498, 1, 7, '2020-02-06 21:09:41'),
+(499, 1, 7, '2020-02-06 21:20:00'),
+(500, 1, 7, '2020-02-06 21:28:22'),
+(501, 133, 1, '2020-02-06 22:02:30'),
+(502, 133, 1, '2020-02-06 22:02:34'),
+(503, 133, 1, '2020-02-06 22:02:45'),
+(504, 133, 1, '2020-02-06 22:02:50'),
+(505, 133, 1, '2020-02-06 22:02:55'),
+(506, 133, 1, '2020-02-06 22:05:52'),
+(507, 133, 1, '2020-02-06 22:06:15'),
+(508, 133, 1, '2020-02-06 22:10:41'),
+(509, 133, 1, '2020-02-06 22:10:55'),
+(510, 133, 1, '2020-02-06 22:11:01'),
+(511, 133, 1, '2020-02-06 22:11:13'),
+(512, 133, 1, '2020-02-06 22:11:17'),
+(513, 133, 1, '2020-02-06 22:15:42'),
+(514, 133, 1, '2020-02-06 22:15:47'),
+(515, 133, 1, '2020-02-06 22:15:52'),
+(516, 1, 133, '2020-02-06 22:18:13');
 
 --
--- Indexes for dumped tables
+-- Index pour les tables déchargées
 --
 
 --
--- Indexes for table `blockList`
+-- Index pour la table `blockList`
 --
 ALTER TABLE `blockList`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `images`
+-- Index pour la table `images`
 --
 ALTER TABLE `images`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `interests`
+-- Index pour la table `interests`
 --
 ALTER TABLE `interests`
   ADD PRIMARY KEY (`interest_id`);
 
 --
--- Indexes for table `likesList`
+-- Index pour la table `likesList`
 --
 ALTER TABLE `likesList`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `messages`
+-- Index pour la table `messages`
 --
 ALTER TABLE `messages`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `reportList`
+-- Index pour la table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `reportList`
 --
 ALTER TABLE `reportList`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `users`
+-- Index pour la table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `usersInterests`
+-- Index pour la table `usersInterests`
 --
 ALTER TABLE `usersInterests`
   ADD PRIMARY KEY (`uId`,`iId`);
 
 --
--- Indexes for table `viewProfileList`
+-- Index pour la table `viewProfileList`
 --
 ALTER TABLE `viewProfileList`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- AUTO_INCREMENT for table `blockList`
+-- AUTO_INCREMENT pour la table `blockList`
 --
 ALTER TABLE `blockList`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
--- AUTO_INCREMENT for table `images`
+-- AUTO_INCREMENT pour la table `images`
 --
 ALTER TABLE `images`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=223;
 
 --
--- AUTO_INCREMENT for table `interests`
+-- AUTO_INCREMENT pour la table `interests`
 --
 ALTER TABLE `interests`
-  MODIFY `interest_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `interest_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT for table `likesList`
+-- AUTO_INCREMENT pour la table `likesList`
 --
 ALTER TABLE `likesList`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=144;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=229;
 
 --
--- AUTO_INCREMENT for table `messages`
+-- AUTO_INCREMENT pour la table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
 
 --
--- AUTO_INCREMENT for table `reportList`
+-- AUTO_INCREMENT pour la table `notifications`
+--
+ALTER TABLE `notifications`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=139;
+
+--
+-- AUTO_INCREMENT pour la table `reportList`
 --
 ALTER TABLE `reportList`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=157;
 
 --
--- AUTO_INCREMENT for table `viewProfileList`
+-- AUTO_INCREMENT pour la table `viewProfileList`
 --
 ALTER TABLE `viewProfileList`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=471;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=517;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

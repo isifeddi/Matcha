@@ -1,5 +1,6 @@
 require('dotenv').config();
 const user = require('./src/models/user');
+const checkLikes = require('./src/controllers/functions/checkLikes');
 
 const app = require('./src/app');
 
@@ -17,7 +18,6 @@ io.on('connection', socket => {
     });
 
     socket.on('chatMessage', async function(data){
-        console.log(data);
         const images  = await user.select('GetImages', data.sender);
         delete data.by.id;
         io.to(data.receiver).emit('new_msg', {sender: data.sender, receiver: data.receiver, profilePic: data.profilePic, message: data.message});
@@ -26,9 +26,13 @@ io.on('connection', socket => {
     });
 
     socket.on('userLiked', async function(data){
+        const relation = await checkLikes(data.by.id, data.receiver);
         const images  = await user.select('GetImages', data.by.id);
         delete data.by.id;
-        io.to(data.receiver).emit('new_notif', {by: {...data.by, images: images}, content: data.content});
+        if(relation === 'match')
+            io.to(data.receiver).emit('new_notif', {by: {...data.by, images: images}, content: `You are matched with ${data.by.username}`});
+        else
+            io.to(data.receiver).emit('new_notif', {by: {...data.by, images: images}, content: data.content});
     });
 
     socket.on('profileViewed', async function(data){

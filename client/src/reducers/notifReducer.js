@@ -1,5 +1,5 @@
 import {OPEN_NOTIF, NEW_NOTIF, GET_NOTIF_SUCCESS} from '../actions/notifAction';
-import { RESET_STATE} from '../actions/resetStateAction';
+import { RESET_NOTIF_STATE} from '../actions/resetStateAction';
 
 const DEFAULT_STATE = {
     current_notif: '',
@@ -28,8 +28,8 @@ export default function (state = DEFAULT_STATE, action) {
         {
             return {current_notif: '', notifications: action.notif};
         }
-        case RESET_STATE:
-            return DEFAULT_STATE;
+        case RESET_NOTIF_STATE:
+            return {current_notif: '', notifications: [...state.notifications]};
         default:
             return state;
     }
