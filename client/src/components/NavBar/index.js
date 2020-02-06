@@ -154,7 +154,6 @@ function NavBar(props) {
           {user && user.token && <IconButton
               edge="end"
               aria-label="account of current user"
-              //aria-controls={menuId}
               aria-haspopup="true"
               onClick={handleNotifListOpen}
               color="primary"

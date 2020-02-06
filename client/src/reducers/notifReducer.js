@@ -1,10 +1,9 @@
-import {OPEN_NOTIF, NEW_NOTIF} from '../actions/notifAction';
+import {OPEN_NOTIF, NEW_NOTIF, GET_NOTIF_SUCCESS} from '../actions/notifAction';
 import { RESET_STATE} from '../actions/resetStateAction';
 
 const DEFAULT_STATE = {
-    current_notif: null,
-    notifications: [
-    ],
+    current_notif: '',
+    notifications: [],
 };
 
 export default function (state = DEFAULT_STATE, action) {
@@ -13,17 +12,21 @@ export default function (state = DEFAULT_STATE, action) {
         {
             let arr = [...state.notifications];
             arr.forEach(e => {
-                if(e.seen === false)
-                    e.seen = true;
+                if(e.seen === 0)
+                    e.seen = 1;
             });
-            return {current_notif: {...state.current_notif}, notifications: arr};
+            return {current_notif: '', notifications: arr};
         }
         case NEW_NOTIF:
         {
-            let ele = {content: action.content, seen: 0};
+            let ele = {by: action.data.by, content: action.data.content, seen: 0};
             let arr  = [...state.notifications];
-            arr.push(ele);
-            return {current_notif: action.content, notifications: arr};
+            arr.unshift(ele);
+            return {current_notif: action.data.content, notifications: arr};
+        }
+        case GET_NOTIF_SUCCESS:
+        {
+            return {current_notif: '', notifications: action.notif};
         }
         case RESET_STATE:
             return DEFAULT_STATE;

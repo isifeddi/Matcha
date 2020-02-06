@@ -8,7 +8,7 @@ import {NewNotif, GetNotif} from './actions/notifAction';
 function App(props) {
   useEffect(() => {
     const handleNotif = (data) => {
-      props.store.dispatch(NewNotif(data.content));
+      props.store.dispatch(NewNotif(data));
     }
     socket.on('new_notif', handleNotif);
     props.store.dispatch(GetNotif());

@@ -48,7 +48,10 @@ const sendMsg =
       const response = yield axios.post('http://localhost:5000/sendMessage', data);
       if(response.data.sent === true)
       {
-        socket.emit('chatMessage', response.data);
+        const by = {...user};
+        ['email', 'confirmed', 'complete', 'gender', 'latitude', 'longitude', 'bithday', 'transDate', 'token'].forEach(e => delete by[e]);
+        //socket.emit('chatMessage', response.data);
+        socket.emit('chatMessage', {by: by, sender: user.id, receiver: data.receiver, profilePic: response.data.profilePic, message: message, content: `${user.username} sent you a message`});
       }
       else
       {

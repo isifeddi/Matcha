@@ -28,7 +28,7 @@ const queries = {
         GetUserInter: "SELECT interest FROM interests INNER JOIN usersInterests ON interests.interest_id = usersInterests.iId WHERE usersInterests.uId = ?",
         CheckEditUsername: "SELECT username from users where username = ? AND id != ?",
         CheckEditEmail: "SELECT email from users where email = ? AND id != ?",
-        getNotif: "SELECT content,seen FROM notifications WHERE `by` = ?",
+        getNotif: "SELECT users.*,images.path as profilePic ,content, seen FROM notifications,users,images WHERE images.user_id = notifications.by AND receiver = ? AND users.id = notifications.by ORDER BY notifications.id DESC"
     },
     INSERT : {
         AddImage: 'INSERT INTO images (user_id, path,isProfilePic) VALUES (?, ?, ?)',
@@ -58,7 +58,8 @@ const queries = {
         setProfilePic: 'UPDATE images SET IsProfilePic = 1 WHERE id = ? && user_id = ?',
         resetProfilePic : 'UPDATE images SET isProfilePic = 0 WHERE user_id = ?',
         setFirstProPic : 'UPDATE  images SET isProfilePic = 1 WHERE user_id = ? ORDER BY id ASC LIMIT 1',
-        updateRating : 'UPDATE users SET rating = rating  + ?  WHERE id = ? AND rating <= 5'
+        updateRating : 'UPDATE users SET rating = rating  + ?  WHERE id = ? AND rating <= 5',
+        openNotif: 'UPDATE notifications SET seen = 1',
     },
     DELETE : {
         delImages : 'DELETE FROM `images` WHERE id = ? && user_id = ?',
