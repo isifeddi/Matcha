@@ -195,13 +195,14 @@ export const viewProfileUser =
     };
 export default function *() {
     yield takeLatest("GET_USERS", getUsers);
-    yield takeLatest("BLOCK_USER", blockUser);
-    yield takeLatest("DEBLOCK_USER", deblockUser);
-    yield takeLatest("GET_BLOCK_USER", getBlockUser);
-    yield takeLatest("LIKE_USER", likeUser);
-    yield takeLatest("DISLIKE_USER", dislikeUser);
-    yield takeLatest("GET_LIKE_USER", getLikeUser);
-    yield takeLatest("REPORT_USER", reportUser);
-    yield takeLatest("VIEW_PROFILE_USER", viewProfileUser);
-    yield takeLatest("SORT_USERS", sortUsers);
+    yield takeLatest("BLOCK_USER",blockUser);
+    yield takeLatest("DEBLOCK_USER",deblockUser);
+    yield takeLatest("GET_BLOCK_USER",getBlockUser);
+    yield takeLatest("LIKE_USER",likeUser);
+    yield takeLatest("DISLIKE_USER",dislikeUser);
+    yield takeLatest("DISLIKE_USER_ACT",dislikeUser);
+    yield takeLatest("GET_LIKE_USER",getLikeUser);
+    yield takeLatest("REPORT_USER",reportUser);
+    yield takeLatest("VIEW_PROFILE_USER",viewProfileUser);
+    yield takeLatest("SORT_USERS",sortUsers);
 }

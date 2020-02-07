@@ -1,16 +1,20 @@
-import {takeLatest, put, select, delay} from "redux-saga/effects";
-import axios from 'axios';
+import {takeLatest, put, select, call, delay} from "redux-saga/effects";
+import {request} from './helper';
 import {resetNotifState} from '../actions/resetStateAction';
 import {GetNotifSuccess, OpenNotifSuccess} from '../actions/notifAction';
 import socket from '../socketConn';
-import {  } from "../actions/resetStateAction";
 
 const getNotif =
   function *getNotif () {
     try {
       const user_id = yield select(state => state.user.id);
       const data = {user_id : user_id}
-      const response = yield axios.post('http://localhost:5000/getNotif', data);
+      const token = yield select((state) => state.user.token);
+      const response = yield call(request, {
+          "url": "http://localhost:5000/getNotif",
+          "method": "post",
+          "data" : data
+        },token);
       if(response.data)
       {
         yield put(GetNotifSuccess(response.data));
@@ -25,8 +29,12 @@ const getNotif =
 const openNotif =
   function *openNotif () {
     try {
-      const user_id = yield select(state => state.user.id);
-      yield axios.post('http://localhost:5000/openNotif');
+      const user_id = yield select(state => state.user.id)
+      const token = yield select((state) => state.user.token);
+      const response = yield call(request, {
+          "url": "http://localhost:5000/openNotif",
+          "method": "post",
+        },token);  
       yield put(OpenNotifSuccess());
       socket.emit('openNotif', {id: user_id});
     }catch (error) {
