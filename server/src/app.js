@@ -2,6 +2,7 @@ const express = require('express');
 const logger = require('morgan');
 const bodyparser = require('body-parser');
 const v1 = require('./routes/v1');
+const v2 = require('./routes/v2');
 const cors = require('cors')
 const up = require('../src/controllers/uploadFile')
 const app = express();
@@ -20,8 +21,10 @@ app.use(cors())
 
 
 // ------------- Routes  ------------- //
+app.use(v2);
 app.use(up)
 app.use(v1);
+
 // ------------- ERR  ------------- //
 
 app.use((req,res,next) =>{

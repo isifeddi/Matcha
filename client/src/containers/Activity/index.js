@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react'
 import {connect} from "react-redux";
 import BlockList from '../../components/Activity';
-import {getBlockUser,deblockUser,getLikeUser,dislikeUser} from '../../actions/userAction';
+import {getBlockUser,deblockUser,getLikeUser,dislikeUserAct} from '../../actions/userAction';
 const BlockListContainer = (props) => {
-    const {getBlockUser,blockList,deblockUser,getLikeUser,dislikeUser,likeList} = props;
+    const {getBlockUser,blockList,deblockUser,getLikeUser,dislikeUserAct,likeList} = props;
     useEffect(() => {
         getBlockUser();
         getLikeUser();
@@ -12,7 +12,7 @@ const BlockListContainer = (props) => {
         deblockUser(deblocked_user_id);
     }
     const handleDislike= (dislike_user_id) =>{
-       dislikeUser(dislike_user_id);
+        dislikeUserAct(dislike_user_id);
     }
     return (
         <div>
@@ -30,7 +30,7 @@ const mapDispatchToProps = {
     "getBlockUser" : getBlockUser,
     "deblockUser" : deblockUser,
     "getLikeUser" : getLikeUser,
-    "dislikeUser" : dislikeUser,
+    "dislikeUserAct" : dislikeUserAct,
 };
 
 export default connect(mapStateToProps,mapDispatchToProps)(BlockListContainer);
