@@ -9,6 +9,7 @@ export const DELETE_BLOCK= "DELETE_BLOCK";
 export const DELETE_LIKE= "DELETE_LIKE";
 export const LIKE_USER = "LIKE_USER";
 export const DISLIKE_USER = "DISLIKE_USER";
+export const DISLIKE_USER_ACT = "DISLIKE_USER_ACT";
 export const REPORT_USER = "REPORT_USER";
 export const VIEW_PROFILE_USER = "VIEW_PROFILE_USER";
 export const GET_BLOCK_USER = "GET_BLOCK_USER";
@@ -55,6 +56,10 @@ export const likeUser= (liked_user_id) => ({
 });
 export const dislikeUser= (dislike_user_id) => ({
     "type":  DISLIKE_USER,
+    dislike_user_id
+});
+export const dislikeUserAct= (dislike_user_id) => ({
+    "type":  DISLIKE_USER_ACT,
     dislike_user_id
 });
 export const getLikeUser= () => ({

@@ -1,4 +1,4 @@
-import {OPEN_NOTIF, NEW_NOTIF, GET_NOTIF_SUCCESS} from '../actions/notifAction';
+import {OPEN_NOTIF_SUCCESS, NEW_NOTIF, GET_NOTIF_SUCCESS} from '../actions/notifAction';
 import { RESET_NOTIF_STATE} from '../actions/resetStateAction';
 
 const DEFAULT_STATE = {
@@ -8,7 +8,7 @@ const DEFAULT_STATE = {
 
 export default function (state = DEFAULT_STATE, action) {
     switch (action.type) {
-        case OPEN_NOTIF:
+        case OPEN_NOTIF_SUCCESS:
         {
             let arr = [...state.notifications];
             arr.forEach(e => {

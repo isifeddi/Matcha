@@ -36,7 +36,6 @@ export default function Notif(props) {
                 <ListItem key={index} button>
                     <ListItemAvatar>
                         <Avatar
-                            onClick={(e) => {e.stopPropagation();console.log('click')}}
                             className={classes.large}
                             alt='Avatar'
                             src={`http://localhost:5000/images/${value.by.profilePic}`}

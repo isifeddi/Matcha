@@ -1,9 +1,8 @@
-import {takeLatest, put, select, delay} from "redux-saga/effects";
-import axios from 'axios';
+import {takeLatest, put, select, delay,call} from "redux-saga/effects";
 import {getConverSuccess, getConverError, LoadMessagesSuccess, LoadMessagesError, SendMessageError} from '../actions/chatAction';
 import { resetChatState } from "../actions/resetStateAction";
 import socket from '../socketConn';
-
+import {request} from './helper';
 
 
 const getConv =
@@ -11,7 +10,14 @@ const getConv =
     try {
       const user_id = yield select(state => state.user.id);
       const data = {user_id : user_id}
-      const response = yield axios.post('http://localhost:5000/getMatchs', data);
+      const token = yield select((state) => state.user.token);
+      const response = yield call(request, {
+          "url": "http://localhost:5000/getMatchs",
+          "method": "post",
+          "data" : data
+        },token);  
+
+      //const response = yield axios.post('http://localhost:5000/getMatchs', data);
       if(response.data)
       {
         yield put(getConverSuccess(response.data));
@@ -28,7 +34,13 @@ const loadMsg =
     try {
       const user_id = yield select(state => state.user.id);
       const data = {user_id : user_id, conv_id: conv_id}
-      const response = yield axios.post('http://localhost:5000/loadMessages', data);
+      const token = yield select((state) => state.user.token);
+      const response = yield call(request, {
+          "url": "http://localhost:5000/loadMessages",
+          "method": "post",
+          "data" : data
+        },token);  
+      //const response = yield axios.post('http://localhost:5000/loadMessages', data);
       if(response.data)
       {
         yield put(LoadMessagesSuccess(response.data, conv_id));
@@ -45,12 +57,16 @@ const sendMsg =
     try {
       const user = yield select(state => state.user);
       const data = {sender : user.id, receiver: id, message: message}
-      const response = yield axios.post('http://localhost:5000/sendMessage', data);
+      const token = yield select((state) => state.user.token);
+      const response = yield call(request, {
+          "url": "http://localhost:5000/sendMessage",
+          "method": "post",
+          "data" : data
+        },token);  
+      //const response = yield axios.post('http://localhost:5000/sendMessage', data);
       if(response.data.sent === true)
       {
-        const by = {...user};
-        ['email', 'confirmed', 'complete', 'gender', 'latitude', 'longitude', 'bithday', 'transDate', 'token'].forEach(e => delete by[e]);
-        //socket.emit('chatMessage', response.data);
+        const by = {id: user.id, username: user.username, profilePic: user.profilePic};
         socket.emit('chatMessage', {by: by, sender: user.id, receiver: data.receiver, profilePic: response.data.profilePic, message: message, content: `${user.username} sent you a message`});
       }
       else

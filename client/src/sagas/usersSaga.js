@@ -110,8 +110,7 @@ export const likeUser =
               },token);
             if(response)
             {
-                const by = {...user};
-                ['email', 'confirmed', 'complete', 'gender', 'latitude', 'longitude', 'bithday', 'transDate', 'token'].forEach(e => delete by[e]);
+                const by = {id: user.id, username: user.username, profilePic: user.profilePic};
                 socket.emit('userLiked', {by: by, receiver: parseInt(liked_user_id), content: `${user.username} liked you`});
                 yield put(deleteUser(liked_user_id));
             }
@@ -123,16 +122,18 @@ export const dislikeUser =
     function *dislikeUser({dislike_user_id}) {
         try {
             const user = yield select(state => state.user);
-             const token = yield select((state) => state.user.token);
+            const token = yield select((state) => state.user.token);
             const response = yield call(request, {
                 "url": "http://localhost:5000/dislikeUser",
-                "data": {id : user.id, dislike_user_id: dislike_user_id},
+                "data": {username: user.username, id : user.id, dislike_user_id: dislike_user_id},
                 "method": "post"
-              },token);
-              if(response)
-              {
-                  yield put(deleteLike(dislike_user_id));
-              }
+            },token);
+            if(response)
+            {
+                const by = {id: user.id, username: user.username, profilePic: user.profilePic};
+                socket.emit('userUnliked', {by: by, receiver: parseInt(dislike_user_id), content: `${user.username} unliked you`});
+                yield put(deleteLike(dislike_user_id));
+            }
         } catch (error) {
             console.log(error)
         }
@@ -185,8 +186,7 @@ export const viewProfileUser =
               },token);
             if(response)
             {
-                const by = {...user};
-                ['email', 'confirmed', 'complete', 'gender', 'latitude', 'longitude', 'bithday', 'transDate', 'token'].forEach(e => delete by[e]);
+                const by = {id: user.id, username: user.username, profilePic: user.profilePic};
                 socket.emit('profileViewed', {by: by, receiver: parseInt(viewed_user_id), content: `${user.username} viewed your profile`});
             }
         } catch (error) {
@@ -200,6 +200,7 @@ export default function *() {
     yield takeLatest("GET_BLOCK_USER",getBlockUser);
     yield takeLatest("LIKE_USER",likeUser);
     yield takeLatest("DISLIKE_USER",dislikeUser);
+    yield takeLatest("DISLIKE_USER_ACT",dislikeUser);
     yield takeLatest("GET_LIKE_USER",getLikeUser);
     yield takeLatest("REPORT_USER",reportUser);
     yield takeLatest("VIEW_PROFILE_USER",viewProfileUser);
