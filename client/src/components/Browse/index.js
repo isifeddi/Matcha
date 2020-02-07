@@ -14,6 +14,8 @@ import Select from 'react-select';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
+import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
@@ -80,8 +82,14 @@ export default function TitlebarGridList(props) {
           <Grid container item justify="center" spacing={2} xs={12}>
             <Grid item xs={6} className={classes.rating}>
               <div className={classes.margin} />
-              <KeyboardArrowDownIcon  color="secondary" onClick={(e) => handle("-rating")}/>
-              <ExpandLessIcon  color="secondary" onClick={(e) => handle("rating")}/>
+              <Tooltip title ="DESC"><IconButton aria-label="View"  onClick={(e) => handle("-rating")}>
+                <KeyboardArrowDownIcon  color="primary"/>
+              </IconButton></Tooltip>
+              <Tooltip title ="ASC"><IconButton aria-label="View"  onClick={(e) => handle("rating")}>
+                <ExpandLessIcon  color="primary"/>
+              </IconButton></Tooltip>
+              {/* <KeyboardArrowDownIcon  color="secondary" onClick={(e) => handle("-rating")}/>
+              <ExpandLessIcon  color="secondary" onClick={(e) => handle("rating")}/> */}
               <Typography id="range-slider1" gutterBottom align="center">
                 Rating
               </Typography>
@@ -99,8 +107,14 @@ export default function TitlebarGridList(props) {
 
             <Grid item xs={6} className={classes.rating}>
               <div className={classes.margin} />
-              <KeyboardArrowDownIcon  color="secondary" onClick={(e) => handle("-age")}/>
-              <ExpandLessIcon  color="secondary" onClick={(e) => handle("age")}/>
+              <Tooltip title ="DESC"><IconButton aria-label="View"  onClick={(e) => handle("-age")}>
+                <KeyboardArrowDownIcon  color="primary"/>
+              </IconButton></Tooltip>
+              <Tooltip title ="ASC"><IconButton aria-label="View"  onClick={(e) => handle("age")}>
+                <ExpandLessIcon  color="primary"/>
+              </IconButton></Tooltip>
+              {/* <KeyboardArrowDownIcon  color="secondary" onClick={(e) => handle("-age")}/>
+              <ExpandLessIcon  color="secondary" onClick={(e) => handle("age")}/> */}
               <Typography id="range-slider2" gutterBottom align="center">
                 AGE
               </Typography>
@@ -117,8 +131,12 @@ export default function TitlebarGridList(props) {
 
             <Grid item xs={6} className={classes.rating}>
               <div className={classes.margin} />
-              <KeyboardArrowDownIcon  color="secondary" onClick={(e) => handle("-distance")}/>
-              <ExpandLessIcon  color="secondary" onClick={(e) => handle("distance")}/>
+              <Tooltip title ="DESC"><IconButton aria-label="View"  onClick={(e) => handle("-distance")}>
+                <KeyboardArrowDownIcon  color="primary"/>
+              </IconButton></Tooltip>
+              <Tooltip title ="ASC"><IconButton aria-label="View"  onClick={(e) => handle("distance")}>
+                <ExpandLessIcon  color="primary"/>
+              </IconButton></Tooltip>
               <Typography id="range-slider3" gutterBottom align="center">
                 Localisation
               </Typography>
@@ -135,8 +153,14 @@ export default function TitlebarGridList(props) {
 
             <Grid item xs={6} className={classes.rating}>
               <div className={classes.margin} />
-              <KeyboardArrowDownIcon  color="secondary" onClick={(e) => handle("-nbrTags")}/>
-              <ExpandLessIcon  color="secondary" onClick={(e) => handle("nbrTags")}/>
+              <Tooltip title ="DESC"><IconButton aria-label="View"  onClick={(e) => handle("-nbrTags")}>
+                <KeyboardArrowDownIcon  color="primary"/>
+              </IconButton></Tooltip>
+              <Tooltip title ="ASC"><IconButton aria-label="View"  onClick={(e) => handle("nbrTags")}>
+                <ExpandLessIcon  color="primary"/>
+              </IconButton></Tooltip>
+              {/* <KeyboardArrowDownIcon  color="secondary" onClick={(e) => handle("-nbrTags")}/>
+              <ExpandLessIcon  color="secondary" onClick={(e) => handle("nbrTags")}/> */}
               <Typography id="range-slider4" gutterBottom align="center">
                 Tags Commun
               </Typography>

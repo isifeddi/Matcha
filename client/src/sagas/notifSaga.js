@@ -1,7 +1,7 @@
 import {takeLatest, put, select, delay} from "redux-saga/effects";
 import axios from 'axios';
 import {resetNotifState} from '../actions/resetStateAction';
-import {GetNotifSuccess} from '../actions/notifAction';
+import {GetNotifSuccess, OpenNotifSuccess} from '../actions/notifAction';
 import socket from '../socketConn';
 import {  } from "../actions/resetStateAction";
 
@@ -27,7 +27,8 @@ const openNotif =
     try {
       const user_id = yield select(state => state.user.id);
       yield axios.post('http://localhost:5000/openNotif');
-      socket.emit('openNotif', user_id);
+      yield put(OpenNotifSuccess());
+      socket.emit('openNotif', {id: user_id});
     }catch (error) {
       if (error.response) {
         
