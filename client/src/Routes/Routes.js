@@ -19,12 +19,12 @@ import MyFlash from '../components/commun/flash';
 
 const Routes = (props) => {
     return (
-        <div>
-        {props.notif && <MyFlash variant="info" msg={[props.notif]}/>}
+        <>
+            {props.notif && <MyFlash variant="info" msg={[props.notif]}/>}
             <Switch>
                 {props.user === null && <Route path="/confirmation/:token"  component={ EmailConfirmCont }/>}
                 {props.user === null && <Route path="/resetPassword/:token"  component={ ResetPasswordContainer }/>}
-                {props.user === null && <Route path="/forgotPassword"  component={ ForgotPasswordContainer }/>} 
+                {props.user === null && <Route path="/forgotPassword"  component={ ForgotPasswordContainer }/>}
                 {props.user === null && <Route path="/register"  component={ RegisterContainer } />}
                 {props.user === null && <Route path="/login"  component={ loginContainer }/>}
                 <Route path="/home" component={Home}/>
@@ -37,9 +37,9 @@ const Routes = (props) => {
                     {props.user && props.user.complete === 3 ? <Route path="/search" component={ Browse }/> : <Redirect to='/completeProfile'/>}
                     <Route path="/completeProfile"  component={CompleteProfile}/>
                 </PrivateRoute>
-                <Route  path="*" exact={true} component={ NotFoundPage }/>
+                <Route path="*" exact={true} component={ NotFoundPage }/>
             </Switch>
-        </div>
+        </>
     )
 }
 const mapStateToProps = (state) => (

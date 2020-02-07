@@ -14,7 +14,6 @@ const useStyles = makeStyles(theme => ({
     maxWidth: 360,
     position: 'relative',
     overflow: 'auto',
-    maxHeight: 550,
    },
    large: {
      width: 75,
