@@ -53,7 +53,7 @@ import BlockIcon from '@material-ui/icons/Block';
              </ListItemAvatar>
              <ListItemText id={value.id} >{value.firstname + '  ' + value.lastname}</ListItemText>
              <ListItemSecondaryAction>
-              <Tooltip title ="Block"><IconButton aria-label="Block"  onClick={(e) => handleDeblock(value.id)}>
+              <Tooltip title ="Unblock"><IconButton aria-label="unblock"  onClick={(e) => handleDeblock(value.id)}>
                 <BlockIcon  color="secondary"/>
               </IconButton></Tooltip>
              </ListItemSecondaryAction>

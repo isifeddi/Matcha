@@ -31,7 +31,7 @@ const openNotif =
     try {
       const user_id = yield select(state => state.user.id)
       const token = yield select((state) => state.user.token);
-      const response = yield call(request, {
+      yield call(request, {
           "url": "http://localhost:5000/openNotif",
           "method": "post",
         },token);  

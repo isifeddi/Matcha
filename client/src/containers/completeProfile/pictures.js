@@ -14,17 +14,17 @@ const fileChangedHandler = (event) => {
     event.target.value = null;
 }
 
-const deletePicture = (event) => {
-    const imgId = event.target.getAttribute('imgid');
-   const isProfilePic = event.target.getAttribute('isprofilepic');
+const deletePicture = (imgId,isProfilePic) => {
+//     const imgId = event.target.getAttribute('imgid');
+//    const isProfilePic = event.target.getAttribute('isprofilepic');
    const img = {
     imgId : imgId,
     isProfilePic :isProfilePic
    }
     delImages(img);
   }
-  const setProfilePicture = (event) => {
-    const imgId = event.target.getAttribute('imgid');
+  const setProfilePicture = (imgId) => {
+    // const imgId = event.target.getAttribute('imgid');
     setProfilePic(imgId);
   }
 

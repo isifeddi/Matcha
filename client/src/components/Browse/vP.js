@@ -95,7 +95,7 @@ export default function ViewProfile(props) {
           <Avatar aria-label="recipe" className={user.isOnline === 1 ? classes.avatarON : classes.avatarOF}></Avatar> 
         }
         title={user.firstname +' ' +user.lastname}
-        subheader={user.isOnline === 1 ? 'Online' : 'Last seen' + user.lastSignIn}
+        subheader={user.isOnline === 1 ? 'Online' : 'Last seen : ' + user.lastSignIn}
       >
       </CardHeader>
       <CardMedia
@@ -132,18 +132,18 @@ export default function ViewProfile(props) {
       </CardContent>
       <CardActions className={classes.cardAction}>
       {user.like === null &&
-          <Tooltip title ="Like"><IconButton aria-label="Like">
-            <FavoriteBorderIcon  color="secondary" onClick={(e) => handleLike(user.id)}/>
+          <Tooltip title ="Like"><IconButton aria-label="Like" onClick={(e) => handleLike(user.id)}>
+            <FavoriteBorderIcon  color="secondary" />
           </IconButton></Tooltip>
         }
         {user.like === 'iLike' &&
-          <Tooltip title ="Unlike"><IconButton aria-label="Unlike">
-            <FavoriteIcon  color="secondary" onClick={(e) => handleDislike(user.id)}/>
+          <Tooltip title ="Unlike"><IconButton aria-label="Unlike" onClick={(e) => handleDislike(user.id)}>
+            <FavoriteIcon  color="secondary"/>
           </IconButton></Tooltip>
         }
         {user.like === 'heLiked' &&
-          <Tooltip title ="Like back"><IconButton aria-label="Like back">
-            <SupervisedUserCircleOutlinedIcon color="primary" onClick={(e) => handleLike(user.id)}/>
+          <Tooltip title ="Like back"><IconButton aria-label="Like back"  onClick={(e) => handleLike(user.id)}>
+            <SupervisedUserCircleOutlinedIcon color="primary"/>
           </IconButton></Tooltip>
         }
         {user.like === 'match' &&

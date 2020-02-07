@@ -34,8 +34,7 @@ router.use(async function (req,res,next) {
     const token = req.headers.authorization;
     if(token !== 'undefined')
     {
-       const isValid = await checkToken(token);
-       console.log(isValid)
+        const isValid = await checkToken(token);
         if(isValid)
             next();
         else
