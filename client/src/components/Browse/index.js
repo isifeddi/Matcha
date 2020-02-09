@@ -80,7 +80,7 @@ export default function TitlebarGridList(props) {
     return (
       <>
       <Card className={classes.card}>
-        <CardHeader title="FILTRE"  align="center"/>
+        <CardHeader title="FILTER"  align="center"/>
         <CardContent>
           <Grid container item justify="center" spacing={2} xs={12}>
             <Grid item xs={6} className={classes.rating}>
@@ -115,7 +115,7 @@ export default function TitlebarGridList(props) {
                 <ExpandLessIcon  color="primary"/>
               </IconButton></Tooltip>
               <Typography id="range-slider2" gutterBottom align="center">
-                AGE
+                Age
               </Typography>
               <Slider
                 value={age}
@@ -159,7 +159,7 @@ export default function TitlebarGridList(props) {
                 <ExpandLessIcon  color="primary"/>
               </IconButton></Tooltip>
               <Typography id="range-slider4" gutterBottom align="center">
-                Tags Commun
+                Common tags
               </Typography>
               <Slider
                 value={nbrTags}

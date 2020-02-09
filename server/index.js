@@ -1,5 +1,4 @@
 require('dotenv').config();
-const user = require('./src/models/user');
 const checkLikes = require('./src/controllers/functions/checkLikes');
 
 const app = require('./src/app');

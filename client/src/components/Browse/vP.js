@@ -43,7 +43,7 @@ const useStyles = makeStyles(theme => ({
     maxHeight : 200,
   },
   cardAction : {
-    marginTop: 20,
+    marginTop: 5,
     maxWidth: 320,
     maxHeight : 50,
   },

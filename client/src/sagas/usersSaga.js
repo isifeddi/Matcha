@@ -134,9 +134,7 @@ export const dislikeUser =
                 socket.emit('userUnliked', {by: by, receiver: parseInt(dislike_user_id), content: `${user.username} unliked you`});
                 yield put(deleteLike(dislike_user_id));
             }
-        } catch (error) {
-            console.log(error)
-        }
+        } catch (error){}
     };
 export const getLikeUser =
     function *getLikeUser() {
