@@ -7,6 +7,7 @@ sendMessage = async (req, res) => {
     const blocked = await user.select('checkBlock', [sender,sender,receiver,receiver]);
     const u1 = await  user.getUser('GetUserById',sender);
     const u2 = await  user.getUser('GetUserById',receiver);
+    const p1 = await user.select('GetProfilePic', sender);
     if(u1 && u2)
     {
         if(message.length > 255){
@@ -28,13 +29,11 @@ sendMessage = async (req, res) => {
         .then(async resp => {
             if(resp){
                 await user.insert('insertNotif', [sender, receiver, `${u1.username} sent you a message`, 0]);
-                res.send({sent:true, sender: sender, receiver: receiver, profilePic: u1.profilePic, message: message});
+                res.send({sent:true, sender: sender, receiver: receiver, profilePic: p1[0].path, message: message});
             }
-                
         }).catch(err => console.log(err));
     }
     else
         res.send({sent: false, err:'user does not exist'});
-
 };
 module.exports = sendMessage;

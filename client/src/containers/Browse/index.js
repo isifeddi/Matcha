@@ -17,7 +17,7 @@ const HomeContainer = (props) => {
         else if(route === '/search')
             resetStateUsers();
 
-    }, [getOptions,getUsers,resetStateUsers,route]);
+    }, []);
     const [state, setState] = React.useState({
         open: false,
         user: null,

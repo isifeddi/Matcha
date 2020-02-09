@@ -7,7 +7,7 @@ const BlockListContainer = (props) => {
     useEffect(() => {
         getBlockUser();
         getLikeUser();
-}, [getBlockUser,getLikeUser]);
+}, []);
     const handleDeblock = (deblocked_user_id) =>{
         deblockUser(deblocked_user_id);
     }

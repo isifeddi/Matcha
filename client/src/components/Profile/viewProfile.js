@@ -17,6 +17,8 @@ import { Swiper, Navigation, Pagination } from 'swiper/js/swiper.esm';
 import BlockIcon from '@material-ui/icons/Block';
 import { Grid } from '@material-ui/core';
 import ReportIcon from '@material-ui/icons/Report';
+import Chip from '@material-ui/core/Chip';
+
 const useStyles = makeStyles(theme => ({
   root: {
     padding: '10px',
@@ -53,6 +55,9 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: '#e42416',
     width: 15,
     height: 15,
+  },
+  chip: {
+    marginRight: '5px',
   },
 }));
 
@@ -121,21 +126,16 @@ export default function ViewProfile(props) {
       
       />
       <CardContent className={classes.cardContent}>
-      <Typography >
-          <strong>BIO :</strong> {user.bio} 
-        </Typography>
         <Typography >
         <strong>AGE :</strong>{user.age} 
         </Typography>
-        <Typography >
-        <strong>MATCH WITH :</strong> {user.sexOrient} 
+        <Typography component={'span'}>
+        <strong>INTERESTS :</strong> {interests != null &&  interests.map((item, index) =><Chip key={index} className={classes.chip} label={item.value} />)}
         </Typography>
-        <Typography>
-        <strong>TAGS :</strong> {interests != null &&  interests.map((item) =>item.value + ' ' )}
-        
+        <Typography >
+          <strong>BIO :</strong> {user.bio} 
         </Typography>
       </CardContent>
-
       <CardActions disableSpacing className={classes.cardContent}>
         <IconButton aria-label="add to favorites">
           <FavoriteIcon color="secondary"/>

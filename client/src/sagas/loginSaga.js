@@ -2,6 +2,7 @@ import {takeLatest, put,call,delay} from "redux-saga/effects";
 import {push} from "react-router-redux";
 import {resetState} from '../actions/resetStateAction';
 import {loginError, loginUserSuccess,loginErrorField} from "../actions/loginAction";
+import {GetNotif} from '../actions/notifAction'
 import {updateUserSuccess} from '../actions/userAction'
 import {request} from './helper';
 import socket from '../socketConn';
@@ -25,9 +26,12 @@ const login =
         const  user = response.data.user;
         yield put(loginUserSuccess());
         yield put(updateUserSuccess(user));
+        
         socket.emit('join', {id: user.id});
-        if(user.complete === 3)
+        if(user.complete === 3){
+          yield put(GetNotif())
           yield put(push("/home"));
+        }
         else
           yield put(push("/completeProfile"));
       }

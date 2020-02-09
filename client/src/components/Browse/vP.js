@@ -20,6 +20,8 @@ import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import SupervisedUserCircleOutlinedIcon from '@material-ui/icons/SupervisedUserCircleOutlined';
 import SupervisedUserCircleRoundedIcon from '@material-ui/icons/SupervisedUserCircleRounded';
+import Chip from '@material-ui/core/Chip';
+
 const useStyles = makeStyles(theme => ({
   card: {
     maxWidth: 320,
@@ -41,6 +43,7 @@ const useStyles = makeStyles(theme => ({
     maxHeight : 200,
   },
   cardAction : {
+    marginTop: 20,
     maxWidth: 320,
     maxHeight : 50,
   },
@@ -53,6 +56,9 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: '#e42416',
     width: 15,
     height: 15,
+  },
+  chip: {
+    marginRight: '5px',
   },
 }));
 
@@ -95,7 +101,7 @@ export default function ViewProfile(props) {
           <Avatar aria-label="recipe" className={user.isOnline === 1 ? classes.avatarON : classes.avatarOF}></Avatar> 
         }
         title={user.firstname +' ' +user.lastname}
-        subheader={user.isOnline === 1 ? 'Online' : 'Last seen : ' + user.lastSignIn}
+        subheader={user.isOnline === 1 ? 'Online' : 'Last seen :' + user.lastSignIn}
       >
       </CardHeader>
       <CardMedia
@@ -117,16 +123,13 @@ export default function ViewProfile(props) {
       <CardContent className={classes.cardContent}> 
       <CardContent>
         <Typography >
-          <strong>BIO :</strong> {user.bio} 
-        </Typography>
-        <Typography >
         <strong>AGE :</strong>{user.age} 
         </Typography>
-        <Typography >
-        <strong>MATCH WITH :</strong> {user.sexOrient} 
+        <Typography component={'span'}>
+        <strong>INTERESTS :</strong> {interests != null &&  interests.map((item, index) =><Chip key={index} className={classes.chip} label={item.value} />)}
         </Typography>
-        <Typography>
-        <strong>TAGS :</strong> {interests != null &&  interests.map((item) =>item.value + ' ' )}
+        <Typography >
+          <strong>BIO :</strong> {user.bio} 
         </Typography>
       </CardContent>
       </CardContent>

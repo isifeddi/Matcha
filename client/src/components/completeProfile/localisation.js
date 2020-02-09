@@ -1,6 +1,5 @@
 import React, {useState}  from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
-//import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
@@ -38,11 +37,6 @@ const Localisation = (props) => {
         setMarker({lat, lng})
         setLocation({lat, lng});
     }
-    // if(isMarker === true)
-    // {
-    //     console.log('t', userL)
-    //     setMarker(userL)
-    // }
     return (
         <Container component="main" maxWidth="xs">
             <CssBaseline />

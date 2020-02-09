@@ -38,7 +38,7 @@ const renderDatepicker = ({input, label, meta : { touched, error}}
           {...input}
           type = 'date'
           label = {label}
-          error = {touched && error}
+          error = {touched && (error ? true : false)}
           helperText={touched && error}
           fullWidth
           InputLabelProps={{

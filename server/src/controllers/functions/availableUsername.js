@@ -5,7 +5,6 @@ availableUsername = async (req, res) => {
     const {username} = req.body;
      user.getUser('GetUserByUsername',username)
     .then((response) => {
-        console.log('user',response);
         if(response)
             res.send(false);
         else

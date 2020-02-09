@@ -35,7 +35,6 @@ const Copyright = () => {
 }
 
 const Footer = () => {
-  //const classes = useStyles();
   return(
     <div>
       <div style={phantom}/>

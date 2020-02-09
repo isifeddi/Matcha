@@ -8,12 +8,12 @@ module.exports = {
                 pass: 'tgsxcjeduwchxlim'
             }
         });
-        const url = `http://localhost:3000/confirmation/${token}`;
+        const url = `http://localhost:60127/confirmation/${token}`;
         var mailOptions = {
             from: 'sifeddineilyass@gmail.com',
             to: email,
             subject: 'Confirm your account',
-            html: `Please click to verify your email: <a href="${url}">${url}</a>`
+            html: `<p>Please click to verify your email</p><button style="background-color:'#f50057'"><a href="${url}">Click me</a></button>`
         };
         transporter.sendMail(mailOptions, function(error, info){
             if (error) {
@@ -31,12 +31,12 @@ module.exports = {
                 pass: 'tgsxcjeduwchxlim'
             }
         });
-        const url = `http://localhost:3000/resetPassword/${token}`;
+        const url = `http://localhost:60127/resetPassword/${token}`;
         var mailOptions = {
             from: 'sifeddineilyass@gmail.com',
             to: email,
             subject: 'Reset your password',
-            html: `Please click to reset your password: <a href="${url}">${url}</a>`
+            html: `<p>Please click to verify your email</p><button style="background-color:'#f50057'"><a href="${url}">Click me</a></button>`
         };
         transporter.sendMail(mailOptions, function(error, info){
             if (error) {

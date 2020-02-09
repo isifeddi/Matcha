@@ -15,8 +15,6 @@ const fileChangedHandler = (event) => {
 }
 
 const deletePicture = (imgId,isProfilePic) => {
-//     const imgId = event.target.getAttribute('imgid');
-//    const isProfilePic = event.target.getAttribute('isprofilepic');
    const img = {
     imgId : imgId,
     isProfilePic :isProfilePic
@@ -24,7 +22,6 @@ const deletePicture = (imgId,isProfilePic) => {
     delImages(img);
   }
   const setProfilePicture = (imgId) => {
-    // const imgId = event.target.getAttribute('imgid');
     setProfilePic(imgId);
   }
 
@@ -37,7 +34,6 @@ const deletePicture = (imgId,isProfilePic) => {
         </div>
     )
 }
-
 
 const mapStateToProps = (state) => (
 {

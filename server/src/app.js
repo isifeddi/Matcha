@@ -11,7 +11,6 @@ app.use(express.static('public'));
 // ------------- DB Connection  ------------- //
 const connection = require('./Config/db_connection');
 
-
 // ------------- Middlewares  ------------- //
 app.use(logger('dev'));
 app.use(bodyparser.json());
@@ -36,7 +35,7 @@ app.use((req,res,next) =>{
 app.use((err, req, res, next) => {
     console.log(err)
     const status = err.status || 500;
-    const error = err.message || 'Error processing your reuest';
+    const error = err.message || 'Error processing your request';
 
     res.status(status).send({
         error

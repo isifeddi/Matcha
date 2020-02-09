@@ -11,14 +11,13 @@ const ProfileContainer = (props) => {
             getOptions();
             getImages(user.id);
         }
-    }, [getImages,getOptions,user]);
+    }, []);
     return (
         <div>
             <Profile />
         </div>
     )
 }
-
 
 const mapStateToProps = (state) => (
 {

@@ -10,14 +10,14 @@ const server = app.listen(PORT, () => {
     console.log(`server is ready for connections on port ${PORT}`);
 });
 
-const io = require("socket.io").listen(server, {pingInterval: 60000, pingTimeout: 60000});
+const io = require("socket.io").listen(server);
 
 io.on('connection', socket => {
     socket.once('join', function (data) {
         socket.join(data.id);
     });
 
-    socket.on('chatMessage', async function(data){
+    socket.on('chatMessage', function(data){
         delete data.by.id;
         io.to(data.receiver).emit('new_msg', {sender: data.sender, receiver: data.receiver, profilePic: data.profilePic, message: data.message});
         io.to(data.sender).emit('received', {sender: data.sender, receiver: data.receiver, profilePic: data.profilePic, message: data.message});
@@ -40,16 +40,12 @@ io.on('connection', socket => {
             io.to(data.receiver).emit('new_notif', {by: {...data.by}, content: data.content});
     });
 
-    socket.on('profileViewed', async function(data){
+    socket.on('profileViewed', function(data){
         delete data.by.id;
         io.to(data.receiver).emit('new_notif', {by: {...data.by}, content: data.content});
     });
 
     socket.on('openNotif', function (data){
         io.to(data.id).emit('openedNotif', data.id);
-    });
-
-    socket.on('disconnect', function(){
-        console.log('user disconnected');
     });
 })

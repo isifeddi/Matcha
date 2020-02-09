@@ -67,13 +67,16 @@ export default function TitlebarGridList(props) {
         ...base,
         borderRadius: 0,
         marginTop: 0,
-        backgroundColor: '#DBDFF'
+        backgroundColor: '#DBDFF',
       }),
     menuList: base => ({
         ...base,
-        padding: 0
-      })
-    };
+        padding: 0,
+        height: '100px',
+        overflowY: 'scroll'
+      }),
+  };
+
     return (
       <>
       <Card className={classes.card}>
@@ -88,8 +91,6 @@ export default function TitlebarGridList(props) {
               <Tooltip title ="ASC"><IconButton aria-label="View"  onClick={(e) => handle("rating")}>
                 <ExpandLessIcon  color="primary"/>
               </IconButton></Tooltip>
-              {/* <KeyboardArrowDownIcon  color="secondary" onClick={(e) => handle("-rating")}/>
-              <ExpandLessIcon  color="secondary" onClick={(e) => handle("rating")}/> */}
               <Typography id="range-slider1" gutterBottom align="center">
                 Rating
               </Typography>
@@ -113,8 +114,6 @@ export default function TitlebarGridList(props) {
               <Tooltip title ="ASC"><IconButton aria-label="View"  onClick={(e) => handle("age")}>
                 <ExpandLessIcon  color="primary"/>
               </IconButton></Tooltip>
-              {/* <KeyboardArrowDownIcon  color="secondary" onClick={(e) => handle("-age")}/>
-              <ExpandLessIcon  color="secondary" onClick={(e) => handle("age")}/> */}
               <Typography id="range-slider2" gutterBottom align="center">
                 AGE
               </Typography>
@@ -159,8 +158,6 @@ export default function TitlebarGridList(props) {
               <Tooltip title ="ASC"><IconButton aria-label="View"  onClick={(e) => handle("nbrTags")}>
                 <ExpandLessIcon  color="primary"/>
               </IconButton></Tooltip>
-              {/* <KeyboardArrowDownIcon  color="secondary" onClick={(e) => handle("-nbrTags")}/>
-              <ExpandLessIcon  color="secondary" onClick={(e) => handle("nbrTags")}/> */}
               <Typography id="range-slider4" gutterBottom align="center">
                 Tags Commun
               </Typography>

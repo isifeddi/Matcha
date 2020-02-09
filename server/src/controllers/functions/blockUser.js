@@ -6,7 +6,6 @@ blockUser = async (req, res) => {
     user.delete('dislikeUser',[data.id,data.blocked_user_id])
     user.delete('dislikeUser',[data.blocked_user_id,data.id])
     .then((response) => {
-        console.log('blocked')
         res.send(true);
         
     }).catch((error) => {

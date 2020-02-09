@@ -16,8 +16,6 @@ const getConv =
           "method": "post",
           "data" : data
         },token);  
-
-      //const response = yield axios.post('http://localhost:5000/getMatchs', data);
       if(response.data)
       {
         yield put(getConverSuccess(response.data));
@@ -40,7 +38,6 @@ const loadMsg =
           "method": "post",
           "data" : data
         },token);  
-      //const response = yield axios.post('http://localhost:5000/loadMessages', data);
       if(response.data)
       {
         yield put(LoadMessagesSuccess(response.data, conv_id));
@@ -63,7 +60,6 @@ const sendMsg =
           "method": "post",
           "data" : data
         },token);  
-      //const response = yield axios.post('http://localhost:5000/sendMessage', data);
       if(response.data.sent === true)
       {
         const by = {id: user.id, username: user.username, profilePic: user.profilePic};

@@ -3,8 +3,7 @@ const IMAGES = require('../../models/images');
 delImages = async (req, res) => {
     const data = req.body;
     const isProfilePic = data.isProfilePic;
-    
-     IMAGES.delImages(data)
+    IMAGES.delImages(data)
     .then((response) => {
         res.send(response);
     }).catch((error) => {
@@ -12,7 +11,7 @@ delImages = async (req, res) => {
     });
     if(isProfilePic == 1)
     {
-         IMAGES.setFirstProfilePic(data)
+        IMAGES.setFirstProfilePic(data)
         .catch((error) => {
             console.log(error);
         });

@@ -6,7 +6,6 @@ availableEmail = async (req, res) => {
     const {email} = req.body;
    user.getUser('GetUserByEmail',email)
   .then((response) => {
-    console.log(response);
    if(response)
         res.send(false);
     else
