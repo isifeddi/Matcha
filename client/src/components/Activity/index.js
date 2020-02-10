@@ -11,8 +11,11 @@ import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import SupervisedUserCircleOutlinedIcon from '@material-ui/icons/SupervisedUserCircleOutlined';
 import SupervisedUserCircleRoundedIcon from '@material-ui/icons/SupervisedUserCircleRounded';
 import BlockIcon from '@material-ui/icons/Block';
+
  const useStyles = makeStyles(theme => ({
    root: {
     width: '100%',
@@ -31,8 +34,8 @@ import BlockIcon from '@material-ui/icons/Block';
    },
  }));
 
- export default function CheckboxListSecondary(props) {
-   const {blockList,handleDeblock,likeList,handleDislike} = props;
+ export default function Activity(props) {
+   const {likedByList, viewProfileList, blockList, handleLike, handleDeblock,likeList,handleDislike} = props;
    const classes = useStyles();
 
    return (
@@ -62,7 +65,7 @@ import BlockIcon from '@material-ui/icons/Block';
      </List>
      <List className={classes.root}> 
      <Typography component="h1" variant="h4" align="center" color='primary'>
-            You liked
+            You like
         </Typography>
        {likeList.isUsers === true && likeList.users.map((value) => ( 
            <ListItem key={value.id} button>
@@ -89,8 +92,75 @@ import BlockIcon from '@material-ui/icons/Block';
            </ListItem>
        ))}
      </List>
+     <List className={classes.root}> 
+     <Typography component="h1" variant="h4" align="center" color='primary'>
+            You're liked by
+        </Typography>
+       {likedByList.isUsers === true && likedByList.users.map((value) => ( 
+           <ListItem key={value.id} button>
+             <ListItemAvatar>
+               <Avatar
+               className={classes.large}
+                 alt='Avatar'
+                 src={`http://localhost:5000/images/${value.profilePic}`}
+               />
+             </ListItemAvatar>
+             <ListItemText id={value.id} >{value.firstname + ' ' + value.lastname}</ListItemText>
+             <ListItemSecondaryAction>
+             {value.like === 'heLiked' &&
+                <Tooltip title ="Like back"><IconButton aria-label="Like back"  onClick={(e) => handleLike(value.id)}>
+                  <SupervisedUserCircleOutlinedIcon color="primary"/>
+                </IconButton></Tooltip>
+              }
+              {value.like === 'match' &&
+                <Tooltip title ="Unmatch"><IconButton aria-label="Unmatch"  onClick={(e) => handleDislike(value.id)}>
+                  <SupervisedUserCircleRoundedIcon color="primary"/>
+                </IconButton></Tooltip>
+              }
+             </ListItemSecondaryAction>
+           </ListItem>
+       ))}
+     </List>
+     <List className={classes.root}>
+       <Typography component="h1" variant="h4" align="center" color='primary'>
+            Profile views
+        </Typography>
+       {viewProfileList.isUsers === true && viewProfileList.users.map((value) => (
+           <ListItem key={value.id} button>
+             <ListItemAvatar>
+               <Avatar
+               className={classes.large}
+                 alt='Avatar'
+                 src={`http://localhost:5000/images/${value.profilePic}`}
+               />
+             </ListItemAvatar>
+             <ListItemText id={value.id} >{value.firstname + '  ' + value.lastname}</ListItemText>
+             <ListItemSecondaryAction>
+             {value.like === null &&
+                <Tooltip title ="Like"><IconButton aria-label="Like"  onClick={(e) => handleLike(value.id)}>
+                  <FavoriteBorderIcon color="secondary"/>
+                </IconButton></Tooltip>
+              }
+              {value.like === 'iLike' &&
+              <Tooltip title ="Unlike"><IconButton aria-label="Unlike"  onClick={(e) => handleDislike(value.id)}>
+                <FavoriteIcon  color="secondary"/>
+              </IconButton></Tooltip>
+              }
+              {value.like === 'heLiked' &&
+                <Tooltip title ="Like back"><IconButton aria-label="Like back"  onClick={(e) => handleLike(value.id)}>
+                  <SupervisedUserCircleOutlinedIcon color="primary"/>
+                </IconButton></Tooltip>
+              }
+              {value.like === 'match' &&
+                <Tooltip title ="Unmatch"><IconButton aria-label="Unmatch"  onClick={(e) => handleDislike(value.id)}>
+                  <SupervisedUserCircleRoundedIcon color="primary"/>
+                </IconButton></Tooltip>
+              }
+             </ListItemSecondaryAction>
+           </ListItem>
+       ))}
+     </List>
    </Grid>
   </>
-    
    );
  }

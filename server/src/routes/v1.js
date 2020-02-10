@@ -29,6 +29,8 @@ const dislikeUser = require('../controllers/functions/dislikeUser');
 const sortUsers = require('../controllers/functions/sortUsers');
 const getNotif = require('../controllers/notif/getNotif');
 const openNotif = require('../controllers/notif/openNotif');
+const getViewProfileList = require('../controllers/functions/getViewProfileList');
+const getLikedByList = require('../controllers/functions/getLikedBy');
 
 router.use(async function (req,res,next) {
     const token = req.headers.authorization;
@@ -63,6 +65,7 @@ router.post('/dislikeUser',dislikeUser);
 router.post('/reportUser',reportUser);
 router.post('/viewProfileUser',viewProfileUser);
 router.post('/getBlockUser',getBlockUser);
+router.post('/getViewProfileList',getViewProfileList);
 router.post('/editProfile', editProfile);
 router.post('/getLikeUser',getLikeUser);
 router.post('/getMatchs', getMatchedUsers);
@@ -71,5 +74,6 @@ router.post('/sendMessage', sendMessages);
 router.post('/sortUsers', sortUsers);
 router.post('/getNotif', getNotif);
 router.post('/openNotif', openNotif);
+router.post('/getLikedByList', getLikedByList);
 
 module.exports = router;

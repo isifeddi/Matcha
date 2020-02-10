@@ -17,7 +17,6 @@ import Maps from '../../containers/Profile/maps';
 import ProfileInfo from '../../containers/Profile/profileInfo';
 
 const useStyles = makeStyles(theme => ({
- 
   root1: {
     flexGrow: 1,
   },

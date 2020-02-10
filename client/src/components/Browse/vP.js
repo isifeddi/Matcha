@@ -43,7 +43,7 @@ const useStyles = makeStyles(theme => ({
     maxHeight : 200,
   },
   cardAction : {
-    marginTop: 20,
+    marginTop: 5,
     maxWidth: 320,
     maxHeight : 50,
   },
@@ -100,7 +100,7 @@ export default function ViewProfile(props) {
         avatar={
           <Avatar aria-label="recipe" className={user.isOnline === 1 ? classes.avatarON : classes.avatarOF}></Avatar> 
         }
-        title={user.firstname +' ' +user.lastname}
+        title={user.firstname +' ' + user.lastname + ' @'+user.username}
         subheader={user.isOnline === 1 ? 'Online' : 'Last seen :' + user.lastSignIn}
       >
       </CardHeader>
@@ -121,17 +121,22 @@ export default function ViewProfile(props) {
         }
       />
       <CardContent className={classes.cardContent}> 
-      <CardContent>
+      
         <Typography >
-        <strong>AGE :</strong>{user.age} 
+          <strong>AGE :</strong>{user.age} 
+        </Typography>
+        <Typography >
+          <strong>GENDER :</strong>{user.gender}
+        </Typography>
+        <Typography >
+          <strong>INTERESTED IN :</strong>{user.sexOrient}
         </Typography>
         <Typography component={'span'}>
-        <strong>INTERESTS :</strong> {interests != null &&  interests.map((item, index) =><Chip key={index} className={classes.chip} label={item.value} />)}
+          <strong>TAGS :</strong> {interests != null &&  interests.map((item, index) =><Chip key={index} className={classes.chip} label={item.value} />)}
         </Typography>
         <Typography >
           <strong>BIO :</strong> {user.bio} 
         </Typography>
-      </CardContent>
       </CardContent>
       <CardActions className={classes.cardAction}>
       {user.like === null &&
