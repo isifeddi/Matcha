@@ -4,18 +4,19 @@ const filtreUsers = require('./filtre');
 const checkLikes= require('./checkLikes')
 getUsers = async (req, res) => {
     const Da = [];
-    token = req.headers.authorization;
     const user_id = req.body.id;
+    const indice = req.body.indice;
     const filtre = req.body.filtre;
-    const Data = await filtreUsers(user_id,filtre);
-    for (var i = 0; i < Data.length; i++) {
-        Data[i].like = await  checkLikes(user_id,Data[i].id);
-        const images = await img.getImages(Data[i].id);
-        const interests  = await user.getUserInterests(Data[i].id); 
+    const users = await filtreUsers(user_id,filtre,indice);
+    
+    for (var i = 0; i < users.length; i++) {
+        users[i].like = await  checkLikes(user_id,users[i].id);
+        const images = await img.getImages(users[i].id);
+        const interests  = await user.getUserInterests(users[i].id); 
         Da[i]= {
-            user :  Data[i],
+            user :  users[i],
             images : images,
-            interests: interests
+            interests: interests,
         }
     }
    res.send(Da);

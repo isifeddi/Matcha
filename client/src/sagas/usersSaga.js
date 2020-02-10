@@ -10,36 +10,51 @@ export const getUsers =
             const user = yield select(state => state.user);
             const token = yield select((state) => state.user.token);
             const response = yield call(request, {
-                "url": "http://localhost:5000/getUsers",
-                "data": {id : user.id,filtre : data.filtre},
-                "method": "post"
-              },token);
+            "url": "http://localhost:5000/getUsers",
+            "data": {id : user.id,filtre : data.filtre, indice : data.indice},
+            "method": "post"
+            },token);
             if(response)
             {
-                yield put(getUsersSuccess(response.data));
+                var oldUsers = yield select ((state) => state.users.users)
+                var newUsers = response.data;
+                var us = null;
+                if(data.indice !== 0)
+                    us = oldUsers.concat(newUsers);
+                else
+                    us = newUsers;
+                yield put(getUsersSuccess(us));
             }
             else
-                yield put(getUsersError('there has been an error'));
+                yield put(getUsersError('there has beetrtn an error'));
         } catch (error) {
-            yield put(getUsersError('there has been an error'));
+            yield put(getUsersError('there has been an error1'));
         }
     };
 export const sortUsers =
-    function *sortUsers ({methode,route}) {
+    function *sortUsers ({methode,route,indice}) {
         try {
             const user = yield select(state => state.user);
             const token = yield select((state) => state.user.token);
             const response = yield call(request, {
-                "url": "http://localhost:5000/sortUsers",
-                "data": {id : user.id,methode : methode,route : route},
-                "method": "post"
-              },token);
+            "url": "http://localhost:5000/sortUsers",
+            "data": {id : user.id,methode : methode,route : route,indice : indice},
+            "method": "post"
+            },token);
             if(response)
             {
-                yield put(getUsersSuccess(response.data));
-            }
-            else
-                yield put(getUsersError('there has been an error'));
+                var oldUsers = yield select ((state) => state.users.users)
+                var newUsers = response.data;
+                var us = null;
+                if(indice !== 0)
+                        us = oldUsers.concat(newUsers);
+                else
+                    us = newUsers;
+                yield put(getUsersSuccess(us));
+                }
+                else
+                    yield put(getUsersError('there has been an error')); 
+
         } catch (error) {
             yield put(getUsersError('there has been an error'));
         }

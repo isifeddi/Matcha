@@ -22,9 +22,10 @@ export const updateUserSuccess = (data) => ({
     data
 });
 
-export const getUsers= (filtre) => ({
+export const getUsers= (filtre,indice) => ({
     "type":  GET_USERS,
-    filtre
+    filtre: filtre,
+    indice: indice
 });
 export const getUsersSuccess= (data) => ({
     "type":  GET_USERS_SUCCESS,
@@ -92,10 +93,11 @@ export const viewProfileUser= (viewed_user_id) => ({
     "type":  VIEW_PROFILE_USER,
     viewed_user_id
 });
-export const sortUsers= (methode,route) => ({
+export const sortUsers= (methode,route,indice) => ({
     "type":  SORT_USERS,
     methode,
-    route
+    route,
+    indice
 });
 
 

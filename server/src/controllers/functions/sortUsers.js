@@ -9,6 +9,7 @@ sortUsers = async (req, res) => {
     const user_id = req.body.id;
     const methode = req.body.methode;
     const route = req.body.route;
+    const indice = req.body.indice;
     const users = await user.getUsers(user_id);
     const user1 = await user.select('GetUserById',user_id);
     if(route === '/browse')
@@ -32,17 +33,19 @@ sortUsers = async (req, res) => {
             }
         }
     }
+    const cmp = indice * 20;
     for (var i = 0; i < users.length; i++) {
         users[i].distance =  calculateDistance(user1[0],users[i]);
         users[i].nbrTags = await T.calculateNbrTagsCommun(user1[0],users[i]);
     }
     SorteTabe = users.sort(so(methode));
-    for (var i = 0; i < SorteTabe.length; i++) {
-        const images = await img.getImages(SorteTabe[i].id);
-        const interests  = await user.getUserInterests(SorteTabe[i].id);
-        SorteTabe[i].like = await  checkLikes(user_id,SorteTabe[i].id);
-        Da[i]= {
-         user :  SorteTabe[i],
+    const Data = SorteTabe.slice(cmp,cmp+20);
+    for (var j = 0; j < Data.length; j++) {
+        const images = await img.getImages(Data[j].id);
+        const interests  = await user.getUserInterests(Data[j].id);
+        Data[j].like = await  checkLikes(user_id,Data[j].id);
+        Da[j]= {
+         user :  Data[j],
          images : images,
          interests: interests
         }

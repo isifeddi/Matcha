@@ -1,9 +1,9 @@
 import {
-    GET_USERS,
     GET_USERS_SUCCESS,
     GET_USERS_ERROR,
     DELETE_USER,
-    DISLIKE_USER
+    DISLIKE_USER,   
+
 } from "../actions/userAction";
 import {RESET_STATE_USERS} from "../actions/resetStateAction";
 const DEFAULT_STATE = {
@@ -14,10 +14,9 @@ const DEFAULT_STATE = {
   };
 export default function (state = DEFAULT_STATE, action) {
     switch (action.type) {
-        case GET_USERS:
-            return {status: 'loading', isUsers : false, users:null}
-        case GET_USERS_SUCCESS:
-            return {status: 'success', isUsers : true, users:action.data};
+        case GET_USERS_SUCCESS:{
+             return {status: 'success', isUsers : true, users:action.data};
+        }
         case GET_USERS_ERROR:
             return {status: 'error', isUsers : false, err : action.err};
         case DISLIKE_USER :
