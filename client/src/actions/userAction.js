@@ -17,11 +17,15 @@ export const GET_BLOCK_USER_SUCCESS = "GET_BLOCK_USER_SUCCESS";
 export const GET_LIKE_USER = "GET_LIKE_USER";
 export const GET_LIKE_USER_SUCCESS = "GET_LIKE_USER_SUCCESS";
 export const SORT_USERS = "SORT_USERS";
+export const GET_VP_LIST = "GET_VP_LIST";
+export const GET_VP_LIST_SUCCESS = "GET_VP_LIST_SUCCESS";
+export const GET_LIKED_BY = "GET_LIKED_BY";
+export const GET_LIKED_BY_SUCCESS = "GET_LIKED_BY_SUCCESS";
+
 export const updateUserSuccess = (data) => ({
     "type":  UPDATE_USER_SUCCESS,
     data
 });
-
 export const getUsers= (filtre) => ({
     "type":  GET_USERS,
     filtre
@@ -30,7 +34,6 @@ export const getUsersSuccess= (data) => ({
     "type":  GET_USERS_SUCCESS,
     data
 });
-
 export const getUsersError= (err) => ({
     "type":  GET_USERS_ERROR,
     err
@@ -69,7 +72,6 @@ export const getLikeUserSuccess= (data) => ({
     "type":  GET_LIKE_USER_SUCCESS,
     data
 });
-
 export const deleteLike= (id) => ({
     "type":  DELETE_LIKE,
     id : id
@@ -97,5 +99,17 @@ export const sortUsers= (methode,route) => ({
     methode,
     route
 });
-
-
+export const getViewProfileList= () => ({
+    "type":  GET_VP_LIST,
+});
+export const getViewProfileListSuccess= (data) => ({
+    "type":  GET_VP_LIST_SUCCESS,
+    data
+});
+export const getLikedBy= () => ({
+    "type":  GET_LIKED_BY,
+});
+export const getLikedBySuccess= (data) => ({
+    "type":  GET_LIKED_BY_SUCCESS,
+    data
+});

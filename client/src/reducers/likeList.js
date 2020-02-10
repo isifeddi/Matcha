@@ -1,6 +1,7 @@
 import {
     GET_LIKE_USER_SUCCESS,
-    DELETE_LIKE
+    DELETE_LIKE,
+    DELETE_USER,
 } from "../actions/userAction";
 const DEFAULT_STATE = {
     isUsers: false,

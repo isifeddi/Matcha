@@ -1,7 +1,7 @@
 const queries = {
     SELECT : {
         GetUsers:           "SELECT DATE_FORMAT(users.lastSignIn, ' %b %d %Y at %T') as lastSignIn, \
-                            id,firstname,lastname, gender, sexOrient, bio, age,birthday,rating,isOnline,latitude,longitude FROM users\
+                            id,firstname, lastname, username, gender, sexOrient, bio, age,birthday,rating,isOnline,latitude,longitude FROM users\
                             WHERE id != ? AND \
                             id NOT IN  (SELECT blocked_id FROM blockList  WHERE blocker_id = ?) AND \
                             id NOT IN  (SELECT blocker_id FROM blockList  WHERE blocked_id = ?) AND \
@@ -10,7 +10,7 @@ const queries = {
                             AND complete = 3 \
                             ORDER BY rating DESC",
         GetAllUsers:        "SELECT  DATE_FORMAT(users.lastSignIn, ' %b %d %Y at %T') as lastSignIn, \
-                            id,firstname,lastname, gender, sexOrient, bio, age,birthday,rating,isOnline,latitude,longitude \
+                            id,firstname, username, lastname, gender, sexOrient, bio, age,birthday,rating,isOnline,latitude,longitude \
                             FROM users WHERE confirmed = 1 AND complete = 3",
         GetUserByEmail:     "SELECT users.*,DATE_FORMAT(users.birthday,'%Y-%m-%d') as transDate FROM users \
                             WHERE users.email = ?",
@@ -28,6 +28,8 @@ const queries = {
         InterCreatedNbr:    "SELECT COUNT(interest) as n FROM interests WHERE createdBy = ? ",
         getBlockUser :      "SELECT id,firstname,lastname FROM users WHERE  id  IN (SELECT blocked_id FROM blockList WHERE blocker_id = ?)",
         getLikeUser :       "SELECT id,firstname,lastname FROM users WHERE  id  IN (SELECT liked_id FROM likesList WHERE liker_id = ?)",
+        getLikedBy :        "SELECT id,firstname,lastname FROM users WHERE  id  IN (SELECT liker_id FROM likesList WHERE liked_id = ?)",
+        getViewProfileList: "SELECT id,firstname,lastname FROM users WHERE  id  IN (SELECT viewer FROM viewProfileList WHERE viewed = ?)",
         getUserLikes:       "SELECT liker_id,liked_id FROM likesList WHERE liker_id=? OR liked_id=?",
         checkBlock:         "SELECT * FROM blockList WHERE (blocker_id = ? OR blocked_id = ?) AND (blocker_id = ? OR blocked_id = ?)",
         checkLike:          "SELECT * FROM likesList WHERE (liker_id = ? AND liked_id = ?)",
@@ -43,7 +45,7 @@ const queries = {
         CheckEditUsername:  "SELECT username from users where username = ? AND id != ?",
         CheckEditEmail:     "SELECT email from users where email = ? AND id != ?",
         getNotif:           "SELECT users.*,images.path as profilePic ,content, seen FROM notifications,users,images \
-                            WHERE images.user_id = notifications.by AND receiver = ? AND users.id = notifications.by ORDER BY notifications.id DESC"
+                            WHERE images.user_id = notifications.by AND receiver = ? AND users.id = notifications.by ORDER BY notifications.id DESC",
     },
     INSERT : {
         AddImage:           'INSERT INTO images (user_id, path,isProfilePic) VALUES (?, ?, ?)',

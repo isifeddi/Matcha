@@ -1,7 +1,7 @@
 import {put, takeLatest,call} from "redux-saga/effects";
 import { select } from 'redux-saga/effects'; 
 import {request} from './helper';
-import { getUsersSuccess,getUsersError,deleteUser,getBlockUserSuccess,deleteBlock,getLikeUserSuccess,deleteLike} from '../actions/userAction';
+import { getUsersSuccess,getUsersError,deleteUser,getBlockUserSuccess,deleteBlock,getLikeUserSuccess,deleteLike, getViewProfileListSuccess, getLikedBySuccess} from '../actions/userAction';
 import socket from '../socketConn';
 
 export const getUsers =
@@ -48,7 +48,7 @@ export const blockUser =
     function *blockUser({blocked_user_id}) {
         try {
             const user = yield select(state => state.user);
-             const token = yield select((state) => state.user.token);
+            const token = yield select((state) => state.user.token);
             const response = yield call(request, {
                 "url": "http://localhost:5000/blockUser",
                 "data": {id : user.id, blocked_user_id: blocked_user_id},
@@ -66,7 +66,7 @@ export const deblockUser =
     function *deblockUser({deblocked_user_id}) {
         try {
             const user = yield select(state => state.user);
-             const token = yield select((state) => state.user.token);
+            const token = yield select((state) => state.user.token);
             const response = yield call(request, {
                 "url": "http://localhost:5000/deblockUser",
                 "data": {id : user.id, deblocked_user_id: deblocked_user_id},
@@ -84,7 +84,7 @@ export const getBlockUser =
     function *getBlockUser() {
         try {
             const user = yield select(state => state.user);
-             const token = yield select((state) => state.user.token);
+            const token = yield select((state) => state.user.token);
             const response = yield call(request, {
                 "url": "http://localhost:5000/getBlockUser",
                 "data": {id : user.id},
@@ -114,9 +114,7 @@ export const likeUser =
                 socket.emit('userLiked', {by: by, receiver: parseInt(liked_user_id), content: `${user.username} liked you`});
                 yield put(deleteUser(liked_user_id));
             }
-        } catch (error) {
-            console.log(error)
-        }
+        } catch (error) {}
     };
 export const dislikeUser =
     function *dislikeUser({dislike_user_id}) {
@@ -140,7 +138,7 @@ export const getLikeUser =
     function *getLikeUser() {
         try {
             const user = yield select(state => state.user);
-             const token = yield select((state) => state.user.token);
+            const token = yield select((state) => state.user.token);
             const response = yield call(request, {
                 "url": "http://localhost:5000/getLikeUser",
                 "data": {id : user.id},
@@ -158,7 +156,7 @@ export const reportUser =
     function *reportUser({reported_user_id}) {
         try {
             const user = yield select(state => state.user);
-             const token = yield select((state) => state.user.token);
+            const token = yield select((state) => state.user.token);
             const response = yield call(request, {
                 "url": "http://localhost:5000/reportUser",
                 "data": {id : user.id, reported_user_id: reported_user_id},
@@ -176,7 +174,7 @@ export const viewProfileUser =
     function *viewProfileUser({viewed_user_id}) {
         try {
             const user = yield select(state => state.user);
-             const token = yield select((state) => state.user.token);
+            const token = yield select((state) => state.user.token);
             const response = yield call(request, {
                 "url": "http://localhost:5000/viewProfileUser",
                 "data": {username: user.username, id : user.id, viewed_user_id: viewed_user_id},
@@ -186,6 +184,42 @@ export const viewProfileUser =
             {
                 const by = {id: user.id, username: user.username, profilePic: user.profilePic};
                 socket.emit('profileViewed', {by: by, receiver: parseInt(viewed_user_id), content: `${user.username} viewed your profile`});
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+export const getViewProfileList =
+    function *getViewProfileList() {
+        try {
+            const user = yield select(state => state.user);
+            const token = yield select((state) => state.user.token);
+            const response = yield call(request, {
+                "url": "http://localhost:5000/getViewProfileList",
+                "data": {id : user.id},
+                "method": "post"
+              },token);
+            if(response)
+            {
+                yield put(getViewProfileListSuccess(response.data));
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+export const getLikedBy =
+    function *getLikedBy() {
+        try {
+            const user = yield select(state => state.user);
+            const token = yield select((state) => state.user.token);
+            const response = yield call(request, {
+                "url": "http://localhost:5000/getLikedByList",
+                "data": {id : user.id},
+                "method": "post"
+              },token);
+            if(response)
+            {
+                yield put(getLikedBySuccess(response.data));
             }
         } catch (error) {
             console.log(error);
@@ -203,4 +237,6 @@ export default function *() {
     yield takeLatest("REPORT_USER",reportUser);
     yield takeLatest("VIEW_PROFILE_USER",viewProfileUser);
     yield takeLatest("SORT_USERS",sortUsers);
+    yield takeLatest("GET_VP_LIST",getViewProfileList);
+    yield takeLatest("GET_LIKED_BY", getLikedBy);
 }

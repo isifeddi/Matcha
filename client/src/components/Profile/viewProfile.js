@@ -4,19 +4,14 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
 import Avatar from '@material-ui/core/Avatar';
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import Box from '@material-ui/core/Box';
 import Rating from '@material-ui/lab/Rating';
 import defaultImg from '../../image/default.jpg';
 import ReactIdSwiperCustom from 'react-id-swiper/lib/ReactIdSwiper.custom';
 import { Swiper, Navigation, Pagination } from 'swiper/js/swiper.esm';
-import BlockIcon from '@material-ui/icons/Block';
 import { Grid } from '@material-ui/core';
-import ReportIcon from '@material-ui/icons/Report';
 import Chip from '@material-ui/core/Chip';
 
 const useStyles = makeStyles(theme => ({
@@ -104,7 +99,7 @@ export default function ViewProfile(props) {
           </Avatar>
           
         }
-        title={user.firstname +' ' + user.lastname}
+        title={user.firstname +' ' + user.lastname + ' @'+user.username}
         subheader={user.isOnline === 1 ? 'Online' : 'Offline' + user.lastSignIn}
       >
      
@@ -127,28 +122,23 @@ export default function ViewProfile(props) {
       />
       <CardContent className={classes.cardContent}>
         <Typography >
-        <strong>AGE :</strong>{user.age} 
+          <strong>AGE :</strong>{user.age}
+        </Typography>
+        <Typography >
+          <strong>GENDER :</strong>{user.gender}
+        </Typography>
+        <Typography >
+          <strong>INTERESTED IN :</strong>{user.sexOrient}
         </Typography>
         <Typography component={'span'}>
-        <strong>INTERESTS :</strong> {interests != null &&  interests.map((item, index) =><Chip key={index} className={classes.chip} label={item.value} />)}
+          <strong>TAGS :</strong> {interests != null &&  interests.map((item, index) =><Chip key={index} className={classes.chip} label={item.value} />)}
         </Typography>
         <Typography >
           <strong>BIO :</strong> {user.bio} 
         </Typography>
       </CardContent>
-      <CardActions disableSpacing className={classes.cardContent}>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon color="secondary"/>
-        </IconButton>
-        <IconButton aria-label="share">
-          <BlockIcon color="secondary"/>
-        </IconButton>
-        <IconButton aria-label="share">
-          <ReportIcon color="secondary"/>
-        </IconButton>
-      </CardActions>
+      
     </Card>
     </Grid>
-    
   );
 }
