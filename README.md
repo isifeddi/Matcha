@@ -42,8 +42,6 @@ cd client && serve -s build -l [PORT]
 ![profile infos](server/public/images/localis.png)
 * Browse
 ![profile infos](server/public/images/browse.png)
-* View user profile
-![profile infos](server/public/images/vppp.png)
 * Activity
 ![profile infos](server/public/images/activity.png)
 * Notification
