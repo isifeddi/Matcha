@@ -37,17 +37,17 @@ cd client && serve -s build -l [PORT]
 
 # Pictures
 * User profile
-![profile infos](profile.png)
-![profile infos](pics.png)
-![profile infos](localis.png)
+![profile infos](server/public/images/profile.png)
+![profile infos](server/public/images/pics.png)
+![profile infos](server/public/images/localis.png)
 * Browse
-![profile infos](browse.png)
+![profile infos](server/public/images/browse.png)
 * View user profile
-![profile infos](vppp.png)
+![profile infos](server/public/images/vppp.png)
 * Activity
-![profile infos](activity.png)
+![profile infos](server/public/images/activity.png)
 * Notification
-![profile infos](notif.png)
-![profile infos](notif2.png)
+![profile infos](server/public/images/notif.png)
+![profile infos](server/public/images/notif2.png)
 * Chat
-![profile infos](chat.png)
+![profile infos](server/public/images/chat.png)
