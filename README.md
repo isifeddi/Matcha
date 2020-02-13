@@ -49,3 +49,5 @@ cd client && serve -s build -l [PORT]
 ![profile infos](server/public/images/notif2.png)
 * Chat
 ![profile infos](server/public/images/chat.png)
+# Authors
+ILYAS SIFEDDINE & ISMAIL BOUROUMMANA
