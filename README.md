@@ -37,17 +37,17 @@ cd client && serve -s build -l [PORT]
 
 # Pictures
 * User profile
-![profile infos](server/public/images/profile.png)
-![profile infos](server/public/images/pics.png)
-![profile infos](server/public/images/localis.png)
+![profile](server/public/images/profile.png)
+![profile](server/public/images/pics.png)
+![profile](server/public/images/localis.png)
 * Browse
-![profile infos](server/public/images/browse.png)
+![browse](server/public/images/browse.png)
 * Activity
-![profile infos](server/public/images/activity.png)
-* Notification
-![profile infos](server/public/images/notif.png)
-![profile infos](server/public/images/notif2.png)
+![activity](server/public/images/activity.png)
+* Notifications
+![notifications](server/public/images/notif.png)
+![notifications](server/public/images/notif2.png)
 * Chat
-![profile infos](server/public/images/chat.png)
+![chat](server/public/images/chat.png)
 # Authors
 ILYAS SIFEDDINE & ISMAIL BOUROUMMANA
