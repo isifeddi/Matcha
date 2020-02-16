@@ -1,6 +1,7 @@
 const multer = require('multer')
 const express = require('express');
 const tools = require('../tools/index');
+var Jimp = require('jimp');
 const images = require('../models/images');
 const app = express()
  const checkFileType = (file, cb) => {
@@ -35,19 +36,27 @@ app.post('/upload',upload.single('files'),(req,res) => {
   if(file.size === 0){
     return res.send('is not a file');
   }
+
  images.getImages(user_id)
  .then((response) => {
   const length = response.length;
     if(length > 4)
       return res.send('maximum images are 5 images');
     else{
-      images.insertImage({user_id : user_id, path : file.filename})
+      Jimp.read('./public/images/'+file.filename)
+  .then(img => {
+    images.insertImage({user_id : user_id, path : file.filename})
       .then((resp) => {
         if(resp)
           res.send(resp);
       }).catch((err)=>{
         res.send(err);
       })
+  })
+  .catch(err => {
+    console.log('this is not image')
+    res.send('this is not image');
+  });   
     }
  })
   

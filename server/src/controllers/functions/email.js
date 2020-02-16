@@ -13,7 +13,7 @@ module.exports = {
             from: 'sifeddineilyass@gmail.com',
             to: email,
             subject: 'Confirm your account',
-            html: `Please click to verify your email: <a href="${url}">${url}</a>`
+            html: `<p>Please click to verify your email</p><button style="background-color:'#f50057'"><a href="${url}">Click me</a></button>`
         };
         transporter.sendMail(mailOptions, function(error, info){
             if (error) {
@@ -36,7 +36,7 @@ module.exports = {
             from: 'sifeddineilyass@gmail.com',
             to: email,
             subject: 'Reset your password',
-            html: `Please click to reset your password: <a href="${url}">${url}</a>`
+            html: `<p>Please click to verify your email</p><button style="background-color:'#f50057'"><a href="${url}">Click me</a></button>`
         };
         transporter.sendMail(mailOptions, function(error, info){
             if (error) {

@@ -7,7 +7,6 @@ const UPDATE = queries.UPDATE;
 module.exports = {
     insertImage : function (value) {
         let isProfilePic = 0;
-       //console.log('model'+value.user_id)
         return new Promise ((resolve, reject) => {
             conn.query(SELECT.GetImages, [value.user_id],(errr,ress) => {
                 if(ress)

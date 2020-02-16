@@ -9,7 +9,6 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-//import CircularProgress from '@material-ui/core/CircularProgress';
 import MyFlash from '../commun/flash'
 import renderField from '../commun/TextField'
 
@@ -62,7 +61,6 @@ const Login = (props) => {
                 component={renderField}
             />
             </Grid>
-            
             <Grid item xs={12}>
             <Field
               name="password"
@@ -76,8 +74,7 @@ const Login = (props) => {
               <Button  onClick={handleSubmit} className={classes.submit} fullWidth variant="contained" type="submit" color="primary" name="submit" value="ok" >Submit</Button>
             </Grid>
           </Grid>
-        </form>  
-          
+        </form>   
         <Grid container justify="flex-end">
           <Grid item xs>
               <Link to="/forgotPassword"  style={{textDecoration: 'none', color:'#3f51b5'}}>
@@ -90,10 +87,7 @@ const Login = (props) => {
               </Link>
             </Grid>
           </Grid>
-        
       </div>
-      {/* {status === "loading" && <div className={classes.paper} style={{marginTop: "300px"}}><CircularProgress color="secondary" /></div>} */}
-      
     </Container>
   );
 }

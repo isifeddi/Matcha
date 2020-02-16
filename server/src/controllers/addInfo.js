@@ -11,15 +11,15 @@ addInfo = async (req, res) => {
         else
             v = true;
     }
-    if(info.interests.length > 20){
+    if(info.interests.length > 5){
         v = false;
-        res.send({ added:false, error: 'You can not add more than 20 interests !' });
+        res.send({ added:false, error: 'You can not add more than 5 interests !' });
         return ;
     }
     if(tools.isBirthday(info.birthday) && tools.isGender(info.gender) && tools.isOrient(info.sexOrient) && tools.isBio(info.bio) && tools.isInterest(info.interests) && v)
     {
         user.deleteUserInter(info.id);
-        user.updateInfo(info.gender, info.sexOrient, info.birthday,tools.age(info.birthday), info.bio, info.id);
+        user.updateInfo(info.gender, info.sexOrient, info.birthday, tools.age(info.birthday), info.bio, info.id);
         info.interests.forEach( element => {
             user.getInterId(element)
             .then(re => {

@@ -3,7 +3,7 @@ const calculateDistance = require('./calculateDistance');
 const T = require('./calculateNbrTagsCommun');
 const user = require('../../models/user');
 const so = require('./sort');
-const filtreUsers = async (user_id,fil) => {
+const filtreUsers = async (user_id,fil,indice) => {
     let user2 = '';
     let SorteTabe = '';
     const filtre = findFilter(fil);
@@ -74,7 +74,7 @@ const filtreUsers = async (user_id,fil) => {
        if(filtre!== null && filtre.age !== null)
        {
         for (var i = 0; i < users.length; i++){
-            if(users[i].birthday < filtre.age.min || users[i].birthday > filtre.age.max)
+            if(users[i].age < filtre.age.min || users[i].age > filtre.age.max)
             {
                     users.splice(i, 1);
                     i--;
@@ -92,7 +92,8 @@ const filtreUsers = async (user_id,fil) => {
                     i--;
             }
         }
-       } 
+       }
+       const cmp = indice * 20;
        for (var i = 0; i < users.length; i++) {
         user2 = {
             distance : calculateDistance(user1[0],users[i]),
@@ -102,8 +103,10 @@ const filtreUsers = async (user_id,fil) => {
         }
         users[i].score = calculateScore(user2);
       }
-         SorteTabe = users.sort(so('-score'));
-    return SorteTabe;
+      SorteTabe = users.sort(so('-score'));
+      const Data = users.slice(cmp,cmp+20);
+        
+    return (Data);
 }
 const findFilter = (filtre) =>{
     if(filtre === null)

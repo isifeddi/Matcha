@@ -1,6 +1,7 @@
 import {
     GET_LIKE_USER_SUCCESS,
-    DELETE_LIKE
+    DELETE_LIKE,
+    DELETE_USER,
 } from "../actions/userAction";
 const DEFAULT_STATE = {
     isUsers: false,
@@ -13,9 +14,11 @@ export default function (state = DEFAULT_STATE, action) {
         case DELETE_LIKE:
         {
             const id = action.id;
-            let arr  = state.users;
+            let arr = [];
+            if(state.users)
+                arr = [...state.users];
             for (var i = 0; i < arr.length; i++) {
-                if (arr[i].id == id) {
+                if (arr[i].id === parseInt(id)) {
                     arr.splice(i, 1);
                     i--;
                 }

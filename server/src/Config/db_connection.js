@@ -15,6 +15,5 @@ const mysql = require('mysql');
       if(err){
           throw err;
       }
-      
   });
   module.exports = conn;

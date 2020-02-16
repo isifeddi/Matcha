@@ -39,7 +39,6 @@ const useStyles = makeStyles(theme => ({
 const ForgotPassword = (props) => {
   const classes = useStyles();
     const {handleSubmit, status, errors} = props;
-    console.log(errors);
     return (
      <Container component="main" maxWidth="xs">
       <CssBaseline />

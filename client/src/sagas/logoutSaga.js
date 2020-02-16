@@ -17,7 +17,7 @@ export const logoutRequest =
               if(response)
               {
                 yield put(ClearUserInformation());
-                yield put(push("/home"));
+                yield put(push("/login"));
               }
             
         } catch (error) {

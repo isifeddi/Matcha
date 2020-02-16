@@ -533,9 +533,10 @@
     height: auto;
     min-height: calc(100% - 120px);
     max-height: calc(100% - 120px);
-    width: 101%;
+    width: 100%;
     overflow-y: scroll;
     overflow-x: hidden;
+    padding-bottom: 40px;
   }
   @media screen and (max-width: 900px) {
     #frame .content .messages {

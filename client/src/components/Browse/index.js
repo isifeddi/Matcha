@@ -11,7 +11,10 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import Select from 'react-select';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
+import ExpandLessIcon from '@material-ui/icons/ExpandLess';
+import IconButton from '@material-ui/core/IconButton';
+import Tooltip from '@material-ui/core/Tooltip';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -32,15 +35,16 @@ const useStyles = makeStyles(theme => ({
   margin: {
     height: theme.spacing(3),
   },
-  card: {
-    borderRadius : '20px',
-    backgroundColor :'#DBDFF3' 
+  card:{
+    border: '2px solid',
+    borderColor: '#E6EAEA',
   },
+  
 }));
 
 export default function TitlebarGridList(props) {
   const classes = useStyles();
-  const {selectOptions,handle, users,handleSubmit,handleBlock,handleLike,
+  const {selectOptions,handle, users,handleSubmit,handleBlock,handleLike,handleDislike,
         handleViewProfile,handleChangeAge,handleChangeLoc,handleChangeRating,
         handleChangeTags,handleChangeNbrTags,age,nbrTags,loc,rating} = props;
   
@@ -56,7 +60,6 @@ export default function TitlebarGridList(props) {
   const customStyles = {
     control: (base, state) => ({
         ...base,
-        background: "#DBDFF3",  
         borderColor: state.isFocused ? "#3f51b5" : "#3f51b5",
         boxShadow: state.isFocused ? null : null,
       }),
@@ -64,23 +67,30 @@ export default function TitlebarGridList(props) {
         ...base,
         borderRadius: 0,
         marginTop: 0,
-        backgroundColor: '#DBDFF'
+        backgroundColor: '#DBDFF',
       }),
     menuList: base => ({
         ...base,
-        padding: 0
-      })
-    };
+        padding: 0,
+        height: '100px',
+        overflowY: 'scroll'
+      }),
+  };
+
     return (
       <>
       <Card className={classes.card}>
-        <CardHeader title="FILTRE"  align="center"/>
+        <CardHeader title="FILTER"  align="center"/>
         <CardContent>
           <Grid container item justify="center" spacing={2} xs={12}>
             <Grid item xs={6} className={classes.rating}>
               <div className={classes.margin} />
-              <button methode="-rating" onClick={handle}>Down</button>
-              <button methode="rating" onClick={handle}>UP</button>
+              <Tooltip title ="DESC"><IconButton aria-label="View"  onClick={(e) => handle("-rating")}>
+                <KeyboardArrowDownIcon  color="primary"/>
+              </IconButton></Tooltip>
+              <Tooltip title ="ASC"><IconButton aria-label="View"  onClick={(e) => handle("rating")}>
+                <ExpandLessIcon  color="primary"/>
+              </IconButton></Tooltip>
               <Typography id="range-slider1" gutterBottom align="center">
                 Rating
               </Typography>
@@ -98,10 +108,14 @@ export default function TitlebarGridList(props) {
 
             <Grid item xs={6} className={classes.rating}>
               <div className={classes.margin} />
-              <button  methode="-birthday" onClick={handle}>Down</button>
-              <button  methode="birthday" onClick={handle}>Up</button>
+              <Tooltip title ="DESC"><IconButton aria-label="View"  onClick={(e) => handle("-age")}>
+                <KeyboardArrowDownIcon  color="primary"/>
+              </IconButton></Tooltip>
+              <Tooltip title ="ASC"><IconButton aria-label="View"  onClick={(e) => handle("age")}>
+                <ExpandLessIcon  color="primary"/>
+              </IconButton></Tooltip>
               <Typography id="range-slider2" gutterBottom align="center">
-                AGE
+                Age
               </Typography>
               <Slider
                 value={age}
@@ -116,8 +130,12 @@ export default function TitlebarGridList(props) {
 
             <Grid item xs={6} className={classes.rating}>
               <div className={classes.margin} />
-              <button  methode="-distance" onClick={handle}>Down</button>
-              <button  methode="distance" onClick={handle}>Up</button>
+              <Tooltip title ="DESC"><IconButton aria-label="View"  onClick={(e) => handle("-distance")}>
+                <KeyboardArrowDownIcon  color="primary"/>
+              </IconButton></Tooltip>
+              <Tooltip title ="ASC"><IconButton aria-label="View"  onClick={(e) => handle("distance")}>
+                <ExpandLessIcon  color="primary"/>
+              </IconButton></Tooltip>
               <Typography id="range-slider3" gutterBottom align="center">
                 Localisation
               </Typography>
@@ -134,10 +152,14 @@ export default function TitlebarGridList(props) {
 
             <Grid item xs={6} className={classes.rating}>
               <div className={classes.margin} />
-              <button  methode="-nbrTags" onClick={handle}>Down</button>
-              <button  methode="nbrTags" onClick={handle}>Up</button>
+              <Tooltip title ="DESC"><IconButton aria-label="View"  onClick={(e) => handle("-nbrTags")}>
+                <KeyboardArrowDownIcon  color="primary"/>
+              </IconButton></Tooltip>
+              <Tooltip title ="ASC"><IconButton aria-label="View"  onClick={(e) => handle("nbrTags")}>
+                <ExpandLessIcon  color="primary"/>
+              </IconButton></Tooltip>
               <Typography id="range-slider4" gutterBottom align="center">
-                Tags Commun
+                Common tags
               </Typography>
               <Slider
                 value={nbrTags}
@@ -170,20 +192,16 @@ export default function TitlebarGridList(props) {
         <Button type="submit" onClick={handleSubmit} color="primary" className={classes.submit} fullWidth variant="contained" >Send</Button>
         </CardActions>
       </Card>
-      
-      
-   
     <div className={classes.root}>
           {users.isUsers === true && users.users && users.users.map(tile => (
             <GridList key={tile.user.id}>
               <ViewProfile key={tile.user.id}  user={tile.user} images={tile.images} interests={tile.interests}
-              handleBlock={handleBlock} handleLike={handleLike} handleViewProfile={handleViewProfile}/>
+              handleBlock={handleBlock} handleLike={handleLike} handleViewProfile={handleViewProfile} handleDislike={handleDislike}/>
             </GridList>
           ))}
           
-          {users.isUsers === false && users.users && <p>No User Found</p>}
+          {(users.isUsers === false || users.users === null || users.length === 0 )&& <p>No User Found</p>}
       </div>
-    {users.status === 'loading' && <div className={classes.root}><CircularProgress color="secondary"/></div>}
     </>
     );
 }

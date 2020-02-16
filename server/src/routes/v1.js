@@ -1,13 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const Register = require('../controllers/register');
-const Login = require('../controllers/login');
-const availableUsername = require('../controllers/functions/availableUsername');
-const availableEmail = require('../controllers/functions/availableEmail');
-const decodeToken = require('../controllers/functions/decodeToken');
-const checkConfirmToken = require('../controllers/functions/checkConfirmToken');
-const sendResetEmail = require('../controllers/functions/sendResetEmail');
-const resetPassword = require('../controllers/resetPassword');
+const checkToken = require('../controllers/functions/checkToken');
+
 const getOptions = require('../controllers/functions/getOptions');
 const createOption = require('../controllers/functions/createOption');
 const getActiveStep = require('../controllers/functions/getActiveStep');
@@ -33,15 +27,25 @@ const sendMessages = require('../controllers/chat/sendMessage');
 const editProfile = require('../controllers/editProfile');
 const dislikeUser = require('../controllers/functions/dislikeUser');
 const sortUsers = require('../controllers/functions/sortUsers');
+const getNotif = require('../controllers/notif/getNotif');
+const openNotif = require('../controllers/notif/openNotif');
+const getViewProfileList = require('../controllers/functions/getViewProfileList');
+const getLikedByList = require('../controllers/functions/getLikedBy');
 
-router.post('/login', Login);
-router.post('/register', Register);
-router.post('/availableEmail',availableEmail);
-router.post('/availableUsername',availableUsername);
-router.post('/decodeToken', decodeToken);
-router.post('/confirmEmail', checkConfirmToken);
-router.post('/sendResetEmail', sendResetEmail);
-router.post('/resetPassword', resetPassword);
+router.use(async function (req,res,next) {
+    const token = req.headers.authorization;
+    if(token !== 'undefined')
+    {
+        const isValid = await checkToken(token);
+        if(isValid)
+            next();
+        else
+            console.log('Token is invalid'); 
+    }else
+        console.log('token is undefined')
+    
+})
+
 router.post('/getOptions', getOptions);
 router.post('/createOption', createOption);
 router.post('/getActiveStep', getActiveStep);
@@ -61,10 +65,15 @@ router.post('/dislikeUser',dislikeUser);
 router.post('/reportUser',reportUser);
 router.post('/viewProfileUser',viewProfileUser);
 router.post('/getBlockUser',getBlockUser);
+router.post('/getViewProfileList',getViewProfileList);
 router.post('/editProfile', editProfile);
 router.post('/getLikeUser',getLikeUser);
 router.post('/getMatchs', getMatchedUsers);
 router.post('/loadMessages', loadMessages);
-router.post('/sendMessage', sendMessage);
+router.post('/sendMessage', sendMessages);
 router.post('/sortUsers', sortUsers);
+router.post('/getNotif', getNotif);
+router.post('/openNotif', openNotif);
+router.post('/getLikedByList', getLikedByList);
+
 module.exports = router;

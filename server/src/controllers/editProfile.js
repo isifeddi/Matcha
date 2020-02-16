@@ -31,9 +31,9 @@ editProfile = async (req, res) => {
         else
             v = true;
     }
-    if(info.interests.length > 20){
+    if(info.interests.length > 5){
         v = false;
-        result.interests = 'You can not add more than 20 interests !';
+        result.interests = 'You can not add more than 5 interests !';
     }
     const p = info.hasOwnProperty('password'); const confP = info.hasOwnProperty('confirmPassword');
     if( p || confP)

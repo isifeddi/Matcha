@@ -9,6 +9,7 @@ import stepperSaga from './stepperSaga';
 import usersSaga from './usersSaga'
 import profileSaga from "./profileSaga";
 import chatSaga from "./chatSaga";
+import notifSaga from "./notifSaga";
 
 export default function *() {
   yield all([
@@ -22,5 +23,6 @@ export default function *() {
     fork(usersSaga),
     fork(profileSaga),
     fork(chatSaga),
+    fork(notifSaga),
   ]);
 }

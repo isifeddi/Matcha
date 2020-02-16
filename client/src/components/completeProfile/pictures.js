@@ -7,7 +7,9 @@ import IconButton from '@material-ui/core/IconButton';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
-
+import DeleteForeverSharpIcon from '@material-ui/icons/DeleteForeverSharp';
+import CheckCircleSharpIcon from '@material-ui/icons/CheckCircleSharp';
+import Tooltip from '@material-ui/core/Tooltip';
 const useStyles = makeStyles(theme => ({
   card: {
    height :150,
@@ -57,12 +59,6 @@ const calcImages = (images) =>{
 const  Pictures = (props) => {
   const {fileChangedHandler,images,deletePicture,setProfilePicture} = props;
   const classes = useStyles();
-  // const fun = ()=>{
-  //   const url =  'http://localhost:5000/images/2019-12-10T00:14:23.376Z655568.jpg'
-  //   console.log(url);
-  //   return(url);
-  // }
-
   return (
     <Container>
     <CssBaseline />
@@ -77,11 +73,6 @@ const  Pictures = (props) => {
         </div>
       
       </Grid>
-      
-      {/* {images.images && images.images.map(item =>{
-       console.log(item.path)
-        return (<img src={img} alt="icon" width="200" />) */}
-
           <div className={classes.root}>
             <GridList cellHeight={180} className={classes.gridList}>
 
@@ -94,16 +85,21 @@ const  Pictures = (props) => {
                       className={classes.titleBar}
                       title={tile.isProfilePic === 1 && 'Profile picture'}
                       actionIcon={
-                        <button  imgid = {tile.id}  onClick={setProfilePicture}>profPic</button>
-                        //<AddToPhotosTwoToneIcon color='primary' imgId = {tile.id} color="secondary" onClick={setProfilePic}/>
+                        <Tooltip title ="set profile pic"><IconButton aria-label="profilePic"  onClick={(e) => setProfilePicture(tile.id)}>
+                          <CheckCircleSharpIcon  color="secondary"/>
+                        </IconButton></Tooltip>
+                        
                       }
                     />
                     <GridListTileBar
                       className={classes.delete}
                       titlePosition="top"
                       actionIcon={
-                        images.images.length > 1 &&  
-                        <button imgid={tile.id} isprofilepic={tile.isProfilePic} onClick={deletePicture}>DEl</button>
+                        images.images.length > 1 &&
+                        <Tooltip title ="delete pic"><IconButton aria-label="deletePic"  onClick={(e) => deletePicture(tile.id,tile.isProfilePic)}>
+                          <DeleteForeverSharpIcon  color="secondary"/>
+                        </IconButton></Tooltip>  
+                        
                       }
                     />
                   </GridListTile> 

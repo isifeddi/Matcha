@@ -4,8 +4,8 @@ createOption = async (req, res) => {
     const {option, id} = req.body;
     user.InterCreatedNbr(id)
     .then(r => {
-        if(r[0].n > 20){
-            res.send({ created: false, error: 'You can not create more than 20 interests !' });
+        if(r[0].n > 10){
+            res.send({ created: false, error: 'You can not create more than 10 interests !' });
         }
         else{
             if(option.length < 20)

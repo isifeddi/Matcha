@@ -10,14 +10,13 @@ import storage from "redux-persist/lib/storage";
 export const history = createBrowserHistory();
 
 const sagaMiddleware = createSagaMiddleware();
+
 const persistConfig = {
   "key": "use-app",
   storage: storage,
   whitelist: "user",
 };
-
 const persistedReducer = persistReducer(persistConfig, rootReducer(history));
-
 
 export default function configureStore (initialState) {
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -29,7 +28,6 @@ export default function configureStore (initialState) {
   sagaMiddleware.run(rootSaga);
 
   if (module.hot) {
-    // Enable Webpack hot module replacement for reducers
     module.hot.accept("./reducers", () => {
       store.replaceReducer(rootReducer(history));
     });

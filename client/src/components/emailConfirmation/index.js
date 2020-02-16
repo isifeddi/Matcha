@@ -8,9 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-
 const useStyles = makeStyles(theme => ({
-
   paper: {
     marginTop: theme.spacing(8),
     display: 'flex',
@@ -29,10 +27,10 @@ const EmailConfirmation = (props) => {
         <Typography variant="h4" color="primary">
           Email confirmation
         </Typography>
-        {props.status === 'error' && <Typography variant="h6" color="error.main">
+        {props.status === 'error' && <Typography variant="h6" color="error">
           <ErrorIcon /> There was an error, please retry.
         </Typography>}
-        {props.status === 'success' && <Typography variant="h6" color="success">
+        {props.status === 'success' && <Typography variant="h6" color="inherit">
           <CheckCircleIcon /> Email verified successfully.
           <br/>
           You can now <Link to="/login"  style={{textDecoration: 'none', color:'#3f51b5'}}>Login</Link>

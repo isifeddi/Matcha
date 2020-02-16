@@ -1,7 +1,6 @@
 const user = require('../../models/user');
 const EM = require('./email');
 sendResetEmail = async (req, res) => {
-
     const {email} = req.body;
      user.getUser('GetUserByEmail', email)
     .then((response) => {

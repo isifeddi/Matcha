@@ -24,6 +24,9 @@ import HistoryIcon from '@material-ui/icons/History';
 import ChatIcon from '@material-ui/icons/Chat';
 import AppsIcon from '@material-ui/icons/Apps';
 import SearchIcon from '@material-ui/icons/Search';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import Badge from '@material-ui/core/Badge';
+
 const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
   root: {
@@ -36,7 +39,7 @@ const useStyles = makeStyles(theme => ({
       duration: theme.transitions.duration.leavingScreen,
      
     }),
-    backgroundColor:"#DBDFF3"
+    backgroundColor:"#FFFFFF"
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -58,7 +61,7 @@ const useStyles = makeStyles(theme => ({
   },
   drawerPaper: {
     width: drawerWidth,
-    backgroundColor:"#DBDFF3"
+    
   },
   drawerHeader: {
     display: 'flex',
@@ -70,11 +73,14 @@ const useStyles = makeStyles(theme => ({
   title : {
     flexGrow: 1,
   },
+  notif: {
+    margin: 'auto'
+  },
  
 }));
 
 function NavBar(props) {
-  const {user, handleLogout} = props
+  const {unseenNotif, user, handleLogout, handleNotifListOpen} = props;
 
   const loggedInMenu = [
     {"text" : "Browse","path" : "/browse", icon: <AppsIcon color="secondary"/>},
@@ -90,7 +96,6 @@ function NavBar(props) {
     {"text" : "Se connecter","path" : "/login", icon: <LockOpenIcon color="secondary"/>},
     {"text" : "inscription","path" : "/register", icon: <LockOpenIcon color="secondary"/>},
   ];
-  //let pathHome = user && user.complete === 3 ? '/home' : '/completeProfile';
   let menu = [];
   if(user && user.token)
   {
@@ -140,11 +145,24 @@ function NavBar(props) {
           </IconButton>
           
           <Typography variant="h6"  color="secondary" className={classes.title}>
-              <Link to="/home" style={{textDecoration: 'none', color:'inherit'}}>
+              <Link to="/browse" style={{textDecoration: 'none', color:'inherit'}}>
                 MATCHA
               </Link>
              
           </Typography>
+
+          {user && user.token && <IconButton
+              edge="end"
+              aria-label="account of current user"
+              aria-haspopup="true"
+              onClick={handleNotifListOpen}
+              color="primary"
+              className={classes.notif}
+            >
+              <Badge badgeContent={unseenNotif} color="secondary">
+                <NotificationsIcon />
+              </Badge>
+            </IconButton>}
           
           {user && user.token && <Button color="primary" onClick={handleLogout}>Logout</Button>}
         </Toolbar>

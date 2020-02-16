@@ -30,7 +30,6 @@ const sendEmailS =
 function *sendEmailS (data) {
   try {
     const response = yield axios.post('http://localhost:5000/sendResetEmail', {email: data.data.email});
-    console.log(response.data);
     if(response.data.sent)
     {
       yield put(SendEmailSuccess());

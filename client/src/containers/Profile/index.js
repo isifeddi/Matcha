@@ -19,7 +19,6 @@ const ProfileContainer = (props) => {
     )
 }
 
-
 const mapStateToProps = (state) => (
 {
     "user": state.user,
