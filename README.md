@@ -50,4 +50,4 @@ cd client && serve -s build -l [PORT]
 * Chat
 ![chat](server/public/images/chat.png)
 # Authors
-ILYAS SIFEDDINE & ISMAIL BOUROUMMANA
+```ILYAS SIFEDDINE & ISMAIL BOUROUMMANA```
