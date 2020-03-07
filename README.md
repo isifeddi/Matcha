@@ -30,7 +30,7 @@ With the possibility to like, block or report fake accounts. Two matched users c
 ```
 cd client && npm install
 cd server && npm install
-cd server/database && and sh index.sh #to launch db migration
+cd server/database && and sh index.sh #to launch db migration with 500+ users
 cd server && npm run dev
 cd client && serve -s build -l [PORT]
 ```
